@@ -184,20 +184,6 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
-### venv ###
-# Virtualenv
-# http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
-.Python
-[Bb]in
-[Ii]nclude
-[Ll]ib
-[Ll]ib64
-[Ll]ocal
-[Ss]cripts
-pyvenv.cfg
-.venv
-pip-selfcheck.json
-
 ### Vim ###
 # Swap
 [._]*.s[a-v][a-z]
@@ -228,7 +214,7 @@ tags
 # Ignore all local history of files
 .history
 
-# End of https://www.gitignore.io/api/vim,node,venv,emacs,linux,macos,visualstudiocode
+# End of https://www.gitignore.io/api/vim,node,emacs,linux,macos,visualstudiocode
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 

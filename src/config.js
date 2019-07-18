@@ -1,5 +1,5 @@
 const config = {
-  mapIT: {
+  MAPIT: {
     url: 'https://mapit.hurumap.org',
     codeType: 'AFR'
   },
