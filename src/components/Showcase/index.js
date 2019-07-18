@@ -81,11 +81,11 @@ function Showcase({ classes, showcaseStories, dominion: { selectedCountry } }) {
 }
 
 Showcase.propTypes = {
-  classes: PropTypes.shape().isRequired,
+  classes: PropTypes.shape({}).isRequired,
   dominion: PropTypes.shape({
     selectedCountry: PropTypes.shape({})
   }).isRequired,
-  showcaseStories: PropTypes.array.isRequired
+  showcaseStories: PropTypes.arrayOf({}).isRequired
 };
 
 export default withStyles(styles)(Showcase);

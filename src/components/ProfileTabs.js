@@ -121,6 +121,7 @@ class ProfileTabs extends React.Component {
 ProfileTabs.propTypes = {
   classes: PropTypes.shape().isRequired,
   profile: PropTypes.shape({
+    switchToTab: PropTypes.func.isRequired,
     tabs: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,

@@ -62,7 +62,7 @@ function StoryList({ classes, storyData, width }) {
 
 StoryList.propTypes = {
   classes: PropTypes.shape().isRequired,
-  storyData: PropTypes.array.isRequired,
+  storyData: PropTypes.arrayOf({}).isRequired,
   width: PropTypes.string.isRequired
 };
 

@@ -129,7 +129,9 @@ Search.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]),
-  dominion: PropTypes.shape({}).isRequired,
+  dominion: PropTypes.shape({
+    countries: PropTypes.arrayOf({}).isRequired
+  }).isRequired,
   handleIconClick: PropTypes.func,
   placeholder: PropTypes.string,
   isComparisonSearch: PropTypes.bool,

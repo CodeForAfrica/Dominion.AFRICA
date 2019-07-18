@@ -81,7 +81,7 @@ Header.propTypes = {
   profile: PropTypes.shape({})
 };
 
-Header.default = {
+Header.defaultProps = {
   profile: null
 };
 

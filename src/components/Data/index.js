@@ -82,7 +82,15 @@ const styles = theme => ({
 function Data({ classes }) {
   return (
     <Grid container direction="row" className={classes.root}>
-      <Grid container direction="row" item md={9} lg={9} xl={9} className={classes.dataWrapper}>
+      <Grid
+        container
+        direction="row"
+        item
+        md={9}
+        lg={9}
+        xl={9}
+        className={classes.dataWrapper}
+      >
         <Hidden smDown>
           <Grid
             item
@@ -101,7 +109,7 @@ function Data({ classes }) {
           <DocumentsContent />
         </Grid>
       </Grid>
-      <Grid container  item md={3} lg={3} xl={3} className={classes.datasetData}>
+      <Grid container item md={3} lg={3} xl={3} className={classes.datasetData}>
         <DatasetsContent />
       </Grid>
     </Grid>
