@@ -8,13 +8,29 @@ const config = {
       code: 'KE',
       name: 'Kenya',
       centre: [0.3051933453207569, 37.908818734483155],
-      zoom: 6
+      zoom: 6,
+      slug: 'kenya'
     },
     'south-africa': {
       code: 'ZA',
       name: 'South Africa',
       centre: [-30, 24],
-      zoom: 5
+      zoom: 5,
+      slug: 'south-africa'
+    }
+  },
+  about: {
+    kenya: {
+      intro:
+        'Kenya Dominion Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      other:
+        'Kenya Dominion 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
+    },
+    'south-africa': {
+      intro:
+        'South Africa Dominion Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      other:
+        'South Africa Dominion 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
     }
   },
   showCaseStories: [

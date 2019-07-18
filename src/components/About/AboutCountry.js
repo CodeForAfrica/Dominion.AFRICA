@@ -9,7 +9,7 @@ import Info, { InfoSubtitle, InfoBody } from './Info';
 import Land from './Land';
 
 import land from '../../assets/images/hero-image-3.png';
-import content from './Data';
+import config from '../../config';
 
 const styles = theme => ({
   root: {
@@ -26,7 +26,7 @@ const styles = theme => ({
 
 function AboutCountry({ classes, dominion }) {
   const { selectedCountry = {} } = dominion;
-  const info = content[selectedCountry.slug] || {
+  const info = config.about[selectedCountry.slug] || {
     intro: 'Not found',
     other: 'Not found'
   };
