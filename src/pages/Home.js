@@ -11,7 +11,7 @@ function Home() {
   return (
     <Page>
       <HomePageHeader dominion={config} profile={{}} />
-      <Showcase dominion={{}} showcaseStories={[]} />
+      <Showcase dominion={config} showcaseStories={config.showCaseStories} />
       <Video dominion={config} />
       <Data dominion={config} />
       <AboutDominion dominion={config} />
