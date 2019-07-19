@@ -27,3 +27,7 @@ export default function createAPI() {
       )
   };
 }
+
+export async function getProfile(geoId) {
+  return axios.get(`https://api.hurumap.org/profiles/${geoId}.json/`);
+}

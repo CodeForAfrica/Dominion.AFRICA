@@ -50,7 +50,7 @@ class Header extends Component {
   }
 
   render() {
-    const { classes, children, dominion, profile } = this.props;
+    const { classes, children, dominion, ...props } = this.props;
     const { openModal } = this.state;
 
     return (
@@ -62,8 +62,8 @@ class Header extends Component {
         />
 
         {React.cloneElement(children, {
+          ...props,
           dominion,
-          profile,
           toggleModal: this.toggleModal
         })}
       </Grid>
@@ -78,11 +78,13 @@ Header.propTypes = {
     PropTypes.node
   ]).isRequired,
   dominion: PropTypes.shape({}).isRequired,
-  profile: PropTypes.shape({})
+  profile: PropTypes.shape({}),
+  anotherProfile: PropTypes.shape({})
 };
 
 Header.defaultProps = {
-  profile: null
+  profile: null,
+  anotherProfile: null
 };
 
 export default withWidth()(withStyles(styles)(Header));

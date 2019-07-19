@@ -5,12 +5,11 @@ import { Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 import classNames from 'classnames';
-import Hero, { HeroTitle, HeroTitleGrid, HeroDetail } from './Hero';
-import createAPI from '../../lib/api';
+import Hero, { HeroTitle, HeroTitleGrid, HeroDetail } from '../Hero';
 
-import Search from '../Search';
-import ReleaseDropdown from '../ReleaseDropdown';
-import searchIcon from '../../assets/images/icons/location.svg';
+import Search from '../../Search';
+import ReleaseDropdown from '../../ReleaseDropdown';
+import searchIcon from '../../../assets/images/icons/location.svg';
 
 const styles = theme => ({
   root: {
@@ -65,32 +64,19 @@ const styles = theme => ({
     display: 'inline-block'
   }
 });
-class ProfileHero extends Component {
+class Profile extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      level: '',
-      geoid: ''
-    };
-  }
-
-  async componentDidMount() {
-    // get level from mapit
-    const {
-      profile: { geography = {} }
-    } = this.props;
-    const { full_geoid: geoid } = geography.this || {};
-    const api = createAPI();
-    const level = await api.getGeoLevel(geoid);
-
-    this.setState({
-      level,
-      geoid
-    });
+    this.state = {};
   }
 
   render() {
     const { classes, dominion, profile } = this.props;
+
+    if (!profile) {
+      return null;
+    }
+
     const { head2head } = dominion;
     const {
       demographics = {},
@@ -112,6 +98,7 @@ class ProfileHero extends Component {
     }
     const { active: activeRelease } = primaryReleases;
     const { parents: parentLinks } = geography;
+    const { geoLevel, full_geoid: geoId } = geography.this;
     let { square_kms: squarekms } = geography.this;
     squarekms = parseFloat(squarekms);
     if (!Number.isNaN(squarekms)) {
@@ -122,7 +109,6 @@ class ProfileHero extends Component {
       }
     }
     const { short_name: profileName } = geography.this;
-    const { level, geoid } = this.state;
 
     return (
       <Hero>
@@ -131,7 +117,7 @@ class ProfileHero extends Component {
             {profileName}
           </HeroTitle>
           <Typography variant="body2" className={classes.caption} component="p">
-            {level}{' '}
+            {geoLevel}{' '}
             {parentLinks && Object.keys(parentLinks).length > 1 ? (
               <Typography variant="body" className={classes.captionItem}>
                 in{' '}
@@ -166,7 +152,7 @@ class ProfileHero extends Component {
               dominion={dominion}
               isComparisonSearch
               placeholder="Compare this with"
-              thisGeoId={geoid}
+              thisGeoId={geoId}
               icon={searchIcon}
             />
           )}
@@ -192,10 +178,14 @@ class ProfileHero extends Component {
   }
 }
 
-ProfileHero.propTypes = {
+Profile.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   dominion: PropTypes.shape({}).isRequired,
-  profile: PropTypes.shape({}).isRequired
+  profile: PropTypes.shape({})
 };
 
-export default withStyles(styles)(ProfileHero);
+Profile.defaultProps = {
+  profile: null
+};
+
+export default withStyles(styles)(Profile);

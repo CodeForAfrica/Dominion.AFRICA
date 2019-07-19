@@ -5,6 +5,7 @@ import HowItWorks from '../components/HowItWorks';
 import { AboutCountry } from '../components/About';
 import Showcase from '../components/Showcase';
 import Video from '../components/Video';
+import CountryPartners from '../components/CountryPartners';
 import Page from '../components/Page';
 import config from '../config';
 
@@ -20,12 +21,17 @@ function Country({ country }) {
         dominion={{ ...config, selectedCountry }}
         showcaseStories={config.showCaseStories}
       />
+      <CountryPartners dominion={{ ...config, selectedCountry }} />
     </Page>
   );
 }
 
 Country.propTypes = {
-  country: PropTypes.string.isRequired
+  country: PropTypes.string
+};
+
+Country.defaultProps = {
+  country: ''
 };
 
 export default Country;

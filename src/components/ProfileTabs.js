@@ -55,9 +55,7 @@ class ProfileTabs extends React.Component {
   constructor(props) {
     super(props);
 
-    const {
-      profile: { tabs }
-    } = props;
+    const { tabs } = props;
     let value;
     if (tabs.length) {
       const [{ href }] = tabs;
@@ -68,9 +66,7 @@ class ProfileTabs extends React.Component {
   }
 
   handleChange(event, value) {
-    const {
-      profile: { switchToTab }
-    } = this.props;
+    const { switchToTab } = this.props;
     this.setState({ value });
     if (switchToTab) {
       switchToTab(value);
@@ -78,11 +74,7 @@ class ProfileTabs extends React.Component {
   }
 
   render() {
-    const {
-      classes,
-      profile: { tabs },
-      width
-    } = this.props;
+    const { classes, tabs, width } = this.props;
     const { value } = this.state;
 
     const centered = isWidthUp('md', width); // centered is only for md and up
@@ -120,15 +112,13 @@ class ProfileTabs extends React.Component {
 
 ProfileTabs.propTypes = {
   classes: PropTypes.shape().isRequired,
-  profile: PropTypes.shape({
-    switchToTab: PropTypes.func.isRequired,
-    tabs: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        href: PropTypes.string.isRequired
-      })
-    ).isRequired
-  }).isRequired,
+  switchToTab: PropTypes.func.isRequired,
+  tabs: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      href: PropTypes.string.isRequired
+    })
+  ).isRequired,
   width: PropTypes.string.isRequired
 };
 

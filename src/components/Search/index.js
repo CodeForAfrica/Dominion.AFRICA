@@ -65,12 +65,13 @@ class Search extends React.Component {
     let results = [];
 
     if (searchTerm !== '') {
-      results = geography.filter(g =>
-        g.name.match(new RegExp(searchTerm, 'i'))
-      );
       if (selectedCountry) {
         const { code: countryCode } = selectedCountry;
         results = await api.getGeography(countryCode, searchTerm);
+      } else {
+        results = geography.filter(g =>
+          g.name.match(new RegExp(searchTerm, 'i'))
+        );
       }
     }
     this.setState({ codeType, results, geography });
