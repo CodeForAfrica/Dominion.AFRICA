@@ -6,7 +6,7 @@ import Country from './pages/Country';
 
 function App() {
   return (
-    <Router>
+    <Router basepath={process.env.PUBLIC_URL}>
       <Home default path="/" />
       <Country path="/:country" />
     </Router>
