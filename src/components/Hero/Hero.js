@@ -11,21 +11,7 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     pointerEvents: 'all',
-    padding: '0 9.375rem',
     [theme.breakpoints.down('md')]: {
-      padding: '0 3.125rem'
-    },
-    [theme.breakpoints.down('sm')]: {
-      padding: '0'
-    }
-  },
-  heroContentGrid: {
-    pointerEvents: 'all',
-    flexGrow: 1,
-    [theme.breakpoints.down('sm')]: {
-      margin: 0
-    },
-    [theme.breakpoints.up('md')]: {
       height: '70vh'
     }
   },
@@ -265,12 +251,10 @@ HeroButtonComponent.propTypes = {
 
 const HeroButton = withStyles(styles)(HeroButtonComponent);
 
-function HeroComponent({ classes, children }) {
+function HeroComponent({ classes, children, ...props }) {
   return (
-    <Grid container className={classes.root}>
-      <Grid container alignItems="center" className={classes.heroContentGrid}>
-        {children}
-      </Grid>
+    <Grid container className={classes.root} alignItems="center" {...props}>
+      {children}
     </Grid>
   );
 }

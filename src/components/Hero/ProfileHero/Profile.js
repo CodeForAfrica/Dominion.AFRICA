@@ -16,28 +16,31 @@ import config from '../../../config';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    position: 'relative'
   },
   map: {
-    position: 'relative !important',
-    height: '250px !important',
-    left: 'unset !important',
-    top: 'unset !important',
+    position: 'relative',
+    height: '250px',
+    left: 'unset',
+    top: 'unset',
     [theme.breakpoints.up('md')]: {
-      position: 'absolute !important',
+      position: 'absolute',
       right: '50px',
-      width: '50% !important',
-      height: '460px !important',
-      maxHeight: '460px !important',
-      maxWidth: '829px !important'
+      width: '50%',
+      height: '460px',
+      maxHeight: '460px',
+      maxWidth: '829px'
     },
     [theme.breakpoints.up('lg')]: {
       right: '9.375rem'
     }
   },
   h2hMap: {
-    order: 1,
-    height: '270px !important'
+    position: 'relative',
+    height: '270px',
+    width: 'available',
+    right: 'unset'
   },
   caption: {
     color: '#8d8d8c',
@@ -74,7 +77,7 @@ class Profile extends Component {
   }
 
   render() {
-    const { classes, dominion, profile, history } = this.props;
+    const { classes, dominion, profile, history, ...props } = this.props;
 
     if (!profile) {
       return null;
@@ -118,7 +121,7 @@ class Profile extends Component {
     const { short_name: profileName } = geography.this;
 
     return (
-      <Hero>
+      <Hero classes={{ root: classes.root }} {...props}>
         <HeroTitleGrid quater head2head={head2head}>
           <HeroTitle breakWord small>
             {profileName}
@@ -165,10 +168,10 @@ class Profile extends Component {
           )}
         </HeroTitleGrid>
         <div
-          id="slippy-map"
           className={classNames(classes.map, { [classes.h2hMap]: head2head })}
         >
           <MapIt
+            id={geoId}
             drawProfile
             drawChildren
             url={config.MAPIT.url}

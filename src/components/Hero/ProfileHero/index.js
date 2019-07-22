@@ -5,21 +5,38 @@ import { Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import Profile from './Profile';
 
-const styles = {
-  root: {}
-};
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+    margin: '0 9.375rem',
+    [theme.breakpoints.down('md')]: {
+      margin: '0 3.125rem'
+    },
+    [theme.breakpoints.down('sm')]: {
+      margin: '0'
+    }
+  }
+});
 
-function ProfileHero({ profile, anotherProfile, ...props }) {
-  return (
-    <Grid container direction="row">
-      <Grid item md={anotherProfile ? 6 : 12}>
-        <Profile profile={profile} {...props} />
-      </Grid>
-      {anotherProfile && (
-        <Grid item md={6}>
-          <Profile profile={anotherProfile} {...props} />
-        </Grid>
-      )}
+function ProfileHero({ classes, profile, anotherProfile, ...props }) {
+  return !anotherProfile ? (
+    <Profile classes={{ root: classes.root }} profile={profile} {...props} />
+  ) : (
+    <Grid className={classes.root} container direction="row" spacing={1}>
+      <Profile
+        item
+        md={6}
+        alignItems="flex-start"
+        profile={profile}
+        {...props}
+      />
+      <Profile
+        item
+        md={6}
+        alignItems="flex-start"
+        profile={anotherProfile}
+        {...props}
+      />
     </Grid>
   );
 }
