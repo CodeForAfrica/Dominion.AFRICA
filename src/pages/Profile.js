@@ -7,7 +7,11 @@ import CountryPartners from '../components/CountryPartners';
 import config from '../config';
 import { getProfile } from '../lib/api';
 
-function Profile({ geoId, anotherGeoId }) {
+function Profile({
+  match: {
+    params: { geoId, anotherGeoId }
+  }
+}) {
   const head2head = Boolean(geoId && anotherGeoId);
   const [selectedCountry, setSelectedCountry] = useState({});
   const [profile, setProfile] = useState();
@@ -61,13 +65,12 @@ function Profile({ geoId, anotherGeoId }) {
 }
 
 Profile.propTypes = {
-  geoId: PropTypes.string,
-  anotherGeoId: PropTypes.string
-};
-
-Profile.defaultProps = {
-  geoId: undefined,
-  anotherGeoId: undefined
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      geoId: PropTypes.string.isRequired,
+      anotherGeoId: PropTypes.string.isRequired
+    }).isRequired
+  }).isRequired
 };
 
 export default Profile;

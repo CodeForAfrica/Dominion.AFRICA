@@ -1,18 +1,24 @@
 import React from 'react';
 
-import { Router } from '@reach/router';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import Country from './pages/Country';
 import Profile from './pages/Profile';
 
 function App() {
   return (
-    <Router basepath={process.env.PUBLIC_URL}>
-      <Home default path="/" />
-      <Country path="/:country" />
-      <Profile path="/profile/:geoId" />
-      <Profile path="/compare/:geoId/vs/:anotherGeoId" />
-    </Router>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/:country" component={Country} />
+        <Route exact path="/profile/:geoId" component={Profile} />
+        <Route
+          exact
+          path="/compare/:geoId/vs/:anotherGeoId"
+          component={Profile}
+        />
+      </Switch>
+    </BrowserRouter>
   );
 }
 

@@ -9,7 +9,11 @@ import CountryPartners from '../components/CountryPartners';
 import Page from '../components/Page';
 import config from '../config';
 
-function Country({ country }) {
+function Country({
+  match: {
+    params: { country }
+  }
+}) {
   const selectedCountry = config.countries[country];
   return (
     <Page>
@@ -27,11 +31,9 @@ function Country({ country }) {
 }
 
 Country.propTypes = {
-  country: PropTypes.string
-};
-
-Country.defaultProps = {
-  country: ''
+  match: PropTypes.shape({
+    params: PropTypes.shape({}).isRequired
+  }).isRequired
 };
 
 export default Country;
