@@ -16,8 +16,7 @@ import config from '../../../config';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-    position: 'relative'
+    flexGrow: 1
   },
   map: {
     position: 'relative',

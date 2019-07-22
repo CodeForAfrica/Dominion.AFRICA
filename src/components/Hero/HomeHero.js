@@ -17,6 +17,16 @@ import smallscreenbackground from '../../assets/images/bg/smallscreen_background
 import HomeHeroMap from './HomeHeroMap';
 
 const styles = theme => ({
+  root: {
+    flexGrow: 1,
+    margin: '0 9.375rem',
+    [theme.breakpoints.down('md')]: {
+      margin: '0 3.125rem'
+    },
+    [theme.breakpoints.down('sm')]: {
+      margin: '0'
+    }
+  },
   heroContentGrid: {
     flexGrow: 1,
     backgroundImage: `url(${herobg})`,
@@ -34,7 +44,7 @@ const styles = theme => ({
 
 function HomeHero({ classes, toggleModal }) {
   return (
-    <Hero>
+    <Hero classes={{ root: classes.root }}>
       <Grid
         container
         direction="row"
