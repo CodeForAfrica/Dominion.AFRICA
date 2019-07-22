@@ -10,6 +10,7 @@ import arrow from '../../assets/images/icons/combined-shape.svg';
 const styles = theme => ({
   root: {
     flexGrow: 1,
+    pointerEvents: 'all',
     padding: '0 9.375rem',
     [theme.breakpoints.down('md')]: {
       padding: '0 3.125rem'
@@ -19,6 +20,7 @@ const styles = theme => ({
     }
   },
   heroContentGrid: {
+    pointerEvents: 'all',
     flexGrow: 1,
     [theme.breakpoints.down('sm')]: {
       margin: 0
@@ -28,6 +30,7 @@ const styles = theme => ({
     }
   },
   titleTextGrid: {
+    pointerEvents: 'all',
     zIndex: '100',
     color: 'white',
     [theme.breakpoints.down('sm')]: {
@@ -36,6 +39,7 @@ const styles = theme => ({
     }
   },
   h2hTitleGrid: {
+    pointerEvents: 'all',
     order: 2,
     paddingTop: theme.spacing(),
     margin: 0,
@@ -44,18 +48,22 @@ const styles = theme => ({
   title: {
     color: 'white',
     width: '90%',
+    pointerEvents: 'all',
     [theme.breakpoints.down('sm')]: {
       fontSize: '3rem',
       width: '60%'
     }
   },
   titleFontSmall: {
+    pointerEvents: 'all',
     fontSize: '3.125em'
   },
   titleWordBreak: {
+    pointerEvents: 'all',
     width: 'min-content'
   },
   detail: {
+    pointerEvents: 'all',
     color: 'white',
     fontFamily: 'Lora',
     fontSize: '1.875em',
@@ -69,12 +77,14 @@ const styles = theme => ({
     fontSize: '1.25em'
   },
   detailLabel: {
+    pointerEvents: 'all',
     color: '#8d8d8c',
     fontSize: '0.688em',
     fontWeight: 500,
     lineHeight: 2.09
   },
   body2: {
+    pointerEvents: 'all',
     color: 'white',
     textAlign: 'left',
     width: '50%',
@@ -88,6 +98,7 @@ const styles = theme => ({
     paddingTop: '2rem'
   },
   button: {
+    pointerEvents: 'all',
     textTransform: 'none',
     fontWeight: 800,
     fontSize: theme.typography.subtitle1.fontSize,
@@ -102,10 +113,12 @@ const styles = theme => ({
     }
   },
   detailComponent: {
+    pointerEvents: 'all',
     paddingTop: theme.spacing(),
     paddingBottom: theme.spacing()
   },
   buttonArrow: {
+    pointerEvents: 'all',
     marginLeft: -theme.spacing(4),
     [theme.breakpoints.down('sm')]: {
       display: 'none'

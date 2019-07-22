@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { PropTypes } from 'prop-types';
-import { Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import { MapIt } from '@codeforafrica/hurumap-ui';
 
 import Hero, {
   HeroTitle,
@@ -10,18 +10,22 @@ import Hero, {
   HeroTitleGrid,
   HeroButton
 } from './Hero';
+import config from '../../config';
 
 const styles = theme => ({
   root: {
     flexGrow: 1
   },
+  titleGrid: {
+    pointerEvents: 'none'
+  },
   map: {
+    zIndex: 0,
     position: 'relative !important',
     backgroundColor: 'grey',
     height: '250px !important',
     left: 'unset !important',
     top: 'unset !important',
-    zIndex: 100,
     [theme.breakpoints.up('md')]: {
       position: 'absolute !important',
       right: '50px',
@@ -40,7 +44,7 @@ function CountryHero({ classes, toggleModal, dominion }) {
   const { selectedCountry = { name: '' } } = dominion;
   return (
     <Hero>
-      <HeroTitleGrid>
+      <HeroTitleGrid classes={{ titleTextGrid: classes.titleGrid }}>
         <HeroTitle>{selectedCountry.name}</HeroTitle>
         <HeroDescription>
           Dominion makes data available to help add context and authority to
@@ -58,7 +62,14 @@ function CountryHero({ classes, toggleModal, dominion }) {
           </a>
         </p>
       </HeroTitleGrid>
-      <Grid id="slippy-map" className={classes.map} />
+      <div className={classes.map}>
+        <MapIt
+          url={config.MAPIT.url}
+          codeType={config.MAPIT.codeType}
+          geoLevel="country"
+          geoCode={selectedCountry.code}
+        />
+      </div>
     </Hero>
   );
 }

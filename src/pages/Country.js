@@ -17,7 +17,10 @@ function Country({
   const selectedCountry = config.countries[country];
   return (
     <Page>
-      <CountryPageHeader dominion={config} profile={{}} />
+      <CountryPageHeader
+        dominion={{ ...config, selectedCountry }}
+        profile={{}}
+      />
       <AboutCountry dominion={{ ...config, selectedCountry }} />
       <HowItWorks dominion={config} />
       <Video dominion={config} />
