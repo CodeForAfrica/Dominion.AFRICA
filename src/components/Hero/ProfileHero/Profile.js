@@ -80,7 +80,7 @@ class Profile extends Component {
     const { classes, dominion, profile, history, ...props } = this.props;
 
     if (!profile) {
-      return null;
+      return <Hero classes={{ root: classes.root }} {...props} />;
     }
 
     const { head2head } = dominion;
