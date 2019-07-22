@@ -3,13 +3,16 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import { withRouter } from 'react-router-dom';
 
 import classNames from 'classnames';
+import { MapIt } from '@codeforafrica/hurumap-ui';
 import Hero, { HeroTitle, HeroTitleGrid, HeroDetail } from '../Hero';
 
 import Search from '../../Search';
 import ReleaseDropdown from '../../ReleaseDropdown';
 import searchIcon from '../../../assets/images/icons/location.svg';
+import config from '../../../config';
 
 const styles = theme => ({
   root: {
@@ -71,7 +74,7 @@ class Profile extends Component {
   }
 
   render() {
-    const { classes, dominion, profile } = this.props;
+    const { classes, dominion, profile, history } = this.props;
 
     if (!profile) {
       return null;
@@ -98,7 +101,11 @@ class Profile extends Component {
     }
     const { active: activeRelease } = primaryReleases;
     const { parents: parentLinks } = geography;
-    const { geoLevel, full_geoid: geoId } = geography.this;
+    const {
+      geo_level: geoLevel,
+      geo_code: geoCode,
+      full_geoid: geoId
+    } = geography.this;
     let { square_kms: squarekms } = geography.this;
     squarekms = parseFloat(squarekms);
     if (!Number.isNaN(squarekms)) {
@@ -160,7 +167,19 @@ class Profile extends Component {
         <div
           id="slippy-map"
           className={classNames(classes.map, { [classes.h2hMap]: head2head })}
-        />
+        >
+          <MapIt
+            drawProfile
+            drawChildren
+            url={config.MAPIT.url}
+            codeType={config.MAPIT.codeType}
+            geoLevel={geoLevel}
+            geoCode={geoCode}
+            onClickGeoLayer={area => {
+              history.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
+            }}
+          />
+        </div>
         {activeRelease && (
           <Typography
             variant="body2"
@@ -188,4 +207,4 @@ Profile.defaultProps = {
   profile: null
 };
 
-export default withStyles(styles)(Profile);
+export default withRouter(withStyles(styles)(Profile));

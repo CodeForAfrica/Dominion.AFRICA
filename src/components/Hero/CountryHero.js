@@ -3,6 +3,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { MapIt } from '@codeforafrica/hurumap-ui';
+import { withRouter } from 'react-router-dom';
 
 import Hero, {
   HeroTitle,
@@ -40,7 +41,7 @@ const styles = theme => ({
   }
 });
 
-function CountryHero({ classes, toggleModal, dominion }) {
+function CountryHero({ classes, history, toggleModal, dominion }) {
   const { selectedCountry = { name: '' } } = dominion;
   return (
     <Hero>
@@ -68,6 +69,9 @@ function CountryHero({ classes, toggleModal, dominion }) {
           codeType={config.MAPIT.codeType}
           geoLevel="country"
           geoCode={selectedCountry.code}
+          onClickGeoLayer={area => {
+            history.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
+          }}
         />
       </div>
     </Hero>
@@ -80,4 +84,4 @@ CountryHero.propTypes = {
   toggleModal: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(CountryHero);
+export default withRouter(withStyles(styles)(CountryHero));
