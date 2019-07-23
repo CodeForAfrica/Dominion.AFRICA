@@ -16,7 +16,7 @@ const styles = theme => ({
   root: {
     flexRow: 1,
     padding: '2rem',
-    backgroundColor: '#f1f1ed',
+    backgroundColor: theme.palette.primary.light,
     [theme.breakpoints.up('md')]: {
       padding: '4.143rem 3.125rem'
     },

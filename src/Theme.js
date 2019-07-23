@@ -2,7 +2,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 
 const FONT_FAMILY_HEADING = '"Lora", "serif"';
 const FONT_FAMILY_TEXT = '"Montserrat", "sans-serif"';
-
+const defaultTheme = createMuiTheme();
 const Theme = createMuiTheme({
   palette: {
     primary: { main: '#2b3129', light: '#f1f1ed', dark: '#222822' },
@@ -26,9 +26,17 @@ const Theme = createMuiTheme({
       fontWeight: 400
     }, // Hero section  heading
     h3: {
-      color: '#2b3129',
+      color: '#293229',
       fontFamily: FONT_FAMILY_HEADING,
-      textTransform: 'capitalize'
+      textTransform: 'capitalize',
+      fontWeight: 'normal',
+      fontSize: '1.5rem',
+      lineHeight: 1.17,
+      [defaultTheme.breakpoints.up('md')]: {
+        color: '#222822',
+        lineHeight: 1,
+        fontSize: '3.125rem'
+      }
     }, // Section heading
     h4: {
       color: '#2b3129',
@@ -49,6 +57,13 @@ const Theme = createMuiTheme({
       color: 'rgba(34, 40, 34, 0.8)',
       fontFamily: FONT_FAMILY_TEXT
     },
+    subtitle1: {
+      fontFamily: FONT_FAMILY_TEXT,
+      fontSize: '0.75rem',
+      fontWeight: 800,
+      lineHeight: 1.92,
+      color: '#222822'
+    },
     subtitle2: {
       fontFamily: FONT_FAMILY_TEXT,
       fontSize: '0.75rem',
@@ -63,7 +78,7 @@ const Theme = createMuiTheme({
   overrides: {
     MuiButton: {
       root: {
-        border: '2px solid #ffff',
+        border: '0.125rem solid #ffff',
         borderRadius: 0,
         color: '#fff'
       }
