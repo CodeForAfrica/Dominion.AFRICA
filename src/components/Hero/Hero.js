@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Grid, Typography, Button } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 
-import arrow from '../../assets/images/icons/combined-shape.svg';
+import ArrowButton from '../ArrowButton';
 
 const styles = theme => ({
   root: {
@@ -78,36 +78,12 @@ const styles = theme => ({
       width: '100%'
     }
   },
-  buttonGrid: {
-    paddingTop: '2rem'
-  },
-  button: {
-    pointerEvents: 'all',
-    textTransform: 'none',
-    fontWeight: 800,
-    fontSize: theme.typography.subtitle1.fontSize,
-    color: 'white',
-    height: '4rem',
-    width: '100%',
-    border: '2px solid white',
-    paddingLeft: '4rem',
-    paddingRight: '4rem',
-    [theme.breakpoints.up('sm')]: {
-      width: 'unset'
-    }
-  },
   detailComponent: {
     pointerEvents: 'all',
     paddingTop: theme.spacing(),
     paddingBottom: theme.spacing()
   },
-  buttonArrow: {
-    pointerEvents: 'all',
-    marginLeft: -theme.spacing(4),
-    [theme.breakpoints.down('sm')]: {
-      display: 'none'
-    }
-  }
+  buttonRoot: {}
 });
 
 function HeroTitleGridComponent({ classes, children, quater, head2head }) {
@@ -223,18 +199,13 @@ const HeroDetail = withStyles(styles)(HeroDetailComponent);
 
 function HeroButtonComponent({ classes, children, onClick }) {
   return (
-    <Grid
-      container
-      item
-      sm={12}
-      alignItems="center"
-      className={classes.buttonGrid}
+    <ArrowButton
+      secondary
+      classes={{ root: classes.buttonRoot }}
+      onClick={onClick}
     >
-      <Button variant="outlined" onClick={onClick} className={classes.button}>
-        {children}
-      </Button>
-      <img src={arrow} alt="Select Arrow" className={classes.buttonArrow} />
-    </Grid>
+      {children}
+    </ArrowButton>
   );
 }
 

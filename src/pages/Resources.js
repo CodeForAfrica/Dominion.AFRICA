@@ -6,6 +6,7 @@ import config from '../config';
 import Section from '../components/Section';
 import DocumentCard from '../components/Card/Document';
 import DataCard from '../components/Card/Data';
+import ArrowButton from '../components/ArrowButton';
 
 function Resources() {
   return (
@@ -26,6 +27,7 @@ function Resources() {
             </Grid>
           ))}
         </Grid>
+        <ArrowButton>View all</ArrowButton>
       </Section>
       <Section
         light
@@ -43,6 +45,7 @@ function Resources() {
             />
           ))}
         </Grid>
+        <ArrowButton>View all</ArrowButton>
       </Section>
     </Page>
   );
