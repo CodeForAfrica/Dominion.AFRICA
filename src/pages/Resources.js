@@ -7,6 +7,7 @@ import Section from '../components/Section';
 import DocumentCard from '../components/Card/Document';
 import DataCard from '../components/Card/Data';
 import ArrowButton from '../components/ArrowButton';
+import { AboutDominion } from '../components/About';
 
 function Resources() {
   return (
@@ -47,6 +48,7 @@ function Resources() {
         </Grid>
         <ArrowButton>View all</ArrowButton>
       </Section>
+      <AboutDominion dominion={config} />
     </Page>
   );
 }
