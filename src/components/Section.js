@@ -19,7 +19,7 @@ const styles = theme => ({
     }
   },
   description: {
-    marginTop: '2rem',
+    margin: '2rem 0',
     [theme.breakpoints.up('md')]: {
       marginTop: 0
     }
@@ -39,9 +39,9 @@ function Section({ classes, light, title, subtitle, description, children }) {
         </Grid>
         <Grid item xs={12} md={9}>
           <Typography className={classes.description}>{description}</Typography>
+          <div>{children}</div>
         </Grid>
       </Grid>
-      {children}
     </div>
   );
 }
