@@ -41,7 +41,8 @@ const Theme = createMuiTheme({
     h4: {
       color: '#2b3129',
       fontFamily: FONT_FAMILY_HEADING,
-      textTransform: 'capitalize'
+      textTransform: 'capitalize',
+      fontSize: '1.25rem'
     },
     h5: {
       color: '#2b3129',

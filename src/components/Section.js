@@ -29,7 +29,7 @@ const styles = theme => ({
   }
 });
 
-function Section({ classes, light, title, subtitle, description }) {
+function Section({ classes, light, title, subtitle, description, children }) {
   return (
     <div className={classNames(classes.root, { [classes.light]: light })}>
       <Typography variant="h3">{title}</Typography>
@@ -41,6 +41,7 @@ function Section({ classes, light, title, subtitle, description }) {
           <Typography className={classes.description}>{description}</Typography>
         </Grid>
       </Grid>
+      {children}
     </div>
   );
 }
@@ -50,11 +51,16 @@ Section.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired
+  description: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ])
 };
 
 Section.defaultProps = {
-  light: false
+  light: false,
+  children: null
 };
 
 export default withStyles(styles)(Section);
