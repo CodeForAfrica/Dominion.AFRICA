@@ -67,7 +67,7 @@ export default class ChartFactory {
                 .map(key => ({
                   label: key,
                   data: geographies.map((geography, index) => ({
-                    x: geography.full_name,
+                    x: geography.this.short_name,
                     y:
                       index === 0
                         ? data[key].values.this
