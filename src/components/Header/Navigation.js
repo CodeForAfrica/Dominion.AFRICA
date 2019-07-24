@@ -11,6 +11,7 @@ import Dropdown, { CountriesButton } from './PortalDropdown';
 
 import Search from '../Search';
 import PortalChooser from '../Modal/PortalChooser';
+import ContactUs from '../Modal/ContactUs';
 
 import menuIcon from '../../assets/images/icons/menu.svg';
 import backIcon from '../../assets/images/icons/back.svg';
@@ -101,7 +102,8 @@ class Navigation extends Component {
     let showcaseLink = '#dominionShowcase';
     const {
       classes,
-      dominion: { selectedCountry }
+      dominion: { selectedCountry },
+      toggleModal
     } = this.props;
     if (selectedCountry) {
       // In order for showcase link to work in profile pages,
@@ -114,10 +116,19 @@ class Navigation extends Component {
           { title: 'About', link: '/about' },
           { title: 'Showcase', link: `${showcaseLink}` },
           { title: 'Resources', link: '/resources' },
-          { title: 'Contact', link: '/contact' }
+          {
+            title: 'Contact',
+            link: '#',
+            onClick: toggleModal('contact')
+          }
         ].map(menu => (
           <MenuItem key={menu.link} className={classes.menuListItem}>
-            <Link variant="body1" className={classes.link} href={menu.link}>
+            <Link
+              variant="body1"
+              className={classes.link}
+              href={menu.link}
+              onClick={menu.onClick}
+            >
               {menu.title}
             </Link>
           </MenuItem>
@@ -166,12 +177,23 @@ class Navigation extends Component {
         <IconButton
           disableRipple
           aria-label="Menu"
-          onClick={toggleModal('menu')}
+          onClick={
+            openModal === 'contact'
+              ? toggleModal('contact')
+              : toggleModal('menu')
+          }
           style={{
             padding: 0
           }}
         >
-          <img alt="Menu" src={openModal === 'menu' ? backIcon : menuIcon} />
+          <img
+            alt="Menu"
+            src={
+              openModal === 'menu' || openModal === 'contact'
+                ? backIcon
+                : menuIcon
+            }
+          />
         </IconButton>
       </Grid>
     );
@@ -272,6 +294,15 @@ class Navigation extends Component {
               handleClose={toggleModal('portal')}
               countries={countries}
             />
+          </Grid>
+        </Modal>
+        <Modal
+          isOpen={openModal === 'contact'}
+          onEscapeKeyDown={toggleModal('contact')}
+        >
+          <Grid container className={classes.wrapper}>
+            {nav}
+            <ContactUs handleClose={toggleModal('contact')} />
           </Grid>
         </Modal>
       </React.Fragment>
