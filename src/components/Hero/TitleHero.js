@@ -19,20 +19,19 @@ const styles = theme => ({
   }
 });
 
-function ResourceHero({ classes }) {
+function TitleHero({ classes, children }) {
   return (
     <Hero classes={{ root: classes.root }}>
       <HeroTitleGrid>
-        <HeroTitle>
-          Datasets <br /> and Documents
-        </HeroTitle>
+        <HeroTitle>{children}</HeroTitle>
       </HeroTitleGrid>
     </Hero>
   );
 }
 
-ResourceHero.propTypes = {
-  classes: PropTypes.shape({}).isRequired
+TitleHero.propTypes = {
+  classes: PropTypes.shape({}).isRequired,
+  children: PropTypes.shape({}).isRequired
 };
 
-export default withStyles(styles)(ResourceHero);
+export default withStyles(styles)(TitleHero);

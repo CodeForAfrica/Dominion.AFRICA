@@ -18,27 +18,20 @@ const styles = theme => ({
       padding: '3.125rem 9.125rem'
     }
   },
-  description: {
-    margin: '2rem 0',
-    [theme.breakpoints.up('md')]: {
-      marginTop: 0
-    }
-  },
   light: {
     backgroundColor: theme.palette.primary.light
   }
 });
 
-function Section({ classes, light, title, subtitle, description, children }) {
+function Section({ classes, light, title, subtitle, children }) {
   return (
     <div className={classNames(classes.root, { [classes.light]: light })}>
-      <Typography variant="h3">{title}</Typography>
       <Grid container>
-        <Grid item xs={12} md={3}>
+        <Grid item xs={12} md={3} style={{ marginBottom: '1.25rem' }}>
+          <Typography variant="h3">{title}</Typography>
           <Typography variant="subtitle1">{subtitle}</Typography>
         </Grid>
         <Grid item xs={12} md={9}>
-          <Typography className={classes.description}>{description}</Typography>
           <div>{children}</div>
         </Grid>
       </Grid>
@@ -51,7 +44,6 @@ Section.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
-import { ResourcePageHeader } from '../components/Header';
+import { Grid, Typography } from '@material-ui/core';
+import { TitlePageHeader } from '../components/Header';
 import Page from '../components/Page';
 import config from '../config';
 import Section from '../components/Section';
@@ -12,12 +12,17 @@ import { AboutDominion } from '../components/About';
 function Resources() {
   return (
     <Page>
-      <ResourcePageHeader dominion={config} profile={{}} />
-      <Section
-        title="Documents"
-        subtitle="Powered by sourceAFRICA.net"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
-      >
+      <TitlePageHeader dominion={config} profile={{}}>
+        Datasets
+        <br /> and Documents
+      </TitlePageHeader>
+      <Section title="Documents" subtitle="Powered by sourceAFRICA.net">
+        <Typography>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </Typography>
         <Grid container justify="space-between">
           {[...new Array(10)].map(() => (
             <Grid item xs={12} md={6}>

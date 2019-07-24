@@ -3,7 +3,7 @@ import React from 'react';
 import Header from './Header';
 
 import HomeHero from '../Hero/HomeHero';
-import ResourceHero from '../Hero/ResourceHero';
+import TitleHero from '../Hero/TitleHero';
 import CountryHero from '../Hero/CountryHero';
 import ProfileHero from '../Hero/ProfileHero';
 
@@ -15,10 +15,10 @@ export function HomePageHeader(props) {
   );
 }
 
-export function ResourcePageHeader(props) {
+export function TitlePageHeader({ children, ...props }) {
   return (
     <Header {...props}>
-      <ResourceHero />
+      <TitleHero>{children}</TitleHero>
     </Header>
   );
 }

@@ -28,7 +28,7 @@ const Theme = createMuiTheme({
     h3: {
       color: '#293229',
       fontFamily: FONT_FAMILY_HEADING,
-      textTransform: 'capitalize',
+      // textTransform: 'capitalize',
       fontWeight: 'normal',
       fontSize: '1.5rem',
       lineHeight: 1.17,
@@ -53,6 +53,9 @@ const Theme = createMuiTheme({
       color: '#2b3129',
       fontFamily: FONT_FAMILY_HEADING,
       textTransform: 'capitalize'
+    },
+    body1: {
+      marginBottom: 20
     },
     body2: {
       color: 'rgba(34, 40, 34, 0.8)',

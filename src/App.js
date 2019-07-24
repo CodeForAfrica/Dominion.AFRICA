@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Country from './pages/Country';
 import Profile from './pages/Profile';
 import Resources from './pages/Resources';
+import About from './pages/About';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/resources" component={Resources} />
+        <Route exact path="/about" component={About} />
         <Route exact path="/:country" component={Country} />
         <Route exact path="/profile/:geoId" component={Profile} />
         <Route
