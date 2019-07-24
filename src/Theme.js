@@ -54,9 +54,6 @@ const Theme = createMuiTheme({
       fontFamily: FONT_FAMILY_HEADING,
       textTransform: 'capitalize'
     },
-    body1: {
-      marginBottom: 20
-    },
     body2: {
       color: 'rgba(34, 40, 34, 0.8)',
       fontFamily: FONT_FAMILY_TEXT

@@ -24,11 +24,13 @@ function About() {
           sourcing, cleaning and adding data sets to this site, and work towards
           becoming the authoritative data source on this issue.
         </Typography>
+        <br />
         <Typography style={{ fontWeight: 800 }}>
           HURUmap Land provides useful facts and data about land ownership in
           South Africa. Compare places using tables and maps, download data, and
           embed charts on your site
         </Typography>
+        <br />
         <Typography>
           HURUmap’s underlying data is quality-checked, from reputable official
           sources including the government Census, PEPFAR and Uwezo. This
@@ -38,16 +40,19 @@ function About() {
           Africa and by Code for Africa for HURUmap in Kenya, Tanzania, Uganda
           and Zambia.
         </Typography>
+        <br />
         <Typography style={{ fontWeight: 800 }}>
           Code for Africa and its partners hate seeing civil society or anyone
           else being duped into wasting money unnecessarily on inappropriate
           technology or predatory consultancies.
         </Typography>
+        <br />
         <Typography style={{ fontWeight: 800 }}>
           There are thousands of civic apps and other technology solutions
           already available for reuse, free-of-charge, on communities such as
           GitHub.
         </Typography>
+        <br />
         <Typography style={{ fontWeight: 800 }}>
           Code for Africa is committed to help grow these resources and the
           global civic technology community, by making its code and data freely
@@ -55,6 +60,7 @@ function About() {
           agency organisations re-purpose and customise existing civic code as
           cost-effectively as possible.
         </Typography>
+        <br />
         <Typography style={{ fontWeight: 800 }}>
           The code for HURUmap Land is available here.
         </Typography>
