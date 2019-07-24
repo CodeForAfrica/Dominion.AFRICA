@@ -18,13 +18,13 @@ const styles = theme => ({
     color: 'white',
     height: '31.25rem',
     [theme.breakpoints.up('md')]: {
-      height: '25rem',
       marginRight: '6.5625rem', // align with countries dropdown button
       alignItems: 'flex-end'
     }
   },
   closeButton: {
     display: 'none',
+    marginBottom: '6.25rem',
     [theme.breakpoints.up('md')]: {
       display: 'block'
     }
