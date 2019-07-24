@@ -1,9 +1,10 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@codeforafrica/hurumap-ui';
+import { createMuiTheme } from '@material-ui/core';
 
 const FONT_FAMILY_HEADING = '"Lora", "serif"';
 const FONT_FAMILY_TEXT = '"Montserrat", "sans-serif"';
 const defaultTheme = createMuiTheme();
-const Theme = createMuiTheme({
+const Theme = createTheme({
   palette: {
     primary: { main: '#2b3129', light: '#f1f1ed', dark: '#222822' },
     secondary: { main: '#000000', dark: '#2c2c2a', grey: '#2b3129' },
@@ -45,14 +46,23 @@ const Theme = createMuiTheme({
       fontSize: '1.25rem'
     },
     h5: {
-      color: '#2b3129',
       fontFamily: FONT_FAMILY_HEADING,
-      textTransform: 'capitalize'
+      textTransform: 'capitalize',
+      fontSize: '24px',
+      fontWeight: 'bold',
+      fontStyle: 'normal',
+      lineHeight: 'normal',
+      letterSpacing: '0.86px',
+      color: '#2c2c2a'
     },
     h6: {
-      color: '#2b3129',
       fontFamily: FONT_FAMILY_HEADING,
-      textTransform: 'capitalize'
+      fontSize: '12px',
+      opacity: 0.4,
+      fontWeight: 'normal',
+      fontStyle: 'normal',
+      lineHeight: 'normal',
+      color: '#2c2c2a'
     },
     body2: {
       color: 'rgba(34, 40, 34, 0.8)',

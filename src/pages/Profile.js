@@ -1,11 +1,14 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import { ChartContainer } from '@codeforafrica/hurumap-ui';
 import { ProfilePageHeader } from '../components/Header';
 import ProfileTabs from '../components/ProfileTabs';
 import Page from '../components/Page';
 import CountryPartners from '../components/CountryPartners';
 import config from '../config';
 import { getProfile } from '../lib/api';
+import ChartFactory from '../components/ChartFactory';
+import ChartsContainer from '../components/ChartsContainer';
 
 function Profile({
   match: {
@@ -59,12 +62,29 @@ function Profile({
       />
 
       <ProfileTabs switchToTab={() => {}} tabs={getTabs()} />
+      <ChartsContainer>
+        {profile &&
+          Object.values(profile.charts)
+            .filter(chart => !chart.table_data.is_missing)
+            .map(chart => (
+              <ChartContainer
+                item
+                xs={12}
+                md={8}
+                title={chart.title}
+                subtitle={chart.section}
+              >
+                {ChartFactory.build(chart)}
+              </ChartContainer>
+            ))}
+      </ChartsContainer>
       <CountryPartners dominion={{ ...config, selectedCountry }} />
     </Page>
   );
 }
 
 Profile.propTypes = {
+  classes: PropTypes.shape({}).isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       geoId: PropTypes.string.isRequired,
