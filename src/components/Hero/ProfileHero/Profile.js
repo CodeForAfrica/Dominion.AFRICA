@@ -10,7 +10,7 @@ import { MapIt } from '@codeforafrica/hurumap-ui';
 import Hero, { HeroTitle, HeroTitleGrid, HeroDetail } from '../Hero';
 
 import Search from '../../Search';
-import ReleaseDropdown from '../../ReleaseDropdown';
+// import ReleaseDropdown from '../../ReleaseDropdown';
 import searchIcon from '../../../assets/images/icons/location.svg';
 import config from '../../../config';
 
@@ -19,17 +19,19 @@ const styles = theme => ({
     flexGrow: 1
   },
   map: {
+    zIndex: 0,
     position: 'relative',
-    height: '250px',
+    width: 'available',
+    height: '11.875rem',
     left: 'unset',
     top: 'unset',
     [theme.breakpoints.up('md')]: {
       position: 'absolute',
-      right: '50px',
+      right: '3.125rem',
       width: '50%',
-      height: '460px',
-      maxHeight: '460px',
-      maxWidth: '829px'
+      height: '28.75rem',
+      maxHeight: '28.75rem',
+      maxWidth: '51.8125rem'
     },
     [theme.breakpoints.up('lg')]: {
       right: '9.375rem'
@@ -37,9 +39,12 @@ const styles = theme => ({
   },
   h2hMap: {
     position: 'relative',
-    height: '270px',
+    height: '11.875rem',
     width: 'available',
-    right: 'unset'
+    right: 'unset',
+    [theme.breakpoints.up('md')]: {
+      height: '16.875rem'
+    }
   },
   caption: {
     color: '#8d8d8c',
@@ -84,24 +89,11 @@ class Profile extends Component {
 
     const { head2head } = dominion;
     const {
-      demographics = {},
-      primary_releases: primaryReleases = {},
+      total_population: totalPopulation,
+      // primary_releases: primaryReleases = {},
       geography = { this: {} }
     } = profile;
-    let population;
-    if (demographics.total_population && demographics.total_population.values) {
-      population = demographics.total_population.values.this.toFixed(0);
-    }
-    let populationDensity;
-    if (
-      demographics.population_density &&
-      demographics.population_density.values
-    ) {
-      populationDensity = demographics.population_density.values.this.toFixed(
-        1
-      );
-    }
-    const { active: activeRelease } = primaryReleases;
+    // const { active: activeRelease } = primaryReleases;
     const { parents: parentLinks } = geography;
     const {
       geo_level: geoLevel,
@@ -118,6 +110,13 @@ class Profile extends Component {
       }
     }
     const { short_name: profileName } = geography.this;
+
+    let population;
+    let populationDensity;
+    if (totalPopulation) {
+      population = totalPopulation.toFixed(0);
+      populationDensity = (totalPopulation / squarekms).toFixed(2);
+    }
 
     return (
       <Hero classes={{ root: classes.root }} {...props}>
@@ -182,7 +181,7 @@ class Profile extends Component {
             }}
           />
         </div>
-        {activeRelease && (
+        {/* {activeRelease && (
           <Typography
             variant="body2"
             className={classNames(classes.release, {
@@ -193,7 +192,7 @@ class Profile extends Component {
             {activeRelease.citation}
             <ReleaseDropdown primaryReleases={primaryReleases} fromHero />
           </Typography>
-        )}
+        )} */}
       </Hero>
     );
   }

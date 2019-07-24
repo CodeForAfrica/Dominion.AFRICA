@@ -907,10 +907,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@codeforafrica/hurumap-ui@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@codeforafrica/hurumap-ui/-/hurumap-ui-0.0.2.tgz#cfabc1a5623950e090384f720b9b334c3fa72473"
-  integrity sha512-Uncgahu+hvi97Nf0XE28vjcwvvIzHzrU+aIafdPZzSfeozvh3ygYoDwVH0FjJv2T4xtQACDZPROGqjViCkIVvg==
+"@codeforafrica/hurumap-ui@0.1.0-rc.2":
+  version "0.1.0-rc.2"
+  resolved "https://registry.yarnpkg.com/@codeforafrica/hurumap-ui/-/hurumap-ui-0.1.0-rc.2.tgz#86bf83a61f0d0f20f2455044ab960852e41fcd1a"
+  integrity sha512-V+GTeY1PL1yqSA8Te7NcSy7G+VZW3C+II6moJIuI+qKkeGq0ERaFohmNNw82b2fEJNNV64BDLmCY0GQ8Rua1Vw==
   dependencies:
     leaflet "^1.5.1"
     lodash "^4.17.14"
