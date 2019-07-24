@@ -16,6 +16,7 @@ function Profile({
   }
 }) {
   const head2head = Boolean(geoId && anotherGeoId);
+  const [activeTab, setActiveTab] = useState('');
   const [selectedCountry, setSelectedCountry] = useState({});
   const [profile, setProfile] = useState();
   useEffect(() => {
@@ -25,9 +26,11 @@ function Profile({
           ...data,
           tabs: data.sections.map(section => ({
             name: section,
-            href: `#${section}`
+            href: section
           }))
         });
+
+        setActiveTab(data.sections[0]);
       });
     } else {
       getProfile(geoId).then(({ data }) => {
@@ -36,9 +39,11 @@ function Profile({
           ...data,
           tabs: data.sections.map(section => ({
             name: section,
-            href: `#${section}`
+            href: section
           }))
         });
+
+        setActiveTab(data.sections[0]);
       });
     }
   }, [geoId, anotherGeoId]);
@@ -50,16 +55,22 @@ function Profile({
         dominion={{ ...config, selectedCountry, head2head }}
       />
 
-      <ProfileTabs switchToTab={() => {}} tabs={profile ? profile.tabs : []} />
+      <ProfileTabs
+        switchToTab={setActiveTab}
+        tabs={profile ? profile.tabs : []}
+      />
       <ChartsContainer>
         {profile &&
           Object.values(profile.charts)
             .filter(chart => !chart.table_data.is_missing)
+            .filter(chart => chart.section === activeTab)
             .map(chart => (
               <ChartContainer
                 item
                 xs={12}
                 md={8}
+                overflowX="auto"
+                style={{ marginBottom: 20 }}
                 title={chart.title}
                 subtitle={chart.section}
               >
