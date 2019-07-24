@@ -4,6 +4,7 @@ import { TitlePageHeader } from '../components/Header';
 import Page from '../components/Page';
 import config from '../config';
 import Section from '../components/Section';
+import Data from '../components/Data';
 
 function About() {
   return (
@@ -58,6 +59,7 @@ function About() {
           The code for HURUmap Land is available here.
         </Typography>
       </Section>
+      <Data />
     </Page>
   );
 }
