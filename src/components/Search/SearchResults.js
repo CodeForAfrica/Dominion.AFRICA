@@ -24,8 +24,11 @@ const styles = theme => ({
     marginTop: theme.spacing(9),
     marginBottom: theme.spacing(),
     position: 'absolute',
-    width: '28.5%',
-    zIndex: '400'
+    width: '84%',
+    zIndex: '400',
+    [theme.breakpoints.up('md')]: {
+      width: '28.5%'
+    }
   },
   list: {
     width: '100%',

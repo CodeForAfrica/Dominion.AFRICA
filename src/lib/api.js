@@ -31,3 +31,8 @@ export default function createAPI() {
 export async function getProfile(geoId) {
   return axios.get(`https://api.hurumap.org/profiles/${geoId}.json/`);
 }
+export async function getComparisonProfile(geoId, anotherGeoId) {
+  return axios.get(
+    `https://api.hurumap.org/api/compare/${geoId}/vs/${anotherGeoId}/`
+  );
+}
