@@ -74,7 +74,10 @@ function Profile({
                 title={chart.title}
                 subtitle={chart.section}
               >
-                {ChartFactory.build(chart)}
+                {ChartFactory.build(chart, [
+                  profile.geography,
+                  profile.comp_geography
+                ])}
               </ChartContainer>
             ))}
       </ChartsContainer>
