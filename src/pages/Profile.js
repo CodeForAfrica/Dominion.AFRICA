@@ -51,7 +51,7 @@ function Profile({
   return (
     <Page>
       <ProfilePageHeader
-        profile={profile}
+        profile={anotherGeoId ? [geoId, anotherGeoId] : [geoId]}
         dominion={{ ...config, selectedCountry, head2head }}
       />
 
