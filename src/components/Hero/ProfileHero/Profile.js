@@ -94,6 +94,13 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
               shortName: name
             }
           }
+          populations: allPopulationGroup2016S(
+            condition: { geoCode: $geoCode, geoLevel: $geoLevel }
+          ) {
+            nodes {
+              total
+            }
+          }
         }
       `}
       variables={{
@@ -112,9 +119,12 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
           geoCode,
           shortName,
           parentCode,
-          parentLevel,
-          totalPopulation
+          parentLevel
         } = geography;
+        const totalPopulation = data.populations.nodes.reduce(
+          (a, b) => a + b.total,
+          0
+        );
         let { squareKms } = geography;
         squareKms = parseFloat(squareKms);
         if (!Number.isNaN(squareKms)) {
