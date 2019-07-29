@@ -1,0 +1,19 @@
+/* eslint-disable no-unused-expressions */
+[
+  {
+    "id": "populationResidence",
+    "type": "column",
+    "title": "Population by Residence",
+    "subtitle": "Demographics",
+    "table": "PopulationResidence2009",
+    "section": "Demographics"
+  },
+  {
+    "id": "populationGroup",
+    "type": "column",
+    "title": "Population by Group",
+    "subtitle": "Demographics",
+    "table": "PopulationGroup2016",
+    "section": "Demographics"
+  }
+]

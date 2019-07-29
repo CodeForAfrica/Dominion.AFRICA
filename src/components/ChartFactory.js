@@ -2,34 +2,13 @@ import React from 'react';
 import { BarChart, PieChart } from '@codeforafrica/hurumap-ui';
 
 export default class ChartFactory {
-  static build(chart, geographies) {
-    if (chart.table_data.is_missing) {
+  static build(chartType, data, comparisonData) {
+    if (!data || data.length === 0) {
       return null;
     }
-    const data = chart.table_data;
-    const isComparison = geographies && geographies.length === 2;
-    switch (chart.chart) {
+    const isComparison = data && comparisonData;
+    switch (chartType) {
       case 'pie':
-        if (isComparison) {
-          return (
-            <PieChart
-              data={[
-                Object.keys(data)
-                  .filter(key => key !== 'metadata')
-                  .map(key => ({
-                    x: key,
-                    y: data[key].values.this || 0
-                  })),
-                Object.keys(data)
-                  .filter(key => key !== 'metadata')
-                  .map(key => ({
-                    x: key,
-                    y: data[key].values[geographies[1].this.short_name]
-                  }))
-              ]}
-            />
-          );
-        }
         return (
           <PieChart
             data={Object.keys(data)
@@ -62,32 +41,23 @@ export default class ChartFactory {
           return (
             <BarChart
               height={200}
-              data={Object.keys(data)
-                .filter(key => key !== 'metadata')
-                .map(key => ({
-                  label: key,
-                  data: geographies.map((geography, index) => ({
-                    x: geography.this.short_name,
-                    y:
-                      index === 0
-                        ? data[key].values.this
-                        : data[key].values[geography.this.short_name]
-                  }))
-                }))}
+              data={data.map(d => ({
+                label: d.x[0].toUpperCase() + d.x.slice(1),
+                data: [
+                  {
+                    x: 'Country 1',
+                    y: d.y
+                  },
+                  {
+                    x: 'Country 2',
+                    y: comparisonData.find(z => z.x === d.x).y
+                  }
+                ]
+              }))}
             />
           );
         }
-        return (
-          <BarChart
-            height={200}
-            data={Object.keys(data)
-              .filter(key => key !== 'metadata')
-              .map(key => ({
-                x: key,
-                y: data[key].values.this
-              }))}
-          />
-        );
+        return <BarChart height={200} data={data} />;
       default:
         return null;
     }

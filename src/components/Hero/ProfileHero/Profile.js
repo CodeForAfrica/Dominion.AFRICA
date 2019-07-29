@@ -94,7 +94,14 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
               shortName: name
             }
           }
-          populations: allPopulationGroup2016S(
+          populationGroup: allPopulationGroup2016S(
+            condition: { geoCode: $geoCode, geoLevel: $geoLevel }
+          ) {
+            nodes {
+              total
+            }
+          }
+          populationResidence: allPopulationResidence2009S(
             condition: { geoCode: $geoCode, geoLevel: $geoLevel }
           ) {
             nodes {
@@ -121,10 +128,18 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
           parentCode,
           parentLevel
         } = geography;
-        const totalPopulation = data.populations.nodes.reduce(
+        // South Africa population data is in pupolation by group
+        let totalPopulation = data.populationGroup.nodes.reduce(
           (a, b) => a + b.total,
           0
         );
+        if (totalPopulation === 0) {
+          // Kenya population data is in pupolation by residence
+          totalPopulation = data.populationResidence.nodes.reduce(
+            (a, b) => a + b.total,
+            0
+          );
+        }
         let { squareKms } = geography;
         squareKms = parseFloat(squareKms);
         if (!Number.isNaN(squareKms)) {

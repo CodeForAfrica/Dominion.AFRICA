@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { ChartContainer } from '@codeforafrica/hurumap-ui';
+import gql from 'graphql-tag';
+import { useQuery } from 'react-apollo-hooks';
 import { ProfilePageHeader } from '../components/Header';
 import ProfileTabs from '../components/ProfileTabs';
 import Page from '../components/Page';
 import CountryPartners from '../components/CountryPartners';
 import config from '../config';
-import { getProfile, getComparisonProfile } from '../lib/api';
+import { getProfile } from '../lib/api';
 import ChartFactory from '../components/ChartFactory';
 import ChartsContainer from '../components/ChartsContainer';
+
+import charts from '../data/charts.json';
+import sections from '../data/sections.json';
 
 function Profile({
   match: {
@@ -18,35 +23,53 @@ function Profile({
   const head2head = Boolean(geoId && anotherGeoId);
   const [activeTab, setActiveTab] = useState('');
   const [selectedCountry, setSelectedCountry] = useState({});
-  const [profile, setProfile] = useState();
-  useEffect(() => {
-    if (geoId && anotherGeoId) {
-      getComparisonProfile(geoId, anotherGeoId).then(({ data }) => {
-        setProfile({
-          ...data,
-          tabs: data.sections.map(section => ({
-            name: section,
-            href: section
-          }))
-        });
 
-        setActiveTab(data.sections[0]);
-      });
-    } else {
-      getProfile(geoId).then(({ data }) => {
-        setSelectedCountry(data.geography.parents.country);
-        setProfile({
-          ...data,
-          tabs: data.sections.map(section => ({
-            name: section,
-            href: section
-          }))
-        });
-
-        setActiveTab(data.sections[0]);
-      });
+  const chartsQuery = gql`
+query charts($geoCode: String!, $geoLevel: String!) {
+  ${charts
+    .map(
+      chart => `${chart.id}: all${chart.table}S(
+    condition: { geoCode: $geoCode, geoLevel: $geoLevel }
+  ) {
+    nodes {
+      ${chart.grouped_by ? `grouped_by: ${chart.grouped_by}` : ''}
+      x: ${chart.x || chart.table[0].toLowerCase() + chart.table.slice(1)}
+      y: ${chart.y || 'total'}
     }
-  }, [geoId, anotherGeoId]);
+  }`
+    )
+    .join('')}
+}
+`;
+
+  const {
+    data: profileChartsData,
+    loading: loadingProfileCharts,
+    error: profileChartsError
+  } = useQuery(chartsQuery, {
+    variables: {
+      geoCode: geoId.split('-')[1],
+      geoLevel: geoId.split('-')[0]
+    }
+  });
+  const {
+    data: anotherProfileChartsData,
+    loading: loadingAnotherProfileCharts,
+    error: anotherProfileChartsError
+  } = useQuery(chartsQuery, {
+    variables: {
+      geoCode: anotherGeoId ? anotherGeoId.split('-')[1] : '',
+      geoLevel: anotherGeoId ? anotherGeoId.split('-')[0] : ''
+    },
+    skip: !anotherGeoId
+  });
+
+  useEffect(() => {
+    getProfile(geoId).then(({ data }) => {
+      setSelectedCountry(data.geography.parents.country);
+      setActiveTab(data.sections[0]);
+    });
+  }, [geoId]);
 
   return (
     <Page>
@@ -57,29 +80,42 @@ function Profile({
 
       <ProfileTabs
         switchToTab={setActiveTab}
-        tabs={profile ? profile.tabs : []}
+        tabs={sections.map(section => ({
+          name: section,
+          href: section
+        }))}
       />
       <ChartsContainer>
-        {profile &&
-          Object.values(profile.charts)
-            .filter(chart => !chart.table_data.is_missing)
-            .filter(chart => chart.section === activeTab)
-            .map(chart => (
-              <ChartContainer
-                item
-                xs={12}
-                md={8}
-                overflowX="auto"
-                style={{ marginBottom: 20 }}
-                title={chart.title}
-                subtitle={chart.section}
-              >
-                {ChartFactory.build(
-                  chart,
-                  [profile.geography, profile.comp_geography].filter(x => x)
+        {charts
+          .filter(
+            ({ id, section }) =>
+              section === activeTab &&
+              /* data is not missing */
+              profileChartsData &&
+              profileChartsData[id].nodes.length > 0
+          )
+          .map(chart => (
+            <ChartContainer
+              item
+              xs={12}
+              md={8}
+              overflowX="auto"
+              style={{ marginBottom: 20 }}
+              title={chart.title}
+              subtitle={chart.subtitle}
+            >
+              {!loadingProfileCharts &&
+                !loadingAnotherProfileCharts &&
+                !profileChartsError &&
+                !anotherProfileChartsError &&
+                ChartFactory.build(
+                  chart.type,
+                  profileChartsData[chart.id].nodes,
+                  anotherProfileChartsData &&
+                    anotherProfileChartsData[chart.id].nodes
                 )}
-              </ChartContainer>
-            ))}
+            </ChartContainer>
+          ))}
       </ChartsContainer>
       <CountryPartners dominion={{ ...config, selectedCountry }} />
     </Page>
