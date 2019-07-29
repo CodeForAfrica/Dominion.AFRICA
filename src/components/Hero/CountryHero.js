@@ -63,9 +63,7 @@ function CountryHero({ classes, history, toggleModal, dominion }) {
 
         <p style={{ marginTop: '40px' }}>
           or view{' '}
-          <a
-            href={`/profiles/country-${selectedCountry.code}-${selectedCountry.slug}`}
-          >
+          <a href={`/profile/country-${selectedCountry.code}`}>
             {selectedCountry.name}
           </a>
         </p>

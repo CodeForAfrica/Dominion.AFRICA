@@ -133,7 +133,7 @@ class Profile extends Component {
                   .slice(0, -1)
                   .map(item => (
                     <span>
-                      <a href={`/profiles/${parentLinks[item].full_geoid}`}>
+                      <a href={`/profile/${parentLinks[item].full_geoid}`}>
                         {parentLinks[item].name}
                       </a>
                       {', '}
