@@ -31,7 +31,7 @@ export default class ChartFactory {
           return (
             <NestedProportionalAreaChart
               square={chartType === 'square_nested_proportional_area'}
-              height={450}
+              width={200}
               data={[
                 {
                   x: data.reduce((a, b) => a + b.y, 0),
@@ -54,7 +54,7 @@ export default class ChartFactory {
         return (
           <NestedProportionalAreaChart
             square={chartType === 'square_nested_proportional_area'}
-            height={450}
+            width={200}
             data={[
               {
                 x: data.reduce((a, b) => a + b.y, 0),
