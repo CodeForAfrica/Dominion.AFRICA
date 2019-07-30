@@ -115,7 +115,7 @@ function Profile({
         {charts
           .filter(
             ({ id, section }) =>
-              section === activeTab &&
+              (section === activeTab || activeTab === 'All') &&
               /* data is not missing */
               profileChartsData &&
               profileChartsData[id].nodes.length > 0
