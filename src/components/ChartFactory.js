@@ -27,6 +27,30 @@ export default class ChartFactory {
     switch (chartType) {
       case 'square_nested_proportional_area':
       case 'circle_nested_proportional_area':
+        if (isComparison) {
+          return (
+            <NestedProportionalAreaChart
+              square={chartType === 'square_nested_proportional_area'}
+              height={450}
+              data={[
+                {
+                  x: data.reduce((a, b) => a + b.y, 0),
+                  label: data[0].label || label
+                },
+                {
+                  x: comparisonData.reduce((a, b) => a + b.y, 0),
+                  label: comparisonData[0].label || label
+                }
+              ]}
+              reference={[
+                {
+                  x: refrenceData.reduce((a, b) => a + b.y, 0),
+                  label: refrenceData[0].label || referenceLabel
+                }
+              ]}
+            />
+          );
+        }
         return (
           <NestedProportionalAreaChart
             square={chartType === 'square_nested_proportional_area'}

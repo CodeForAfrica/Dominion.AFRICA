@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { ChartContainer } from '@codeforafrica/hurumap-ui';
 import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo-hooks';
+import { Grid } from '@material-ui/core';
 import { ProfilePageHeader } from '../components/Header';
 import ProfileTabs from '../components/ProfileTabs';
 import Page from '../components/Page';
@@ -28,7 +29,7 @@ function Profile({
   query charts($geoCode: String!, $geoLevel: String!) {
     ${charts
       .map(
-        chart => `${chart.id}: all${chart.table}S(
+        chart => `${chart.id}: ${chart.table} (
       condition: { geoCode: $geoCode, geoLevel: $geoLevel }
     ) {
       nodes {
@@ -38,13 +39,13 @@ function Profile({
             : ''
         }
         ${chart.grouped_by ? `grouped_by: ${chart.grouped_by}` : ''}
-        x: ${chart.x || chart.table[0].toLowerCase() + chart.table.slice(1)}
-        y: ${chart.y || 'total'}
+        x: ${chart.x}
+        y: ${chart.y}
       }
     }
     ${
       chart.reference
-        ? `${chart.id}Reference: all${chart.reference.table}S(
+        ? `${chart.id}Reference: ${chart.reference.table} (
       condition: ${JSON.stringify(chart.reference.condition).replace(
         /"([^(")"]+)":/g,
         '$1:'
@@ -56,10 +57,8 @@ function Profile({
             ? `label: ${chart.reference.label.slice(1)}`
             : ''
         }
-        x: ${chart.reference.x ||
-          chart.reference.table[0].toLowerCase() +
-            chart.reference.table.slice(1)}
-        y: ${chart.reference.y || 'total'}
+        x: ${chart.reference.x}
+        y: ${chart.reference.y}
       }
     }`
         : ''
@@ -122,25 +121,29 @@ function Profile({
               profileChartsData[id].nodes.length > 0
           )
           .map(chart => (
-            <ChartContainer
+            <Grid
               item
               xs={12}
-              md={8}
-              overflowX="auto"
-              style={{ marginBottom: 20 }}
-              title={chart.title}
-              subtitle={chart.subtitle}
+              md={
+                parseFloat(chart.layout.split('/').reduce((a, b) => a / b)) * 12
+              }
             >
-              {!loadingProfileCharts &&
-                !loadingAnotherProfileCharts &&
-                !profileChartsError &&
-                !anotherProfileChartsError &&
-                ChartFactory.build(
-                  chart,
-                  profileChartsData,
-                  anotherProfileChartsData
-                )}
-            </ChartContainer>
+              <ChartContainer
+                overflowX="auto"
+                title={chart.title}
+                subtitle={chart.subtitle}
+              >
+                {!loadingProfileCharts &&
+                  !loadingAnotherProfileCharts &&
+                  !profileChartsError &&
+                  !anotherProfileChartsError &&
+                  ChartFactory.build(
+                    chart,
+                    profileChartsData,
+                    anotherProfileChartsData
+                  )}
+              </ChartContainer>
+            </Grid>
           ))}
       </ChartsContainer>
       <CountryPartners dominion={{ ...config, selectedCountry }} />
