@@ -25,23 +25,50 @@ function Profile({
   const [selectedCountry, setSelectedCountry] = useState({});
 
   const chartsQuery = gql`
-query charts($geoCode: String!, $geoLevel: String!) {
-  ${charts
-    .map(
-      chart => `${chart.id}: all${chart.table}S(
-    condition: { geoCode: $geoCode, geoLevel: $geoLevel }
-  ) {
-    nodes {
-      ${chart.grouped_by ? `grouped_by: ${chart.grouped_by}` : ''}
-      x: ${chart.x || chart.table[0].toLowerCase() + chart.table.slice(1)}
-      y: ${chart.y || 'total'}
+  query charts($geoCode: String!, $geoLevel: String!) {
+    ${charts
+      .map(
+        chart => `${chart.id}: all${chart.table}S(
+      condition: { geoCode: $geoCode, geoLevel: $geoLevel }
+    ) {
+      nodes {
+        ${
+          chart.label && chart.label[0] === '$'
+            ? `label: ${chart.label.slice(1)}`
+            : ''
+        }
+        ${chart.grouped_by ? `grouped_by: ${chart.grouped_by}` : ''}
+        x: ${chart.x || chart.table[0].toLowerCase() + chart.table.slice(1)}
+        y: ${chart.y || 'total'}
+      }
     }
-  }`
-    )
-    .join('')}
-}
-`;
-
+    ${
+      chart.reference
+        ? `${chart.id}Reference: all${chart.reference.table}S(
+      condition: ${JSON.stringify(chart.reference.condition).replace(
+        /"([^(")"]+)":/g,
+        '$1:'
+      )}
+    ) {
+      nodes {
+        ${
+          chart.reference.label && chart.reference.label[0] === '$'
+            ? `label: ${chart.reference.label.slice(1)}`
+            : ''
+        }
+        x: ${chart.reference.x ||
+          chart.reference.table[0].toLowerCase() +
+            chart.reference.table.slice(1)}
+        y: ${chart.reference.y || 'total'}
+      }
+    }`
+        : ''
+    }
+    `
+      )
+      .join('')}
+  }
+  `;
   const {
     data: profileChartsData,
     loading: loadingProfileCharts,
@@ -109,10 +136,9 @@ query charts($geoCode: String!, $geoLevel: String!) {
                 !profileChartsError &&
                 !anotherProfileChartsError &&
                 ChartFactory.build(
-                  chart.type,
-                  profileChartsData[chart.id].nodes,
-                  anotherProfileChartsData &&
-                    anotherProfileChartsData[chart.id].nodes
+                  chart,
+                  profileChartsData,
+                  anotherProfileChartsData
                 )}
             </ChartContainer>
           ))}

@@ -1,13 +1,50 @@
 import React from 'react';
-import { BarChart, PieChart } from '@codeforafrica/hurumap-ui';
+import {
+  BarChart,
+  PieChart,
+  NestedProportionalAreaChart
+} from '@codeforafrica/hurumap-ui';
 
 export default class ChartFactory {
-  static build(chartType, data, comparisonData) {
-    if (!data || data.length === 0) {
+  static build(
+    {
+      id: chartId,
+      type: chartType,
+      label,
+      reference: { label: referenceLabel }
+    },
+    datas,
+    comparisonDatas
+  ) {
+    if (!datas) {
       return null;
     }
-    const isComparison = data && comparisonData;
+    const isComparison = datas && comparisonDatas;
+    const comparisonData = comparisonDatas && comparisonDatas[chartId].nodes;
+    const data = datas[chartId].nodes;
+    const refrenceData =
+      datas[`${chartId}Reference`] && datas[`${chartId}Reference`].nodes;
     switch (chartType) {
+      case 'square_nested_proportional_area':
+      case 'circle_nested_proportional_area':
+        return (
+          <NestedProportionalAreaChart
+            square={chartType === 'square_nested_proportional_area'}
+            height={450}
+            data={[
+              {
+                x: data.reduce((a, b) => a + b.y, 0),
+                label: data[0].label || label
+              }
+            ]}
+            reference={[
+              {
+                x: refrenceData.reduce((a, b) => a + b.y, 0),
+                label: refrenceData[0].label || referenceLabel
+              }
+            ]}
+          />
+        );
       case 'pie':
         return (
           <PieChart

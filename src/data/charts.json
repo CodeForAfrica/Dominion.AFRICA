@@ -1,18 +1,36 @@
 [
   {
     "id": "populationResidence",
-    "type": "column",
-    "title": "Population by Residence",
+    "type": "circle_nested_proportional_area",
+    "title": "Population",
     "subtitle": "Demographics",
     "table": "PopulationResidence2009",
+    "reference": {
+      "table": "PopulationResidence2009",
+      "condition": {
+        "geoLevel": "country",
+        "geoCode": "KE"
+      },
+      "label": "Kenya"
+    },
+    "label": "$geoCode",
     "section": "Demographics"
   },
   {
     "id": "populationGroup",
-    "type": "column",
-    "title": "Population by Group",
+    "type": "circle_nested_proportional_area",
+    "title": "Population",
     "subtitle": "Demographics",
     "table": "PopulationGroup2016",
-    "section": "Demographics"
+    "section": "Demographics",
+    "reference": {
+      "table": "PopulationGroup2016",
+      "condition": {
+        "geoLevel": "country",
+        "geoCode": "ZA"
+      },
+      "label": "South Africa"
+    },
+    "label": "$geoCode"
   }
 ]
