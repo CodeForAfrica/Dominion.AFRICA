@@ -92,7 +92,7 @@ function renderHref(codeType, result, thisGeoId, isComparisonSearch) {
   } else if (result.type.toLowerCase() === 'country') {
     href = `/${result.slug}`;
   } else {
-    href = `/profiles/${result.codes[codeType]}`;
+    href = `/profile/${result.codes[codeType]}`;
   }
   return href;
 }
