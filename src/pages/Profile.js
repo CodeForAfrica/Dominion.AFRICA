@@ -13,7 +13,6 @@ import ChartFactory from '../components/ChartFactory';
 import ChartsContainer from '../components/ChartsContainer';
 
 import sectionedCharts from '../data/charts.json';
-import sections from '../data/sections.json';
 
 function Profile({
   match: {
@@ -29,44 +28,62 @@ function Profile({
   });
   const client = useApolloClient();
 
+  // Provide the visuals with unique ids for fetching
+  // The unique ids will be used to set alias in graphql
+  let index = 0;
+  sectionedCharts.forEach(x =>
+    x.charts.forEach(y =>
+      y.visuals.forEach(z => {
+        // eslint-disable-next-line no-param-reassign
+        z.id = `viz${index}`;
+        index += 1;
+      })
+    )
+  );
+
   // Flatten all charts
-  const charts = Object.values(sectionedCharts).reduce((a, b) => a.concat(b));
+  const charts = sectionedCharts
+    .map(x => x.charts)
+    .reduce((a, b) => a.concat(b));
+  const visuals = charts.map(x => x.visuals).reduce((a, b) => a.concat(b));
+
+  const sections = ['All', ...sectionedCharts.map(x => x.sectionTitle)];
 
   // Build chart data query
-  const chartsQuery = gql`
+  const visualsQuery = gql`
   query charts($geoCode: String!, $geoLevel: String!) {
-    ${charts
+    ${visuals
       .map(
-        chart => `${chart.id}: ${chart.table} (
+        visual => `${visual.id}: ${visual.table} (
       condition: { geoCode: $geoCode, geoLevel: $geoLevel }
     ) {
       nodes {
         ${
-          chart.label && chart.label[0] === '$'
-            ? `label: ${chart.label.slice(1)}`
+          visual.label && visual.label[0] === '$'
+            ? `label: ${visual.label.slice(1)}`
             : ''
         }
-        ${chart.grouped_by ? `grouped_by: ${chart.grouped_by}` : ''}
-        x: ${chart.x}
-        y: ${chart.y}
+        ${visual.grouped_by ? `grouped_by: ${visual.grouped_by}` : ''}
+        x: ${visual.x}
+        y: ${visual.y}
       }
     }
     ${
-      chart.reference
-        ? `${chart.id}Reference: ${chart.reference.table || chart.table} (
+      visual.reference
+        ? `${visual.id}Reference: ${visual.reference.table || visual.table} (
       condition: ${JSON.stringify(
-        chart.reference.condition || { geoLevel: 'country', geoCode: 'ZA' }
+        visual.reference.condition || { geoLevel: 'country', geoCode: 'ZA' }
       ).replace(/"([^(")"]+)":/g, '$1:')}
     ) {
       nodes {
         ${
-          (chart.reference.label || chart.label) &&
-          (chart.reference.label || chart.label)[0] === '$'
-            ? `label: ${(chart.reference.label || chart.label).slice(1)}`
+          (visual.reference.label || visual.label) &&
+          (visual.reference.label || visual.label)[0] === '$'
+            ? `label: ${(visual.reference.label || visual.label).slice(1)}`
             : ''
         }
-        x: ${chart.reference.x || chart.x}
-        y: ${chart.reference.y || chart.y}
+        x: ${visual.reference.x || visual.x}
+        y: ${visual.reference.y || visual.y}
       }
     }`
         : ''
@@ -79,10 +96,10 @@ function Profile({
 
   // Load profile chart data
   const {
-    data: profileChartsData,
-    loading: loadingProfileCharts,
-    error: profileChartsError
-  } = useQuery(chartsQuery, {
+    data: profileVisualsData,
+    loading: loadingProfileVisuals,
+    error: profileVisualsError
+  } = useQuery(visualsQuery, {
     variables: {
       geoCode: geoId.split('-')[1],
       geoLevel: geoId.split('-')[0]
@@ -91,10 +108,10 @@ function Profile({
 
   // Load comparison chart data
   const {
-    data: comparisonChartsData,
-    loading: loadingComparisonProfileCharts,
-    error: comparisonProfileChartsError
-  } = useQuery(chartsQuery, {
+    data: comparisonVisualsData,
+    loading: loadingComparisonProfileVisuals,
+    error: comparisonProfileVisualsError
+  } = useQuery(visualsQuery, {
     variables: {
       geoCode: comparisonGeoId ? comparisonGeoId.split('-')[1] : '',
       geoLevel: comparisonGeoId ? comparisonGeoId.split('-')[0] : ''
@@ -189,11 +206,18 @@ function Profile({
         }))}
       />
       <ChartsContainer>
-        {(activeTab === 'All' ? charts : sectionedCharts[activeTab] || [])
+        {(activeTab === 'All'
+          ? charts
+          : sectionedCharts.find(x => x.sectionTitle === activeTab).charts
+        )
           .filter(
-            ({ id }) =>
+            ({ visuals: v }) =>
               /* data is not missing */
-              profileChartsData && profileChartsData[id].nodes.length > 0
+              !v.find(
+                x =>
+                  !profileVisualsData ||
+                  profileVisualsData[x.id].nodes.length === 0
+              )
           )
           .map(chart => (
             <Grid
@@ -208,17 +232,20 @@ function Profile({
                 title={chart.title}
                 subtitle={chart.subtitle}
               >
-                {profiles.loaded &&
-                  !loadingProfileCharts &&
-                  !loadingComparisonProfileCharts &&
-                  !profileChartsError &&
-                  !comparisonProfileChartsError &&
-                  ChartFactory.build(
-                    chart,
-                    profileChartsData,
-                    comparisonChartsData,
-                    profiles
-                  )}
+                {chart.visuals.map(
+                  visual =>
+                    profiles.loaded &&
+                    !loadingProfileVisuals &&
+                    !loadingComparisonProfileVisuals &&
+                    !profileVisualsError &&
+                    !comparisonProfileVisualsError &&
+                    ChartFactory.build(
+                      visual,
+                      profileVisualsData,
+                      comparisonVisualsData,
+                      profiles
+                    )
+                )}
               </ChartContainer>
             </Grid>
           ))}

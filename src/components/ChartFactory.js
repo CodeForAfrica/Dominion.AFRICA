@@ -8,8 +8,8 @@ import {
 export default class ChartFactory {
   static build(
     {
-      id: chartId,
-      type: chartType,
+      id: visualId,
+      type: visualType,
       label,
       reference: { label: referenceLabel }
     },
@@ -30,17 +30,17 @@ export default class ChartFactory {
       return null;
     }
     const isComparison = datas && comparisonDatas;
-    const comparisonData = comparisonDatas && comparisonDatas[chartId].nodes;
-    const data = datas[chartId].nodes;
+    const comparisonData = comparisonDatas && comparisonDatas[visualId].nodes;
+    const data = datas[visualId].nodes;
     const refrenceData =
-      datas[`${chartId}Reference`] && datas[`${chartId}Reference`].nodes;
-    switch (chartType) {
+      datas[`${visualId}Reference`] && datas[`${visualId}Reference`].nodes;
+    switch (visualType) {
       case 'square_nested_proportional_area':
       case 'circle_nested_proportional_area':
         if (isComparison) {
           return (
             <NestedProportionalAreaChart
-              square={chartType === 'square_nested_proportional_area'}
+              square={visualType === 'square_nested_proportional_area'}
               width={650}
               height={500}
               groupSpacing={8}
@@ -73,7 +73,7 @@ export default class ChartFactory {
         }
         return (
           <NestedProportionalAreaChart
-            square={chartType === 'square_nested_proportional_area'}
+            square={visualType === 'square_nested_proportional_area'}
             width={200}
             data={[
               {
