@@ -18,7 +18,7 @@ function App() {
         <Route exact path="/profile/:geoId" component={Profile} />
         <Route
           exact
-          path="/compare/:geoId/vs/:anotherGeoId"
+          path="/compare/:geoId/vs/:comparisonGeoId"
           component={Profile}
         />
       </Switch>

@@ -1,67 +1,39 @@
-[{
-    "id": "populationResidence",
-    "type": "circle_nested_proportional_area",
-    "title": "Population",
-    "subtitle": "People living there",
-    "table": "allPopulationResidence2009S",
-    "layout": "2/3",
-    "reference": {
+{
+  "Demographics": [{
+      "id": "populationResidence",
+      "type": "circle_nested_proportional_area",
+      "title": "Population",
+      "subtitle": "People living there",
       "table": "allPopulationResidence2009S",
-      "condition": {
-        "geoLevel": "country",
-        "geoCode": "KE"
-      },
-      "label": "Kenya",
+      "layout": "2/3",
+      "reference": {},
+      "label": "longName",
       "x": "populationResidence2009",
       "y": "total"
     },
-    "label": "$geoCode",
-    "section": "Demographics",
-    "x": "populationResidence2009",
-    "y": "total"
-  },
-  {
-    "id": "populationGroup",
-    "type": "circle_nested_proportional_area",
-    "title": "Population",
-    "subtitle": "People living there",
-    "table": "allPopulationGroup2016S",
-    "section": "Demographics",
-    "layout": "2/3",
-    "reference": {
+    {
+      "id": "populationGroup",
+      "type": "circle_nested_proportional_area",
+      "title": "Population",
+      "subtitle": "People living there",
       "table": "allPopulationGroup2016S",
-      "condition": {
-        "geoLevel": "country",
-        "geoCode": "ZA"
-      },
-      "label": "South Africa",
+      "layout": "2/3",
+      "reference": {},
+      "label": "longName",
       "x": "populationGroup2016",
       "y": "total"
     },
-    "label": "$geoCode",
-    "x": "populationGroup2016",
-    "y": "total"
-  },
-  {
-    "id": "extension",
-    "type": "square_nested_proportional_area",
-    "title": "Extension",
-    "subtitle": "Surface in km2",
-    "layout": "1/3",
-    "table": "allWazimapGeographies",
-    "section": "Demographics",
-    "reference": {
+    {
+      "id": "extension",
+      "type": "square_nested_proportional_area",
+      "title": "Extension",
+      "subtitle": "Surface in km2",
+      "layout": "1/3",
       "table": "allWazimapGeographies",
-      "condition": {
-        "geoLevel": "country",
-        "geoCode": "ZA"
-      },
+      "reference": {},
       "label": "$longName",
       "x": "longName",
       "y": "squareKms"
-    },
-    "label": "$longName",
-    "x": "longName",
-    "y": "squareKms"
-  }
-]
+    }
+  ]
+}

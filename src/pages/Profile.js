@@ -2,29 +2,37 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { ChartContainer } from '@codeforafrica/hurumap-ui';
 import gql from 'graphql-tag';
-import { useQuery } from 'react-apollo-hooks';
+import { useQuery, useApolloClient } from 'react-apollo-hooks';
 import { Grid } from '@material-ui/core';
 import { ProfilePageHeader } from '../components/Header';
 import ProfileTabs from '../components/ProfileTabs';
 import Page from '../components/Page';
 import CountryPartners from '../components/CountryPartners';
 import config from '../config';
-import { getProfile } from '../lib/api';
 import ChartFactory from '../components/ChartFactory';
 import ChartsContainer from '../components/ChartsContainer';
 
-import charts from '../data/charts.json';
+import sectionedCharts from '../data/charts.json';
 import sections from '../data/sections.json';
 
 function Profile({
   match: {
-    params: { geoId, anotherGeoId }
+    params: { geoId, comparisonGeoId }
   }
 }) {
-  const head2head = Boolean(geoId && anotherGeoId);
-  const [activeTab, setActiveTab] = useState('');
-  const [selectedCountry, setSelectedCountry] = useState({});
+  const head2head = Boolean(geoId && comparisonGeoId);
+  const [activeTab, setActiveTab] = useState('All');
+  const [profiles, setProfiles] = useState({
+    profile: {},
+    parentProfile: {},
+    comparisonProfile: {}
+  });
+  const client = useApolloClient();
 
+  // Flatten all charts
+  const charts = Object.values(sectionedCharts).reduce((a, b) => a.concat(b));
+
+  // Build chart data query
   const chartsQuery = gql`
   query charts($geoCode: String!, $geoLevel: String!) {
     ${charts
@@ -45,20 +53,20 @@ function Profile({
     }
     ${
       chart.reference
-        ? `${chart.id}Reference: ${chart.reference.table} (
-      condition: ${JSON.stringify(chart.reference.condition).replace(
-        /"([^(")"]+)":/g,
-        '$1:'
-      )}
+        ? `${chart.id}Reference: ${chart.reference.table || chart.table} (
+      condition: ${JSON.stringify(
+        chart.reference.condition || { geoLevel: 'country', geoCode: 'ZA' }
+      ).replace(/"([^(")"]+)":/g, '$1:')}
     ) {
       nodes {
         ${
-          chart.reference.label && chart.reference.label[0] === '$'
-            ? `label: ${chart.reference.label.slice(1)}`
+          (chart.reference.label || chart.label) &&
+          (chart.reference.label || chart.label)[0] === '$'
+            ? `label: ${(chart.reference.label || chart.label).slice(1)}`
             : ''
         }
-        x: ${chart.reference.x}
-        y: ${chart.reference.y}
+        x: ${chart.reference.x || chart.x}
+        y: ${chart.reference.y || chart.y}
       }
     }`
         : ''
@@ -68,6 +76,8 @@ function Profile({
       .join('')}
   }
   `;
+
+  // Load profile chart data
   const {
     data: profileChartsData,
     loading: loadingProfileCharts,
@@ -78,30 +88,97 @@ function Profile({
       geoLevel: geoId.split('-')[0]
     }
   });
+
+  // Load comparison chart data
   const {
-    data: anotherProfileChartsData,
-    loading: loadingAnotherProfileCharts,
-    error: anotherProfileChartsError
+    data: comparisonChartsData,
+    loading: loadingComparisonProfileCharts,
+    error: comparisonProfileChartsError
   } = useQuery(chartsQuery, {
     variables: {
-      geoCode: anotherGeoId ? anotherGeoId.split('-')[1] : '',
-      geoLevel: anotherGeoId ? anotherGeoId.split('-')[0] : ''
+      geoCode: comparisonGeoId ? comparisonGeoId.split('-')[1] : '',
+      geoLevel: comparisonGeoId ? comparisonGeoId.split('-')[0] : ''
     },
-    skip: !anotherGeoId
+    // Skip this query is we are not doing a comparison
+    skip: !comparisonGeoId
   });
 
   useEffect(() => {
-    getProfile(geoId).then(({ data }) => {
-      setSelectedCountry(data.geography.parents.country);
-      setActiveTab(data.sections[0]);
-    });
-  }, [geoId]);
+    function workAroundFetchGeo({ geoCode, geoLevel }) {
+      return client.query({
+        query: gql`
+          query profile($geoCode: String!, $geoLevel: String!) {
+            geo: wazimapGeographyByGeoLevelAndGeoCodeAndVersion(
+              geoLevel: $geoLevel
+              geoCode: $geoCode
+              version: "2009"
+            ) {
+              geoLevel
+              geoCode
+              squareKms
+              parentLevel
+              parentCode
+              longName
+              name
+            }
+          }
+        `,
+        variables: {
+          geoCode,
+          geoLevel
+        }
+      });
+    }
+
+    /*
+     * Since we have no relationships in the database
+     * we query all profiles in this work around solution
+     * to have those profile data available to us.
+     */
+    async function workAroundFetchProfileGeos() {
+      const profile = await workAroundFetchGeo({
+        geoLevel: geoId.split('-')[0],
+        geoCode: geoId.split('-')[1]
+      });
+      const {
+        data: {
+          geo: { parentLevel, parentCode }
+        }
+      } = profile;
+
+      const parentProfile = await workAroundFetchGeo({
+        geoLevel: parentLevel,
+        geoCode: parentCode
+      });
+
+      let comparisonProfile;
+      if (comparisonGeoId) {
+        comparisonProfile = await workAroundFetchGeo({
+          geoLevel: comparisonGeoId.split('-')[0],
+          geoCode: comparisonGeoId.split('-')[1]
+        });
+      }
+
+      setProfiles({
+        loaded: true,
+        profile: profile.data.geo,
+        parentProfile: parentProfile.data.geo,
+        comparisonProfile: comparisonProfile ? comparisonProfile.data.geo : {}
+      });
+    }
+
+    workAroundFetchProfileGeos();
+  }, [geoId, comparisonGeoId]);
 
   return (
     <Page>
       <ProfilePageHeader
-        profile={anotherGeoId ? [geoId, anotherGeoId] : [geoId]}
-        dominion={{ ...config, selectedCountry, head2head }}
+        profile={comparisonGeoId ? [geoId, comparisonGeoId] : [geoId]}
+        dominion={{
+          ...config,
+          selectedCountry: profiles.parentProfile,
+          head2head
+        }}
       />
 
       <ProfileTabs
@@ -112,13 +189,11 @@ function Profile({
         }))}
       />
       <ChartsContainer>
-        {charts
+        {(activeTab === 'All' ? charts : sectionedCharts[activeTab] || [])
           .filter(
-            ({ id, section }) =>
-              (section === activeTab || activeTab === 'All') &&
+            ({ id }) =>
               /* data is not missing */
-              profileChartsData &&
-              profileChartsData[id].nodes.length > 0
+              profileChartsData && profileChartsData[id].nodes.length > 0
           )
           .map(chart => (
             <Grid
@@ -133,20 +208,24 @@ function Profile({
                 title={chart.title}
                 subtitle={chart.subtitle}
               >
-                {!loadingProfileCharts &&
-                  !loadingAnotherProfileCharts &&
+                {profiles.loaded &&
+                  !loadingProfileCharts &&
+                  !loadingComparisonProfileCharts &&
                   !profileChartsError &&
-                  !anotherProfileChartsError &&
+                  !comparisonProfileChartsError &&
                   ChartFactory.build(
                     chart,
                     profileChartsData,
-                    anotherProfileChartsData
+                    comparisonChartsData,
+                    profiles
                   )}
               </ChartContainer>
             </Grid>
           ))}
       </ChartsContainer>
-      <CountryPartners dominion={{ ...config, selectedCountry }} />
+      <CountryPartners
+        dominion={{ ...config, selectedCountry: profiles.parentProfile }}
+      />
     </Page>
   );
 }

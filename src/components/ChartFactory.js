@@ -14,7 +14,17 @@ export default class ChartFactory {
       reference: { label: referenceLabel }
     },
     datas,
-    comparisonDatas
+    comparisonDatas,
+    /*
+     * Profiles are needed in the chart builder
+     * since we have no relationships in the database
+     * so we have to query profiles seperately and this is
+     * a work around solution to have those profile data available to us
+     * when we want to use the labels for the parent or profile.
+     * This can further be used to refrence squareKms of a profile
+     * but population is not available in the profile.
+     */
+    profiles
   ) {
     if (!datas) {
       return null;
@@ -31,21 +41,31 @@ export default class ChartFactory {
           return (
             <NestedProportionalAreaChart
               square={chartType === 'square_nested_proportional_area'}
-              width={200}
+              width={650}
+              height={500}
+              groupSpacing={8}
               data={[
                 {
                   x: data.reduce((a, b) => a + b.y, 0),
-                  label: data[0].label || label
+                  label: data[0].label || profiles.profile[label]
                 },
                 {
                   x: comparisonData.reduce((a, b) => a + b.y, 0),
-                  label: comparisonData[0].label || label
+                  label:
+                    comparisonData[0].label ||
+                    profiles.comparisonProfile[label] ||
+                    label
                 }
               ]}
               reference={[
                 {
                   x: refrenceData.reduce((a, b) => a + b.y, 0),
-                  label: refrenceData[0].label || referenceLabel
+                  label:
+                    refrenceData[0].label ||
+                    // Default refrence label is the chart label
+                    profiles.parentProfile[referenceLabel || label] ||
+                    referenceLabel ||
+                    label
                 }
               ]}
             />
@@ -58,13 +78,18 @@ export default class ChartFactory {
             data={[
               {
                 x: data.reduce((a, b) => a + b.y, 0),
-                label: data[0].label || label
+                label: data[0].label || profiles.profile[label]
               }
             ]}
             reference={[
               {
                 x: refrenceData.reduce((a, b) => a + b.y, 0),
-                label: refrenceData[0].label || referenceLabel
+                label:
+                  refrenceData[0].label ||
+                  // Default refrence label is the chart label
+                  profiles.parentProfile[referenceLabel || label] ||
+                  referenceLabel ||
+                  label
               }
             ]}
           />

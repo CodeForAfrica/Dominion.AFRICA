@@ -82,17 +82,17 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
     <Query
       query={gql`
         query profile($geoCode: String!, $geoLevel: String!) {
-          geo: allWazimapGeographies(
-            condition: { geoCode: $geoCode, geoLevel: $geoLevel }
+          geo: wazimapGeographyByGeoLevelAndGeoCodeAndVersion(
+            geoLevel: $geoLevel
+            geoCode: $geoCode
+            version: "2009"
           ) {
-            nodes {
-              geoLevel
-              geoCode
-              squareKms
-              parentLevel
-              parentCode
-              shortName: name
-            }
+            geoLevel
+            geoCode
+            squareKms
+            parentLevel
+            parentCode
+            shortName: name
           }
           populationGroup: allPopulationGroup2016S(
             condition: { geoCode: $geoCode, geoLevel: $geoLevel }
@@ -120,14 +120,13 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
           return <Hero classes={{ root: classes.root }} {...props} />;
         if (error) return `Error! ${error.message}`;
 
-        const geography = data.geo.nodes[0];
         const {
           geoLevel,
           geoCode,
           shortName,
           parentCode,
           parentLevel
-        } = geography;
+        } = data.geo;
         // South Africa population data is in pupolation by group
         let totalPopulation = data.populationGroup.nodes.reduce(
           (a, b) => a + b.total,
@@ -140,7 +139,7 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
             0
           );
         }
-        let { squareKms } = geography;
+        let { squareKms } = data.geo;
         squareKms = parseFloat(squareKms);
         if (!Number.isNaN(squareKms)) {
           if (squareKms < 1.0) {
