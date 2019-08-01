@@ -68,7 +68,7 @@ function Resources() {
       <Section
         light
         title="Data"
-        subtitle="Powered by sourceAFRICA.net"
+        subtitle="Powered by openAfrica.net"
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
       >
         <Grid container justify="space-between">
