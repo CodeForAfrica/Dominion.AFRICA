@@ -15,7 +15,9 @@ const styles = {
   preview: {
     width: 'available',
     backgroundColor: '#7b7f7b',
-    height: '8.0625rem'
+    height: '8.0625rem',
+    border: '1px solid #7b7f7b',
+    overflow: 'hidden'
   },
   content: {
     padding: '0.625rem 0'
