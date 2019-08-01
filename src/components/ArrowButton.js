@@ -41,7 +41,7 @@ const styles = theme => ({
   }
 });
 
-function ArrowButton({ secondary, classes, children, onClick }) {
+function ArrowButton({ secondary, classes, children, onClick, ...props }) {
   return (
     <Grid item sm={12} container alignItems="center" className={classes.root}>
       <Button
@@ -50,6 +50,7 @@ function ArrowButton({ secondary, classes, children, onClick }) {
         className={classNames(classes.button, {
           [classes.buttonSecondary]: secondary
         })}
+        {...props}
       >
         {children}
       </Button>

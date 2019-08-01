@@ -36,3 +36,10 @@ export async function getComparisonProfile(geoId, anotherGeoId) {
     `https://api.hurumap.org/api/compare/${geoId}/vs/${anotherGeoId}/`
   );
 }
+
+export async function getOpenAfricaDominionGroupData() {
+  const group = 'dominion';
+  return axios.get(
+    `https://africaopendata.org/api/3/action/group_package_show?id=${group}`
+  );
+}
