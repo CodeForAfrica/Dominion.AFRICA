@@ -48,6 +48,7 @@ function Resources() {
           {documents.map(document => (
             <Grid item xs={12} md={6}>
               <DocumentCard
+                link={document.resources.pdf}
                 title={document.title}
                 description={document.description}
                 preview={

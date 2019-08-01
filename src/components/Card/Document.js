@@ -27,10 +27,10 @@ const styles = {
   }
 };
 
-function Document({ classes, title, description, preview }) {
+function Document({ classes, link, title, description, preview }) {
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea target="_blank" href={link}>
         <CardContent className={classes.content}>
           <Grid container direction="row" spacing={2}>
             <Grid item xs={4}>
@@ -52,6 +52,7 @@ function Document({ classes, title, description, preview }) {
 
 Document.propTypes = {
   classes: PropTypes.shape({}).isRequired,
+  link: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   preview: PropTypes.element
