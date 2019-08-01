@@ -78,13 +78,11 @@ Header.propTypes = {
     PropTypes.node
   ]).isRequired,
   dominion: PropTypes.shape({}).isRequired,
-  profile: PropTypes.shape({}),
-  anotherProfile: PropTypes.shape({})
+  profile: PropTypes.shape({})
 };
 
 Header.defaultProps = {
-  profile: null,
-  anotherProfile: null
+  profile: null
 };
 
 export default withWidth()(withStyles(styles)(Header));

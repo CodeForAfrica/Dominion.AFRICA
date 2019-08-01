@@ -36,3 +36,17 @@ export async function getComparisonProfile(geoId, anotherGeoId) {
     `https://api.hurumap.org/api/compare/${geoId}/vs/${anotherGeoId}/`
   );
 }
+
+export async function getSourceAfricaDominionData() {
+  const projectId = '462-Dominion-AFRICA';
+  return axios.get(
+    `https://dc.sourceafrica.net/api/search.json?q=projectid:${projectId}`
+  );
+}
+
+export async function getOpenAfricaDominionGroupData() {
+  const group = 'dominion';
+  return axios.get(
+    `https://africaopendata.org/api/3/action/group_package_show?id=${group}`
+  );
+}

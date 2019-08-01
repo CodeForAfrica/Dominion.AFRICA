@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { PropTypes } from 'prop-types';
 import { Typography } from '@material-ui/core';
@@ -7,6 +7,8 @@ import { withRouter } from 'react-router-dom';
 
 import classNames from 'classnames';
 import { MapIt } from '@codeforafrica/hurumap-ui';
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
 import Hero, { HeroTitle, HeroTitleGrid, HeroDetail } from '../Hero';
 
 import Search from '../../Search';
@@ -74,114 +76,149 @@ const styles = theme => ({
     display: 'inline-block'
   }
 });
-class Profile extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+function Profile({ classes, dominion, geoId, history, ...props }) {
+  const { head2head } = dominion;
+  return (
+    <Query
+      query={gql`
+        query profile($geoCode: String!, $geoLevel: String!) {
+          geo: wazimapGeographyByGeoLevelAndGeoCodeAndVersion(
+            geoLevel: $geoLevel
+            geoCode: $geoCode
+            version: "2009"
+          ) {
+            geoLevel
+            geoCode
+            squareKms
+            parentLevel
+            parentCode
+            shortName: name
+          }
+          populationGroup: allPopulationGroup2016S(
+            condition: { geoCode: $geoCode, geoLevel: $geoLevel }
+          ) {
+            nodes {
+              total
+            }
+          }
+          populationResidence: allPopulationResidence2009S(
+            condition: { geoCode: $geoCode, geoLevel: $geoLevel }
+          ) {
+            nodes {
+              total
+            }
+          }
+        }
+      `}
+      variables={{
+        geoLevel: geoId.split('-')[0],
+        geoCode: geoId.split('-')[1]
+      }}
+    >
+      {({ loading, error, data }) => {
+        if (loading)
+          return <Hero classes={{ root: classes.root }} {...props} />;
+        if (error) return `Error! ${error.message}`;
 
-  render() {
-    const { classes, dominion, profile, history, ...props } = this.props;
+        const {
+          geoLevel,
+          geoCode,
+          shortName,
+          parentCode,
+          parentLevel
+        } = data.geo;
+        // South Africa population data is in pupolation by group
+        let totalPopulation = data.populationGroup.nodes.reduce(
+          (a, b) => a + b.total,
+          0
+        );
+        if (totalPopulation === 0) {
+          // Kenya population data is in pupolation by residence
+          totalPopulation = data.populationResidence.nodes.reduce(
+            (a, b) => a + b.total,
+            0
+          );
+        }
+        let { squareKms } = data.geo;
+        squareKms = parseFloat(squareKms);
+        if (!Number.isNaN(squareKms)) {
+          if (squareKms < 1.0) {
+            squareKms = squareKms.toFixed(3);
+          } else {
+            squareKms = squareKms.toFixed(1);
+          }
+        }
 
-    if (!profile) {
-      return <Hero classes={{ root: classes.root }} {...props} />;
-    }
-
-    const { head2head } = dominion;
-    const {
-      total_population: totalPopulation,
-      // primary_releases: primaryReleases = {},
-      geography = { this: {} }
-    } = profile;
-    // const { active: activeRelease } = primaryReleases;
-    const { parents: parentLinks } = geography;
-    const {
-      geo_level: geoLevel,
-      geo_code: geoCode,
-      full_geoid: geoId
-    } = geography.this;
-    let { square_kms: squarekms } = geography.this;
-    squarekms = parseFloat(squarekms);
-    if (!Number.isNaN(squarekms)) {
-      if (squarekms < 1.0) {
-        squarekms = squarekms.toFixed(3);
-      } else {
-        squarekms = squarekms.toFixed(1);
-      }
-    }
-    const { short_name: profileName } = geography.this;
-
-    let population;
-    let populationDensity;
-    if (totalPopulation) {
-      population = totalPopulation.toFixed(0);
-      populationDensity = (totalPopulation / squarekms).toFixed(2);
-    }
-
-    return (
-      <Hero classes={{ root: classes.root }} {...props}>
-        <HeroTitleGrid quater head2head={head2head}>
-          <HeroTitle breakWord small>
-            {profileName}
-          </HeroTitle>
-          <Typography variant="body2" className={classes.caption} component="p">
-            {geoLevel}{' '}
-            {parentLinks && Object.keys(parentLinks).length > 1 ? (
-              <Typography variant="body" className={classes.captionItem}>
-                in{' '}
-                {Object.keys(parentLinks)
-                  .slice(0, -1)
-                  .map(item => (
-                    <span>
-                      <a href={`/profile/${parentLinks[item].full_geoid}`}>
-                        {parentLinks[item].name}
-                      </a>
-                      {', '}
-                    </span>
-                  ))}
+        let population;
+        let populationDensity;
+        if (totalPopulation) {
+          population = totalPopulation.toFixed(0);
+          populationDensity = (totalPopulation / squareKms).toFixed(2);
+        }
+        return (
+          <Hero classes={{ root: classes.root }} {...props}>
+            <HeroTitleGrid quater head2head={head2head}>
+              <HeroTitle breakWord small>
+                {shortName}
+              </HeroTitle>
+              <Typography
+                variant="body2"
+                className={classes.caption}
+                component="p"
+              >
+                {geoLevel}{' '}
+                <Typography variant="body" className={classes.captionItem}>
+                  in{' '}
+                  <span>
+                    <a href={`/profiles/${parentLevel}-${parentCode}`}>
+                      {parentCode}
+                    </a>
+                    {', '}
+                  </span>
+                </Typography>
               </Typography>
-            ) : null}
-          </Typography>
-          {population && (
-            <HeroDetail label="Population">{population}</HeroDetail>
-          )}
-          {squarekms && (
-            <HeroDetail small label="square kilometers">
-              {squarekms}
-            </HeroDetail>
-          )}
-          {populationDensity && (
-            <HeroDetail small label="people per square kilometer">
-              {populationDensity}
-            </HeroDetail>
-          )}
-          {!head2head && (
-            <Search
-              dominion={dominion}
-              isComparisonSearch
-              placeholder="Compare this with"
-              thisGeoId={geoId}
-              icon={searchIcon}
-            />
-          )}
-        </HeroTitleGrid>
-        <div
-          className={classNames(classes.map, { [classes.h2hMap]: head2head })}
-        >
-          <MapIt
-            id={geoId}
-            drawProfile
-            drawChildren
-            url={config.MAPIT.url}
-            codeType={config.MAPIT.codeType}
-            geoLevel={geoLevel}
-            geoCode={geoCode}
-            onClickGeoLayer={area => {
-              history.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
-            }}
-          />
-        </div>
-        {/* {activeRelease && (
+              {population && (
+                <HeroDetail label="Population">{population}</HeroDetail>
+              )}
+              {squareKms && (
+                <HeroDetail small label="square kilometers">
+                  {squareKms}
+                </HeroDetail>
+              )}
+              {populationDensity && (
+                <HeroDetail small label="people per square kilometer">
+                  {populationDensity}
+                </HeroDetail>
+              )}
+              {!head2head && (
+                <Search
+                  dominion={dominion}
+                  isComparisonSearch
+                  placeholder="Compare this with"
+                  thisGeoId={geoId}
+                  icon={searchIcon}
+                />
+              )}
+            </HeroTitleGrid>
+            <div
+              className={classNames(classes.map, {
+                [classes.h2hMap]: head2head
+              })}
+            >
+              <MapIt
+                id={geoId}
+                drawProfile
+                drawChildren
+                url={config.MAPIT.url}
+                codeType={config.MAPIT.codeType}
+                geoLevel={geoLevel}
+                geoCode={geoCode}
+                onClickGeoLayer={area => {
+                  history.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
+                }}
+              />
+            </div>
+            {/* {activeRelease && (
           <Typography
             variant="body2"
             className={classNames(classes.release, {
@@ -193,19 +230,17 @@ class Profile extends Component {
             <ReleaseDropdown primaryReleases={primaryReleases} fromHero />
           </Typography>
         )} */}
-      </Hero>
-    );
-  }
+          </Hero>
+        );
+      }}
+    </Query>
+  );
 }
 
 Profile.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   dominion: PropTypes.shape({}).isRequired,
-  profile: PropTypes.shape({})
-};
-
-Profile.defaultProps = {
-  profile: null
+  geoId: PropTypes.string.isRequired
 };
 
 export default withRouter(withStyles(styles)(Profile));

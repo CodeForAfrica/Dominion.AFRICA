@@ -21,7 +21,9 @@ const styles = theme => ({
 function ChartsContainer({ classes, children }) {
   return (
     <div className={classes.root}>
-      <Grid container>{children}</Grid>
+      <Grid container spacing={2}>
+        {children}
+      </Grid>
     </div>
   );
 }

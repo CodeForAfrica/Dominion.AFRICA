@@ -43,7 +43,7 @@ const styles = theme => ({
 function Document({ classes, link, title, description, preview }) {
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea target="_blank" href={link}>
         <CardContent>
           <Typography component={A}>{link}</Typography>
           <Typography className={classes.xsTitle} variant="h4">

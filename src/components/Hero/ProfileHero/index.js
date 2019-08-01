@@ -19,30 +19,22 @@ const styles = theme => ({
 });
 
 function ProfileHero({ classes, profile, ...props }) {
-  return !profile || !profile.comp_geography ? (
-    <Profile classes={{ root: classes.root }} profile={profile} {...props} />
+  return profile.length === 1 ? (
+    <Profile classes={{ root: classes.root }} geoId={profile[0]} {...props} />
   ) : (
     <Grid className={classes.root} container direction="row" spacing={1}>
       <Profile
         item
         md={6}
         alignItems="flex-start"
-        profile={{
-          ...profile,
-          total_population: profile.total_population.this
-        }}
+        geoId={profile[0]}
         {...props}
       />
       <Profile
         item
         md={6}
         alignItems="flex-start"
-        profile={{
-          ...profile,
-          geography: profile.comp_geography,
-          total_population:
-            profile.total_population[profile.comp_geography.this.full_name]
-        }}
+        geoId={profile[1]}
         {...props}
       />
     </Grid>
@@ -52,7 +44,7 @@ function ProfileHero({ classes, profile, ...props }) {
 ProfileHero.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   dominion: PropTypes.shape({}).isRequired,
-  profile: PropTypes.shape({}).isRequired
+  profile: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
 };
 
 export default withStyles(styles)(ProfileHero);

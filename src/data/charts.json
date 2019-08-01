@@ -1,0 +1,46 @@
+[{
+  "sectionTitle": "Demographics",
+  "sectionDescription": "",
+  "charts": [{
+      "title": "Population",
+      "subtitle": "People living there",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "circle_nested_proportional_area",
+        "table": "allPopulationResidence2009S",
+        "reference": {},
+        "label": "longName",
+        "x": "populationResidence2009",
+        "y": "total"
+      }]
+    },
+    {
+      "type": "circle_nested_proportional_area",
+      "title": "Population",
+      "subtitle": "People living there",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "circle_nested_proportional_area",
+        "table": "allPopulationGroup2016S",
+        "layout": "2/3",
+        "reference": {},
+        "label": "longName",
+        "x": "populationGroup2016",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Extension",
+      "subtitle": "Surface in km2",
+      "layout": "1/3",
+      "visuals": [{
+        "type": "square_nested_proportional_area",
+        "table": "allWazimapGeographies",
+        "reference": {},
+        "label": "$longName",
+        "x": "longName",
+        "y": "squareKms"
+      }]
+    }
+  ]
+}]
