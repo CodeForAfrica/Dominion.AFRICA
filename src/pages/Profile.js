@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { ChartContainer } from '@codeforafrica/hurumap-ui';
 import gql from 'graphql-tag';
-import { useQuery, useApolloClient } from 'react-apollo-hooks';
+import { useApolloClient } from 'react-apollo-hooks';
 import { Grid } from '@material-ui/core';
 import { ProfilePageHeader } from '../components/Header';
 import ProfileTabs from '../components/ProfileTabs';
@@ -21,6 +21,7 @@ function Profile({
 }) {
   const head2head = Boolean(geoId && comparisonGeoId);
   const [activeTab, setActiveTab] = useState('All');
+  const [chartData, setChartsData] = useState({});
   const [profiles, setProfiles] = useState({
     profile: {},
     parentProfile: {},
@@ -49,76 +50,89 @@ function Profile({
 
   const sections = ['All', ...sectionedCharts.map(x => x.sectionTitle)];
 
-  // Build chart data query
-  const visualsQuery = gql`
-  query charts($geoCode: String!, $geoLevel: String!) {
-    ${visuals
-      .map(
-        visual => `${visual.id}: ${visual.table} (
-      condition: { geoCode: $geoCode, geoLevel: $geoLevel }
-    ) {
-      nodes {
-        ${
-          visual.label && visual.label[0] === '$'
-            ? `label: ${visual.label.slice(1)}`
-            : ''
-        }
-        ${visual.grouped_by ? `grouped_by: ${visual.grouped_by}` : ''}
-        x: ${visual.x}
-        y: ${visual.y}
+  useEffect(() => {
+    const {
+      parentProfile: { geoLevel: parentLevel, geoCode: parentCode }
+    } = profiles;
+    if (parentLevel && parentCode) {
+      // Build chart data query
+      const visualsQuery = gql`
+query charts($geoCode: String!, $geoLevel: String!) {
+  ${visuals
+    .map(
+      visual => `${visual.id}: ${visual.table} (
+    condition: { geoCode: $geoCode, geoLevel: $geoLevel }
+  ) {
+    nodes {
+      ${
+        visual.label && visual.label[0] === '$'
+          ? `label: ${visual.label.slice(1)}`
+          : ''
       }
+      ${visual.grouped_by ? `grouped_by: ${visual.grouped_by}` : ''}
+      x: ${visual.x}
+      y: ${visual.y}
     }
-    ${
-      visual.reference
-        ? `${visual.id}Reference: ${visual.reference.table || visual.table} (
-      condition: ${JSON.stringify(
-        visual.reference.condition || { geoLevel: 'country', geoCode: 'ZA' }
-      ).replace(/"([^(")"]+)":/g, '$1:')}
-    ) {
-      nodes {
-        ${
-          (visual.reference.label || visual.label) &&
-          (visual.reference.label || visual.label)[0] === '$'
-            ? `label: ${(visual.reference.label || visual.label).slice(1)}`
-            : ''
-        }
-        x: ${visual.reference.x || visual.x}
-        y: ${visual.reference.y || visual.y}
-      }
-    }`
-        : ''
-    }
-    `
-      )
-      .join('')}
   }
-  `;
-
-  // Load profile chart data
-  const {
-    data: profileVisualsData,
-    loading: loadingProfileVisuals,
-    error: profileVisualsError
-  } = useQuery(visualsQuery, {
-    variables: {
-      geoCode: geoId.split('-')[1],
-      geoLevel: geoId.split('-')[0]
+  ${
+    visual.reference
+      ? `${visual.id}Reference: ${visual.reference.table || visual.table} (
+    condition: ${JSON.stringify(
+      visual.reference.condition || {
+        geoLevel: parentLevel,
+        geoCode: parentCode
+      }
+    ).replace(/"([^(")"]+)":/g, '$1:')}
+  ) {
+    nodes {
+      ${
+        (visual.reference.label || visual.label) &&
+        (visual.reference.label || visual.label)[0] === '$'
+          ? `label: ${(visual.reference.label || visual.label).slice(1)}`
+          : ''
+      }
+      x: ${visual.reference.x || visual.x}
+      y: ${visual.reference.y || visual.y}
     }
-  });
+  }`
+      : ''
+  }
+  `
+    )
+    .join('')}
+}
+`;
 
-  // Load comparison chart data
-  const {
-    data: comparisonVisualsData,
-    loading: loadingComparisonProfileVisuals,
-    error: comparisonProfileVisualsError
-  } = useQuery(visualsQuery, {
-    variables: {
-      geoCode: comparisonGeoId ? comparisonGeoId.split('-')[1] : '',
-      geoLevel: comparisonGeoId ? comparisonGeoId.split('-')[0] : ''
-    },
-    // Skip this query is we are not doing a comparison
-    skip: !comparisonGeoId
-  });
+      (async () => {
+        // Load profile chart data
+        const { data: profileVisualsData } = await client.query({
+          query: visualsQuery,
+          variables: {
+            geoCode: geoId.split('-')[1],
+            geoLevel: geoId.split('-')[0]
+          }
+        });
+
+        // Load comparison chart data
+        let comparisonVisualsData;
+        if (comparisonGeoId) {
+          const { data } = client.query({
+            query: visualsQuery,
+            variables: {
+              geoCode: comparisonGeoId ? comparisonGeoId.split('-')[1] : '',
+              geoLevel: comparisonGeoId ? comparisonGeoId.split('-')[0] : ''
+            }
+          });
+          comparisonVisualsData = data;
+        }
+
+        setChartsData({
+          profileVisualsData,
+          comparisonVisualsData
+        });
+      })();
+    }
+  }, [profiles]);
 
   useEffect(() => {
     function workAroundFetchGeo({ geoCode, geoLevel }) {
@@ -215,8 +229,8 @@ function Profile({
               /* data is not missing */
               !v.find(
                 x =>
-                  !profileVisualsData ||
-                  profileVisualsData[x.id].nodes.length === 0
+                  !chartData.profileVisualsData ||
+                  chartData.profileVisualsData[x.id].nodes.length === 0
               )
           )
           .map(chart => (
@@ -235,14 +249,10 @@ function Profile({
                 {chart.visuals.map(
                   visual =>
                     profiles.loaded &&
-                    !loadingProfileVisuals &&
-                    !loadingComparisonProfileVisuals &&
-                    !profileVisualsError &&
-                    !comparisonProfileVisualsError &&
                     ChartFactory.build(
                       visual,
-                      profileVisualsData,
-                      comparisonVisualsData,
+                      chartData.profileVisualsData,
+                      chartData.comparisonVisualsData,
                       profiles
                     )
                 )}
