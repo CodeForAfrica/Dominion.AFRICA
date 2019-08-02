@@ -63,7 +63,12 @@ function CountryHero({ classes, history, toggleModal, dominion }) {
 
         <p style={{ marginTop: '40px' }}>
           or view{' '}
-          <a href={`/profile/country-${selectedCountry.code}`}>
+          <a
+            style={{
+              pointerEvents: 'all'
+            }}
+            href={`/profile/country-${selectedCountry.code}`}
+          >
             {selectedCountry.name}
           </a>
         </p>
