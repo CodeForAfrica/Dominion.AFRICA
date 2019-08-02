@@ -63,7 +63,8 @@ function Content({
   contentCount,
   contentType,
   description,
-  link
+  link,
+  target
 }) {
   return (
     <Grid className={classes.root}>
@@ -93,7 +94,7 @@ function Content({
           </Typography>
         </div>
 
-        <A href={link} className={classes.link}>
+        <A target={target} href={link} className={classes.link}>
           <Typography variant="subtitle2" className={classes.linkText}>
             View {contentType}
           </Typography>
@@ -113,7 +114,12 @@ Content.propTypes = {
   contentCount: PropTypes.string.isRequired,
   contentType: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  link: PropTypes.string.isRequired
+  link: PropTypes.string.isRequired,
+  target: PropTypes.string
+};
+
+Content.defaultProps = {
+  target: '_blank'
 };
 
 export default withStyles(styles)(Content);

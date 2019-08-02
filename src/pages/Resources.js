@@ -17,12 +17,19 @@ function Resources() {
   const [packages, setPackages] = useState([]);
   const [documents, setDocuments] = useState([]);
   useEffect(() => {
+    function srcollSectionIntoView() {
+      if (window.location.hash.slice(1)) {
+        document.getElementById(window.location.hash.slice(1)).scrollIntoView();
+      }
+    }
     getOpenAfricaDominionGroupData().then(({ data: { result } }) => {
       setPackages(result);
+      srcollSectionIntoView();
     });
 
     getSourceAfricaDominionData().then(({ data }) => {
       setDocuments(data.documents);
+      srcollSectionIntoView();
     });
   }, []);
 
@@ -37,7 +44,11 @@ function Resources() {
         Datasets
         <br /> and Documents
       </TitlePageHeader>
-      <Section title="Documents" subtitle="Powered by sourceAFRICA.net">
+      <Section
+        id="documents"
+        title="Documents"
+        subtitle="Powered by sourceAFRICA.net"
+      >
         <Typography>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -67,6 +78,7 @@ function Resources() {
         </ArrowButton>
       </Section>
       <Section
+        id="data"
         light
         title="Data"
         subtitle="Powered by openAfrica.net"

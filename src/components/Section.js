@@ -23,9 +23,12 @@ const styles = theme => ({
   }
 });
 
-function Section({ classes, light, title, subtitle, children }) {
+function Section({ id, classes, light, title, subtitle, children }) {
   return (
-    <div className={classNames(classes.root, { [classes.light]: light })}>
+    <div
+      id={id}
+      className={classNames(classes.root, { [classes.light]: light })}
+    >
       <Grid container>
         <Grid item xs={12} md={3} style={{ marginBottom: '1.25rem' }}>
           <Typography variant="h3">{title}</Typography>
@@ -40,6 +43,7 @@ function Section({ classes, light, title, subtitle, children }) {
 }
 
 Section.propTypes = {
+  id: PropTypes.string,
   light: PropTypes.bool,
   classes: PropTypes.shape({}).isRequired,
   title: PropTypes.string.isRequired,
@@ -51,6 +55,7 @@ Section.propTypes = {
 };
 
 Section.defaultProps = {
+  id: undefined,
   light: false,
   children: null
 };
