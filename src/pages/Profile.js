@@ -176,11 +176,15 @@ query charts($geoCode: String!, $geoLevel: String!) {
           geo: { parentLevel, parentCode }
         }
       } = profile;
-
-      const parentProfile = await workAroundFetchGeo({
-        geoLevel: parentLevel,
-        geoCode: parentCode
-      });
+      let parentProfile;
+      if (parentLevel === 'continent') {
+        parentProfile = profile;
+      } else {
+        parentProfile = await workAroundFetchGeo({
+          geoLevel: parentLevel,
+          geoCode: parentCode
+        });
+      }
 
       let comparisonProfile;
       if (comparisonGeoId) {
