@@ -69,7 +69,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
           ? `label: ${visual.label.slice(1)}`
           : ''
       }
-      ${visual.grouped_by ? `grouped_by: ${visual.grouped_by}` : ''}
+      ${visual.groupBy ? `groupBy: ${visual.groupBy}` : ''}
       x: ${visual.x}
       y: ${visual.y}
     }

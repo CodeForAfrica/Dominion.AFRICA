@@ -11,7 +11,7 @@ export default class ChartFactory {
       id: visualId,
       type: visualType,
       label,
-      reference: { label: referenceLabel }
+      reference: { label: referenceLabel } = {}
     },
     datas,
     comparisonDatas,
@@ -104,17 +104,10 @@ export default class ChartFactory {
         return (
           <BarChart
             height={200}
-            data={Object.keys(data)
-              .filter(key => key !== 'metadata')
-              .map(key => ({
-                label: key,
-                data: Object.keys(data[key])
-                  .filter(innerKey => innerKey !== 'metadata')
-                  .map(innerKey => ({
-                    x: `${innerKey}`,
-                    y: data[key][innerKey].values.this
-                  }))
-              }))}
+            data={[...new Set(data.map(d => d.groupBy))].map(group => ({
+              label: group,
+              data: data.filter(d => d.groupBy === group)
+            }))}
           />
         );
       case 'column':
