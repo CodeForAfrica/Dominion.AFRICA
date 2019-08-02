@@ -1,7 +1,8 @@
 [{
   "sectionTitle": "Demographics",
   "sectionDescription": "",
-  "charts": [{
+  "charts": [
+    {
       "title": "Population",
       "subtitle": "People living there",
       "layout": "2/3",
@@ -40,6 +41,264 @@
         "label": "$longName",
         "x": "longName",
         "y": "squareKms"
+      }]
+    }
+  ]
+},
+{
+  "sectionTitle": "Worker's Hostel Data",
+  "sectionDescription": "",
+  "charts": [
+    {
+      "title": "Number of people living in worker's hostel per age group",
+      "subtitle": "",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allWorkersHostelAgeGroups",
+        "reference": {},
+        "label": "",
+        "x": "workersHostelAgeGroup",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Number of people living in worker's hostel per gender",
+      "subtitle": "",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allWorkersHostelGenders",
+        "reference": {},
+        "label": "",
+        "x": "workersHostelGender",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Number of people living in worker's hostel per geography",
+      "subtitle": "",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allWorkersHostelGeographies",
+        "reference": {},
+        "label": "",
+        "x": "workersHostelGeography",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Handwashing Facility",
+      "subtitle": "",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allWorkersHostelHandwashingFacilities",
+        "reference": {},
+        "label": "",
+        "x": "workersHostelHandwashingFacility",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Ownership of dwelling",
+      "subtitle": "",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allWorkersHostelOwnerships",
+        "reference": {},
+        "label": "",
+        "x": "workersHostelOwnership",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Number of people living in workers hostels per year",
+      "subtitle": "",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allWorkersHostelPopulations",
+        "reference": {},
+        "label": "",
+        "x": "workersHostelPopulationYear",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Number of people living in workers hostels per population group",
+      "subtitle": "",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allWorkersHostelPopulationGroups",
+        "reference": {},
+        "label": "",
+        "x": "workersHostelPopulationGroup",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Monthly Rent or Mortgage",
+      "subtitle": "",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allWorkersHostelRents",
+        "reference": {},
+        "label": "",
+        "x": "workersHostelRent",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Residential Ownership",
+      "subtitle": "",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allWorkersHostelResidentialOwnerships",
+        "reference": {},
+        "label": "",
+        "x": "workersHostelResidentialOwnership",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Number of people living in state subsidised dwelling",
+      "subtitle": "",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allWorkersHostelSsDwellings",
+        "reference": {},
+        "label": "",
+        "x": "workersHostelSsDwelling",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Access to Electricity",
+      "subtitle": "",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allWorkersHostelAccessElectricities",
+        "reference": {},
+        "label": "",
+        "x": "workersHostelAccessElectricity",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Water Source",
+      "subtitle": "",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allWorkersHostelWaterSources",
+        "reference": {},
+        "label": "",
+        "x": "workersHostelWaterSource",
+        "y": "total"
+      }]
+    }
+    
+  ]
+},
+{
+  "sectionTitle": "Farm Land",
+  "sectionDescription": "",
+  "charts": [
+    {
+      "title": "Population",
+      "subtitle": "People living there",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "circle_nested_proportional_area",
+        "table": "allPopulationResidence2009S",
+        "reference": {},
+        "label": "longName",
+        "x": "populationResidence2009",
+        "y": "total"
+      }]
+    }
+  ]
+},
+{
+  "sectionTitle": "Erven Land",
+  "sectionDescription": "",
+  "charts": [
+    {
+      "title": "Population",
+      "subtitle": "People living there",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "circle_nested_proportional_area",
+        "table": "allPopulationResidence2009S",
+        "reference": {},
+        "label": "longName",
+        "x": "populationResidence2009",
+        "y": "total"
+      }]
+    }
+  ]
+},
+{
+  "sectionTitle": "Sectional Title land",
+  "sectionDescription": "",
+  "charts": [
+    {
+      "title": "Population",
+      "subtitle": "People living there",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "circle_nested_proportional_area",
+        "table": "allPopulationResidence2009S",
+        "reference": {},
+        "label": "longName",
+        "x": "populationResidence2009",
+        "y": "total"
+      }]
+    }
+  ]
+},
+{
+  "sectionTitle": "Land traded statistic for transactions of colour",
+  "sectionDescription": "",
+  "charts": [
+    {
+      "title": "Population",
+      "subtitle": "People living there",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "circle_nested_proportional_area",
+        "table": "allPopulationResidence2009S",
+        "reference": {},
+        "label": "longName",
+        "x": "populationResidence2009",
+        "y": "total"
+      }]
+    }
+  ]
+},
+{
+  "sectionTitle": "Afrobarometer Round 7",
+  "sectionDescription": "",
+  "charts": [
+    {
+      "title": "Population",
+      "subtitle": "People living there",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "circle_nested_proportional_area",
+        "table": "allPopulationResidence2009S",
+        "reference": {},
+        "label": "longName",
+        "x": "populationResidence2009",
+        "y": "total"
       }]
     }
   ]
