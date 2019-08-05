@@ -578,17 +578,70 @@
   "sectionDescription": "",
   "charts": [
     {
-      "title": "Afrobarometer",
+      "title": "Land Redistribution Prioritisation",
       "subtitle": "Type of land that government should prioritise for redistribution",
       "layout": "2/3",
       "visuals": [{
         "type": "pie",
         "table": "allLandToPrioritiseForRedistributions",
         "reference": {},
-        "label": "longName",
+        "label": "",
         "x": "landToPrioritiseForRedistribution",
         "y": "total"
       }]
+    },
+    {
+      "title": "Access to Information",
+      "subtitle": "How is easy is it to access to Information",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "pie",
+        "table": "allAccessToInformations",
+        "reference": {},
+        "label": "",
+        "x": "accessToInformation",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Buyer & Selling Policy",
+      "subtitle": "The government must abide by willing buyer-willing seller policy in acquiring any property?",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "pie",
+        "table": "allMaintainWillingBuyerWillingSellerPolicies",
+        "reference": {},
+        "label": "",
+        "x": "maintainWillingBuyerWillingSellerPolicy",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Farmers land",
+      "subtitle": "Should the government allow farmers to retain ownership of land on which their labourers live?",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "pie",
+        "table": "allAllowFarmersRetainLandOwnerships",
+        "reference": {},
+        "label": "",
+        "x": "allowFarmersRetainLandOwnership",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Land Acquisition Challenges",
+      "subtitle": "What is the greatest challenge to acquiring land today?",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "pie",
+        "table": "allLandAcquisationChallenges",
+        "reference": {},
+        "label": "",
+        "x": "landAcquisationChallenges",
+        "y": "total"
+      }]
     }
+
   ]
 }]
