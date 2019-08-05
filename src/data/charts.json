@@ -213,15 +213,106 @@
   "sectionDescription": "",
   "charts": [
     {
-      "title": "Population",
-      "subtitle": "People living there",
+      "title": "Number of individuals owning farms and agricultural holdings by gender (%)",
+      "subtitle": "",
       "layout": "2/3",
       "visuals": [{
-        "type": "circle_nested_proportional_area",
-        "table": "allPopulationResidence2009S",
+        "type": "column",
+        "table": "allNumberoflandownerspergenders",
         "reference": {},
-        "label": "longName",
-        "x": "populationResidence2009",
+        "label": "",
+        "x": "numberOfLandOwnersPerGender",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Number of individuals owning farms and agricultural holdings by Nationality (%)",
+      "subtitle": "",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allNumberoflandownerspernationalities",
+        "reference": {},
+        "label": "",
+        "x": "numberOfLandOwnersPerNationality",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Number of individuals owning farms and agricultural holdings by race (%)",
+      "subtitle": "",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allNumberoflandownersperraces",
+        "reference": {},
+        "label": "",
+        "x": "numberOfLandOwnersPerRace",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Number of Private Land Owners by Category (%)",
+      "subtitle": "",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allNumberofprivatelandownersbycategories",
+        "reference": {},
+        "label": "",
+        "x": "numberOfPrivateLandOwnersByCategory",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Private land ownership in hectares by category (%)",
+      "subtitle": "",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allPrivatelandownershipinhectarespercategories",
+        "reference": {},
+        "label": "",
+        "x": "privateLandOwnershipInHectaresPerCategory",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Individual land ownership of farms and agricultural holdings in hectares by race (%)",
+      "subtitle": "",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allLandownershipinhectaresbyraces",
+        "reference": {},
+        "label": "",
+        "x": "landOwnershipInHectaresByRace",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Individual land ownership of farms and agricultural holdings in hectares by gemder (%)",
+      "subtitle": "",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allLandownershipinhectaresbygenders",
+        "reference": {},
+        "label": "",
+        "x": "landOwnershipInHectaresByGender",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Individual Land Ownership percent Hectares by Nationality (%)",
+      "subtitle": "",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allLandownershipinhectaresbynationalities",
+        "reference": {},
+        "label": "",
+        "x": "landOwnershipInHectaresByNationality",
         "y": "total"
       }]
     }
@@ -232,15 +323,80 @@
   "sectionDescription": "",
   "charts": [
     {
-      "title": "Population",
-      "subtitle": "People living there",
+      "title": "Individual ownership of erven land in hectares by gender (%)",
+      "subtitle": "",
       "layout": "2/3",
       "visuals": [{
-        "type": "circle_nested_proportional_area",
-        "table": "allPopulationResidence2009S",
+        "type": "column",
+        "table": "allErvenLandOwnershipInHectaresByGenders",
         "reference": {},
-        "label": "longName",
-        "x": "populationResidence2009",
+        "label": "",
+        "x": "ervenLandOwnershipInHectaresByGender",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Number of individuals owning erven land by gender (%)",
+      "subtitle": "",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allNumberOfErvenLandOwnersPerGenders",
+        "reference": {},
+        "label": "",
+        "x": "numberOfErvenLandOwnersPerGender",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Number of individuals owning erven land by nationality (%)",
+      "subtitle": "",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allNumberOfErvenLandOwnersPerNationalities",
+        "reference": {},
+        "label": "",
+        "x": "numberOfErvenLandOwnersPerNationality",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Individual ownership of erven land in hectares by nationality (%)",
+      "subtitle": "",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allErvenLandOwnershipInHectaresByNationalities",
+        "reference": {},
+        "label": "",
+        "x": "ervenLandOwnershipInHectaresByNationality",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Individual ownership of erven land in hectares by race (%)",
+      "subtitle": "",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allErvenLandOwnershipInHectaresByRaces",
+        "reference": {},
+        "label": "",
+        "x": "ervenLandOwnershipInHectaresByRace",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Number of individuals owning erven land by race (%)",
+      "subtitle": "",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allNumberOfErvenLandOwnersPerRaces",
+        "reference": {},
+        "label": "",
+        "x": "numberOfErvenLandOwnersPerRace",
         "y": "total"
       }]
     }
