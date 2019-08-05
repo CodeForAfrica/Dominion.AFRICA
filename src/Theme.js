@@ -65,7 +65,7 @@ const Theme = createTheme({
       color: '#2c2c2a'
     },
     body2: {
-      color: 'rgba(34, 40, 34, 0.8)',
+      color: 'rgb(34, 40, 34)',
       fontFamily: FONT_FAMILY_TEXT
     },
     subtitle1: {
