@@ -90,16 +90,7 @@ export default class ChartFactory {
         );
       }
       case 'pie':
-        return (
-          <PieChart
-            data={Object.keys(data)
-              .filter(key => key !== 'metadata')
-              .map(key => ({
-                x: key,
-                y: data[key].values.this
-              }))}
-          />
-        );
+        return <PieChart data={data} />;
       case 'grouped_column':
         return (
           <BarChart
