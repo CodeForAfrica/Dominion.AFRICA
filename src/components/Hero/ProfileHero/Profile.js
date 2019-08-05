@@ -155,6 +155,12 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
           population = totalPopulation.toFixed(0);
           populationDensity = (totalPopulation / squareKms).toFixed(2);
         }
+
+        const countryConfig = Object.values(config.countries).find(c =>
+          parentLevel === 'continent'
+            ? c.code === geoCode
+            : c.code === parentCode
+        );
         return (
           <Hero classes={{ root: classes.root }} {...props}>
             <HeroTitleGrid quater head2head={head2head}>
@@ -170,7 +176,7 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
                 <Typography variant="body" className={classes.captionItem}>
                   in{' '}
                   <span>
-                    <a href={`/profiles/${parentLevel}-${parentCode}`}>
+                    <a href={`/profile/${parentLevel}-${parentCode}`}>
                       {parentCode}
                     </a>
                     {', '}
@@ -206,6 +212,8 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
               })}
             >
               <MapIt
+                zoom={countryConfig.zoom}
+                center={countryConfig.centre}
                 id={geoId}
                 drawProfile
                 drawChildren

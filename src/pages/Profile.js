@@ -69,7 +69,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
           ? `label: ${visual.label.slice(1)}`
           : ''
       }
-      ${visual.grouped_by ? `grouped_by: ${visual.grouped_by}` : ''}
+      ${visual.groupBy ? `groupBy: ${visual.groupBy}` : ''}
       x: ${visual.x}
       y: ${visual.y}
     }
@@ -176,11 +176,15 @@ query charts($geoCode: String!, $geoLevel: String!) {
           geo: { parentLevel, parentCode }
         }
       } = profile;
-
-      const parentProfile = await workAroundFetchGeo({
-        geoLevel: parentLevel,
-        geoCode: parentCode
-      });
+      let parentProfile;
+      if (parentLevel === 'continent') {
+        parentProfile = profile;
+      } else {
+        parentProfile = await workAroundFetchGeo({
+          geoLevel: parentLevel,
+          geoCode: parentCode
+        });
+      }
 
       let comparisonProfile;
       if (comparisonGeoId) {

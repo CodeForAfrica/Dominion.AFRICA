@@ -146,7 +146,11 @@ class Navigation extends Component {
     return (
       <Link
         component="a"
-        href={selectedCountry ? `/${selectedCountry.slug}` : '/'}
+        href={
+          selectedCountry
+            ? `/profile/${selectedCountry.geoLevel}-${selectedCountry.geoCode}`
+            : '/'
+        }
         style={{ position: 'relative', marginRight: '50px' }}
       >
         <img

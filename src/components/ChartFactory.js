@@ -11,7 +11,7 @@ export default class ChartFactory {
       id: visualId,
       type: visualType,
       label,
-      reference: { label: referenceLabel }
+      reference: { label: referenceLabel } = {}
     },
     datas,
     comparisonDatas,
@@ -36,64 +36,59 @@ export default class ChartFactory {
       datas[`${visualId}Reference`] && datas[`${visualId}Reference`].nodes;
     switch (visualType) {
       case 'square_nested_proportional_area':
-      case 'circle_nested_proportional_area':
-        if (isComparison) {
-          return (
-            <NestedProportionalAreaChart
-              square={visualType === 'square_nested_proportional_area'}
-              width={650}
-              height={500}
-              groupSpacing={8}
-              data={[
-                {
-                  x: data.reduce((a, b) => a + b.y, 0),
-                  label: data[0].label || profiles.profile[label]
-                },
-                {
-                  x: comparisonData.reduce((a, b) => a + b.y, 0),
-                  label:
-                    comparisonData[0].label ||
-                    profiles.comparisonProfile[label] ||
-                    label
-                }
-              ]}
-              reference={[
-                {
-                  x: refrenceData.reduce((a, b) => a + b.y, 0),
-                  label:
-                    refrenceData[0].label ||
-                    // Default refrence label is the chart label
-                    profiles.parentProfile[referenceLabel || label] ||
-                    referenceLabel ||
-                    label
-                }
-              ]}
-            />
-          );
-        }
+      case 'circle_nested_proportional_area': {
+        const dataLabel = data[0].label || profiles.profile[label];
+        const summedData = data.reduce((a, b) => a + b.y, 0);
+        let summedReferenceData = refrenceData.reduce((a, b) => a + b.y, 0);
+        const refrenceLabel =
+          (refrenceData.length && summedReferenceData
+            ? refrenceData[0].label
+            : dataLabel) ||
+          // Default refrence label is the chart label
+          profiles.parentProfile[referenceLabel || label] ||
+          referenceLabel ||
+          label;
+        summedReferenceData =
+          refrenceData.length && summedReferenceData
+            ? summedReferenceData
+            : summedData;
         return (
           <NestedProportionalAreaChart
             square={visualType === 'square_nested_proportional_area'}
-            width={200}
-            data={[
-              {
-                x: data.reduce((a, b) => a + b.y, 0),
-                label: data[0].label || profiles.profile[label]
-              }
-            ]}
+            height={isComparison && 500}
+            width={!isComparison ? 200 : 650}
+            groupSpacing={isComparison && 8}
+            data={
+              !isComparison
+                ? [
+                    {
+                      x: summedData,
+                      label: dataLabel
+                    }
+                  ]
+                : [
+                    {
+                      x: summedData,
+                      label: dataLabel
+                    },
+                    {
+                      x: comparisonData.reduce((a, b) => a + b.y, 0),
+                      label:
+                        comparisonData[0].label ||
+                        profiles.comparisonProfile[label] ||
+                        label
+                    }
+                  ]
+            }
             reference={[
               {
-                x: refrenceData.reduce((a, b) => a + b.y, 0),
-                label:
-                  refrenceData[0].label ||
-                  // Default refrence label is the chart label
-                  profiles.parentProfile[referenceLabel || label] ||
-                  referenceLabel ||
-                  label
+                x: summedReferenceData,
+                label: refrenceLabel
               }
             ]}
           />
         );
+      }
       case 'pie':
         return (
           <PieChart
@@ -109,17 +104,10 @@ export default class ChartFactory {
         return (
           <BarChart
             height={200}
-            data={Object.keys(data)
-              .filter(key => key !== 'metadata')
-              .map(key => ({
-                label: key,
-                data: Object.keys(data[key])
-                  .filter(innerKey => innerKey !== 'metadata')
-                  .map(innerKey => ({
-                    x: `${innerKey}`,
-                    y: data[key][innerKey].values.this
-                  }))
-              }))}
+            data={[...new Set(data.map(d => d.groupBy))].map(group => ({
+              label: group,
+              data: data.filter(d => d.groupBy === group)
+            }))}
           />
         );
       case 'column':

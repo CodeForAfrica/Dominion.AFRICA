@@ -63,7 +63,12 @@ function CountryHero({ classes, history, toggleModal, dominion }) {
 
         <p style={{ marginTop: '40px' }}>
           or view{' '}
-          <a href={`/profile/country-${selectedCountry.code}`}>
+          <a
+            style={{
+              pointerEvents: 'all'
+            }}
+            href={`/profile/country-${selectedCountry.code}`}
+          >
             {selectedCountry.name}
           </a>
         </p>
@@ -71,6 +76,8 @@ function CountryHero({ classes, history, toggleModal, dominion }) {
       <div className={classes.map}>
         <MapIt
           url={config.MAPIT.url}
+          zoom={selectedCountry.zoom}
+          center={selectedCountry.centre}
           codeType={config.MAPIT.codeType}
           geoLevel="country"
           geoCode={selectedCountry.code}

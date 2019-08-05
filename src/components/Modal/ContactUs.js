@@ -96,7 +96,14 @@ function ContactUs({ classes, handleClose }) {
         </Grid>
         <Grid item xs={12} md={6}>
           <MenuList>
-            {['CodeForAfrica', 'Twitter', 'Facebook'].map((contact, index) => (
+            {[
+              { name: 'CodeForAfrica', href: 'mailto:hello@dominion.africa' },
+              { name: 'Twitter', href: 'https://twitter.com/Code4Africa' },
+              {
+                name: 'Facebook',
+                href: 'https://web.facebook.com/CodeForAfrica'
+              }
+            ].map((contact, index) => (
               <MenuItem button key={contact} className={classes.listItem}>
                 <span className={classes.listIndex}>
                   <NumberFormat
@@ -105,8 +112,8 @@ function ContactUs({ classes, handleClose }) {
                     prefix="0"
                   />
                 </span>
-                <a className={classes.listItemLink} href={`#${contact}`}>
-                  {contact}
+                <a className={classes.listItemLink} href={`${contact.href}`}>
+                  {contact.name}
                 </a>
               </MenuItem>
             ))}
