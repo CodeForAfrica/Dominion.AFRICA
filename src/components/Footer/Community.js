@@ -53,8 +53,8 @@ function Community({ classes }) {
             </A>
           </li>
           <li>
-            <A href="https://sourceafrica.net/" className={classes.links}>
-              sourceAFRICA
+            <A href="https://hurumap.org/" className={classes.links}>
+              HURUmap
             </A>
           </li>
         </ul>

@@ -27,6 +27,9 @@ function SocialMedia({ classes }) {
       justify="flex-start"
       alignItems="center"
     >
+      <FontAwesomeIcon
+            icon={['fab', 'instagram']}
+          />
       <Grid item>
         <a
           href="https://www.facebook.com/hashtag/onsgrond"
