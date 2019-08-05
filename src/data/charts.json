@@ -407,6 +407,116 @@
   "sectionDescription": "",
   "charts": [
     {
+      "title": "Sectional Title Land Ownership",
+      "subtitle": "Number of individuals owning sectional title land by category (%)",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allNumberofsectionaltitleownersbycategories",
+        "reference": {},
+        "label": "",
+        "x": "numberOfSectionalTitleOwnersByCategory",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Sectional Title Land Ownership",
+      "subtitle": "Individual ownership of sectional title land in hectares by nationality (%)",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allSectionaltitleownershipinhectarespercategories",
+        "reference": {},
+        "label": "",
+        "x": "sectionalTitleOwnershipInHectaresPerCategory",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Sectional Title Land Ownership",
+      "subtitle": "Individual ownership of sectional title land in hectares by race (%)",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allSectionaltitleownershipinhectaresperraces",
+        "reference": {},
+        "label": "",
+        "x": "sectionalTitleOwnershipInHectaresPerRace",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Sectional Title Land Ownership",
+      "subtitle": "Number of individuals owning sectional title land by race (%)",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allNumberofsectionaltitleownersbyraces",
+        "reference": {},
+        "label": "",
+        "x": "numberOfSectionalTitleOwnersByRace",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Sectional Title Land Ownership",
+      "subtitle": "Individual ownership of sectional title land in hectares by gender (%)",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allSectionaltitleownershipinhectarespergenders",
+        "reference": {},
+        "label": "",
+        "x": "sectionalTitleOwnershipInHectaresPerGender",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Sectional Title Land Ownership",
+      "subtitle": "Number of individuals owning sectional title land by gender (%)",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allNumberofsectionaltitleownersbygenders",
+        "reference": {},
+        "label": "",
+        "x": "numberOfSectionalTitleOwnersByGender",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Sectional Title Land Ownership",
+      "subtitle": "Individual ownership of sectional title land in hectares by nationality (%)",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allSectionaltitleownershipinhectaresnationalities",
+        "reference": {},
+        "label": "",
+        "x": "sectionalTitleOwnershipInHectaresNationality",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Sectional Title Land Ownership",
+      "subtitle": "Number of individuals owning sectional title land by nationality (%)",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allNumberofsectionaltitleownersbynationalities",
+        "reference": {},
+        "label": "",
+        "x": "numberOfSectionalTitleOwnersByNationality",
+        "y": "total"
+      }]
+    }
+  ]
+},
+{
+  "sectionTitle": "Agricultural Land Sales",
+  "sectionDescription": "",
+  "charts": [
+    {
       "title": "Population",
       "subtitle": "People living there",
       "layout": "2/3",
@@ -426,15 +536,38 @@
   "sectionDescription": "",
   "charts": [
     {
-      "title": "Population",
-      "subtitle": "People living there",
+      "title": "Land Sales",
+      "subtitle": "Total cost in R million for transactions of colour in each month",
       "layout": "2/3",
       "visuals": [{
-        "type": "circle_nested_proportional_area",
-        "table": "allPopulationResidence2009S",
+        "type": "column",
+        "table": "allLandTradedColourCostBreakdown2018S",
         "reference": {},
-        "label": "longName",
-        "x": "populationResidence2009",
+        "x": "monthCc",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Land Sales",
+      "subtitle": "Number of all transactions vs number of transactions of colour for Land traded from Dec 2017 to Nov 2018",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allLandTradedAllVsColour2018S",
+        "reference": {},
+        "x": "transactionGroup",
+        "y": "total"
+      }]
+    },
+    {
+      "title": "Land Sales",
+      "subtitle": "Transactions of colour traded from Dec 2017/Nov 2018 for transaction of colour",
+      "layout": "2/3",
+      "visuals": [{
+        "type": "column",
+        "table": "allLandTradedColourTransactions2018S",
+        "reference": {},
+        "x": "breakdownCc",
         "y": "total"
       }]
     }
@@ -445,15 +578,15 @@
   "sectionDescription": "",
   "charts": [
     {
-      "title": "Population",
-      "subtitle": "People living there",
+      "title": "Afrobarometer",
+      "subtitle": "Type of land that government should prioritise for redistribution",
       "layout": "2/3",
       "visuals": [{
-        "type": "circle_nested_proportional_area",
-        "table": "allPopulationResidence2009S",
+        "type": "pie",
+        "table": "allLandToPrioritiseForRedistributions",
         "reference": {},
         "label": "longName",
-        "x": "populationResidence2009",
+        "x": "landToPrioritiseForRedistribution",
         "y": "total"
       }]
     }
