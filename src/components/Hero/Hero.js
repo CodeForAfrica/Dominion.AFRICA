@@ -11,13 +11,14 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     pointerEvents: 'all',
-    height: '70vh',
+    height: '65vh',
     overflow: 'hidden'
   },
   titleTextGrid: {
     pointerEvents: 'all',
     zIndex: '100',
     color: 'white',
+    display: 'flex',
     [theme.breakpoints.down('sm')]: {
       margin: '2rem',
       marginTop: 0
@@ -81,6 +82,7 @@ const styles = theme => ({
   },
   detailComponent: {
     pointerEvents: 'all',
+    width: '100%',
     paddingTop: theme.spacing(),
     paddingBottom: theme.spacing()
   },
@@ -90,12 +92,14 @@ const styles = theme => ({
 function HeroTitleGridComponent({ classes, children, quater, head2head }) {
   return (
     <Grid
+      container
       item
       xs={12}
       sm={12}
       md={quater ? 4 : 8}
       lg={quater ? 4 : 8}
       xl={quater ? 4 : 6}
+      alignContent="center"
       className={classNames(classes.titleTextGrid, {
         [classes.h2hTitleGrid]: head2head
       })}
@@ -223,7 +227,7 @@ const HeroButton = withStyles(styles)(HeroButtonComponent);
 
 function HeroComponent({ classes, children, ...props }) {
   return (
-    <Grid container className={classes.root} alignItems="center" {...props}>
+    <Grid container className={classes.root} {...props}>
       {children}
     </Grid>
   );

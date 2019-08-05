@@ -20,6 +20,11 @@ const styles = theme => ({
   root: {
     flexGrow: 1
   },
+  titleGrid: {
+    [theme.breakpoints.up('md')]: {
+      marginTop: '-5rem'
+    }
+  },
   map: {
     zIndex: 0,
     position: 'relative',
@@ -51,6 +56,7 @@ const styles = theme => ({
   caption: {
     color: '#8d8d8c',
     fontSize: '0.75em',
+    width: '100%',
     textTransform: 'capitalize',
     paddingTop: theme.spacing(),
     paddingBottom: theme.spacing()
@@ -163,7 +169,11 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
         );
         return (
           <Hero classes={{ root: classes.root }} {...props}>
-            <HeroTitleGrid quater head2head={head2head}>
+            <HeroTitleGrid
+              quater
+              head2head={head2head}
+              classes={{ titleTextGrid: classes.titleGrid }}
+            >
               <HeroTitle breakWord small>
                 {shortName}
               </HeroTitle>
