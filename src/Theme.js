@@ -48,20 +48,20 @@ const Theme = createTheme({
     h5: {
       fontFamily: FONT_FAMILY_HEADING,
       textTransform: 'capitalize',
-      fontSize: '24px',
-      fontWeight: 'bold',
-      fontStyle: 'normal',
-      lineHeight: 'normal',
-      letterSpacing: '0.86px',
-      color: '#2c2c2a'
-    },
-    h6: {
-      fontFamily: FONT_FAMILY_HEADING,
-      fontSize: '12px',
-      opacity: 0.4,
+      fontSize: '20px',
       fontWeight: 'normal',
       fontStyle: 'normal',
       lineHeight: 'normal',
+      letterSpacing: '0.86px',
+      color: '#293229'
+    },
+    h6: {
+      fontFamily: FONT_FAMILY_HEADING,
+      fontSize: '13px',
+      fontWeight: 'normal',
+      fontStyle: 'normal',
+      lineHeight: 'normal',
+      textTransform: 'capitalize',
       color: '#2c2c2a'
     },
     body2: {

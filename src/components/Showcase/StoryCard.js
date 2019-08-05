@@ -49,9 +49,7 @@ const styles = theme => ({
     textDecoration: 'none'
   },
   overline: {
-    color: '#fff',
-    fontSize: theme.typography.fontSmallDefault.fontSize,
-    fontWeight: 400
+    color: '#fff'
   },
   bodyTitle: {
     color: '#fff',

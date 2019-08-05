@@ -16,6 +16,10 @@ const styles = theme => ({
       width: '41.375rem' // (188 + 36 + 192 + 37 + 209)px / 16
     }
   },
+  viewLine: {
+    fontWeight: 'bold',
+    fontFamily: theme.typography.fontFamily
+  },
   button: {
     padding: 0,
     fontWeight: 700
@@ -29,7 +33,7 @@ function ViewVideos({ classes, onClick }) {
   return (
     <div className={classes.root}>
       <Button className={classes.button} onClick={onClick}>
-        <Typography variant="h6">
+        <Typography variant="h6" className={classes.viewLine}>
           View videos
           <img src={blackArrow} alt="Videos" className={classes.arrow} />
         </Typography>
