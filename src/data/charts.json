@@ -1,647 +1,630 @@
 [{
-  "sectionTitle": "Demographics",
-  "sectionDescription": "",
-  "charts": [
-    {
-      "title": "Population",
-      "subtitle": "People living there",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "circle_nested_proportional_area",
-        "table": "allPopulationResidence2009S",
-        "reference": {},
-        "label": "longName",
-        "x": "populationResidence2009",
-        "y": "total"
-      }]
-    },
-    {
-      "type": "circle_nested_proportional_area",
-      "title": "Population",
-      "subtitle": "People living there",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "circle_nested_proportional_area",
-        "table": "allPopulationGroup2016S",
+    "sectionTitle": "Demographics",
+    "sectionDescription": "",
+    "charts": [{
+        "title": "Population",
+        "subtitle": "People living there",
         "layout": "2/3",
-        "reference": {},
-        "label": "longName",
-        "x": "populationGroup2016",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Extension",
-      "subtitle": "Surface in km2",
-      "layout": "1/3",
-      "visuals": [{
-        "type": "square_nested_proportional_area",
-        "table": "allWazimapGeographies",
-        "reference": {},
-        "label": "$longName",
-        "x": "longName",
-        "y": "squareKms"
-      }]
-    }
-  ]
-},
-{
-  "sectionTitle": "Worker's Hostel Data",
-  "sectionDescription": "",
-  "charts": [
-    {
-      "title": "Number of people living in worker's hostel per age group",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allWorkersHostelAgeGroups",
-        "reference": {},
-        "label": "",
-        "x": "workersHostelAgeGroup",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Number of people living in worker's hostel per gender",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allWorkersHostelGenders",
-        "reference": {},
-        "label": "",
-        "x": "workersHostelGender",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Number of people living in worker's hostel per geography",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allWorkersHostelGeographies",
-        "reference": {},
-        "label": "",
-        "x": "workersHostelGeography",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Handwashing Facility",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allWorkersHostelHandwashingFacilities",
-        "reference": {},
-        "label": "",
-        "x": "workersHostelHandwashingFacility",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Ownership of dwelling",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allWorkersHostelOwnerships",
-        "reference": {},
-        "label": "",
-        "x": "workersHostelOwnership",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Number of people living in workers hostels per year",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allWorkersHostelPopulations",
-        "reference": {},
-        "label": "",
-        "x": "workersHostelPopulationYear",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Number of people living in workers hostels per population group",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allWorkersHostelPopulationGroups",
-        "reference": {},
-        "label": "",
-        "x": "workersHostelPopulationGroup",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Monthly Rent or Mortgage",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allWorkersHostelRents",
-        "reference": {},
-        "label": "",
-        "x": "workersHostelRent",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Residential Ownership",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allWorkersHostelResidentialOwnerships",
-        "reference": {},
-        "label": "",
-        "x": "workersHostelResidentialOwnership",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Number of people living in state subsidised dwelling",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allWorkersHostelSsDwellings",
-        "reference": {},
-        "label": "",
-        "x": "workersHostelSsDwelling",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Access to Electricity",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allWorkersHostelAccessElectricities",
-        "reference": {},
-        "label": "",
-        "x": "workersHostelAccessElectricity",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Water Source",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allWorkersHostelWaterSources",
-        "reference": {},
-        "label": "",
-        "x": "workersHostelWaterSource",
-        "y": "total"
-      }]
-    }
-    
-  ]
-},
-{
-  "sectionTitle": "Farm Land",
-  "sectionDescription": "",
-  "charts": [
-    {
-      "title": "Number of individuals owning farms and agricultural holdings by gender (%)",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allNumberoflandownerspergenders",
-        "reference": {},
-        "label": "",
-        "x": "numberOfLandOwnersPerGender",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Number of individuals owning farms and agricultural holdings by Nationality (%)",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allNumberoflandownerspernationalities",
-        "reference": {},
-        "label": "",
-        "x": "numberOfLandOwnersPerNationality",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Number of individuals owning farms and agricultural holdings by race (%)",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allNumberoflandownersperraces",
-        "reference": {},
-        "label": "",
-        "x": "numberOfLandOwnersPerRace",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Number of Private Land Owners by Category (%)",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allNumberofprivatelandownersbycategories",
-        "reference": {},
-        "label": "",
-        "x": "numberOfPrivateLandOwnersByCategory",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Private land ownership in hectares by category (%)",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allPrivatelandownershipinhectarespercategories",
-        "reference": {},
-        "label": "",
-        "x": "privateLandOwnershipInHectaresPerCategory",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Individual land ownership of farms and agricultural holdings in hectares by race (%)",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allLandownershipinhectaresbyraces",
-        "reference": {},
-        "label": "",
-        "x": "landOwnershipInHectaresByRace",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Individual land ownership of farms and agricultural holdings in hectares by gemder (%)",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allLandownershipinhectaresbygenders",
-        "reference": {},
-        "label": "",
-        "x": "landOwnershipInHectaresByGender",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Individual Land Ownership percent Hectares by Nationality (%)",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allLandownershipinhectaresbynationalities",
-        "reference": {},
-        "label": "",
-        "x": "landOwnershipInHectaresByNationality",
-        "y": "total"
-      }]
-    }
-  ]
-},
-{
-  "sectionTitle": "Erven Land",
-  "sectionDescription": "",
-  "charts": [
-    {
-      "title": "Individual ownership of erven land in hectares by gender (%)",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allErvenLandOwnershipInHectaresByGenders",
-        "reference": {},
-        "label": "",
-        "x": "ervenLandOwnershipInHectaresByGender",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Number of individuals owning erven land by gender (%)",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allNumberOfErvenLandOwnersPerGenders",
-        "reference": {},
-        "label": "",
-        "x": "numberOfErvenLandOwnersPerGender",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Number of individuals owning erven land by nationality (%)",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allNumberOfErvenLandOwnersPerNationalities",
-        "reference": {},
-        "label": "",
-        "x": "numberOfErvenLandOwnersPerNationality",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Individual ownership of erven land in hectares by nationality (%)",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allErvenLandOwnershipInHectaresByNationalities",
-        "reference": {},
-        "label": "",
-        "x": "ervenLandOwnershipInHectaresByNationality",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Individual ownership of erven land in hectares by race (%)",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allErvenLandOwnershipInHectaresByRaces",
-        "reference": {},
-        "label": "",
-        "x": "ervenLandOwnershipInHectaresByRace",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Number of individuals owning erven land by race (%)",
-      "subtitle": "",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allNumberOfErvenLandOwnersPerRaces",
-        "reference": {},
-        "label": "",
-        "x": "numberOfErvenLandOwnersPerRace",
-        "y": "total"
-      }]
-    }
-  ]
-},
-{
-  "sectionTitle": "Sectional Title land",
-  "sectionDescription": "",
-  "charts": [
-    {
-      "title": "Sectional Title Land Ownership",
-      "subtitle": "Number of individuals owning sectional title land by category (%)",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allNumberofsectionaltitleownersbycategories",
-        "reference": {},
-        "label": "",
-        "x": "numberOfSectionalTitleOwnersByCategory",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Sectional Title Land Ownership",
-      "subtitle": "Individual ownership of sectional title land in hectares by nationality (%)",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allSectionaltitleownershipinhectarespercategories",
-        "reference": {},
-        "label": "",
-        "x": "sectionalTitleOwnershipInHectaresPerCategory",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Sectional Title Land Ownership",
-      "subtitle": "Individual ownership of sectional title land in hectares by race (%)",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allSectionaltitleownershipinhectaresperraces",
-        "reference": {},
-        "label": "",
-        "x": "sectionalTitleOwnershipInHectaresPerRace",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Sectional Title Land Ownership",
-      "subtitle": "Number of individuals owning sectional title land by race (%)",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allNumberofsectionaltitleownersbyraces",
-        "reference": {},
-        "label": "",
-        "x": "numberOfSectionalTitleOwnersByRace",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Sectional Title Land Ownership",
-      "subtitle": "Individual ownership of sectional title land in hectares by gender (%)",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allSectionaltitleownershipinhectarespergenders",
-        "reference": {},
-        "label": "",
-        "x": "sectionalTitleOwnershipInHectaresPerGender",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Sectional Title Land Ownership",
-      "subtitle": "Number of individuals owning sectional title land by gender (%)",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allNumberofsectionaltitleownersbygenders",
-        "reference": {},
-        "label": "",
-        "x": "numberOfSectionalTitleOwnersByGender",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Sectional Title Land Ownership",
-      "subtitle": "Individual ownership of sectional title land in hectares by nationality (%)",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allSectionaltitleownershipinhectaresnationalities",
-        "reference": {},
-        "label": "",
-        "x": "sectionalTitleOwnershipInHectaresNationality",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Sectional Title Land Ownership",
-      "subtitle": "Number of individuals owning sectional title land by nationality (%)",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allNumberofsectionaltitleownersbynationalities",
-        "reference": {},
-        "label": "",
-        "x": "numberOfSectionalTitleOwnersByNationality",
-        "y": "total"
-      }]
-    }
-  ]
-},
-{
-  "sectionTitle": "Agricultural Land Sales",
-  "sectionDescription": "",
-  "charts": [
-    {
+        "visuals": [{
+          "type": "circle_nested_proportional_area",
+          "table": "allPopulationResidence2009S",
+          "reference": {},
+          "label": "longName",
+          "x": "populationResidence2009",
+          "y": "total"
+        }]
+      },
+      {
+        "type": "circle_nested_proportional_area",
+        "title": "Population",
+        "subtitle": "People living there",
+        "layout": "2/3",
+        "visuals": [{
+          "type": "circle_nested_proportional_area",
+          "table": "allPopulationGroup2016S",
+          "reference": {},
+          "label": "longName",
+          "x": "populationGroup2016",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Extension",
+        "subtitle": "Surface in km2",
+        "layout": "1/3",
+        "visuals": [{
+          "type": "square_nested_proportional_area",
+          "table": "allWazimapGeographies",
+          "reference": {},
+          "label": "$longName",
+          "x": "longName",
+          "y": "squareKms"
+        }]
+      }
+    ]
+  },
+  {
+    "sectionTitle": "Worker's Hostel Data",
+    "sectionDescription": "",
+    "charts": [{
+        "title": "Number of people living in worker's hostel per age group",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allWorkersHostelAgeGroups",
+
+          "label": "",
+          "x": "workersHostelAgeGroup",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Number of people living in worker's hostel per gender",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allWorkersHostelGenders",
+
+          "label": "",
+          "x": "workersHostelGender",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Number of people living in worker's hostel per geography",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allWorkersHostelGeographies",
+
+          "label": "",
+          "x": "workersHostelGeography",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Handwashing Facility",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allWorkersHostelHandwashingFacilities",
+
+          "label": "",
+          "x": "workersHostelHandwashingFacility",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Ownership of dwelling",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allWorkersHostelOwnerships",
+
+          "label": "",
+          "x": "workersHostelOwnership",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Number of people living in workers hostels per year",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allWorkersHostelPopulations",
+
+          "label": "",
+          "x": "workersHostelPopulationYear",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Number of people living in workers hostels per population group",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allWorkersHostelPopulationGroups",
+
+          "label": "",
+          "x": "workersHostelPopulationGroup",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Monthly Rent or Mortgage",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allWorkersHostelRents",
+
+          "label": "",
+          "x": "workersHostelRent",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Residential Ownership",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allWorkersHostelResidentialOwnerships",
+
+          "label": "",
+          "x": "workersHostelResidentialOwnership",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Number of people living in state subsidised dwelling",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allWorkersHostelSsDwellings",
+
+          "label": "",
+          "x": "workersHostelSsDwelling",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Access to Electricity",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allWorkersHostelAccessElectricities",
+
+          "label": "",
+          "x": "workersHostelAccessElectricity",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Water Source",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allWorkersHostelWaterSources",
+
+          "label": "",
+          "x": "workersHostelWaterSource",
+          "y": "total"
+        }]
+      }
+
+    ]
+  },
+  {
+    "sectionTitle": "Farm Land",
+    "sectionDescription": "",
+    "charts": [{
+        "title": "Number of individuals owning farms and agricultural holdings by gender (%)",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allNumberoflandownerspergenders",
+
+          "label": "",
+          "x": "numberOfLandOwnersPerGender",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Number of individuals owning farms and agricultural holdings by Nationality (%)",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allNumberoflandownerspernationalities",
+
+          "label": "",
+          "x": "numberOfLandOwnersPerNationality",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Number of individuals owning farms and agricultural holdings by race (%)",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allNumberoflandownersperraces",
+
+          "label": "",
+          "x": "numberOfLandOwnersPerRace",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Number of Private Land Owners by Category (%)",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allNumberofprivatelandownersbycategories",
+
+          "label": "",
+          "x": "numberOfPrivateLandOwnersByCategory",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Private land ownership in hectares by category (%)",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allPrivatelandownershipinhectarespercategories",
+
+          "label": "",
+          "x": "privateLandOwnershipInHectaresPerCategory",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Individual land ownership of farms and agricultural holdings in hectares by race (%)",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allLandownershipinhectaresbyraces",
+
+          "label": "",
+          "x": "landOwnershipInHectaresByRace",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Individual land ownership of farms and agricultural holdings in hectares by gemder (%)",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allLandownershipinhectaresbygenders",
+
+          "label": "",
+          "x": "landOwnershipInHectaresByGender",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Individual Land Ownership percent Hectares by Nationality (%)",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allLandownershipinhectaresbynationalities",
+
+          "label": "",
+          "x": "landOwnershipInHectaresByNationality",
+          "y": "total"
+        }]
+      }
+    ]
+  },
+  {
+    "sectionTitle": "Erven Land",
+    "sectionDescription": "",
+    "charts": [{
+        "title": "Individual ownership of erven land in hectares by gender (%)",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allErvenLandOwnershipInHectaresByGenders",
+
+          "label": "",
+          "x": "ervenLandOwnershipInHectaresByGender",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Number of individuals owning erven land by gender (%)",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allNumberOfErvenLandOwnersPerGenders",
+
+          "label": "",
+          "x": "numberOfErvenLandOwnersPerGender",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Number of individuals owning erven land by nationality (%)",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allNumberOfErvenLandOwnersPerNationalities",
+
+          "label": "",
+          "x": "numberOfErvenLandOwnersPerNationality",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Individual ownership of erven land in hectares by nationality (%)",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allErvenLandOwnershipInHectaresByNationalities",
+
+          "label": "",
+          "x": "ervenLandOwnershipInHectaresByNationality",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Individual ownership of erven land in hectares by race (%)",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allErvenLandOwnershipInHectaresByRaces",
+
+          "label": "",
+          "x": "ervenLandOwnershipInHectaresByRace",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Number of individuals owning erven land by race (%)",
+        "subtitle": "",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allNumberOfErvenLandOwnersPerRaces",
+
+          "label": "",
+          "x": "numberOfErvenLandOwnersPerRace",
+          "y": "total"
+        }]
+      }
+    ]
+  },
+  {
+    "sectionTitle": "Sectional Title land",
+    "sectionDescription": "",
+    "charts": [{
+        "title": "Sectional Title Land Ownership",
+        "subtitle": "Number of individuals owning sectional title land by category (%)",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allNumberofsectionaltitleownersbycategories",
+
+          "label": "",
+          "x": "numberOfSectionalTitleOwnersByCategory",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Sectional Title Land Ownership",
+        "subtitle": "Individual ownership of sectional title land in hectares by nationality (%)",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allSectionaltitleownershipinhectarespercategories",
+
+          "label": "",
+          "x": "sectionalTitleOwnershipInHectaresPerCategory",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Sectional Title Land Ownership",
+        "subtitle": "Individual ownership of sectional title land in hectares by race (%)",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allSectionaltitleownershipinhectaresperraces",
+
+          "label": "",
+          "x": "sectionalTitleOwnershipInHectaresPerRace",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Sectional Title Land Ownership",
+        "subtitle": "Number of individuals owning sectional title land by race (%)",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allNumberofsectionaltitleownersbyraces",
+
+          "label": "",
+          "x": "numberOfSectionalTitleOwnersByRace",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Sectional Title Land Ownership",
+        "subtitle": "Individual ownership of sectional title land in hectares by gender (%)",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allSectionaltitleownershipinhectarespergenders",
+
+          "label": "",
+          "x": "sectionalTitleOwnershipInHectaresPerGender",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Sectional Title Land Ownership",
+        "subtitle": "Number of individuals owning sectional title land by gender (%)",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allNumberofsectionaltitleownersbygenders",
+
+          "label": "",
+          "x": "numberOfSectionalTitleOwnersByGender",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Sectional Title Land Ownership",
+        "subtitle": "Individual ownership of sectional title land in hectares by nationality (%)",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allSectionaltitleownershipinhectaresnationalities",
+
+          "label": "",
+          "x": "sectionalTitleOwnershipInHectaresNationality",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Sectional Title Land Ownership",
+        "subtitle": "Number of individuals owning sectional title land by nationality (%)",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allNumberofsectionaltitleownersbynationalities",
+
+          "label": "",
+          "x": "numberOfSectionalTitleOwnersByNationality",
+          "y": "total"
+        }]
+      }
+    ]
+  },
+  {
+    "sectionTitle": "Agricultural Land Sales",
+    "sectionDescription": "",
+    "charts": [{
       "title": "Population",
       "subtitle": "People living there",
-      "layout": "2/3",
+      "layout": "1",
       "visuals": [{
         "type": "circle_nested_proportional_area",
         "table": "allPopulationResidence2009S",
-        "reference": {},
+
         "label": "longName",
         "x": "populationResidence2009",
         "y": "total"
       }]
-    }
-  ]
-},
-{
-  "sectionTitle": "Land traded statistic for transactions of colour",
-  "sectionDescription": "",
-  "charts": [
-    {
-      "title": "Land Sales",
-      "subtitle": "Total cost in R million for transactions of colour in each month",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allLandTradedColourCostBreakdown2018S",
-        "reference": {},
-        "x": "monthCc",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Land Sales",
-      "subtitle": "Number of all transactions vs number of transactions of colour for Land traded from Dec 2017 to Nov 2018",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allLandTradedAllVsColour2018S",
-        "reference": {},
-        "x": "transactionGroup",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Land Sales",
-      "subtitle": "Transactions of colour traded from Dec 2017/Nov 2018 for transaction of colour",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "column",
-        "table": "allLandTradedColourTransactions2018S",
-        "reference": {},
-        "x": "breakdownCc",
-        "y": "total"
-      }]
-    }
-  ]
-},
-{
-  "sectionTitle": "Afrobarometer Round 7",
-  "sectionDescription": "",
-  "charts": [
-    {
-      "title": "Land Redistribution Prioritisation",
-      "subtitle": "Type of land that government should prioritise for redistribution",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "pie",
-        "table": "allLandToPrioritiseForRedistributions",
-        "reference": {},
-        "label": "",
-        "x": "landToPrioritiseForRedistribution",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Access to Information",
-      "subtitle": "How is easy is it to access to Information",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "pie",
-        "table": "allAccessToInformations",
-        "reference": {},
-        "label": "",
-        "x": "accessToInformation",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Buyer & Selling Policy",
-      "subtitle": "The government must abide by willing buyer-willing seller policy in acquiring any property?",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "pie",
-        "table": "allMaintainWillingBuyerWillingSellerPolicies",
-        "reference": {},
-        "label": "",
-        "x": "maintainWillingBuyerWillingSellerPolicy",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Farmers land",
-      "subtitle": "Should the government allow farmers to retain ownership of land on which their labourers live?",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "pie",
-        "table": "allAllowFarmersRetainLandOwnerships",
-        "reference": {},
-        "label": "",
-        "x": "allowFarmersRetainLandOwnership",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Land Acquisition Challenges",
-      "subtitle": "What is the greatest challenge to acquiring land today?",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "pie",
-        "table": "allLandAcquisationChallenges",
-        "reference": {},
-        "label": "",
-        "x": "landAcquisationChallenges",
-        "y": "total"
-      }]
-    }
+    }]
+  },
+  {
+    "sectionTitle": "Land traded statistic for transactions of colour",
+    "sectionDescription": "",
+    "charts": [{
+        "title": "Land Sales",
+        "subtitle": "Total cost in R million for transactions of colour in each month",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allLandTradedColourCostBreakdown2018S",
+          "x": "monthCc",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Land Sales",
+        "subtitle": "Number of all transactions vs number of transactions of colour for Land traded from Dec 2017 to Nov 2018",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allLandTradedAllVsColour2018S",
+          "x": "transactionGroup",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Land Sales",
+        "subtitle": "Transactions of colour traded from Dec 2017/Nov 2018 for transaction of colour",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allLandTradedColourTransactions2018S",
+          "x": "breakdownCc",
+          "y": "total"
+        }]
+      }
+    ]
+  },
+  {
+    "sectionTitle": "Afrobarometer Round 7",
+    "sectionDescription": "",
+    "charts": [{
+        "title": "Land Redistribution Prioritisation",
+        "subtitle": "Type of land that government should prioritise for redistribution",
+        "layout": "1",
+        "visuals": [{
+          "type": "pie",
+          "table": "allLandToPrioritiseForRedistributions",
+          "label": "",
+          "x": "landToPrioritiseForRedistribution",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Access to Information",
+        "subtitle": "How is easy is it to access to Information",
+        "layout": "1",
+        "visuals": [{
+          "type": "pie",
+          "table": "allAccessToInformations",
+          "label": "",
+          "x": "accessToInformation",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Buyer & Selling Policy",
+        "subtitle": "The government must abide by willing buyer-willing seller policy in acquiring any property?",
+        "layout": "1",
+        "visuals": [{
+          "type": "pie",
+          "table": "allMaintainWillingBuyerWillingSellerPolicies",
+          "label": "",
+          "x": "maintainWillingBuyerWillingSellerPolicy",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Farmers land",
+        "subtitle": "Should the government allow farmers to retain ownership of land on which their labourers live?",
+        "layout": "1",
+        "visuals": [{
+          "type": "pie",
+          "table": "allAllowFarmersRetainLandOwnerships",
+          "label": "",
+          "x": "allowFarmersRetainLandOwnership",
+          "y": "total"
+        }]
+      },
+      {
+        "title": "Land Acquisition Challenges",
+        "subtitle": "What is the greatest challenge to acquiring land today?",
+        "layout": "1",
+        "visuals": [{
+          "type": "pie",
+          "table": "allLandAcquisationChallenges",
+          "label": "",
+          "x": "landAcquisationChallenges",
+          "y": "total"
+        }]
+      }
 
-  ]
-}]
+    ]
+  }
+]
