@@ -14,12 +14,13 @@ import config from '../../config';
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'flex-start',
-    alignContent: 'space-between',
+    backgroundColor: '#fff'
+  },
+  layout: {
     [theme.breakpoints.up('md')]: {
-      justifyContent: 'space-evenly',
-      padding: '50px'
+      maxWidth: '71.1875rem',
+      margin: '0 auto',
+      padding: '50px 0'
     }
   }
 });
@@ -31,29 +32,30 @@ function AboutCountry({ classes, dominion }) {
     other: 'Not found'
   };
   return (
-    <Grid
-      container
-      direction="row"
-      className={classes.root}
-      justify="space-evenly"
-      alignItems="flex-start"
-    >
-      <Grid item>
-        <Header>
-          About <br />
-          {selectedCountry.name}
-        </Header>
+    <div className={classes.root}>
+      <Grid
+        container
+        direction="row"
+        className={classes.layout}
+        alignItems="flex-start"
+      >
+        <Grid item>
+          <Header>
+            About <br />
+            {selectedCountry.name}
+          </Header>
+        </Grid>
+        <Grid item>
+          <Info>
+            <InfoSubtitle>{info.intro}</InfoSubtitle>
+            <InfoBody>{info.other}</InfoBody>
+          </Info>
+        </Grid>
+        <Grid item>
+          <Land imgSrc={land} />
+        </Grid>
       </Grid>
-      <Grid item>
-        <Info>
-          <InfoSubtitle>{info.intro}</InfoSubtitle>
-          <InfoBody>{info.other}</InfoBody>
-        </Info>
-      </Grid>
-      <Grid item>
-        <Land imgSrc={land} />
-      </Grid>
-    </Grid>
+    </div>
   );
 }
 
