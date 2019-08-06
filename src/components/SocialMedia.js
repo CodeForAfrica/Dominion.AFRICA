@@ -1,6 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  faFacebookF,
+  faInstagram,
+  faGithub
+} from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { Grid } from '@material-ui/core';
@@ -9,6 +15,7 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = () => ({
   fa: {
     transition: 'all .5s ease-in-out',
+    marginRight: '1rem',
     color: '#fff',
     fontSize: '0.9375rem', // icons inherit font size of their parent
     ' &:hover': {
@@ -18,18 +25,11 @@ const styles = () => ({
   links: { color: '#fff' }
 });
 
+library.add(faFacebookF, faGithub, faInstagram);
+
 function SocialMedia({ classes }) {
   return (
-    <Grid
-      container
-      spacing={10}
-      direction="row"
-      justify="flex-start"
-      alignItems="center"
-    >
-      <FontAwesomeIcon
-            icon={['fab', 'instagram']}
-          />
+    <Grid container direction="row" justify="flex-start" alignItems="center">
       <Grid item>
         <a
           href="https://www.facebook.com/hashtag/onsgrond"

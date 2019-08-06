@@ -58,7 +58,7 @@ function Footer({ classes }) {
         <About />
       </Grid>
       <Grid item className={classes.organisation}>
-        <Grid container justify="space-between" alignItems="flex-start">
+        <Grid container justify="space-between">
           <Grid item className={classes.community}>
             <Community />
           </Grid>

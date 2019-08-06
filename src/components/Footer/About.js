@@ -49,7 +49,9 @@ function About({ classes }) {
   return (
     <div className={classes.root}>
       <Typography variant="body2" className={classes.title}>
-        HURUmap gives infomediaries like journalists and Civic activists an easy 'plug & play' toolkit for finding and embedding interactive data visualizations into their storytelling
+        HURUmap gives infomediaries like journalists and Civic activists an easy
+        &apos;plug & play&apos; toolkit for finding and embedding interactive
+        data visualizations into their storytelling
       </Typography>
       <Typography variant="body2" className={classes.body}>
         This project is built on software originally created by the Knight Lab
@@ -78,7 +80,7 @@ function About({ classes }) {
         <A href="https://uganda.hurumap.org/" className={classes.links}>
           Uganda
         </A>
-        , {' '}
+        ,{' '}
         <A href="https://zimbabwe.hurumap.org/" className={classes.links}>
           Zimbabwe
         </A>
@@ -88,13 +90,31 @@ function About({ classes }) {
         </A>
       </Typography>
       <Typography variant="body2" className={classes.body}>
-      This site is an <A href="https://openafrica.net/" className={classes.links}>openAFRICA</A> project
-       of <A href="https://codeforafrica.org/" className={classes.links}>Code for Africa</A>. All content is released under
-       a <A href="https://creativecommons.org/licenses/by/4.0/" className={classes.links}>Creative Commons 4 Attribution Licence</A>.
-        Reuse it to help empower your own community. 
-       The code os available on <A href="https://github.com/CodeForAfrica" className={classes.links}>Github</A> and 
-       data is available on <A href="https://openafrica.net/" className={classes.links}>openAFRICA</A>.
-        </Typography>
+        This site is an{' '}
+        <A href="https://openafrica.net/" className={classes.links}>
+          openAFRICA
+        </A>{' '}
+        project of{' '}
+        <A href="https://codeforafrica.org/" className={classes.links}>
+          Code for Africa
+        </A>
+        . All content is released under a{' '}
+        <A
+          href="https://creativecommons.org/licenses/by/4.0/"
+          className={classes.links}
+        >
+          Creative Commons 4 Attribution Licence
+        </A>
+        . Reuse it to help empower your own community. The code os available on{' '}
+        <A href="https://github.com/CodeForAfrica" className={classes.links}>
+          Github
+        </A>{' '}
+        and data is available on{' '}
+        <A href="https://openafrica.net/" className={classes.links}>
+          openAFRICA
+        </A>
+        .
+      </Typography>
     </div>
   );
 }
