@@ -15,13 +15,13 @@ import A from '../A';
 const styles = theme => ({
   root: {
     flexRow: 1,
-    padding: '2rem',
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: theme.palette.primary.light
+  },
+  layout: {
+    padding: '1rem',
     [theme.breakpoints.up('md')]: {
-      padding: '4.143rem 3.125rem'
-    },
-    [theme.breakpoints.up('lg')]: {
-      padding: '4.143rem 9.375rem'
+      maxWidth: '71.1875rem',
+      margin: '0 auto'
     }
   },
   img: {
@@ -53,49 +53,55 @@ const styles = theme => ({
 function CountryPartners({ classes, dominion: { selectedCountry } }) {
   const cfaClassName = classNames(classes.img, classes.imgCfa);
   return (
-    <Grid
-      container
-      direction="row"
-      justify="center"
-      alignItems="center"
-      className={classes.root}
-    >
-      <Grid item xs={12} sm={4}>
-        <PartnerContent
-          title="Partners"
-          description="Dominion is made possible through support from the following partners:"
-        />
-      </Grid>
-
+    <Grid className={classes.root}>
       <Grid
-        item
-        xs={12}
-        sm={8}
-        spacing={24}
         container
         direction="row"
         justify="center"
         alignItems="center"
-        className={classes.logoGrid}
+        className={classes.layout}
       >
-        {' '}
-        <Grid item className={classes.imageGrid}>
-          <A href="https://codeforafrica.org/">
-            <img src={cfa} alt="Code for Africa" className={cfaClassName} />
-          </A>
+        <Grid item xs={12} sm={4}>
+          <PartnerContent
+            title="Partners"
+            description="Dominion is made possible through support from the following partners:"
+          />
         </Grid>
-        <Grid item className={classes.imageGrid}>
-          <A href="https://www.twaweza.org/">
-            <img src={twaweza} alt="Twaweza" className={classes.img} />
-          </A>
-        </Grid>
-        {selectedCountry.slug === 'kenya' && (
+
+        <Grid
+          item
+          xs={12}
+          sm={8}
+          spacing={24}
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+          className={classes.logoGrid}
+        >
+          {' '}
           <Grid item className={classes.imageGrid}>
-            <A href="http://africauncensored.net/about/">
-              <img src={aul} alt="Africa Uncensored" className={classes.img} />
+            <A href="https://codeforafrica.org/">
+              <img src={cfa} alt="Code for Africa" className={cfaClassName} />
             </A>
           </Grid>
-        )}
+          <Grid item className={classes.imageGrid}>
+            <A href="https://www.twaweza.org/">
+              <img src={twaweza} alt="Twaweza" className={classes.img} />
+            </A>
+          </Grid>
+          {selectedCountry.slug === 'kenya' && (
+            <Grid item className={classes.imageGrid}>
+              <A href="http://africauncensored.net/about/">
+                <img
+                  src={aul}
+                  alt="Africa Uncensored"
+                  className={classes.img}
+                />
+              </A>
+            </Grid>
+          )}
+        </Grid>
       </Grid>
     </Grid>
   );

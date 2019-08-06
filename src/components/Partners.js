@@ -19,6 +19,12 @@ const styles = theme => ({
       height: '10rem'
     }
   },
+  layout: {
+    [theme.breakpoints.up('md')]: {
+      maxWidth: '71.1875rem',
+      margin: '0 auto'
+    }
+  },
 
   // 6 rem image + 4 rem padding = 10rem = 160px
   img: {
@@ -39,35 +45,37 @@ const styles = theme => ({
 
 function Partners({ classes }) {
   return (
-    <Grid
-      container
-      className={classes.root}
-      justify="center"
-      alignItems="center"
-    >
-      <Grid item className={classes.imageGrid}>
-        <A href="https://codeforafrica.org/">
-          <img src={cfa} alt="Code for Africa" className={classes.img} />
-        </A>
-      </Grid>
-      <Grid item className={classes.imageGrid}>
-        <A href="https://pulitzercenter.org/">
-          <img
-            src={pulitzercenter}
-            alt="Pulitzer Center"
-            className={classes.img}
-          />
-        </A>
-      </Grid>
-      <Grid item className={classes.imageGrid}>
-        <A href="https://investigativecenters.org/">
-          <img src={ancir} alt="ANCIR" className={classes.img} />
-        </A>
-      </Grid>
-      <Grid item className={classes.imageGrid}>
-        <A href="https://africandrone.org/">
-          <img src={africadrone} alt="Africa Drone" className={classes.img} />
-        </A>
+    <Grid className={classes.root}>
+      <Grid
+        container
+        className={classes.layout}
+        justify="center"
+        alignItems="center"
+      >
+        <Grid item className={classes.imageGrid}>
+          <A href="https://codeforafrica.org/">
+            <img src={cfa} alt="Code for Africa" className={classes.img} />
+          </A>
+        </Grid>
+        <Grid item className={classes.imageGrid}>
+          <A href="https://pulitzercenter.org/">
+            <img
+              src={pulitzercenter}
+              alt="Pulitzer Center"
+              className={classes.img}
+            />
+          </A>
+        </Grid>
+        <Grid item className={classes.imageGrid}>
+          <A href="https://investigativecenters.org/">
+            <img src={ancir} alt="ANCIR" className={classes.img} />
+          </A>
+        </Grid>
+        <Grid item className={classes.imageGrid}>
+          <A href="https://africandrone.org/">
+            <img src={africadrone} alt="Africa Drone" className={classes.img} />
+          </A>
+        </Grid>
       </Grid>
     </Grid>
   );
