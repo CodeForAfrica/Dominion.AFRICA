@@ -47,7 +47,7 @@ const styles = theme => ({
 
 function About({ classes }) {
   return (
-    <div className={classes.root}>
+    <div>
       <Typography variant="body2" className={classes.title}>
         HURUmap gives infomediaries like journalists and Civic activists an easy
         &apos;plug & play&apos; toolkit for finding and embedding interactive
