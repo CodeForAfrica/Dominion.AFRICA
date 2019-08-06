@@ -29,7 +29,7 @@ const styles = theme => ({
   },
   locationText: {
     color: 'white',
-    fontSize: 13,
+    fontSize: 15,
     fontWeight: 'bold',
     '&:hover': {
       color: '#e7e452'
@@ -93,6 +93,7 @@ const styles = theme => ({
     paddingLeft: 0,
     paddingRight: 0,
     fontFamily: theme.typography.fontHeading,
+    fontWeight: 'normal',
     letterSpacing: 1.4,
     textDecoration: 'none',
     visibility: 'hidden',
@@ -101,8 +102,7 @@ const styles = theme => ({
       color: '#e7e452'
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: 50,
-      padding: theme.spacing(3)
+      fontSize: 50
     }
   },
   listItemLink: {
@@ -115,6 +115,9 @@ const styles = theme => ({
     '&:hover': {
       color: '#e7e452'
     }
+  },
+  locationHr: {
+    marginTop: '1rem'
   }
 });
 
