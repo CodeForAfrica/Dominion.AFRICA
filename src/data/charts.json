@@ -531,8 +531,9 @@
         "subtitle": "Total cost in R million for transactions of colour in each month",
         "layout": "1",
         "visuals": [{
-          "type": "column",
+          "type": "grouped_column",
           "table": "allLandTradedColourCostBreakdown2018S",
+          "groupBy": "breakdownCc",
           "x": "monthCc",
           "y": "total"
         }]
@@ -542,8 +543,9 @@
         "subtitle": "Number of all transactions vs number of transactions of colour for Land traded from Dec 2017 to Nov 2018",
         "layout": "1",
         "visuals": [{
-          "type": "column",
+          "type": "grouped_column",
           "table": "allLandTradedAllVsColour2018S",
+          "groupBy": "month",
           "x": "transactionGroup",
           "y": "total"
         }]
@@ -553,8 +555,9 @@
         "subtitle": "Transactions of colour traded from Dec 2017/Nov 2018 for transaction of colour",
         "layout": "1",
         "visuals": [{
-          "type": "column",
+          "type": "grouped_column",
           "table": "allLandTradedColourTransactions2018S",
+          "groupBy": "monthCc",
           "x": "breakdownCc",
           "y": "total"
         }]
