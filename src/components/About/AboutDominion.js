@@ -41,6 +41,7 @@ const styles = theme => ({
   },
   land: {
     order: 1,
+    alignItems: 'flex-start',
     [theme.breakpoints.up('md')]: {
       order: 3
     }
@@ -92,7 +93,7 @@ function AboutDominion({ classes }) {
             </InfoBody>
           </Info>
         </Grid>
-        <Grid item className={classes.land} md={5}>
+        <Grid container item className={classes.land} md={5}>
           <Land imgSrc={land} />
         </Grid>
       </Grid>

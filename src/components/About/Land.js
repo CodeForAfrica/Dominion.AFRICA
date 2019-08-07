@@ -10,8 +10,7 @@ const styles = theme => ({
     width: '100%',
     paddingTop: '10px',
     [theme.breakpoints.up('lg')]: {
-      width: '26.25rem',
-      paddingLeft: '5rem'
+      width: '26.25rem'
     }
   },
   img: {

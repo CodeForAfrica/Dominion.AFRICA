@@ -25,6 +25,12 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       maxWidth: '71.1875rem'
     }
+  },
+  imgGrid: {
+    alignItems: 'flex-start',
+    [theme.breakpoints.up('lg')]: {
+      alignItems: 'flex-end'
+    }
   }
 });
 
@@ -49,7 +55,7 @@ function AboutCountry({ classes, dominion }) {
             <InfoBody>{info.other}</InfoBody>
           </Info>
         </Grid>
-        <Grid item md={5} justify="flex-end">
+        <Grid container item md={5} className={classes.imgGrid}>
           <Land imgSrc={land} />
         </Grid>
       </Grid>
