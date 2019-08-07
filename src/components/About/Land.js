@@ -10,7 +10,8 @@ const styles = theme => ({
     width: '100%',
     paddingTop: '10px',
     [theme.breakpoints.up('lg')]: {
-      width: '26.25rem'
+      width: '26.25rem',
+      paddingLeft: '5rem'
     }
   },
   img: {
@@ -41,7 +42,6 @@ function Land({ classes, width, imgSrc }) {
       container
       direction={direction}
       className={classes.root}
-      justify="center"
       alignItems="flex-end"
     >
       <Grid item xs={12}>

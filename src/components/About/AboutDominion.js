@@ -15,12 +15,16 @@ import land from '../../assets/images/hero-image-3_2.png';
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'flex-start',
-    alignContent: 'space-between',
+    backgroundColor: '#fff'
+  },
+  layout: {
+    padding: '50px 0',
+    margin: '0 auto',
+    [theme.breakpoints.up('sm')]: {
+      maxWidth: '58.265625rem' // .75 of lg
+    },
     [theme.breakpoints.up('md')]: {
-      justifyContent: 'space-evenly',
-      padding: '50px'
+      maxWidth: '71.1875rem'
     }
   },
   header: {
@@ -45,58 +49,54 @@ const styles = theme => ({
 
 function AboutDominion({ classes }) {
   return (
-    <Grid
-      container
-      direction="row"
-      className={classes.root}
-      justify="space-evenly"
-      alignItems="flex-start"
-    >
-      <Grid item className={classes.header}>
-        <Header>
-          About <br />
-          Dominion
-        </Header>
-      </Grid>
-      <Grid item className={classes.info}>
-        <Info>
-          <InfoSubtitle>
-            <p>
-              Land and how it is controlled shapes everything from our food
-              security and geopolitics to national identity.
-            </p>
-            <p>
-              The scramble for control of high value land (and its attributes
-              such as water and mineral wealth), in the face of escalating
-              climate change and urbanisation, underpins much of Africa’s
-              fiercest conflicts and mass migrations.
-            </p>
-          </InfoSubtitle>
+    <div className={classes.root}>
+      <Grid container direction="row" className={classes.layout}>
+        <Grid item className={classes.header} md={3}>
+          <Header>
+            About <br />
+            Dominion
+          </Header>
+        </Grid>
+        <Grid item className={classes.info} md={4}>
+          <Info>
+            <InfoSubtitle>
+              <p>
+                Land and how it is controlled shapes everything from our food
+                security and geopolitics to national identity.
+              </p>
+              <p>
+                The scramble for control of high value land (and its attributes
+                such as water and mineral wealth), in the face of escalating
+                climate change and urbanisation, underpins much of Africa’s
+                fiercest conflicts and mass migrations.
+              </p>
+            </InfoSubtitle>
 
-          <InfoBody>
-            <p>
-              Dominion is CfA’s attempt to inject data-driven evidence and
-              analysis into public discourse policy-setting across the
-              continent.
-            </p>
-            <p>
-              Dominion is designed as an umbrella data visualisation portal,
-              powered by the <A href="https://hurumap.org">HURUmap</A> stack of
-              geo-data software tools, that aggregates land data so that
-              journalists / researchers / policymakers can use it to explore
-              comparisons, spot trends or find other insights.
-            </p>
-            <p>
-              Dominion also aggregates the best journalistic stories and/or
-              campaigns that partners create using our data / infographics.
-            </p>
-          </InfoBody>
-        </Info>
+            <InfoBody>
+              <p>
+                Dominion is CfA’s attempt to inject data-driven evidence and
+                analysis into public discourse policy-setting across the
+                continent.
+              </p>
+              <p>
+                Dominion is designed as an umbrella data visualisation portal,
+                powered by the <A href="https://hurumap.org">HURUmap</A> stack
+                of geo-data software tools, that aggregates land data so that
+                journalists / researchers / policymakers can use it to explore
+                comparisons, spot trends or find other insights.
+              </p>
+              <p>
+                Dominion also aggregates the best journalistic stories and/or
+                campaigns that partners create using our data / infographics.
+              </p>
+            </InfoBody>
+          </Info>
+        </Grid>
+        <Grid item className={classes.land} md={5}>
+          <Land imgSrc={land} />
+        </Grid>
       </Grid>
-      <Grid item className={classes.land}>
-        <Land imgSrc={land} />
-      </Grid>
-    </Grid>
+    </div>
   );
 }
 

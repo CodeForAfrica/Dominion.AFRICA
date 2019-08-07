@@ -17,10 +17,13 @@ const styles = theme => ({
     backgroundColor: '#fff'
   },
   layout: {
+    padding: '60px 0',
+    margin: '0 auto',
+    [theme.breakpoints.up('sm')]: {
+      maxWidth: '58.265625rem' // .75 of lg
+    },
     [theme.breakpoints.up('md')]: {
-      maxWidth: '71.1875rem',
-      margin: '0 auto',
-      padding: '50px 0'
+      maxWidth: '71.1875rem'
     }
   }
 });
@@ -33,25 +36,20 @@ function AboutCountry({ classes, dominion }) {
   };
   return (
     <div className={classes.root}>
-      <Grid
-        container
-        direction="row"
-        className={classes.layout}
-        alignItems="flex-start"
-      >
-        <Grid item>
+      <Grid container direction="row" className={classes.layout}>
+        <Grid item md={3}>
           <Header>
             About <br />
             {selectedCountry.name}
           </Header>
         </Grid>
-        <Grid item>
+        <Grid item md={4}>
           <Info>
             <InfoSubtitle>{info.intro}</InfoSubtitle>
             <InfoBody>{info.other}</InfoBody>
           </Info>
         </Grid>
-        <Grid item>
+        <Grid item md={5} justify="flex-end">
           <Land imgSrc={land} />
         </Grid>
       </Grid>
