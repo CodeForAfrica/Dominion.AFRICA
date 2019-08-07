@@ -3,8 +3,28 @@ import { createMuiTheme } from '@material-ui/core';
 
 const FONT_FAMILY_HEADING = '"Lora", "serif"';
 const FONT_FAMILY_TEXT = '"Montserrat", "sans-serif"';
+const KHAKI_GREEN = '#7f9442';
+const DULL_ORANGE = '#de9f3a';
 const defaultTheme = createMuiTheme();
 const Theme = createTheme({
+  chart: {
+    pie: {
+      colorScale: [KHAKI_GREEN, DULL_ORANGE]
+    },
+    area: {
+      colorScale: [KHAKI_GREEN, DULL_ORANGE]
+    },
+    group: {
+      colorScale: [KHAKI_GREEN, DULL_ORANGE]
+    },
+    bar: {
+      style: {
+        data: {
+          fill: KHAKI_GREEN
+        }
+      }
+    }
+  },
   palette: {
     primary: { main: '#2b3129', light: '#f1f1ed', dark: '#222822' },
     secondary: { main: '#000000', dark: '#2c2c2a', grey: '#2b3129' },
