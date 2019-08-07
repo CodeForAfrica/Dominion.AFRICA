@@ -28,6 +28,9 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       marginTop: '-5rem',
       maxWidth: '35%'
+    },
+    [theme.breakpoints.up('lg')]: {
+      marginTop: '-8rem'
     }
   },
   map: {
@@ -80,6 +83,9 @@ const styles = theme => ({
   },
   h2hRelease: {
     display: 'inline-block'
+  },
+  alink: {
+    color: '#e7e452'
   }
 });
 function Profile({ classes, dominion, geoId, history, ...props }) {
@@ -186,7 +192,10 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
                 <Typography variant="body" className={classes.captionItem}>
                   in{' '}
                   <span>
-                    <a href={`/profile/${parentLevel}-${parentCode}`}>
+                    <a
+                      href={`/profile/${parentLevel}-${parentCode}`}
+                      className={classes.alink}
+                    >
                       {parentCode}
                     </a>
                     {', '}

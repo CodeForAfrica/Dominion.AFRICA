@@ -47,6 +47,10 @@ const styles = theme => ({
       whiteSpace: 'nowrap'
     }
   },
+  alink: {
+    color: '#e7e452',
+    pointerEvents: 'all'
+  },
   map: {
     zIndex: 0,
     position: 'relative !important',
@@ -82,9 +86,7 @@ function CountryHero({ classes, history, toggleModal, dominion }) {
         <p style={{ marginTop: '40px' }}>
           or view{' '}
           <a
-            style={{
-              pointerEvents: 'all'
-            }}
+            className={classes.alink}
             href={`/profile/country-${selectedCountry.code}`}
           >
             {selectedCountry.name}
