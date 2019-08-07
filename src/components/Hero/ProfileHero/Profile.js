@@ -18,25 +18,33 @@ import config from '../../../config';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    [theme.breakpoints.up('md')]: {
+      maxWidth: '71.1875rem',
+      margin: '0 auto'
+    }
+  },
+  titleGrid: {
+    [theme.breakpoints.up('md')]: {
+      marginTop: '-5rem',
+      maxWidth: '35%'
+    },
+    [theme.breakpoints.up('lg')]: {
+      marginTop: '-8rem'
+    }
   },
   map: {
     zIndex: 0,
-    position: 'relative',
-    width: 'available',
-    height: '11.875rem',
-    left: 'unset',
-    top: 'unset',
+    position: 'relative !important',
+    backgroundColor: 'grey',
+    height: '250px !important',
+    left: 'unset !important',
+    top: 'unset !important',
     [theme.breakpoints.up('md')]: {
-      position: 'absolute',
-      right: '3.125rem',
-      width: '50%',
-      height: '28.75rem',
-      maxHeight: '28.75rem',
-      maxWidth: '51.8125rem'
-    },
-    [theme.breakpoints.up('lg')]: {
-      right: '9.375rem'
+      width: '65% !important',
+      height: '460px !important',
+      maxHeight: '460px !important',
+      maxWidth: '740px !important'
     }
   },
   h2hMap: {
@@ -51,6 +59,7 @@ const styles = theme => ({
   caption: {
     color: '#8d8d8c',
     fontSize: '0.75em',
+    width: '100%',
     textTransform: 'capitalize',
     paddingTop: theme.spacing(),
     paddingBottom: theme.spacing()
@@ -74,6 +83,9 @@ const styles = theme => ({
   },
   h2hRelease: {
     display: 'inline-block'
+  },
+  alink: {
+    color: '#e7e452'
   }
 });
 function Profile({ classes, dominion, geoId, history, ...props }) {
@@ -163,7 +175,11 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
         );
         return (
           <Hero classes={{ root: classes.root }} {...props}>
-            <HeroTitleGrid quater head2head={head2head}>
+            <HeroTitleGrid
+              quater
+              head2head={head2head}
+              classes={{ titleTextGrid: classes.titleGrid }}
+            >
               <HeroTitle breakWord small>
                 {shortName}
               </HeroTitle>
@@ -176,7 +192,10 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
                 <Typography variant="body" className={classes.captionItem}>
                   in{' '}
                   <span>
-                    <a href={`/profile/${parentLevel}-${parentCode}`}>
+                    <a
+                      href={`/profile/${parentLevel}-${parentCode}`}
+                      className={classes.alink}
+                    >
                       {parentCode}
                     </a>
                     {', '}

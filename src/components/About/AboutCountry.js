@@ -14,12 +14,22 @@ import config from '../../config';
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'flex-start',
-    alignContent: 'space-between',
+    backgroundColor: '#fff'
+  },
+  layout: {
+    padding: '60px 0',
+    margin: '0 auto',
+    [theme.breakpoints.up('sm')]: {
+      maxWidth: '58.265625rem' // .75 of lg
+    },
     [theme.breakpoints.up('md')]: {
-      justifyContent: 'space-evenly',
-      padding: '50px'
+      maxWidth: '71.1875rem'
+    }
+  },
+  imgGrid: {
+    alignItems: 'flex-start',
+    [theme.breakpoints.up('lg')]: {
+      alignItems: 'flex-end'
     }
   }
 });
@@ -31,29 +41,25 @@ function AboutCountry({ classes, dominion }) {
     other: 'Not found'
   };
   return (
-    <Grid
-      container
-      direction="row"
-      className={classes.root}
-      justify="space-evenly"
-      alignItems="flex-start"
-    >
-      <Grid item>
-        <Header>
-          About <br />
-          {selectedCountry.name}
-        </Header>
+    <div className={classes.root}>
+      <Grid container direction="row" className={classes.layout}>
+        <Grid item md={3}>
+          <Header>
+            About <br />
+            {selectedCountry.name}
+          </Header>
+        </Grid>
+        <Grid item md={4}>
+          <Info>
+            <InfoSubtitle>{info.intro}</InfoSubtitle>
+            <InfoBody>{info.other}</InfoBody>
+          </Info>
+        </Grid>
+        <Grid container item md={5} className={classes.imgGrid}>
+          <Land imgSrc={land} />
+        </Grid>
       </Grid>
-      <Grid item>
-        <Info>
-          <InfoSubtitle>{info.intro}</InfoSubtitle>
-          <InfoBody>{info.other}</InfoBody>
-        </Info>
-      </Grid>
-      <Grid item>
-        <Land imgSrc={land} />
-      </Grid>
-    </Grid>
+    </div>
   );
 }
 

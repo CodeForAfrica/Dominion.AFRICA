@@ -41,7 +41,6 @@ function Land({ classes, width, imgSrc }) {
       container
       direction={direction}
       className={classes.root}
-      justify="center"
       alignItems="flex-end"
     >
       <Grid item xs={12}>

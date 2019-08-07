@@ -26,10 +26,9 @@ const styles = theme => ({
   wrapper: {
     padding: '1.875rem',
     [theme.breakpoints.up('md')]: {
-      padding: '1.875rem 3.125rem'
-    },
-    [theme.breakpoints.up('lg')]: {
-      padding: '1.875rem 9.375rem'
+      maxWidth: '71.1875rem',
+      margin: '0 auto',
+      padding: '1.875rem 0'
     },
     position: 'relative',
     width: '100%'

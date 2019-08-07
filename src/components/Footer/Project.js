@@ -10,6 +10,7 @@ import SocialMedia from '../SocialMedia';
 const styles = theme => ({
   root: {
     flexGrow: 1,
+    height: '100%',
     width: '9.75rem', // 156px / 16
     [theme.breakpoints.up('md')]: {
       width: '12.5625rem' // 201px / 16
@@ -28,21 +29,13 @@ const styles = theme => ({
     marginTop: '0'
   },
   joinText: {
-    paddingTop: '4rem',
-    [theme.breakpoints.up('lg')]: {
-      paddingTop: '1.5rem'
-    }
+    paddingTop: '1.5rem'
   }
 });
 
 function Community({ classes }) {
   return (
-    <Grid
-      container
-      className={classes.root}
-      justify="flex-start"
-      alignItems="flex-start"
-    >
+    <Grid container className={classes.root} justify="flex-start">
       <Grid item xs={12}>
         <Typography
           variant="body2"

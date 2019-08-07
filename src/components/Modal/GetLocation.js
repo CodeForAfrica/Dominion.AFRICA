@@ -11,6 +11,7 @@ const styles = {
     fontSize: 13,
     fontWeight: 'bold',
     display: 'inline-block',
+    paddingLeft: 16,
     '&:hover': {
       color: '#e7e452'
     }

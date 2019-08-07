@@ -17,6 +17,15 @@ const styles = theme => ({
     backgroundSize: 'cover',
     height: '30rem' // 480px / 16
   },
+  layout: {
+    margin: '0 auto',
+    [theme.breakpoints.up('sm')]: {
+      maxWidth: '58.265625rem' // .75 of lg
+    },
+    [theme.breakpoints.up('md')]: {
+      maxWidth: '71.1875rem'
+    }
+  },
   caption: {
     color: '#fff',
     textAlign: 'center'
@@ -75,6 +84,7 @@ class Video extends React.Component {
           direction="column"
           justify="center"
           alignItems="center"
+          className={classes.layout}
         >
           <Typography variant="h3" className={classes.subheading}>
             Using Dominion

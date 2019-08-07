@@ -5,18 +5,21 @@ import { withStyles } from '@material-ui/core/styles';
 
 import A from './A';
 
-import bmgf from '../assets/images/logos/bmgf.png';
 import cfa from '../assets/images/logos/codeforafrica.png';
-import pulitzercenter from '../assets/images/logos/pulitzercenter.png';
-import icfj from '../assets/images/logos/icfj.png';
-import twaweza from '../assets/images/logos/twaweza.png';
+import pulitzercenter from '../assets/images/logos/pulitzer.png';
+import ancir from '../assets/images/logos/ancir.png';
+import africadrone from '../assets/images/logos/africa-drone.png';
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.secondary.light,
-    height: '16.9375rem',
+    backgroundColor: theme.palette.secondary.light
+  },
+  layout: {
+    height: '14rem',
     [theme.breakpoints.up('md')]: {
+      maxWidth: '71.1875rem',
+      margin: '0 auto',
       height: '10rem'
     }
   },
@@ -40,44 +43,37 @@ const styles = theme => ({
 
 function Partners({ classes }) {
   return (
-    <Grid
-      container
-      className={classes.root}
-      justify="center"
-      alignItems="center"
-    >
-      <Grid item className={classes.imageGrid}>
-        <A href="https://codeforafrica.org/">
-          <img src={cfa} alt="Code for Africa" className={classes.img} />
-        </A>
-      </Grid>
-      <Grid item className={classes.imageGrid}>
-        <A href="https://pulitzercenter.org/">
-          <img
-            src={pulitzercenter}
-            alt="Pulitzer Center"
-            className={classes.img}
-          />
-        </A>
-      </Grid>
-      <Grid item className={classes.imageGrid}>
-        <A href="https://www.twaweza.org">
-          <img src={twaweza} alt="Twaweza" className={classes.img} />
-        </A>
-      </Grid>
-      <Grid item className={classes.imageGrid}>
-        <A href="https://www.gatesfoundation.org">
-          <img
-            src={bmgf}
-            alt="Bill and Melinda Gates Foundation"
-            className={classes.img}
-          />
-        </A>
-      </Grid>
-      <Grid item className={classes.imageGrid}>
-        <A href="https://icfj.org/">
-          <img src={icfj} alt="Icfj" className={classes.img} />
-        </A>
+    <Grid className={classes.root}>
+      <Grid
+        container
+        className={classes.layout}
+        justify="center"
+        alignItems="center"
+      >
+        <Grid item className={classes.imageGrid}>
+          <A href="https://codeforafrica.org/">
+            <img src={cfa} alt="Code for Africa" className={classes.img} />
+          </A>
+        </Grid>
+        <Grid item className={classes.imageGrid}>
+          <A href="https://pulitzercenter.org/">
+            <img
+              src={pulitzercenter}
+              alt="Pulitzer Center"
+              className={classes.img}
+            />
+          </A>
+        </Grid>
+        <Grid item className={classes.imageGrid}>
+          <A href="https://investigativecenters.org/">
+            <img src={ancir} alt="ANCIR" className={classes.img} />
+          </A>
+        </Grid>
+        <Grid item className={classes.imageGrid}>
+          <A href="https://africandrone.org/">
+            <img src={africadrone} alt="Africa Drone" className={classes.img} />
+          </A>
+        </Grid>
       </Grid>
     </Grid>
   );

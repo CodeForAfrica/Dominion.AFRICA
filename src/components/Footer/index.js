@@ -25,10 +25,15 @@ const styles = theme => ({
       paddingBottom: '3.375rem'
     }
   },
-  about: {
-    paddingRight: '1.375rem',
+  layout: {
     [theme.breakpoints.up('md')]: {
-      padding: 0
+      maxWidth: '71.1875rem',
+      margin: '0 auto'
+    }
+  },
+  about: {
+    [theme.breakpoints.up('md')]: {
+      paddingRight: 12
     }
   },
   organisation: {
@@ -36,34 +41,27 @@ const styles = theme => ({
     marginTop: '1.625rem', // 26px / 16
     [theme.breakpoints.up('md')]: {
       width: 'auto',
-      marginTop: 0,
-      marginLeft: '7rem'
+      marginTop: 0
     }
   },
-  community: {},
-  project: {
-    marginLeft: '1.25rem'
-  }
+  community: {}
 });
 
 function Footer({ classes }) {
   return (
-    <Grid
-      container
-      className={classes.root}
-      justify="center"
-      alignItems="flex-start"
-    >
-      <Grid item className={classes.about}>
-        <About />
-      </Grid>
-      <Grid item className={classes.organisation}>
-        <Grid container justify="space-between" alignItems="flex-start">
-          <Grid item className={classes.community}>
-            <Community />
-          </Grid>
-          <Grid item className={classes.project}>
-            <Project />
+    <Grid className={classes.root}>
+      <Grid container className={classes.layout} direction="row">
+        <Grid item xs={7} className={classes.about}>
+          <About />
+        </Grid>
+        <Grid item xs={5} className={classes.organisation}>
+          <Grid container justify="flex-end">
+            <Grid item className={classes.community}>
+              <Community />
+            </Grid>
+            <Grid item>
+              <Project />
+            </Grid>
           </Grid>
         </Grid>
       </Grid>

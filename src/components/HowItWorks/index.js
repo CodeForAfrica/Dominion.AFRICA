@@ -22,10 +22,19 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       paddingLeft: 0, // 30px / 16
       backgroundPosition: '0 4.5rem', // Match padding + highlight height
-      backgroundSize: '68% 100%'
+      backgroundSize: '62% 100%'
     },
     [theme.breakpoints.up('xl')]: {
       backgroundSize: '65% 100%'
+    }
+  },
+  wrapper: {
+    margin: '0 auto',
+    [theme.breakpoints.up('sm')]: {
+      maxWidth: '58.265625rem' // .75 of lg
+    },
+    [theme.breakpoints.up('md')]: {
+      maxWidth: '71.1875rem'
     }
   },
   description: {
@@ -33,27 +42,29 @@ const styles = theme => ({
       paddingTop: '4.625rem', // 74px / 16
       paddingLeft: '4.625rem' // 74px / 16
     }
+  },
+  imageAlign: {
+    [theme.breakpoints.up('md')]: {
+      marginLeft: '-7.9375rem'
+    }
   }
 });
 
 function HowItWorks({ classes, dominion }) {
   return (
-    <Grid
-      container
-      className={classes.root}
-      justify="center"
-      alignItems="flex-start"
-    >
-      <Hidden smDown>
-        <Grid item>
-          <Map />
-        </Grid>
-      </Hidden>
+    <div className={classes.root}>
+      <Grid container className={classes.wrapper}>
+        <Hidden smDown>
+          <Grid item className={classes.imageAlign}>
+            <Map />
+          </Grid>
+        </Hidden>
 
-      <Grid item className={classes.description}>
-        <Description dominion={dominion} />
+        <Grid item className={classes.description}>
+          <Description dominion={dominion} />
+        </Grid>
       </Grid>
-    </Grid>
+    </div>
   );
 }
 

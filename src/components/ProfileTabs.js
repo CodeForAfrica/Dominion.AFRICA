@@ -14,12 +14,14 @@ const styles = theme => ({
     paddingLeft: '1.875rem',
     paddingRight: '1.875rem',
     [theme.breakpoints.up('md')]: {
-      paddingLeft: '3.125rem',
-      paddingRight: '3.125rem'
+      maxWidth: '62.1875rem',
+      margin: '0 auto',
+      padding: 0
     },
     [theme.breakpoints.up('lg')]: {
-      paddingLeft: '9.375rem',
-      paddingRight: '9.375rem'
+      maxWidth: '71.1875rem',
+      margin: '0 auto',
+      padding: 0
     }
   },
   appbar: {
