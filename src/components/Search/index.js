@@ -20,6 +20,9 @@ const styles = theme => ({
     [theme.breakpoints.up('lg')]: {
       paddingTop: '100px'
     }
+  },
+  comparisonSearch: {
+    width: '80%'
   }
 });
 
@@ -98,7 +101,7 @@ class Search extends React.Component {
         container
         direction="column"
         wrap="nowrap"
-        className={isComparisonSearch ? null : classes.root}
+        className={isComparisonSearch ? classes.comparisonSearch : classes.root}
       >
         <SearchBar
           autoFocus

@@ -18,30 +18,30 @@ import config from '../../../config';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    [theme.breakpoints.up('md')]: {
+      maxWidth: '71.1875rem',
+      margin: '0 auto'
+    }
   },
   titleGrid: {
     [theme.breakpoints.up('md')]: {
-      marginTop: '-5rem'
+      marginTop: '-5rem',
+      maxWidth: '35%'
     }
   },
   map: {
     zIndex: 0,
-    position: 'relative',
-    width: 'available',
-    height: '11.875rem',
-    left: 'unset',
-    top: 'unset',
+    position: 'relative !important',
+    backgroundColor: 'grey',
+    height: '250px !important',
+    left: 'unset !important',
+    top: 'unset !important',
     [theme.breakpoints.up('md')]: {
-      position: 'absolute',
-      right: '3.125rem',
-      width: '50%',
-      height: '28.75rem',
-      maxHeight: '28.75rem',
-      maxWidth: '51.8125rem'
-    },
-    [theme.breakpoints.up('lg')]: {
-      right: '9.375rem'
+      width: '65% !important',
+      height: '460px !important',
+      maxHeight: '460px !important',
+      maxWidth: '740px !important'
     }
   },
   h2hMap: {
