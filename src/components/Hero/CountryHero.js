@@ -16,19 +16,35 @@ import config from '../../config';
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    margin: '0 9.375rem',
+    // margin: '0 9.375rem',
     paddingTop: '2rem',
-    [theme.breakpoints.down('md')]: {
-      margin: '0 3.125rem'
-    },
-    [theme.breakpoints.down('sm')]: {
-      margin: '0'
+    // [theme.breakpoints.down('md')]: {
+    //   margin: '0 3.125rem'
+    // },
+    // [theme.breakpoints.down('sm')]: {
+    //   margin: '0'
+    // },
+    [theme.breakpoints.up('md')]: {
+      maxWidth: '71.1875rem',
+      margin: '0 auto'
     }
   },
   titleGrid: {
     pointerEvents: 'none',
     [theme.breakpoints.up('md')]: {
-      marginTop: '-4rem'
+      marginTop: '-4rem',
+      maxWidth: '28%'
+    }
+  },
+  countryName: {
+    [theme.breakpoints.up('md')]: {
+      whiteSpace: 'nowrap'
+    }
+  },
+  description: {
+    fontSize: '0.6875rem',
+    [theme.breakpoints.up('md')]: {
+      whiteSpace: 'nowrap'
     }
   },
   map: {
@@ -39,15 +55,10 @@ const styles = theme => ({
     left: 'unset !important',
     top: 'unset !important',
     [theme.breakpoints.up('md')]: {
-      position: 'absolute !important',
-      right: '50px',
-      width: '70% !important',
+      width: '72% !important',
       height: '460px !important',
       maxHeight: '460px !important',
       maxWidth: '829px !important'
-    },
-    [theme.breakpoints.up('lg')]: {
-      right: '9.375rem'
     }
   }
 });
@@ -57,9 +68,12 @@ function CountryHero({ classes, history, toggleModal, dominion }) {
   return (
     <Hero classes={{ root: classes.root }}>
       <HeroTitleGrid classes={{ titleTextGrid: classes.titleGrid }}>
-        <HeroTitle>{selectedCountry.name}</HeroTitle>
-        <HeroDescription>
-          Dominion makes data available to help add context and authority to
+        <HeroTitle classes={{ title: classes.countryName }}>
+          {selectedCountry.name}
+        </HeroTitle>
+        <HeroDescription classes={{ body2: classes.description }}>
+          Dominion makes data available to help add context and authority to{' '}
+          <br />
           public discourse and policy-making on vital issues of land ownership.
         </HeroDescription>
 
