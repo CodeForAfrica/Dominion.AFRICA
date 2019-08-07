@@ -10,10 +10,17 @@ const styles = theme => ({
     padding: '2rem',
     backgroundColor: theme.palette.primary.light,
     [theme.breakpoints.up('md')]: {
-      padding: '3.125rem'
+      padding: '3.125rem 0'
+    }
+  },
+  layout: {
+    [theme.breakpoints.up('md')]: {
+      maxWidth: '62.1875rem',
+      margin: '0 auto'
     },
     [theme.breakpoints.up('lg')]: {
-      padding: '3.125rem 9.125rem'
+      maxWidth: '71.1875rem',
+      margin: '0 auto'
     }
   }
 });
@@ -21,7 +28,7 @@ const styles = theme => ({
 function ChartsContainer({ classes, children }) {
   return (
     <div className={classes.root}>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} className={classes.layout}>
         {children}
       </Grid>
     </div>

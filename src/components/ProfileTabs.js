@@ -14,6 +14,11 @@ const styles = theme => ({
     paddingLeft: '1.875rem',
     paddingRight: '1.875rem',
     [theme.breakpoints.up('md')]: {
+      maxWidth: '62.1875rem',
+      margin: '0 auto',
+      padding: 0
+    },
+    [theme.breakpoints.up('lg')]: {
       maxWidth: '71.1875rem',
       margin: '0 auto',
       padding: 0
