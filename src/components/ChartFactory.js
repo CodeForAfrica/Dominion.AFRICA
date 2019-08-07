@@ -32,8 +32,9 @@ export default class ChartFactory {
     const isComparison = datas && comparisonDatas;
     const comparisonData = comparisonDatas && comparisonDatas[visualId].nodes;
     const data = datas[visualId].nodes;
-    const refrenceData =
-      datas[`${visualId}Reference`] && datas[`${visualId}Reference`].nodes;
+    const refrenceData = datas[`${visualId}Reference`]
+      ? datas[`${visualId}Reference`].nodes
+      : [];
     switch (visualType) {
       case 'square_nested_proportional_area':
       case 'circle_nested_proportional_area': {
