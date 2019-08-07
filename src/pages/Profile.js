@@ -116,7 +116,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
         // Load comparison chart data
         let comparisonVisualsData;
         if (comparisonGeoId) {
-          const { data } = client.query({
+          const { data } = await client.query({
             query: visualsQuery,
             variables: {
               geoCode: comparisonGeoId ? comparisonGeoId.split('-')[1] : '',
