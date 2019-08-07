@@ -12,10 +12,9 @@ const styles = theme => ({
     padding: '2rem',
     backgroundColor: 'white',
     [theme.breakpoints.up('md')]: {
-      padding: '3.125rem'
-    },
-    [theme.breakpoints.up('lg')]: {
-      padding: '3.125rem 9.125rem'
+      maxWidth: '71.1875rem',
+      margin: '0 auto',
+      padding: '5rem 0'
     }
   },
   light: {
@@ -30,11 +29,11 @@ function Section({ id, classes, light, title, subtitle, children }) {
       className={classNames(classes.root, { [classes.light]: light })}
     >
       <Grid container>
-        <Grid item xs={12} md={3} style={{ marginBottom: '1.25rem' }}>
+        <Grid item xs={12} md={4} style={{ marginBottom: '1.25rem' }}>
           <Typography variant="h3">{title}</Typography>
           <Typography variant="subtitle1">{subtitle}</Typography>
         </Grid>
-        <Grid item xs={12} md={9}>
+        <Grid item xs={12} md={8}>
           <div>{children}</div>
         </Grid>
       </Grid>
