@@ -15,7 +15,6 @@
         }]
       },
       {
-        "type": "circle_nested_proportional_area",
         "title": "Population",
         "subtitle": "People living there",
         "layout": "2/3",
@@ -505,23 +504,6 @@
         }]
       }
     ]
-  },
-  {
-    "sectionTitle": "Agricultural Land Sales",
-    "sectionDescription": "",
-    "charts": [{
-      "title": "Population",
-      "subtitle": "People living there",
-      "layout": "1",
-      "visuals": [{
-        "type": "circle_nested_proportional_area",
-        "table": "allPopulationResidence2009S",
-
-        "label": "longName",
-        "x": "populationResidence2009",
-        "y": "total"
-      }]
-    }]
   },
   {
     "sectionTitle": "Land traded statistic for transactions of colour",
