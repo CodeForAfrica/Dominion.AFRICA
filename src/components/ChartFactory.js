@@ -105,6 +105,7 @@ export default class ChartFactory {
         if (isComparison) {
           return (
             <BarChart
+              barWidth={100}
               height={200}
               data={data.map(d => ({
                 label: d.x[0].toUpperCase() + d.x.slice(1),
@@ -122,7 +123,7 @@ export default class ChartFactory {
             />
           );
         }
-        return <BarChart height={200} data={data} />;
+        return <BarChart barWidth={100} height={200} data={data} />;
       default:
         return null;
     }
