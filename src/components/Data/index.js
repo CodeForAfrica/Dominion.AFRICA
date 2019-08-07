@@ -13,28 +13,36 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     backgroundColor: '#fff',
-    paddingTop: '4.9375rem', // 79px/16paddingTop: '4.9375rem 0', // 79px/16
-    paddingBottom: '4.9375rem' // 79px/16
+    backgroundImage: `url(${databg})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'top left',
+    backgroundSize: '80% 70%',
+    marginBottom: '4rem',
+    [theme.breakpoints.up('md')]: {
+      paddingLeft: 0, // 30px / 16
+      backgroundSize: '65% 100%',
+      marginBottom: '8rem'
+    }
+  },
+  wrapper: {
+    margin: '0 auto',
+    [theme.breakpoints.up('sm')]: {
+      maxWidth: '58.265625rem' // .75 of lg
+    },
+    [theme.breakpoints.up('md')]: {
+      maxWidth: '71.1875rem'
+    }
   },
   dataWrapper: {
     paddingTop: '3.675rem',
-    backgroundColor: '#fff',
-    backgroundImage: `url(${databg})`,
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
     height: '31.25rem', // 500px / 16
     paddingLeft: '1.875rem',
     paddingRight: '1.875rem',
-    backgroundPosition: 'right 6.5rem center',
     [theme.breakpoints.up('md')]: {
       width: '31.25rem',
-      marginLeft: '-5rem',
+      marginLeft: '-7.9375rem',
       paddingLeft: 0,
-      paddingRight: 0,
-      backgroundPosition: 'center'
-    },
-    [theme.breakpoints.up('lg')]: {
-      paddingLeft: '5rem' // 80px / 16
+      paddingRight: 0
     }
   },
   highlight: {
@@ -63,7 +71,7 @@ const styles = theme => ({
   documentData: {
     [theme.breakpoints.up('md')]: {
       paddingTop: '3.5625rem',
-      paddingLeft: '3.75rem'
+      paddingLeft: '5rem'
     }
   },
   datasetData: {
@@ -72,7 +80,7 @@ const styles = theme => ({
     marginTop: '-8rem',
     [theme.breakpoints.up('md')]: {
       paddingTop: '7.02rem',
-      paddingLeft: '3.75rem',
+      paddingLeft: '10rem',
       paddingRight: 0,
       marginTop: 0
     }
@@ -81,38 +89,47 @@ const styles = theme => ({
 
 function Data({ classes }) {
   return (
-    <Grid container direction="row" className={classes.root}>
-      <Grid
-        container
-        direction="row"
-        item
-        md={9}
-        lg={9}
-        xl={9}
-        className={classes.dataWrapper}
-      >
-        <Hidden smDown>
-          <Grid
-            item
-            container
-            md={8}
-            lg={8}
-            xl={8}
-            direction="column"
-            className={classes.imageHighlight}
-          >
-            <div className={classes.highlight} />
-            <div className={classes.img} />
+    <div className={classes.root}>
+      <Grid container direction="row" className={classes.wrapper}>
+        <Grid
+          container
+          direction="row"
+          item
+          md={9}
+          lg={9}
+          xl={9}
+          className={classes.dataWrapper}
+        >
+          <Hidden smDown>
+            <Grid
+              item
+              container
+              md={8}
+              lg={8}
+              xl={8}
+              direction="column"
+              className={classes.imageHighlight}
+            >
+              <div className={classes.highlight} />
+              <div className={classes.img} />
+            </Grid>
+          </Hidden>
+          <Grid item md={4} lg={4} xl={4} className={classes.documentData}>
+            <DocumentsContent />
           </Grid>
-        </Hidden>
-        <Grid item md={4} lg={4} xl={4} className={classes.documentData}>
-          <DocumentsContent />
+        </Grid>
+        <Grid
+          container
+          item
+          md={3}
+          lg={3}
+          xl={3}
+          className={classes.datasetData}
+        >
+          <DatasetsContent />
         </Grid>
       </Grid>
-      <Grid container item md={3} lg={3} xl={3} className={classes.datasetData}>
-        <DatasetsContent />
-      </Grid>
-    </Grid>
+    </div>
   );
 }
 

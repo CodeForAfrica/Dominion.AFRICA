@@ -28,7 +28,7 @@ const styles = theme => ({
       backgroundSize: '65% 100%'
     }
   },
-  layout: {
+  wrapper: {
     margin: '0 auto',
     [theme.breakpoints.up('sm')]: {
       maxWidth: '58.265625rem' // .75 of lg
@@ -53,7 +53,7 @@ const styles = theme => ({
 function HowItWorks({ classes, dominion }) {
   return (
     <div className={classes.root}>
-      <Grid container className={classes.layout}>
+      <Grid container className={classes.wrapper}>
         <Hidden smDown>
           <Grid item className={classes.imageAlign}>
             <Map />
