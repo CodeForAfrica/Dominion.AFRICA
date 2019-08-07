@@ -13,16 +13,14 @@ import africadrone from '../assets/images/logos/africa-drone.png';
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.secondary.light,
-    height: '16.9375rem',
-    [theme.breakpoints.up('md')]: {
-      height: '10rem'
-    }
+    backgroundColor: theme.palette.secondary.light
   },
   layout: {
+    height: '14rem',
     [theme.breakpoints.up('md')]: {
       maxWidth: '71.1875rem',
-      margin: '0 auto'
+      margin: '0 auto',
+      height: '10rem'
     }
   },
 
