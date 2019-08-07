@@ -33,7 +33,6 @@ const styles = theme => ({
   },
   title: {
     color: 'white',
-    width: '90%',
     pointerEvents: 'all',
     [theme.breakpoints.down('sm')]: {
       fontSize: '3rem',
@@ -73,7 +72,7 @@ const styles = theme => ({
     pointerEvents: 'all',
     color: 'white',
     textAlign: 'left',
-    width: '50%',
+    width: '80%',
     paddingTop: '2rem',
     opacity: '0.5',
     [theme.breakpoints.down('sm')]: {
@@ -98,7 +97,6 @@ function HeroTitleGridComponent({ classes, children, quater, head2head }) {
       sm={12}
       md={quater ? 4 : 8}
       lg={quater ? 4 : 8}
-      xl={quater ? 4 : 6}
       alignContent="center"
       className={classNames(classes.titleTextGrid, {
         [classes.h2hTitleGrid]: head2head
