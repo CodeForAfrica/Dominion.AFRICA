@@ -29,7 +29,7 @@ const styles = theme => ({
     order: 2,
     paddingTop: theme.spacing(),
     margin: 0,
-    marginTop: '2rem'
+    marginTop: '2rem !important'
   },
   title: {
     color: 'white',

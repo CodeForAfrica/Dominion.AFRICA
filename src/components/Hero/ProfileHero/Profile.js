@@ -45,11 +45,11 @@ const styles = theme => ({
   },
   h2hMap: {
     position: 'relative',
-    height: '11.875rem',
-    width: 'available',
+    height: '11.875rem !important',
+    width: '100% !important',
     right: 'unset',
     [theme.breakpoints.up('md')]: {
-      height: '16.875rem'
+      height: '16.875rem !important'
     }
   },
   caption: {
