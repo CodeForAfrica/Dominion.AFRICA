@@ -13,6 +13,7 @@ import A from '../A';
 
 const styles = theme => ({
   root: {
+    width: '100%',
     margin: '1.25rem 0'
   },
   preview: {
@@ -40,7 +41,7 @@ const styles = theme => ({
   }
 });
 
-function Document({ classes, link, title, description, preview }) {
+function Data({ classes, link, title, description, preview }) {
   return (
     <Card className={classes.root}>
       <CardActionArea target="_blank" href={link}>
@@ -70,7 +71,7 @@ function Document({ classes, link, title, description, preview }) {
   );
 }
 
-Document.propTypes = {
+Data.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
@@ -78,8 +79,8 @@ Document.propTypes = {
   preview: PropTypes.element
 };
 
-Document.defaultProps = {
+Data.defaultProps = {
   preview: null
 };
 
-export default withStyles(styles)(Document);
+export default withStyles(styles)(Data);

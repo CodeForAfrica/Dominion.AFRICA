@@ -33,11 +33,6 @@ function Resources() {
     });
   }, []);
 
-  let resources = packages.map(p => p.resources);
-  if (resources.length) {
-    resources = resources.reduce((a, b) => a.concat(b));
-  }
-
   return (
     <Page>
       <TitlePageHeader dominion={config} profile={{}}>
@@ -59,7 +54,7 @@ function Resources() {
           {documents.map(document => (
             <Grid item xs={12} md={6}>
               <DocumentCard
-                link={document.resources.pdf}
+                link={document.canonical_url}
                 title={document.title}
                 description={document.description}
                 preview={
@@ -85,11 +80,11 @@ function Resources() {
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
       >
         <Grid container justify="space-between">
-          {resources.map(resource => (
+          {packages.map(p => (
             <DataCard
-              link={resource.url}
-              title={resource.name}
-              description={resource.description}
+              link={`https://openafrica.net/dataset/${p.name}`}
+              title={p.title}
+              description={p.notes}
             />
           ))}
         </Grid>

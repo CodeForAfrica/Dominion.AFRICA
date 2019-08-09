@@ -11,7 +11,9 @@ import {
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
-  root: {},
+  root: {
+    width: 'available'
+  },
   preview: {
     width: 'available',
     backgroundColor: '#7b7f7b',
