@@ -4,6 +4,7 @@ import {
   PieChart,
   NestedProportionalAreaChart
 } from '@codeforafrica/hurumap-ui';
+import aggregateData from '../utils/aggregateData';
 
 export default class ChartFactory {
   static build(
@@ -11,7 +12,8 @@ export default class ChartFactory {
       id: visualId,
       type: visualType,
       label,
-      reference: { label: referenceLabel } = {}
+      reference: { label: referenceLabel } = {},
+      aggregate
     },
     datas,
     comparisonDatas,
@@ -98,17 +100,26 @@ export default class ChartFactory {
             height={200}
             data={[...new Set(data.map(d => d.groupBy))].map(group => ({
               label: group,
-              data: data.filter(d => d.groupBy === group)
+              data: !aggregate
+                ? data.filter(d => d.groupBy === group)
+                : aggregateData(
+                    aggregate,
+                    data.filter(d => d.groupBy === group)
+                  )
             }))}
           />
         );
       case 'column':
         if (isComparison) {
+          const pData = !aggregate ? data : aggregateData(aggregate, data);
+          const pComparisonData = !aggregate
+            ? comparisonData
+            : aggregateData(aggregate, comparisonData);
           return (
             <BarChart
               barWidth={100}
               height={200}
-              data={data.map(d => ({
+              data={pData.map(d => ({
                 label: d.x[0].toUpperCase() + d.x.slice(1),
                 data: [
                   {
@@ -117,8 +128,8 @@ export default class ChartFactory {
                   },
                   {
                     x: 'Country 2',
-                    y: comparisonData.find(z => z.x === d.x)
-                      ? comparisonData.find(z => z.x === d.x).y
+                    y: pComparisonData.find(z => z.x === d.x)
+                      ? pComparisonData.find(z => z.x === d.x).y
                       : null
                   }
                 ]
@@ -126,7 +137,13 @@ export default class ChartFactory {
             />
           );
         }
-        return <BarChart barWidth={100} height={200} data={data} />;
+        return (
+          <BarChart
+            barWidth={100}
+            height={200}
+            data={!aggregate ? data : aggregateData(aggregate, data)}
+          />
+        );
       default:
         return null;
     }
