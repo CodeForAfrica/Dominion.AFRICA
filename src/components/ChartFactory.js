@@ -117,7 +117,9 @@ export default class ChartFactory {
                   },
                   {
                     x: 'Country 2',
-                    y: comparisonData.find(z => z.x === d.x).y
+                    y: comparisonData.find(z => z.x === d.x)
+                      ? comparisonData.find(z => z.x === d.x).y
+                      : null
                   }
                 ]
               }))}
