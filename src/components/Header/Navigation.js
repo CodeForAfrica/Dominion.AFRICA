@@ -98,22 +98,12 @@ const styles = theme => ({
 
 class Navigation extends Component {
   renderMenuList() {
-    let showcaseLink = '#dominionShowcase';
-    const {
-      classes,
-      dominion: { selectedCountry },
-      toggleModal
-    } = this.props;
-    if (selectedCountry) {
-      // In order for showcase link to work in profile pages,
-      // always start with country slug
-      showcaseLink = `/${selectedCountry.slug}${showcaseLink}`;
-    }
+    const { classes, toggleModal } = this.props;
     return (
       <MenuList className={classes.menuList}>
         {[
           { title: 'About', link: '/about' },
-          { title: 'Showcase', link: `${showcaseLink}` },
+          { title: 'Showcase', link: `#showcase` },
           { title: 'Resources', link: '/resources' },
           {
             title: 'Contact',

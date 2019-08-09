@@ -49,7 +49,7 @@ function Showcase({ classes, showcaseStories, dominion: { selectedCountry } }) {
     );
   }
   return (
-    <div className={classes.showCaseContainer}>
+    <div className={classes.showCaseContainer} id="showcase">
       <Grid
         container
         direction="column"
