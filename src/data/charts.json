@@ -506,6 +506,77 @@
     ]
   },
   {
+    "sectionTitle": "Agricultural Land Sales",
+    "sectionDescription": "",
+    "charts": [{
+        "title": "Land Sales Distribution 2017/2018",
+        "subtitle": "Number of transactions from December 2017 to November 2018 by land class in R/ha",
+        "layout": "1",
+        "visuals": [{
+          "type": "column",
+          "table": "allNumTransactionsTradedPerClass2018S",
+          "x": "classDistribution",
+          "y": "total"
+        }]
+      },
+      {
+          "title": "Land Sales Distribution 2017/2018",
+          "subtitle": "Amount of hectares sold from December 2017 to November 2018 by land class in R/ha",
+          "layout": "1",
+          "visuals": [{
+            "type": "column",
+            "table": "allTotalHectaresTradedPerClass2018S",
+            "x": "classDistribution",
+            "y": "total"
+          }]
+        },
+        {
+            "title": "Land Sales Distribution 2017/2018",
+            "subtitle": "Average price of hectares sold from December 2017 to November 2018 by Land Class in R/ha",
+            "layout": "1",
+            "visuals": [{
+              "type": "column",
+              "table": "allAvgPricePerHectaresPerClass2018S",
+              "x": "classDistribution",
+              "y": "total"
+            }]
+          },
+          {
+              "title": "Land Sales Distribution 2017/2018",
+              "subtitle": "Highest Price per hectares sold from December 2017 to November 2018 by Land Class in R/ha",
+              "layout": "1",
+              "visuals": [{
+                "type": "column",
+                "table": "allHighestPriceTradedPerClass2018S",
+                "x": "classDistribution",
+                "y": "total"
+              }]
+            },
+            {
+                "title": "Land Sales Distribution 2017/2018",
+                "subtitle": "Lowest Price per hectares sold from December 2017 to November 2018 by Land Class in R/ha",
+                "layout": "1",
+                "visuals": [{
+                  "type": "column",
+                  "table": "allLowestPriceTradedPerClass2018S",
+                  "x": "classDistribution",
+                  "y": "total"
+                }]
+              },
+              {
+                  "title": "Land Sales Distribution 2017/2018",
+                  "subtitle": "Price trends per hectares from December 2017 to November 2018 by Land Class in R/ha",
+                  "layout": "1",
+                  "visuals": [{
+                    "type": "column",
+                    "table": "allPriceTrendsTradedPerClass2018S",
+                    "x": "classDistribution",
+                    "y": "total"
+                  }]
+                }
+    ]
+  },
+  {
     "sectionTitle": "Land traded statistic for transactions of colour",
     "sectionDescription": "",
     "charts": [{
