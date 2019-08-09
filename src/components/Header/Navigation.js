@@ -28,7 +28,9 @@ const styles = theme => ({
     position: 'relative',
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      padding: '1.875rem 0'
+      padding: '1.875rem 0',
+      maxWidth: '71.1875rem',
+      margin: '0 auto'
     }
   },
   topMenuNav: {

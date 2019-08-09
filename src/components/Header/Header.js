@@ -20,8 +20,7 @@ const styles = theme => ({
   wrapper: {
     [theme.breakpoints.up('md')]: {
       maxWidth: '71.1875rem',
-      margin: '0 auto',
-      padding: '1.875rem 0'
+      margin: '0 auto'
     }
   },
   modalNavigation: {

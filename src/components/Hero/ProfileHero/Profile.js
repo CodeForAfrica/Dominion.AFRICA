@@ -22,11 +22,8 @@ const styles = theme => ({
   },
   titleGrid: {
     [theme.breakpoints.up('md')]: {
-      marginTop: '-5rem',
+      marginTop: '-2rem',
       maxWidth: '35%'
-    },
-    [theme.breakpoints.up('lg')]: {
-      marginTop: '-8rem'
     }
   },
   map: {

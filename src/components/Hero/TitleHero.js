@@ -8,7 +8,7 @@ import Hero, { HeroTitle, HeroTitleGrid } from './Hero';
 const styles = {
   root: {
     flexGrow: 1,
-    height: '40vh'
+    margin: '4rem 0'
   },
   titlegrid: {
     alignItems: 'center'
