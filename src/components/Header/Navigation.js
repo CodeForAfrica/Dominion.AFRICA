@@ -24,12 +24,7 @@ const styles = theme => ({
     flexGrow: 1
   },
   wrapper: {
-    padding: '1.875rem',
-    [theme.breakpoints.up('md')]: {
-      maxWidth: '71.1875rem',
-      margin: '0 auto',
-      padding: '1.875rem 0'
-    },
+    padding: '1.875rem 0',
     position: 'relative',
     width: '100%'
   },

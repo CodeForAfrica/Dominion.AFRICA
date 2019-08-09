@@ -18,11 +18,7 @@ import config from '../../../config';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-    [theme.breakpoints.up('md')]: {
-      maxWidth: '71.1875rem',
-      margin: '0 auto'
-    }
+    flexGrow: 1
   },
   titleGrid: {
     [theme.breakpoints.up('md')]: {
