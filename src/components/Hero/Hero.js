@@ -11,8 +11,11 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     pointerEvents: 'all',
-    height: '65vh',
-    overflow: 'hidden'
+    height: 'auto',
+    overflow: 'hidden',
+    [theme.breakpoints.up('md')]: {
+      height: '65vh'
+    }
   },
   titleTextGrid: {
     pointerEvents: 'all',
@@ -29,7 +32,7 @@ const styles = theme => ({
     order: 2,
     paddingTop: theme.spacing(),
     margin: 0,
-    marginTop: '2rem'
+    marginTop: '2rem !important'
   },
   title: {
     color: 'white',
