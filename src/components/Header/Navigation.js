@@ -24,9 +24,12 @@ const styles = theme => ({
     flexGrow: 1
   },
   wrapper: {
-    padding: '1.875rem 0',
+    padding: '1.875rem',
     position: 'relative',
-    width: '100%'
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      padding: '1.875rem 0'
+    }
   },
   topMenuNav: {
     flexWrap: 'nowrap',

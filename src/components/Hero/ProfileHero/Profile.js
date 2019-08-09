@@ -34,6 +34,7 @@ const styles = theme => ({
     position: 'relative !important',
     backgroundColor: 'grey',
     height: '250px !important',
+    width: '100%',
     left: 'unset !important',
     top: 'unset !important',
     [theme.breakpoints.up('md')]: {

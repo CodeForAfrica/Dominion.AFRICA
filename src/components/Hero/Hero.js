@@ -11,8 +11,11 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     pointerEvents: 'all',
-    height: '65vh',
-    overflow: 'hidden'
+    height: 'auto',
+    overflow: 'hidden',
+    [theme.breakpoints.up('md')]: {
+      height: '65vh'
+    }
   },
   titleTextGrid: {
     pointerEvents: 'all',
