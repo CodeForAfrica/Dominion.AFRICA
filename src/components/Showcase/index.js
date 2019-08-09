@@ -91,7 +91,7 @@ Showcase.propTypes = {
   dominion: PropTypes.shape({
     selectedCountry: PropTypes.shape({})
   }).isRequired,
-  showcaseStories: PropTypes.arrayOf({}).isRequired
+  showcaseStories: PropTypes.arrayOf(PropTypes.shape({})).isRequired
 };
 
 export default withStyles(styles)(Showcase);

@@ -14,7 +14,7 @@ function DocumentsContent() {
   return (
     <Content
       title="sourceAFRICA"
-      contentCount={documentsCount}
+      contentCount={`${documentsCount}`}
       contentType="Documents"
       description="
             sourceAFRICA is Africa's premier repository for actionable
