@@ -8,20 +8,27 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    width: '100%',
     backgroundColor: '#fff',
     scrollBehavior: 'smooth',
     paddingLeft: '1.875rem',
     paddingRight: '1.875rem',
     [theme.breakpoints.up('md')]: {
-      maxWidth: '62.1875rem',
       margin: '0 auto',
       padding: 0
     },
     [theme.breakpoints.up('lg')]: {
-      maxWidth: '71.1875rem',
-      margin: '0 auto',
       padding: 0
+    }
+  },
+  content: {
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      margin: '0 auto',
+      maxWidth: '62.1875rem'
+    },
+    [theme.breakpoints.up('lg')]: {
+      margin: '0 auto',
+      maxWidth: '71.1875rem'
     }
   },
   appbar: {
@@ -84,29 +91,31 @@ class ProfileTabs extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar color="inherit" position="static" className={classes.appbar}>
-          <Tabs
-            value={value}
-            variant={variant}
-            scrollButtons="off" // Never show scroll buttons
-            classes={{ indicator: classes.indicator }}
-            onChange={this.handleChange}
-          >
-            {tabs.map(tab => (
-              <LinkTab
-                key={tab.href}
-                value={tab.href}
-                href="#dominionProfileTabs" // Always show the tabs on click
-                label={tab.name}
-                className={classes.tab}
-                classes={{
-                  selected: classes.tabSelected,
-                  labelContainer: classes.labelContainer
-                }}
-              />
-            ))}
-          </Tabs>
-        </AppBar>
+        <div className={classes.content}>
+          <AppBar color="inherit" position="static" className={classes.appbar}>
+            <Tabs
+              value={value}
+              variant={variant}
+              scrollButtons="off" // Never show scroll buttons
+              classes={{ indicator: classes.indicator }}
+              onChange={this.handleChange}
+            >
+              {tabs.map(tab => (
+                <LinkTab
+                  key={tab.href}
+                  value={tab.href}
+                  href="#dominionProfileTabs" // Always show the tabs on click
+                  label={tab.name}
+                  className={classes.tab}
+                  classes={{
+                    selected: classes.tabSelected,
+                    labelContainer: classes.labelContainer
+                  }}
+                />
+              ))}
+            </Tabs>
+          </AppBar>
+        </div>
       </div>
     );
   }
