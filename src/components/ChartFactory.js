@@ -98,7 +98,12 @@ export default class ChartFactory {
         );
       }
       case 'pie':
-        return <PieChart key={key} data={data} />;
+        return (
+          <PieChart
+            key={key}
+            data={!aggregate ? data : aggregateData(aggregate, data)}
+          />
+        );
       case 'grouped_column':
         return (
           <BarChart
