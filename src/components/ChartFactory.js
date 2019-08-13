@@ -31,6 +31,10 @@ export default class ChartFactory {
     if (!datas) {
       return null;
     }
+    const key =
+      Math.random()
+        .toString(36)
+        .substring(2) + Date.now().toString(36);
     const isComparison = datas && comparisonDatas;
     const comparisonData = comparisonDatas && comparisonDatas[visualId].nodes;
     const data = datas[visualId].nodes;
@@ -57,6 +61,7 @@ export default class ChartFactory {
             : summedData;
         return (
           <NestedProportionalAreaChart
+            key={key}
             square={visualType === 'square_nested_proportional_area'}
             height={isComparison && 500}
             width={!isComparison ? 200 : 650}
@@ -93,10 +98,11 @@ export default class ChartFactory {
         );
       }
       case 'pie':
-        return <PieChart data={data} />;
+        return <PieChart key={key} data={data} />;
       case 'grouped_column':
         return (
           <BarChart
+            key={key}
             height={200}
             data={[...new Set(data.map(d => d.groupBy))].map(group => ({
               label: group,
@@ -117,6 +123,7 @@ export default class ChartFactory {
             : aggregateData(aggregate, comparisonData);
           return (
             <BarChart
+              key={key}
               barWidth={100}
               height={200}
               data={pData.map(d => ({
@@ -139,6 +146,7 @@ export default class ChartFactory {
         }
         return (
           <BarChart
+            key={key}
             barWidth={100}
             height={200}
             data={!aggregate ? data : aggregateData(aggregate, data)}

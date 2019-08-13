@@ -48,8 +48,6 @@ function Profile({
     .reduce((a, b) => a.concat(b));
   const visuals = charts.map(x => x.visuals).reduce((a, b) => a.concat(b));
 
-  const sections = ['All', ...sectionedCharts.map(x => x.sectionTitle)];
-
   useEffect(() => {
     const {
       parentProfile: { geoLevel: parentLevel, geoCode: parentCode }
@@ -218,10 +216,29 @@ query charts($geoCode: String!, $geoLevel: String!) {
 
       <ProfileTabs
         switchToTab={setActiveTab}
-        tabs={sections.map(section => ({
-          name: section,
-          href: section
-        }))}
+        tabs={[
+          {
+            name: 'All',
+            href: 'All'
+          },
+          ...sectionedCharts
+            .filter(
+              section =>
+                section.charts.filter(
+                  chart =>
+                    !chart.visuals.find(
+                      visual =>
+                        !chartData.profileVisualsData ||
+                        chartData.profileVisualsData[visual.id].nodes.length ===
+                          0
+                    )
+                ).length !== 0
+            )
+            .map(section => ({
+              name: section.sectionTitle,
+              href: section.sectionTitle
+            }))
+        ]}
       />
       <ChartsContainer>
         {(activeTab === 'All'
