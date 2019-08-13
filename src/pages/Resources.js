@@ -82,7 +82,8 @@ function Resources() {
         <Grid container justify="space-between">
           {packages.map(p => (
             <DataCard
-              link={`https://openafrica.net/dataset/${p.name}`}
+              orgLink={`https://openafrica.net/organization/${p.organization.name}`}
+              dataLink={`https://openafrica.net/dataset/${p.name}`}
               title={p.title}
               description={p.notes}
             />

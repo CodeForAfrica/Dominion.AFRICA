@@ -41,12 +41,12 @@ const styles = theme => ({
   }
 });
 
-function Data({ classes, link, title, description, preview }) {
+function Data({ classes, orgLink, dataLink, title, description, preview }) {
   return (
     <Card className={classes.root}>
-      <CardActionArea target="_blank" href={link}>
-        <CardContent>
-          <Typography component={A}>{link}</Typography>
+      <CardContent>
+        <A href={orgLink}>{orgLink}</A>
+        <CardActionArea target="_blank" href={dataLink}>
           <Typography className={classes.xsTitle} variant="h4">
             {title}
           </Typography>
@@ -65,8 +65,8 @@ function Data({ classes, link, title, description, preview }) {
               </Typography>
             </Grid>
           </Grid>
-        </CardContent>
-      </CardActionArea>
+        </CardActionArea>
+      </CardContent>
     </Card>
   );
 }
@@ -75,7 +75,8 @@ Data.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  link: PropTypes.string.isRequired,
+  orgLink: PropTypes.string.isRequired,
+  dataLink: PropTypes.string.isRequired,
   preview: PropTypes.element
 };
 
