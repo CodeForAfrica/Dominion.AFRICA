@@ -18,11 +18,7 @@ import config from '../../../config';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-    [theme.breakpoints.up('md')]: {
-      maxWidth: '71.1875rem',
-      margin: '0 auto'
-    }
+    flexGrow: 1
   },
   titleGrid: {
     [theme.breakpoints.up('md')]: {
@@ -38,6 +34,7 @@ const styles = theme => ({
     position: 'relative !important',
     backgroundColor: 'grey',
     height: '250px !important',
+    width: '100%',
     left: 'unset !important',
     top: 'unset !important',
     [theme.breakpoints.up('md')]: {
@@ -49,11 +46,11 @@ const styles = theme => ({
   },
   h2hMap: {
     position: 'relative',
-    height: '11.875rem',
-    width: 'available',
+    height: '11.875rem !important',
+    width: '100% !important',
     right: 'unset',
     [theme.breakpoints.up('md')]: {
-      height: '16.875rem'
+      height: '16.875rem !important'
     }
   },
   caption: {

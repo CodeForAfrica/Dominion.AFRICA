@@ -17,6 +17,13 @@ const styles = theme => ({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover'
   },
+  wrapper: {
+    [theme.breakpoints.up('md')]: {
+      maxWidth: '71.1875rem',
+      margin: '0 auto',
+      padding: '1.875rem 0'
+    }
+  },
   modalNavigation: {
     padding: '1.875rem 0',
     [theme.breakpoints.up('md')]: {
@@ -54,19 +61,21 @@ class Header extends Component {
     const { openModal } = this.state;
 
     return (
-      <Grid container className={classes.root}>
-        <Navigation
-          toggleModal={this.toggleModal}
-          openModal={openModal}
-          dominion={dominion}
-        />
+      <div className={classes.root}>
+        <Grid container className={classes.wrapper}>
+          <Navigation
+            toggleModal={this.toggleModal}
+            openModal={openModal}
+            dominion={dominion}
+          />
 
-        {React.cloneElement(children, {
-          ...props,
-          dominion,
-          toggleModal: this.toggleModal
-        })}
-      </Grid>
+          {React.cloneElement(children, {
+            ...props,
+            dominion,
+            toggleModal: this.toggleModal
+          })}
+        </Grid>
+      </div>
     );
   }
 }

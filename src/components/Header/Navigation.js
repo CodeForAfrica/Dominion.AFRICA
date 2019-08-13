@@ -25,13 +25,11 @@ const styles = theme => ({
   },
   wrapper: {
     padding: '1.875rem',
-    [theme.breakpoints.up('md')]: {
-      maxWidth: '71.1875rem',
-      margin: '0 auto',
-      padding: '1.875rem 0'
-    },
     position: 'relative',
-    width: '100%'
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      padding: '1.875rem 0'
+    }
   },
   topMenuNav: {
     flexWrap: 'nowrap',

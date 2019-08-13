@@ -5,19 +5,15 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Hero, { HeroTitle, HeroTitleGrid } from './Hero';
 
-const styles = theme => ({
+const styles = {
   root: {
     flexGrow: 1,
-    height: '40vh',
-    [theme.breakpoints.up('md')]: {
-      maxWidth: '71.1875rem',
-      margin: '0 auto'
-    }
+    height: '40vh'
   },
   titlegrid: {
     alignItems: 'center'
   }
-});
+};
 
 function TitleHero({ classes, children }) {
   return (

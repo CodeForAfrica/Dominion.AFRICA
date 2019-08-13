@@ -18,18 +18,7 @@ import HomeHeroMap from './HomeHeroMap';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-    // margin: '0 9.375rem',
-    // [theme.breakpoints.down('md')]: {
-    //   margin: '0 3.125rem'
-    // },
-    // [theme.breakpoints.down('sm')]: {
-    //   margin: '0'
-    // }
-    [theme.breakpoints.up('md')]: {
-      maxWidth: '71.1875rem',
-      margin: '0 auto'
-    }
+    flexGrow: 1
   },
   heroContentGrid: {
     flexGrow: 1,
