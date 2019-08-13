@@ -3,24 +3,42 @@ import { createMuiTheme } from '@material-ui/core';
 
 const FONT_FAMILY_HEADING = '"Lora", "serif"';
 const FONT_FAMILY_TEXT = '"Montserrat", "sans-serif"';
-const KHAKI_GREEN = '#7f9442';
-const DULL_ORANGE = '#de9f3a';
+
+/**
+ * http://colorbrewer2.org/#type=diverging&scheme=RdYlGn&n=11
+ */
+// const KHAKI_GREEN = '#7f9442';
+// const DULL_ORANGE = '#de9f3a';
+const COLOR_BREWER_DIVERGING = [
+  '#a50026',
+  '#d73027',
+  '#f46d43',
+  '#fdae61',
+  '#fee08b',
+  '#ffffbf',
+  '#d9ef8b',
+  '#a6d96a',
+  '#66bd63',
+  '#1a9850',
+  '#006837'
+].reverse();
+
 const defaultTheme = createMuiTheme();
 const Theme = createTheme({
   chart: {
     pie: {
-      colorScale: [KHAKI_GREEN, DULL_ORANGE]
+      colorScale: COLOR_BREWER_DIVERGING
     },
     area: {
-      colorScale: [KHAKI_GREEN, DULL_ORANGE]
+      colorScale: COLOR_BREWER_DIVERGING
     },
     group: {
-      colorScale: [KHAKI_GREEN, DULL_ORANGE]
+      colorScale: COLOR_BREWER_DIVERGING
     },
     bar: {
       style: {
         data: {
-          fill: KHAKI_GREEN
+          fill: COLOR_BREWER_DIVERGING[0]
         }
       }
     }
