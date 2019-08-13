@@ -27,10 +27,15 @@ const styles = theme => ({
     backgroundPosition: 'center',
     backgroundSize: 'auto',
     width: '100%',
-    height: '100%',
+    height: 'auto',
+    padding: '4rem 0',
+    marginTop: '2rem',
+    marginBottom: '6rem',
     [theme.breakpoints.down('sm')]: {
       backgroundImage: `url(${smallscreenbackground})`,
-      backgroundPosition: 'right top'
+      backgroundPosition: 'right top',
+      padding: 0,
+      marginBottom: '3rem'
     }
   }
 });

@@ -49,7 +49,7 @@ function Showcase({ classes, showcaseStories, dominion: { selectedCountry } }) {
     );
   }
   return (
-    <div className={classes.showCaseContainer}>
+    <div className={classes.showCaseContainer} id="showcase">
       <Grid
         container
         direction="column"
@@ -91,7 +91,7 @@ Showcase.propTypes = {
   dominion: PropTypes.shape({
     selectedCountry: PropTypes.shape({})
   }).isRequired,
-  showcaseStories: PropTypes.arrayOf({}).isRequired
+  showcaseStories: PropTypes.arrayOf(PropTypes.shape({})).isRequired
 };
 
 export default withStyles(styles)(Showcase);

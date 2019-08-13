@@ -28,7 +28,7 @@ function DataSetsContent({ classes }) {
     <div className={classes.root}>
       <Content
         title="openAFRICA"
-        contentCount={datasetsCount}
+        contentCount={`${datasetsCount}`}
         contentType="Datasets"
         description="
             openAFRICA aims to be the largest independent repository of open

@@ -5,12 +5,15 @@ import { Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import Profile from './Profile';
 
-const styles = {
+const styles = theme => ({
   root: {
     flexGrow: 1,
-    paddingTop: '2rem'
+    marginTop: '2rem',
+    [theme.breakpoints.up('md')]: {
+      marginBottom: '5rem'
+    }
   }
-};
+});
 
 function ProfileHero({ classes, profile, ...props }) {
   return profile.length === 1 ? (

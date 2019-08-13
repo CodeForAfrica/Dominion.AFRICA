@@ -19,7 +19,7 @@ const styles = theme => ({
     width: '100%',
     display: 'none',
     [theme.breakpoints.up('md')]: {
-      display: 'inherit'
+      display: 'block'
     }
   },
   mapImage: {

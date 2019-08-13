@@ -16,7 +16,10 @@ import config from '../../config';
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    paddingTop: '2rem'
+    marginTop: '2rem',
+    [theme.breakpoints.up('md')]: {
+      marginBottom: '5rem'
+    }
   },
   titleGrid: {
     pointerEvents: 'none',
@@ -47,6 +50,7 @@ const styles = theme => ({
     height: '250px !important',
     left: 'unset !important',
     top: 'unset !important',
+    width: '100%',
     [theme.breakpoints.up('md')]: {
       width: '72% !important',
       height: '460px !important',
