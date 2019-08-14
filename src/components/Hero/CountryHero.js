@@ -3,6 +3,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { MapIt } from '@codeforafrica/hurumap-ui';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import { withRouter } from 'react-router-dom';
 
 import Hero, {
@@ -24,7 +25,6 @@ const styles = theme => ({
   titleGrid: {
     pointerEvents: 'none',
     [theme.breakpoints.up('md')]: {
-      marginTop: '-4rem',
       maxWidth: '28%'
     }
   },
@@ -36,7 +36,8 @@ const styles = theme => ({
   description: {
     fontSize: '0.6875rem',
     [theme.breakpoints.up('md')]: {
-      whiteSpace: 'nowrap'
+      whiteSpace: 'nowrap',
+      width: '100%'
     }
   },
   alink: {
@@ -60,7 +61,7 @@ const styles = theme => ({
   }
 });
 
-function CountryHero({ classes, history, toggleModal, dominion }) {
+function CountryHero({ classes, history, toggleModal, dominion, width }) {
   const { selectedCountry = { name: '' } } = dominion;
   return (
     <Hero classes={{ root: classes.root }}>
@@ -70,7 +71,7 @@ function CountryHero({ classes, history, toggleModal, dominion }) {
         </HeroTitle>
         <HeroDescription classes={{ body2: classes.description }}>
           Dominion makes data available to help add context and authority to{' '}
-          <br />
+          {isWidthUp('md', width) && <br />}
           public discourse and policy-making on vital issues of land ownership.
         </HeroDescription>
 
@@ -106,7 +107,8 @@ function CountryHero({ classes, history, toggleModal, dominion }) {
 CountryHero.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   dominion: PropTypes.shape({}).isRequired,
-  toggleModal: PropTypes.func.isRequired
+  toggleModal: PropTypes.func.isRequired,
+  width: PropTypes.string.isRequired
 };
 
-export default withRouter(withStyles(styles)(CountryHero));
+export default withRouter(withWidth()(withStyles(styles)(CountryHero)));
