@@ -5,7 +5,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faFacebookF,
   faInstagram,
-  faGithub
+  faTwitter
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -25,14 +25,14 @@ const styles = () => ({
   links: { color: '#fff' }
 });
 
-library.add(faFacebookF, faGithub, faInstagram);
+library.add(faFacebookF, faTwitter, faInstagram);
 
 function SocialMedia({ classes }) {
   return (
     <Grid container direction="row" justify="flex-start" alignItems="center">
       <Grid item>
         <a
-          href="https://www.facebook.com/hashtag/onsgrond"
+          href="https://www.facebook.com/AfricanCIR/"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -45,26 +45,13 @@ function SocialMedia({ classes }) {
       </Grid>
       <Grid item>
         <a
-          href="https://www.instagram.com/explore/tags/onsgrond/"
+          href="https://twitter.com/africancir"
           target="_blank"
           rel="noopener noreferrer"
         >
           <FontAwesomeIcon
             className={classes.fa}
-            icon={['fab', 'instagram']}
-            size="sm"
-          />
-        </a>
-      </Grid>
-      <Grid item>
-        <a
-          href="https://twitter.com/hashtag/OnsGrond"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <FontAwesomeIcon
-            className={classes.fa}
-            icon={['fab', 'github']}
+            icon={['fab', 'twitter']}
             size="sm"
           />
         </a>
