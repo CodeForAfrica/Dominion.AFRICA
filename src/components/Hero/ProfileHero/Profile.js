@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import { PropTypes } from 'prop-types';
 import { Typography } from '@material-ui/core';
@@ -84,6 +84,9 @@ const styles = theme => ({
 });
 function Profile({ classes, dominion, geoId, history, ...props }) {
   const { head2head } = dominion;
+  const onClickGeoLayer = useCallback(area => {
+    history.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
+  }, []);
   return (
     <Query
       query={gql`
@@ -240,9 +243,7 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
                   opacity: 1,
                   fillOpacity: 1
                 }}
-                onClickGeoLayer={area => {
-                  history.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
-                }}
+                onClickGeoLayer={onClickGeoLayer}
               />
             </div>
             {/* {activeRelease && (

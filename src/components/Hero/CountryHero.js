@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import { PropTypes } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -63,6 +63,9 @@ const styles = theme => ({
 
 function CountryHero({ classes, history, toggleModal, dominion, width }) {
   const { selectedCountry = { name: '' } } = dominion;
+  const onClickGeoLayer = useCallback(area => {
+    history.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
+  }, []);
   return (
     <Hero classes={{ root: classes.root }}>
       <HeroTitleGrid classes={{ titleTextGrid: classes.titleGrid }}>
@@ -95,9 +98,7 @@ function CountryHero({ classes, history, toggleModal, dominion, width }) {
           codeType={config.MAPIT.codeType}
           geoLevel="country"
           geoCode={selectedCountry.code}
-          onClickGeoLayer={area => {
-            history.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
-          }}
+          onClickGeoLayer={onClickGeoLayer}
         />
       </div>
     </Hero>
