@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ChartContainer } from '@codeforafrica/hurumap-ui';
 import gql from 'graphql-tag';
@@ -13,12 +13,17 @@ import ChartFactory from '../components/ChartFactory';
 import ChartsContainer from '../components/ChartsContainer';
 
 import sectionedCharts from '../data/charts.json';
+import { AppContext } from '../AppContext';
 
 function Profile({
   match: {
     params: { geoId, comparisonGeoId }
   }
 }) {
+  const {
+    state: { selectedCountry },
+    dispatch
+  } = useContext(AppContext);
   const head2head = Boolean(geoId && comparisonGeoId);
   const [activeTab, setActiveTab] = useState('All');
   const [chartData, setChartsData] = useState({});
@@ -192,6 +197,16 @@ query charts($geoCode: String!, $geoLevel: String!) {
         });
       }
 
+      dispatch({
+        type: 'selectedCountry',
+        selectedCountry: {
+          ...parentProfile.data.geo,
+          ...Object.values(config.countries).find(
+            c => c.code === parentProfile.data.geo.geoCode
+          )
+        }
+      });
+
       setProfiles({
         loaded: true,
         profile: profile.data.geo,
@@ -209,12 +224,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
         profile={comparisonGeoId ? [geoId, comparisonGeoId] : [geoId]}
         dominion={{
           ...config,
-          selectedCountry: {
-            ...profiles.parentProfile,
-            ...Object.values(config.countries).find(
-              c => c.code === profiles.parentProfile.geoCode
-            )
-          },
+          selectedCountry,
           head2head
         }}
       />
@@ -286,9 +296,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
             </Grid>
           ))}
       </ChartsContainer>
-      <CountryPartners
-        dominion={{ ...config, selectedCountry: profiles.parentProfile }}
-      />
+      <CountryPartners dominion={{ ...config, selectedCountry }} />
     </Page>
   );
 }

@@ -171,9 +171,6 @@ class Navigation extends Component {
               ? toggleModal('contact')
               : toggleModal('menu')
           }
-          style={{
-            padding: 0
-          }}
         >
           <img
             alt="Menu"

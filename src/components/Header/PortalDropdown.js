@@ -6,11 +6,12 @@ import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
 
 import { Grid, MenuList, MenuItem, Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import { AppContext } from '../../AppContext';
 
 const styles = theme => ({
   root: {
     width: '100%',
-    paddingTop: '52px',
+    paddingTop: '3.25rem',
     [theme.breakpoints.up('md')]: {
       width: theme.spacing(20),
       marginRight: theme.spacing(10),
@@ -20,7 +21,6 @@ const styles = theme => ({
   button: {
     border: 0,
     textTransform: 'none',
-    height: '50px',
     padding: 0,
     minWidth: 'auto',
     [theme.breakpoints.down('sm')]: {
@@ -41,13 +41,13 @@ const styles = theme => ({
     }
   },
   KeyboardArrowDown: {
-    paddingLeft: '10px',
+    paddingLeft: '0.625rem',
     cursor: 'pointer'
   },
   menuList: {
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
-      paddingTop: '10px'
+      paddingTop: '0.625rem'
     }
   },
   menuListItem: {
@@ -62,6 +62,12 @@ const styles = theme => ({
     fontFamily: theme.typography.fontHeading,
     fontSize: theme.spacing(3.7),
     '&:hover': {
+      color: '#e7e452',
+      textDecoration: 'none'
+    }
+  },
+  selected: {
+    '&>*': {
       color: '#e7e452',
       textDecoration: 'none'
     }
@@ -110,6 +116,9 @@ class Dropdown extends React.Component {
   render() {
     const { classes, countries } = this.props;
     const { isDropdownOpen } = this.state;
+    const {
+      state: { selectedCountry }
+    } = this.context;
 
     return (
       <Grid container className={classes.root}>
@@ -120,7 +129,13 @@ class Dropdown extends React.Component {
         {isDropdownOpen ? (
           <MenuList className={classes.menuList}>
             {Object.keys(countries).map(country => (
-              <MenuItem key={country} item className={classes.menuListItem}>
+              <MenuItem
+                key={country}
+                item
+                className={classes.menuListItem}
+                classes={{ selected: classes.selected }}
+                selected={selectedCountry.slug === country}
+              >
                 <a href={`/${country}`} className={classes.link}>
                   {countries[country].name}
                 </a>
@@ -132,6 +147,8 @@ class Dropdown extends React.Component {
     );
   }
 }
+
+Dropdown.contextType = AppContext;
 
 Dropdown.propTypes = {
   classes: PropTypes.isRequired,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import NumberFormat from 'react-number-format';
 
@@ -13,6 +13,7 @@ import { withStyles } from '@material-ui/core/styles';
 import geolocate from '../../assets/images/icons/shape.svg';
 import cross from '../../assets/images/icons/close.svg';
 import GetLocation from './GetLocation';
+import { AppContext } from '../../AppContext';
 
 const styles = theme => ({
   grid: {
@@ -116,12 +117,22 @@ const styles = theme => ({
       color: '#e7e452'
     }
   },
+  selected: {
+    '& > *': {
+      visibility: 'visible',
+      color: '#e7e452'
+    }
+  },
   locationHr: {
     marginTop: '1rem'
   }
 });
 
 function PortalChooser({ classes, children, countries, handleClose }) {
+  const {
+    state: { selectedCountry }
+  } = useContext(AppContext);
+
   return (
     <Grid
       container
@@ -177,7 +188,15 @@ function PortalChooser({ classes, children, countries, handleClose }) {
       >
         <MenuList className={classes.countryList}>
           {Object.keys(countries).map((country, index) => (
-            <MenuItem key={country} button className={classes.listItem}>
+            <MenuItem
+              key={country}
+              button
+              className={classes.listItem}
+              classes={{
+                selected: classes.selected
+              }}
+              selected={selectedCountry.slug === country}
+            >
               <span className={classes.listIndex}>
                 <NumberFormat value={index + 1} displayType="text" prefix="0" />
               </span>
