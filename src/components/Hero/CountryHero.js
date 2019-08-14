@@ -24,7 +24,6 @@ const styles = theme => ({
   titleGrid: {
     pointerEvents: 'none',
     [theme.breakpoints.up('md')]: {
-      marginTop: '-4rem',
       maxWidth: '28%'
     }
   },
