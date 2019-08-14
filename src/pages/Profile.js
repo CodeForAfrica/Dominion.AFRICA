@@ -209,7 +209,12 @@ query charts($geoCode: String!, $geoLevel: String!) {
         profile={comparisonGeoId ? [geoId, comparisonGeoId] : [geoId]}
         dominion={{
           ...config,
-          selectedCountry: profiles.parentProfile,
+          selectedCountry: {
+            ...profiles.parentProfile,
+            ...Object.values(config.countries).find(
+              c => c.code === profiles.parentProfile.geoCode
+            )
+          },
           head2head
         }}
       />
