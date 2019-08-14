@@ -36,7 +36,7 @@ const styles = theme => ({
     pointerEvents: 'all',
     [theme.breakpoints.down('sm')]: {
       fontSize: '3rem',
-      width: '60%'
+      width: '80%'
     }
   },
   titleFontSmall: {
