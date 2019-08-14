@@ -5,18 +5,21 @@ import { Grid, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 import A from '../A';
-import ReleaseDropdown from '../ReleaseDropdown';
+// import ReleaseDropdown from '../ReleaseDropdown';
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
     backgroundColor: 'white',
     padding: '3.125em',
-    flexWrap: 'wrap',
-    justifyContent: 'flex-start',
     [theme.breakpoints.up('md')]: {
-      flexWrap: 'nowrap',
-      justifyContent: 'center'
+      padding: '3.125em 0'
+    }
+  },
+  wrapper: {
+    margin: '0 auto',
+    [theme.breakpoints.up('md')]: {
+      maxWidth: '71.1875rem'
     }
   },
   description: {
@@ -84,43 +87,37 @@ const styles = theme => ({
   }
 });
 
-function ProfileReleasesSection({ classes, profile }) {
+function ProfileRelease({ classes }) {
   const citationLink = link => (
     <A className={classes.link} href={link}>
       {link}
     </A>
   );
-  const { primary_releases: primaryReleases = {} } = profile;
-  const { active: activeRelease } = primaryReleases;
 
   return (
-    <Grid container className={classes.root}>
-      {activeRelease && (
+    <div className={classes.root}>
+      <Grid container className={classes.wrapper}>
         <Grid item className={classes.description}>
           <Typography className={classes.descriptionTitle}>
-            {activeRelease.citation}
+            Citations
           </Typography>
           <Typography className={classes.descriptionText}>
-            Municipal Elections 2016: Electoral Commission of South Africa
-            (IEC), Municipal election results{' '}
+            Workers&apos; Hostel Data, General Househod Survey Hostel 2018{' '}
             {citationLink(
-              'https://wazimap.co.za/profiles/province-EC-eastern-cape'
+              'http://www.statssa.gov.za/publications/P0318/P03182018.pdf'
             )}
             <br />
-            National Elections 2014: Electoral Commission of South Africa (IEC),
-            National and provincial election results{' '}
+            Agricultural Land Sales in South Africa by landbou.com{' '}
+            {citationLink('http://land.agrids.co.za/')}
+            <br />
+            Land Audit Report from Department of Rural Development & Land Reform
+            in South Africa{' '}
             {citationLink(
-              'https://wazimap.co.za/profiles/province-EC-eastern-cape'
+              'http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126'
             )}
             <br />
-            Provincial Elections 2014: Electoral Commission of South Africa
-            (IEC), National and provincial election results{' '}
-            {citationLink(
-              'https://wazimap.co.za/profiles/province-EC-eastern-cape'
-            )}
-            <br />
-            Municipal Elections 2011: Electoral Commission of South Africa
-            (IEC), Municipal election results{' '}
+            Census 2009: Electoral Commission of South Africa (IEC), Municipal
+            election results{' '}
             {citationLink(
               'https://wazimap.co.za/profiles/province-EC-eastern-cape'
             )}
@@ -137,24 +134,19 @@ function ProfileReleasesSection({ classes, profile }) {
             {citationLink(
               'https://wazimap.co.za/profiles/province-EC-eastern-cape'
             )}
-            <br />
-            Police Crime Statistics 2014: South African Police Service{' '}
-            {citationLink(
-              'https://wazimap.co.za/profiles/province-EC-eastern-cape'
-            )}
           </Typography>
         </Grid>
-      )}
-      <Grid item className={classes.releaseSelector}>
-        <ReleaseDropdown primaryReleases={primaryReleases} />
+        {/* <Grid item className={classes.releaseSelector}>
+          <ReleaseDropdown primaryReleases={primaryReleases} />
+        </Grid> */}
       </Grid>
-    </Grid>
+    </div>
   );
 }
 
-ProfileReleasesSection.propTypes = {
+ProfileRelease.propTypes = {
   classes: PropTypes.shape().isRequired,
   profile: PropTypes.shape({}).isRequired
 };
 
-export default withStyles(styles)(ProfileReleasesSection);
+export default withStyles(styles)(ProfileRelease);
