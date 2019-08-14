@@ -234,6 +234,13 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
                 codeType={config.MAPIT.codeType}
                 geoLevel={geoLevel}
                 geoCode={geoCode}
+                geoLayerFocusStyle={{
+                  fillColor: 'rgb(127, 148, 66)',
+                  color: 'rgb(141, 141, 140)',
+                  weight: 2,
+                  opacity: 1,
+                  fillOpacity: 1
+                }}
                 onClickGeoLayer={area => {
                   history.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
                 }}
