@@ -36,7 +36,8 @@ const styles = theme => ({
   description: {
     fontSize: '0.6875rem',
     [theme.breakpoints.up('md')]: {
-      whiteSpace: 'nowrap'
+      whiteSpace: 'nowrap',
+      width: '100%'
     }
   },
   alink: {
@@ -69,7 +70,7 @@ function CountryHero({ classes, history, toggleModal, dominion }) {
           {selectedCountry.name}
         </HeroTitle>
         <HeroDescription classes={{ body2: classes.description }}>
-          Dominion makes data available to help add context and authority to{' '}
+          Dominion makes data available to help add context and authority to
           <br />
           public discourse and policy-making on vital issues of land ownership.
         </HeroDescription>
