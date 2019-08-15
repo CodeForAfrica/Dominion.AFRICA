@@ -14,6 +14,7 @@ import ChartsContainer from '../components/ChartsContainer';
 
 import sectionedCharts from '../data/charts.json';
 import { AppContext } from '../AppContext';
+import ProfileRelease from '../components/ProfileReleases';
 
 function Profile({
   match: {
@@ -296,6 +297,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
             </Grid>
           ))}
       </ChartsContainer>
+      <ProfileRelease />
       <CountryPartners dominion={{ ...config, selectedCountry }} />
     </Page>
   );
