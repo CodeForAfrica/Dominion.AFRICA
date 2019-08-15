@@ -21,7 +21,8 @@ const styles = theme => ({
     padding: '1rem',
     [theme.breakpoints.up('md')]: {
       maxWidth: '71.1875rem',
-      margin: '0 auto'
+      margin: '0 auto',
+      padding: '1rem 0'
     }
   },
   img: {

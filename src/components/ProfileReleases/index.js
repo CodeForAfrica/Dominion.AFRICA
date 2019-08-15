@@ -47,7 +47,7 @@ const styles = theme => ({
   },
   descriptionText: {
     fontFamily: 'Montserrat',
-    fontSize: '9px',
+    fontSize: '11px',
     fontStyle: 'normal',
     fontWeight: 500,
     fontStretch: 'normal',
