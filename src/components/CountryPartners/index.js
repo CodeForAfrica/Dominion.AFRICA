@@ -91,7 +91,8 @@ function CountryPartners({ classes, dominion: { selectedCountry } }) {
               <img src={twaweza} alt="Twaweza" className={classes.img} />
             </A>
           </Grid>
-          {selectedCountry.slug === 'kenya' && (
+          {((selectedCountry && selectedCountry.slug === 'kenya') ||
+            selectedCountry === null) && (
             <Grid item className={classes.imageGrid}>
               <A href="http://africauncensored.net/about/">
                 <img
@@ -108,11 +109,17 @@ function CountryPartners({ classes, dominion: { selectedCountry } }) {
   );
 }
 
+CountryPartners.defaultProps = {
+  dominion: {
+    selectedCountry: null
+  }
+};
+
 CountryPartners.propTypes = {
   classes: PropTypes.shape().isRequired,
   dominion: PropTypes.shape({
     selectedCountry: PropTypes.shape({}).isRequired
-  }).isRequired
+  })
 };
 
 export default withStyles(styles)(CountryPartners);
