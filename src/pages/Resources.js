@@ -8,6 +8,8 @@ import DocumentCard from '../components/Card/Document';
 import DataCard from '../components/Card/Data';
 import ArrowButton from '../components/ArrowButton';
 import { AboutDominion } from '../components/About';
+import CountryPartners from '../components/CountryPartners';
+
 import {
   getSourceAfricaDominionData,
   getOpenAfricaDominionGroupData
@@ -96,6 +98,7 @@ function Resources() {
         </ArrowButton>
       </Section>
       <AboutDominion dominion={config} />
+      <CountryPartners />
     </Page>
   );
 }

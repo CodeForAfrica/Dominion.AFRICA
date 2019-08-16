@@ -5,6 +5,7 @@ import Page from '../components/Page';
 import config from '../config';
 import Section from '../components/Section';
 import Data from '../components/Data';
+import CountryPartners from '../components/CountryPartners';
 
 function About() {
   return (
@@ -66,6 +67,7 @@ function About() {
         </Typography>
       </Section>
       <Data />
+      <CountryPartners />
     </Page>
   );
 }
