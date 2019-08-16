@@ -8,7 +8,6 @@ import { withStyles } from '@material-ui/core/styles';
 import PartnerContent from './PartnerContent';
 
 import cfa from '../../assets/images/logos/codeforafrica.png';
-import twaweza from '../../assets/images/logos/twaweza.png';
 import aul from '../../assets/images/logos/aul.png';
 import A from '../A';
 
@@ -84,11 +83,6 @@ function CountryPartners({ classes, dominion: { selectedCountry } }) {
           <Grid item className={classes.imageGrid}>
             <A href="https://codeforafrica.org/">
               <img src={cfa} alt="Code for Africa" className={cfaClassName} />
-            </A>
-          </Grid>
-          <Grid item className={classes.imageGrid}>
-            <A href="https://www.twaweza.org/">
-              <img src={twaweza} alt="Twaweza" className={classes.img} />
             </A>
           </Grid>
           {((selectedCountry && selectedCountry.slug === 'kenya') ||
