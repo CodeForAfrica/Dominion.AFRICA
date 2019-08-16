@@ -113,7 +113,6 @@ class Navigation extends Component {
         ].map(menu => (
           <MenuItem key={menu.link} className={classes.menuListItem}>
             <Link
-              variant="body1"
               className={classes.link}
               href={menu.link}
               onClick={menu.onClick}

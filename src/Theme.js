@@ -51,7 +51,7 @@ const Theme = createTheme({
   typography: {
     fontFamily: FONT_FAMILY_TEXT,
     fontHeading: FONT_FAMILY_HEADING,
-    fontSize: 12,
+    htmlFontSize: 18.28575,
     h1: {
       color: '#293229',
       fontFamily: FONT_FAMILY_HEADING,
@@ -104,8 +104,7 @@ const Theme = createTheme({
     },
     body2: {
       color: 'rgb(34, 40, 34)',
-      fontFamily: FONT_FAMILY_TEXT,
-      fontSize: '1rem'
+      fontFamily: FONT_FAMILY_TEXT
     },
     subtitle1: {
       fontFamily: FONT_FAMILY_TEXT,
