@@ -250,8 +250,8 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
                 geoLayerFocusStyle={{
                   fillColor: 'rgb(127, 148, 66)',
                   color: 'rgb(141, 141, 140)',
-                  opacity: 1,
-                  fillOpacity: 1
+                  opacity: 0.3,
+                  fillOpacity: 0.3
                 }}
                 onClickGeoLayer={onClickGeoLayer}
               />
