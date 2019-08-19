@@ -13,17 +13,17 @@ const styles = theme => ({
     flexGrow: 1
   },
   title: {
-    padding: '1rem 0',
+    padding: '1.143rem 0',
     textTransform: 'none'
   },
   steps: {
-    paddingTop: '0.5625rem' // 9px / 16
+    paddingTop: '0.6423rem' // 9px / 14
   },
   viewVideos: {
-    marginTop: '1.875rem',
-    marginBottom: '3.875rem', // 62px / 16
+    marginTop: '2.143rem',
+    marginBottom: '4.4286rem', // 62px / 14
     [theme.breakpoints.up('md')]: {
-      marginTop: '5.875rem'
+      marginTop: '6.7143rem'
     }
   }
 });
