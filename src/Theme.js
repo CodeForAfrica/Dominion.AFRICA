@@ -109,10 +109,8 @@ const Theme = createTheme({
     },
     subtitle1: {
       fontFamily: FONT_FAMILY_TEXT,
-      fontSize: '0.75rem',
-      fontWeight: 800,
-      lineHeight: 1.92,
-      color: '#222822'
+      fontSize: '0.786rem',
+      lineHeight: 1.92
     },
     subtitle2: {
       fontFamily: FONT_FAMILY_TEXT,

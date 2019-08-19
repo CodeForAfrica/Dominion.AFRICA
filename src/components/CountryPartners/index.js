@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -10,6 +10,10 @@ import PartnerContent from './PartnerContent';
 import cfa from '../../assets/images/logos/codeforafrica.png';
 import aul from '../../assets/images/logos/aul.png';
 import A from '../A';
+import rapport from '../../assets/images/logos/rapport.png';
+import ourland from '../../assets/images/logos/ourland.png';
+import landbou from '../../assets/images/logos/landbou.png';
+import citypress from '../../assets/images/logos/citypress.png';
 
 const styles = theme => ({
   root: {
@@ -25,27 +29,27 @@ const styles = theme => ({
     }
   },
   img: {
-    maxHeight: '6rem',
+    maxHeight: '6.88rem',
     maxWidth: '30vw',
     [theme.breakpoints.up('md')]: {
       width: 'auto',
-      maxWidth: '10rem'
+      maxWidth: '11.423rem'
     }
   },
   logoGrid: {
-    padding: '2rem',
+    padding: '2.286rem',
     [theme.breakpoints.up('md')]: {
       padding: 0
     }
   },
   imgCfa: {
-    maxHeight: '6rem',
-    padding: '1rem'
+    maxHeight: '6.88rem',
+    padding: '1.143rem'
   },
   imageGrid: {
-    padding: '1rem',
+    padding: '1.143rem',
     [theme.breakpoints.up('md')]: {
-      padding: '2rem 1rem'
+      padding: '2.286rem 1.143rem'
     }
   }
 });
@@ -61,7 +65,7 @@ function CountryPartners({ classes, dominion: { selectedCountry } }) {
         alignItems="center"
         className={classes.layout}
       >
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={3}>
           <PartnerContent
             title="Partners"
             description="Dominion is made possible through support from the following partners:"
@@ -71,7 +75,7 @@ function CountryPartners({ classes, dominion: { selectedCountry } }) {
         <Grid
           item
           xs={12}
-          sm={8}
+          sm={9}
           spacing={24}
           container
           direction="row"
@@ -96,6 +100,47 @@ function CountryPartners({ classes, dominion: { selectedCountry } }) {
                 />
               </A>
             </Grid>
+          )}
+          {((selectedCountry && selectedCountry.slug === 'south-africa') ||
+            selectedCountry === null) && (
+            <Fragment>
+              <Grid item className={classes.imageGrid}>
+                <A href="http://africauncensored.net/about/">
+                  <img
+                    src={citypress}
+                    alt="Africa Uncensored"
+                    className={classes.img}
+                  />
+                </A>
+              </Grid>
+              <Grid item className={classes.imageGrid}>
+                <A href="http://africauncensored.net/about/">
+                  <img
+                    src={ourland}
+                    alt="Africa Uncensored"
+                    className={classes.img}
+                  />
+                </A>
+              </Grid>
+              <Grid item className={classes.imageGrid}>
+                <A href="http://africauncensored.net/about/">
+                  <img
+                    src={rapport}
+                    alt="Africa Uncensored"
+                    className={classes.img}
+                  />
+                </A>
+              </Grid>
+              <Grid item className={classes.imageGrid}>
+                <A href="http://africauncensored.net/about/">
+                  <img
+                    src={landbou}
+                    alt="Africa Uncensored"
+                    className={classes.img}
+                  />
+                </A>
+              </Grid>
+            </Fragment>
           )}
         </Grid>
       </Grid>
