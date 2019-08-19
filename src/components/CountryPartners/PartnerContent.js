@@ -9,7 +9,9 @@ const styles = () => ({
     flexGrow: 1
   },
   title: {
-    paddingBottom: '1rem'
+    paddingBottom: '1rem',
+    fontSize: '1.7143rem',
+    color: '#293229'
   }
 });
 
@@ -19,7 +21,7 @@ function PartnerText({ classes, title, description }) {
       <Typography variant="h4" className={classes.title}>
         {title}
       </Typography>
-      <Typography variant="body1">{description}</Typography>
+      <Typography variant="body2">{description}</Typography>
     </div>
   );
 }

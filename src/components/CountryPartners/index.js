@@ -11,7 +11,7 @@ import cfa from '../../assets/images/logos/codeforafrica.png';
 import aul from '../../assets/images/logos/aul.png';
 import A from '../A';
 import rapport from '../../assets/images/logos/rapport.png';
-import ourland from '../../assets/images/logos/ourland.png';
+import ourland from '../../assets/images/logos/onground.png';
 import landbou from '../../assets/images/logos/landbou.png';
 import citypress from '../../assets/images/logos/citypress.png';
 
@@ -65,9 +65,9 @@ function CountryPartners({ classes, dominion: { selectedCountry } }) {
         alignItems="center"
         className={classes.layout}
       >
-        <Grid item xs={12} sm={3}>
+        <Grid item xs={12} sm={4}>
           <PartnerContent
-            title="Partners"
+            title="Our Partners"
             description="Dominion is made possible through support from the following partners:"
           />
         </Grid>
@@ -75,8 +75,8 @@ function CountryPartners({ classes, dominion: { selectedCountry } }) {
         <Grid
           item
           xs={12}
-          sm={9}
-          spacing={24}
+          sm={8}
+          spacing={6}
           container
           direction="row"
           justify="center"
@@ -108,7 +108,7 @@ function CountryPartners({ classes, dominion: { selectedCountry } }) {
                 <A href="http://africauncensored.net/about/">
                   <img
                     src={citypress}
-                    alt="Africa Uncensored"
+                    alt="City Press"
                     className={classes.img}
                   />
                 </A>
