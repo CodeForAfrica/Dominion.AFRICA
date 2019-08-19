@@ -70,14 +70,20 @@ const styles = theme => ({
     }
   },
   img: {
-    height: '45px',
+    height: '2.572rem',
+    marginTop: '0.3rem',
     maxWidth: 'unset'
+  },
+  logoLink: {
+    position: 'relative',
+    marginRight: '5.6rem'
   },
   link: {
     color: '#fff',
     textDecoration: 'none',
     fontFamily: theme.typography.fontFamily,
     fontWeight: '600',
+    fontSize: '0.7143rem',
     '&:hover': {
       color: '#e7e452',
       textDecoration: 'none'
@@ -135,7 +141,7 @@ class Navigation extends Component {
       <Link
         component="a"
         href={selectedCountry ? `/${selectedCountry.slug}` : '/'}
-        style={{ position: 'relative', marginRight: '50px' }}
+        className={classes.logoLink}
       >
         <img
           alt="Dominion Logo"
@@ -227,6 +233,7 @@ class Navigation extends Component {
           <IconButton
             disableRipple
             aria-label="Search"
+            size="small"
             onClick={toggleModal('search')}
             style={{
               marginLeft: 60

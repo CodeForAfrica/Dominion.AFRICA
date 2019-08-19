@@ -88,7 +88,7 @@ const styles = theme => ({
     paddingTop: theme.spacing(3)
   },
   listItem: {
-    lineHeight: 1.3,
+    lineHeight: 0.8,
     fontSize: 30,
     padding: theme.spacing(),
     paddingLeft: 0,
@@ -103,7 +103,7 @@ const styles = theme => ({
       color: '#e7e452'
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: 50
+      fontSize: '3.5715rem'
     }
   },
   listItemLink: {
