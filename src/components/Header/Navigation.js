@@ -29,7 +29,7 @@ const styles = theme => ({
     width: '100%',
     [theme.breakpoints.up('md')]: {
       padding: '1.875rem 0',
-      maxWidth: '71.1875rem',
+      maxWidth: '81.3571429rem',
       margin: '0 auto'
     }
   },

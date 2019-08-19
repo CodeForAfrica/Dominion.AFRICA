@@ -31,10 +31,10 @@ const styles = theme => ({
   wrapper: {
     margin: '0 auto',
     [theme.breakpoints.up('sm')]: {
-      maxWidth: '58.265625rem' // .75 of lg
+      maxWidth: '66.59rem' // .75 of lg
     },
     [theme.breakpoints.up('md')]: {
-      maxWidth: '71.1875rem'
+      maxWidth: '81.3571429rem'
     }
   },
   description: {

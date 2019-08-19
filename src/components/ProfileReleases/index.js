@@ -19,7 +19,7 @@ const styles = theme => ({
   wrapper: {
     margin: '0 auto',
     [theme.breakpoints.up('md')]: {
-      maxWidth: '71.1875rem'
+      maxWidth: '81.3571429rem'
     }
   },
   description: {

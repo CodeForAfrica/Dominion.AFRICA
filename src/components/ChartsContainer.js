@@ -15,11 +15,11 @@ const styles = theme => ({
   },
   layout: {
     [theme.breakpoints.up('md')]: {
-      maxWidth: '62.1875rem',
+      maxWidth: '66.5rem',
       margin: '0 auto'
     },
     [theme.breakpoints.up('lg')]: {
-      maxWidth: '71.1875rem',
+      maxWidth: '81.3571429rem',
       margin: '0 auto'
     }
   }
