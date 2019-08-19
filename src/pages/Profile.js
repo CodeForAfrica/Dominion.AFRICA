@@ -1,6 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { ChartContainer } from '@codeforafrica/hurumap-ui';
+import {
+  ChartContainer,
+  EmbedPopup,
+  InfoPopup
+} from '@codeforafrica/hurumap-ui';
 import gql from 'graphql-tag';
 import { useApolloClient } from 'react-apollo-hooks';
 import { Grid } from '@material-ui/core';
@@ -33,6 +37,30 @@ function Profile({
     parentProfile: {},
     comparisonProfile: {}
   });
+
+  const [infoAnchorEl, setInfoAnchorEl] = useState(null);
+  const [shareAnchorEl, setShareAnchorEl] = useState(null);
+
+  function handleClickInfo(anchorEl) {
+    setShareAnchorEl(null);
+    setInfoAnchorEl(anchorEl);
+  }
+
+  function handleClickShare(anchorEl) {
+    setInfoAnchorEl(null);
+    setShareAnchorEl(anchorEl);
+  }
+
+  function handleCloseInfo() {
+    setInfoAnchorEl(null);
+  }
+
+  function handleCloseShare() {
+    setShareAnchorEl(null);
+  }
+
+  function handleExploreData() {}
+
   const client = useApolloClient();
 
   // Provide the visuals with unique ids for fetching
@@ -279,6 +307,8 @@ query charts($geoCode: String!, $geoLevel: String!) {
               }
             >
               <ChartContainer
+                onClickInfo={handleClickInfo}
+                onClickShare={handleClickShare}
                 overflowX={
                   chart.visuals.find(visual => visual.type === 'pie')
                     ? 'visible'
@@ -312,6 +342,35 @@ query charts($geoCode: String!, $geoLevel: String!) {
       </ChartsContainer>
       <ProfileRelease />
       <CountryPartners dominion={{ ...config, selectedCountry }} />
+
+      <EmbedPopup
+        anchorEl={shareAnchorEl}
+        onClose={handleCloseShare}
+        open={shareAnchorEl !== null}
+        title="Embed code for this chart"
+        subtitle="Copy the code below, then paste into your own CMS or HTML. Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge."
+      >
+        {`<iframe
+  id="cr-embed-region-11-literacy_and_numeracy_tests-english_test_dist"
+  className="census-reporter-embed"
+  src="https://tanzania.hurumap.org/embed/iframe.html?geoID=region-11&geoVersion=2009&chartDataID=literacy_and_numeracy_tests-english_test_dist&dataYear=2015&chartType=pie&chartHeight=200&chartQualifier=&chartRelease=Uwezo+Annual+Assessment+Report+2015&chartSourceTitle=&chartSourceLink=&chartTitle=Percentage+of+children+aged+6-16+passing+English+literacy+tests&chartSubtitle=&initialSort=-value&statType=percentage"
+  frameBorder="0"
+  width="100%"
+  height="300"
+  style="margin: 1em; max-width: 300px;"
+/>
+<script src="https://tanzania.hurumap.org/static/js/embed.chart.make.js" />`}
+      </EmbedPopup>
+      <InfoPopup
+        anchorEl={infoAnchorEl}
+        onClose={handleCloseInfo}
+        onExploreData={handleExploreData}
+        open={infoAnchorEl !== null}
+        sourceLink="https://codeforafrica.org"
+        sourceTitle="Code for Africa"
+      >
+        Explore Data
+      </InfoPopup>
     </Page>
   );
 }
