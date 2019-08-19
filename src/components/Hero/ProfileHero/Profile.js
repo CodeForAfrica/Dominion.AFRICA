@@ -16,6 +16,7 @@ import Search from '../../Search';
 import searchIcon from '../../../assets/images/icons/location.svg';
 import config from '../../../config';
 import { AppContext } from '../../../AppContext';
+import TypographyLoader from '../../TypographyLoader';
 
 const styles = theme => ({
   root: {
@@ -23,7 +24,6 @@ const styles = theme => ({
   },
   titleGrid: {
     [theme.breakpoints.up('md')]: {
-      marginTop: '-2rem',
       maxWidth: '35%'
     }
   },
@@ -129,8 +129,6 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
       }}
     >
       {({ loading, error, data }) => {
-        if (loading)
-          return <Hero classes={{ root: classes.root }} {...props} />;
         if (error) return `Error! ${error.message}`;
 
         const {
@@ -139,20 +137,18 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
           shortName,
           parentCode,
           parentLevel
-        } = data.geo;
+        } = loading ? {} : data.geo;
         // South Africa population data is in pupolation by group
-        let totalPopulation = data.populationGroup.nodes.reduce(
-          (a, b) => a + b.total,
-          0
-        );
+        let totalPopulation = loading
+          ? 0
+          : data.populationGroup.nodes.reduce((a, b) => a + b.total, 0);
         if (totalPopulation === 0) {
           // Kenya population data is in pupolation by residence
-          totalPopulation = data.populationResidence.nodes.reduce(
-            (a, b) => a + b.total,
-            0
-          );
+          totalPopulation = loading
+            ? 0
+            : data.populationResidence.nodes.reduce((a, b) => a + b.total, 0);
         }
-        let { squareKms } = data.geo;
+        let { squareKms } = loading ? {} : data.geo;
         squareKms = parseFloat(squareKms);
         if (!Number.isNaN(squareKms)) {
           if (squareKms < 1.0) {
@@ -169,11 +165,13 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
           populationDensity = (totalPopulation / squareKms).toFixed(2);
         }
 
-        const countryConfig = Object.values(config.countries).find(c =>
-          parentLevel === 'continent'
-            ? c.code === geoCode
-            : c.code === parentCode
-        );
+        const countryConfig = loading
+          ? {}
+          : Object.values(config.countries).find(c =>
+              parentLevel === 'continent'
+                ? c.code === geoCode
+                : c.code === parentCode
+            );
         return (
           <Hero classes={{ root: classes.root }} {...props}>
             <HeroTitleGrid
@@ -181,47 +179,59 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
               head2head={head2head}
               classes={{ titleTextGrid: classes.titleGrid }}
             >
-              <HeroTitle breakWord small>
+              <HeroTitle loading={loading} breakWord small>
                 {shortName}
               </HeroTitle>
               <Typography
                 variant="body2"
+                component="span"
                 className={classes.caption}
-                component="p"
               >
-                {geoLevel}{' '}
-                <Typography variant="body" className={classes.captionItem}>
-                  in{' '}
-                  <span>
-                    <a
-                      href={
-                        parentLevel !== 'continent'
-                          ? `/profile/${selectedCountry.geoLevel}-${selectedCountry.geoCode}`
-                          : '#'
-                      }
-                      className={classes.alink}
-                    >
-                      {parentLevel !== 'continent'
-                        ? selectedCountry.name
-                        : 'Africa'}
-                    </a>
-                    {', '}
-                  </span>
-                </Typography>
+                {geoId.split('-')[0]} in{' '}
+                <TypographyLoader
+                  loading
+                  variant="body"
+                  component="span"
+                  className={classes.captionItem}
+                >
+                  <a
+                    href={
+                      parentLevel !== 'continent'
+                        ? `/profile/${selectedCountry.geoLevel}-${selectedCountry.geoCode}`
+                        : '#'
+                    }
+                    className={classes.alink}
+                  >
+                    {parentLevel !== 'continent'
+                      ? selectedCountry.name
+                      : 'Africa'}
+                  </a>
+                  {', '}
+                </TypographyLoader>
               </Typography>
-              {population && (
-                <HeroDetail label="Population">{population}</HeroDetail>
-              )}
-              {squareKms && (
-                <HeroDetail small label="square kilometers">
-                  {squareKms}
-                </HeroDetail>
-              )}
-              {populationDensity && (
-                <HeroDetail small label="people per square kilometer">
-                  {populationDensity}
-                </HeroDetail>
-              )}
+              <HeroDetail
+                loading={loading}
+                label="Population"
+                hidden={!population && !loading}
+              >
+                {population}
+              </HeroDetail>
+              <HeroDetail
+                small
+                loading={loading}
+                label="Square kilometers"
+                hidden={!squareKms && !loading}
+              >
+                {squareKms}
+              </HeroDetail>
+              <HeroDetail
+                small
+                loading={loading}
+                label="People per square kilometer"
+                hidden={!populationDensity && !loading}
+              >
+                {populationDensity}
+              </HeroDetail>
               {!head2head && (
                 <Search
                   dominion={dominion}

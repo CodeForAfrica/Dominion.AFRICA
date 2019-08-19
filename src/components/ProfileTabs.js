@@ -34,6 +34,9 @@ const styles = theme => ({
   appbar: {
     boxShadow: 'none'
   },
+  loader: {
+    height: '6.25rem' // 100px / 16
+  },
   indicator: {
     height: '.25rem', // 4px / 16
     backgroundColor: '#7f9442'

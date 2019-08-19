@@ -231,6 +231,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
       />
 
       <ProfileTabs
+        loading
         switchToTab={setActiveTab}
         tabs={[
           {
