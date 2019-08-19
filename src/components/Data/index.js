@@ -17,11 +17,11 @@ const styles = theme => ({
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'top left',
     backgroundSize: '80% 70%',
-    marginBottom: '4rem',
+    marginBottom: '4.57rem',
     [theme.breakpoints.up('md')]: {
       paddingLeft: 0, // 30px / 16
       backgroundSize: '65% 100%',
-      marginBottom: '8rem'
+      marginBottom: '9.143rem'
     }
   },
   wrapper: {
@@ -34,23 +34,23 @@ const styles = theme => ({
     }
   },
   dataWrapper: {
-    paddingTop: '3.675rem',
-    height: '31.25rem', // 500px / 16
-    paddingLeft: '1.875rem',
-    paddingRight: '1.875rem',
+    paddingTop: '4.2rem',
+    height: '35.713rem', // 500px / 16
+    paddingLeft: '2.143rem',
+    paddingRight: '2.143rem',
     [theme.breakpoints.up('md')]: {
-      width: '31.25rem',
-      marginLeft: '-7.9375rem',
+      width: '35.7143rem',
+      marginLeft: '-9.07143rem',
       paddingLeft: 0,
       paddingRight: 0
     }
   },
   highlight: {
     marginLeft: 0,
-    height: '2.5rem',
+    height: '2.858rem',
     background: '#e7e452',
     [theme.breakpoints.up('md')]: {
-      width: '21.25rem' // 340px / 16
+      width: '24.286rem' // 340px / 16
     }
   },
   img: {
@@ -59,8 +59,8 @@ const styles = theme => ({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     [theme.breakpoints.up('md')]: {
-      width: '31.25rem', // .75 of lg
-      height: '25rem' // 400px / 16
+      width: '37.7143rem', // .75 of lg
+      height: '28.5714rem' // 400px / 16
     }
   },
   imageHighlight: {
@@ -75,12 +75,12 @@ const styles = theme => ({
     }
   },
   datasetData: {
-    paddingLeft: '1.875rem',
-    paddingRight: '1.875rem',
-    marginTop: '-8rem',
+    paddingLeft: '2.143rem',
+    paddingRight: '2.143rem',
+    marginTop: '-9.143rem',
     [theme.breakpoints.up('md')]: {
-      paddingTop: '7.02rem',
-      paddingLeft: '10rem',
+      paddingTop: '8.02rem',
+      paddingLeft: '11.423rem',
       paddingRight: 0,
       marginTop: 0
     }

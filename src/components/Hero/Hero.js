@@ -75,6 +75,7 @@ const styles = theme => ({
     width: '80%',
     paddingTop: '2rem',
     opacity: '0.8',
+    fontSize: '0.786rem',
     [theme.breakpoints.down('sm')]: {
       width: '100%'
     }
@@ -84,8 +85,7 @@ const styles = theme => ({
     width: '100%',
     paddingTop: theme.spacing(),
     paddingBottom: theme.spacing()
-  },
-  buttonRoot: {}
+  }
 });
 
 function HeroTitleGridComponent({ classes, children, quater, head2head }) {
@@ -200,13 +200,9 @@ HeroDetailComponent.propTypes = {
 
 const HeroDetail = withStyles(styles)(HeroDetailComponent);
 
-function HeroButtonComponent({ classes, children, onClick }) {
+function HeroButtonComponent({ children, onClick }) {
   return (
-    <ArrowButton
-      secondary
-      classes={{ root: classes.buttonRoot }}
-      onClick={onClick}
-    >
+    <ArrowButton secondary onClick={onClick}>
       {children}
     </ArrowButton>
   );
