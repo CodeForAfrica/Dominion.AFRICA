@@ -45,6 +45,19 @@ function SocialMedia({ classes }) {
       </Grid>
       <Grid item>
         <a
+          href="https://www.instagram.com/explore/tags/onsgrond/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FontAwesomeIcon
+            className={classes.fa}
+            icon={['fab', 'instagram']}
+            size="sm"
+          />
+        </a>
+      </Grid>
+      <Grid item>
+        <a
           href="https://twitter.com/africancir"
           target="_blank"
           rel="noopener noreferrer"

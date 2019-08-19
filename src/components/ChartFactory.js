@@ -12,6 +12,7 @@ export default class ChartFactory {
       id: visualId,
       type: visualType,
       label,
+      horizontal,
       reference: { label: referenceLabel } = {},
       aggregate
     },
@@ -107,6 +108,7 @@ export default class ChartFactory {
       case 'grouped_column':
         return (
           <BarChart
+            horizontal={horizontal}
             key={key}
             height={200}
             data={[...new Set(data.map(d => d.groupBy))].map(group => ({
@@ -128,6 +130,7 @@ export default class ChartFactory {
             : aggregateData(aggregate, comparisonData);
           return (
             <BarChart
+              horizontal={horizontal}
               key={key}
               barWidth={100}
               height={200}
@@ -151,6 +154,7 @@ export default class ChartFactory {
         }
         return (
           <BarChart
+            horizontal={horizontal}
             key={key}
             barWidth={100}
             height={200}

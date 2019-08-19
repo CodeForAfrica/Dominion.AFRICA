@@ -8,7 +8,6 @@ import { withStyles } from '@material-ui/core/styles';
 import PartnerContent from './PartnerContent';
 
 import cfa from '../../assets/images/logos/codeforafrica.png';
-import twaweza from '../../assets/images/logos/twaweza.png';
 import aul from '../../assets/images/logos/aul.png';
 import A from '../A';
 
@@ -86,12 +85,8 @@ function CountryPartners({ classes, dominion: { selectedCountry } }) {
               <img src={cfa} alt="Code for Africa" className={cfaClassName} />
             </A>
           </Grid>
-          <Grid item className={classes.imageGrid}>
-            <A href="https://www.twaweza.org/">
-              <img src={twaweza} alt="Twaweza" className={classes.img} />
-            </A>
-          </Grid>
-          {selectedCountry.slug === 'kenya' && (
+          {((selectedCountry && selectedCountry.slug === 'kenya') ||
+            selectedCountry === null) && (
             <Grid item className={classes.imageGrid}>
               <A href="http://africauncensored.net/about/">
                 <img
@@ -108,11 +103,17 @@ function CountryPartners({ classes, dominion: { selectedCountry } }) {
   );
 }
 
+CountryPartners.defaultProps = {
+  dominion: {
+    selectedCountry: null
+  }
+};
+
 CountryPartners.propTypes = {
   classes: PropTypes.shape().isRequired,
   dominion: PropTypes.shape({
     selectedCountry: PropTypes.shape({}).isRequired
-  }).isRequired
+  })
 };
 
 export default withStyles(styles)(CountryPartners);

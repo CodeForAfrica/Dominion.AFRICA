@@ -97,8 +97,7 @@ function ContactUs({ classes, handleClose }) {
         <Grid item xs={12} md={6}>
           <Typography className={classes.title}>Contact us</Typography>
           <Typography className={classes.overview}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna.
+            Got a comment or query? Get in touch:
           </Typography>
         </Grid>
         <Grid item xs={12} md={6}>

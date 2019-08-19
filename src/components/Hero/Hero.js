@@ -74,7 +74,7 @@ const styles = theme => ({
     textAlign: 'left',
     width: '80%',
     paddingTop: '2rem',
-    opacity: '0.5',
+    opacity: '0.8',
     [theme.breakpoints.down('sm')]: {
       width: '100%'
     }

@@ -279,7 +279,20 @@ query charts($geoCode: String!, $geoLevel: String!) {
               }
             >
               <ChartContainer
-                overflowX="auto"
+                overflowX={
+                  chart.visuals.find(visual => visual.type === 'pie')
+                    ? 'visible'
+                    : chart.visuals.find(visual => visual.horizontal)
+                    ? 'hidden'
+                    : 'auto'
+                }
+                overflowY={
+                  chart.visuals.find(visual => visual.type === 'pie')
+                    ? 'visible'
+                    : chart.visuals.find(visual => visual.horizontal)
+                    ? 'auto'
+                    : 'hidden'
+                }
                 title={chart.title}
                 subtitle={chart.subtitle}
               >
