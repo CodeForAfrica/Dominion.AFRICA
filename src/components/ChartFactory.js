@@ -35,6 +35,7 @@ export default class ChartFactory {
     if (!datas) {
       return null;
     }
+    const numberFormatter = new Intl.NumberFormat('en-IN');
     const key =
       Math.random()
         .toString(36)
@@ -125,7 +126,7 @@ export default class ChartFactory {
             height={height || 200}
             barWidth={barWidth || 50}
             horizontal={horizontal}
-            labels={datum => datum.y}
+            labels={datum => numberFormatter.format(datum.y)}
             // Disable tooltip behaviour
             labelComponent={undefined}
             data={[...new Set(data.map(d => d.groupBy))].map(group => ({
@@ -153,7 +154,7 @@ export default class ChartFactory {
               height={height || 200}
               barWidth={barWidth || 100}
               horizontal={horizontal}
-              labels={datum => datum.y}
+              labels={datum => numberFormatter.format(datum.y)}
               // Disable tooltip behaviour
               labelComponent={undefined}
               data={pData.map(d => ({
@@ -181,7 +182,7 @@ export default class ChartFactory {
             width={width}
             height={height || 200}
             barWidth={barWidth || 100}
-            labels={datum => datum.y}
+            labels={datum => numberFormatter.format(datum.y)}
             // Disable tooltip behaviour
             labelComponent={undefined}
             horizontal={horizontal}
