@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
@@ -107,13 +108,16 @@ class Dropdown extends React.Component {
 
     this.state = { isDropdownOpen: false };
     this.toggleDropdown = this.toggleDropdown.bind(this);
-    this.handleBack = this.handleBack.bind(this);
   }
 
-  componentDidUpdate() {
-    const { onClose } = this.props;
+  componentDidUpdate(prevProps) {
+    const { location } = this.props;
     window.onpopstate = () => {
-      onClose();
+      if (location !== prevProps.location) {
+        this.setState(prevState => ({
+          isDropdownOpen: !prevState.isDropdownOpen
+        }));
+      }
     };
   }
 
@@ -121,13 +125,8 @@ class Dropdown extends React.Component {
     this.setState(prevState => ({ isDropdownOpen: !prevState.isDropdownOpen }));
   }
 
-  handleBack() {
-    const { history } = this.props;
-    history.goBack();
-  }
-
   render() {
-    const { classes, countries, handleBack } = this.props;
+    const { classes, countries } = this.props;
     const { isDropdownOpen } = this.state;
     const {
       state: { selectedCountry }
@@ -140,7 +139,7 @@ class Dropdown extends React.Component {
           isOpen={isDropdownOpen}
         />
         {isDropdownOpen ? (
-          <MenuList className={classes.menuList} onClose={handleBack}>
+          <MenuList className={classes.menuList}>
             {Object.keys(countries).map(country => (
               <MenuItem
                 key={country}
@@ -168,4 +167,4 @@ Dropdown.propTypes = {
   countries: PropTypes.shape({}).isRequired
 };
 
-export default withStyles(styles)(Dropdown);
+export default withRouter(withStyles(styles)(Dropdown));
