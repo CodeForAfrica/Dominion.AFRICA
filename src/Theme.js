@@ -62,7 +62,7 @@ const Theme = createTheme({
       fontFamily: FONT_FAMILY_HEADING,
       textTransform: 'capitalize',
       fontWeight: 400,
-      fontSize: '3.5715rem'
+      fontSize: '3.57143rem'
     }, // Hero section  heading
     h3: {
       color: '#293229',
@@ -81,7 +81,7 @@ const Theme = createTheme({
       color: '#2b3129',
       fontFamily: FONT_FAMILY_HEADING,
       textTransform: 'capitalize',
-      fontSize: '1.25rem'
+      fontSize: '1.7143rem'
     },
     h5: {
       fontFamily: FONT_FAMILY_HEADING,
