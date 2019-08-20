@@ -38,7 +38,7 @@ function Community({ classes }) {
     <Grid container className={classes.root} justify="flex-start">
       <Grid item xs={12}>
         <Typography
-          variant="body2"
+          variant="subtitle1"
           className={classes.listText}
           component="div"
         >

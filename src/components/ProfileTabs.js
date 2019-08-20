@@ -25,11 +25,11 @@ const styles = theme => ({
     width: '100%',
     [theme.breakpoints.up('md')]: {
       margin: '0 auto',
-      maxWidth: '62.1875rem'
+      maxWidth: '66.5875rem'
     },
     [theme.breakpoints.up('lg')]: {
       margin: '0 auto',
-      maxWidth: '71.1875rem'
+      maxWidth: '81.3571429rem'
     }
   },
   appbar: {
@@ -45,8 +45,8 @@ const styles = theme => ({
   },
   tab: {
     height: '6.25rem', // 100px / 16
-    fontFamily: theme.typography.subtitle1.fontFamily,
-    fontSize: theme.typography.subtitle1.fontSize,
+    fontFamily: theme.typography.subtitle2.fontFamily,
+    fontSize: theme.typography.subtitle2.fontSize,
     textTransform: 'none',
     [theme.breakpoints.up('md')]: {
       minWidth: 0

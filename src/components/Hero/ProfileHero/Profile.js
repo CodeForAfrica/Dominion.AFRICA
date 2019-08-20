@@ -54,7 +54,6 @@ const styles = theme => ({
   caption: {
     display: 'inline-flex',
     color: '#8d8d8c',
-    fontSize: '0.75em',
     width: '100%',
     textTransform: 'capitalize',
     paddingTop: theme.spacing(),
@@ -184,7 +183,7 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
                 {shortName}
               </HeroTitle>
               <Typography
-                variant="body2"
+                variant="subtitile1"
                 component="span"
                 className={classes.caption}
               >

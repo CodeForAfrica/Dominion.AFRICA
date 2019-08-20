@@ -15,23 +15,23 @@ const styles = theme => ({
   facts: {
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: '8.8125rem' // .75 of lg
+      width: '10.07143rem' // .75 of lg
     },
     [theme.breakpoints.up('lg')]: {
-      width: '11.75rem' // 188px / 16
+      width: '13.4286rem' // 188px / 14
     }
   },
   visual: {
     width: '100%',
-    padding: '2rem 0',
+    padding: '2/856rem 0',
     [theme.breakpoints.up('md')]: {
-      width: '9rem', // .75 of lg
-      marginLeft: '2.25rem', // 36px / 16
-      marginRight: '2.3125rem', // 37px / 16
+      width: '10.286rem', // .75 of lg
+      marginLeft: '2.57143rem', // 36px / 14
+      marginRight: '2.64286rem', // 37px / 14
       padding: 0
     },
     [theme.breakpoints.up('lg')]: {
-      width: '12rem' // 192px / 16
+      width: '13.7143rem' // 192px / 14
     }
   },
   context: {
@@ -40,7 +40,7 @@ const styles = theme => ({
       width: '9.796875rem' // .75 of lg
     },
     [theme.breakpoints.up('lg')]: {
-      width: '13.0625rem' // 209px / 16
+      width: '14.9286rem' // 209px / 14
     }
   }
 });

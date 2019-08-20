@@ -17,12 +17,15 @@ const styles = theme => ({
   },
   wrapper: {
     [theme.breakpoints.up('md')]: {
-      maxWidth: '71.1875rem',
+      maxWidth: '81.3571429rem',
       margin: '0 auto'
     }
   },
   light: {
     backgroundColor: theme.palette.primary.light
+  },
+  gridMargin: {
+    marginBottom: '1.4286rem'
   }
 });
 
@@ -33,7 +36,7 @@ function Section({ id, classes, light, title, subtitle, children }) {
       className={classNames(classes.root, { [classes.light]: light })}
     >
       <Grid container className={classes.wrapper}>
-        <Grid item xs={12} md={4} style={{ marginBottom: '1.25rem' }}>
+        <Grid item xs={12} md={4} className={classes.gridMargin}>
           <Typography variant="h3">{title}</Typography>
           <Typography variant="subtitle1">{subtitle}</Typography>
         </Grid>

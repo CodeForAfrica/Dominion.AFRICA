@@ -20,16 +20,27 @@ const styles = theme => ({
     padding: '60px 0',
     margin: '0 auto',
     [theme.breakpoints.up('sm')]: {
-      maxWidth: '58.265625rem' // .75 of lg
+      maxWidth: '66.59rem' // .75 of lg
     },
     [theme.breakpoints.up('md')]: {
-      maxWidth: '71.1875rem'
+      maxWidth: '81.3571429rem'
     }
   },
   imgGrid: {
     alignItems: 'flex-start',
     [theme.breakpoints.up('lg')]: {
       alignItems: 'flex-end'
+    }
+  },
+  info: {
+    [theme.breakpoints.up('md')]: {
+      marginLeft: '-2.3rem'
+    }
+  },
+  infoTitle: {
+    marginBottom: '1.5rem',
+    [theme.breakpoints.up('md')]: {
+      marginBottom: '3rem'
     }
   }
 });
@@ -42,20 +53,22 @@ function AboutCountry({ classes, dominion }) {
   };
   return (
     <div className={classes.root}>
-      <Grid container direction="row" className={classes.layout}>
-        <Grid item md={3}>
+      <Grid container direction="row" className={classes.layout} spacing={4}>
+        <Grid item md={4}>
           <Header>
             About <br />
             {selectedCountry.name}
           </Header>
         </Grid>
         <Grid item md={4}>
-          <Info>
-            <InfoSubtitle>{info.intro}</InfoSubtitle>
+          <Info classes={{ root: classes.info }}>
+            <InfoSubtitle classes={{ subtitle: classes.infoTitle }}>
+              {info.intro}
+            </InfoSubtitle>
             <InfoBody>{info.other}</InfoBody>
           </Info>
         </Grid>
-        <Grid container item md={5} className={classes.imgGrid}>
+        <Grid container item md={4} className={classes.imgGrid}>
           <Land imgSrc={land} />
         </Grid>
       </Grid>

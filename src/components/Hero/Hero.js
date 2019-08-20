@@ -42,7 +42,7 @@ const styles = theme => ({
   },
   titleFontSmall: {
     pointerEvents: 'all',
-    fontSize: '3.125em'
+    fontSize: theme.typography.h2.fontSize
   },
   titleWordBreak: {
     pointerEvents: 'all',
@@ -52,7 +52,6 @@ const styles = theme => ({
     pointerEvents: 'all',
     color: 'white',
     fontFamily: 'Lora',
-    fontSize: '1.875em',
     fontWeight: 'normal',
     fontStyle: 'normal',
     fontStretch: 'normal',
@@ -60,12 +59,11 @@ const styles = theme => ({
     letterSpacing: '0.056em'
   },
   detailFontSmall: {
-    fontSize: '1.25em'
+    fontSize: theme.typography.h5.fontSize
   },
   detailLabel: {
     pointerEvents: 'all',
     color: '#8d8d8c',
-    fontSize: '0.688em',
     fontWeight: 500,
     lineHeight: 2.09
   },
@@ -76,6 +74,8 @@ const styles = theme => ({
     width: '80%',
     paddingTop: '2rem',
     opacity: '0.8',
+    fontSize: '0.786rem',
+    lineHeight: 2.09,
     [theme.breakpoints.down('sm')]: {
       width: '100%'
     }
@@ -85,8 +85,7 @@ const styles = theme => ({
     width: '100%',
     paddingTop: theme.spacing(),
     paddingBottom: theme.spacing()
-  },
-  buttonRoot: {}
+  }
 });
 
 function HeroTitleGridComponent({ classes, children, quater, head2head }) {
@@ -233,7 +232,7 @@ function HeroDetailComponent({
   return (
     <Grid className={classes.detailComponent}>
       <Typography
-        variant="h2"
+        variant="h4"
         className={classNames(classes.detail, {
           [classes.detailFontSmall]: small
         })}
@@ -241,7 +240,7 @@ function HeroDetailComponent({
         {children}
       </Typography>
       {label && (
-        <Typography variant="h3" className={classes.detailLabel}>
+        <Typography variant="subtitle1" className={classes.detailLabel}>
           {label}
         </Typography>
       )}
@@ -275,13 +274,9 @@ HeroDetailComponent.defaultProps = {
 
 const HeroDetail = withStyles(styles)(HeroDetailComponent);
 
-function HeroButtonComponent({ classes, children, onClick }) {
+function HeroButtonComponent({ children, onClick }) {
   return (
-    <ArrowButton
-      secondary
-      classes={{ root: classes.buttonRoot }}
-      onClick={onClick}
-    >
+    <ArrowButton secondary onClick={onClick}>
       {children}
     </ArrowButton>
   );

@@ -88,11 +88,9 @@ const styles = theme => ({
     paddingTop: theme.spacing(3)
   },
   listItem: {
-    lineHeight: 1.3,
-    fontSize: 30,
-    padding: theme.spacing(),
-    paddingLeft: 0,
-    paddingRight: 0,
+    fontSize: '1.7143rem',
+    minHeight: '2rem',
+    padding: 0,
     fontFamily: theme.typography.fontHeading,
     fontWeight: 'normal',
     letterSpacing: 1.4,
@@ -103,10 +101,12 @@ const styles = theme => ({
       color: '#e7e452'
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: 50
+      fontSize: '3.5715rem',
+      lineHeight: 1.2
     }
   },
   listItemLink: {
+    lineHeight: '1.8rem',
     color: 'white',
     textDecoration: 'none',
     visibility: 'visible',

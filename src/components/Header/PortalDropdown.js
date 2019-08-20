@@ -32,8 +32,8 @@ const styles = theme => ({
     textDecoration: 'none',
     fontFamily: theme.typography.fontFamily,
     fontWeight: '600',
-    letterSpacing: '0.1755rem',
-    fontSize: '0.85rem',
+    letterSpacing: '0.195rem',
+    fontSize: '0.7143rem',
     [theme.breakpoints.down('sm')]: {
       width: '100%',
       textAlign: 'left',
@@ -47,20 +47,21 @@ const styles = theme => ({
   menuList: {
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
-      paddingTop: '0.625rem'
+      paddingTop: '2rem',
+      paddingBottom: '3rem'
     }
   },
   menuListItem: {
-    [theme.breakpoints.down('sm')]: {
-      paddingLeft: 0,
-      paddingRight: 0
-    }
+    padding: 0,
+    minHeight: '2rem'
   },
   link: {
     color: '#fff',
     textDecoration: 'none',
     fontFamily: theme.typography.fontHeading,
-    fontSize: theme.spacing(3.7),
+    fontSize: '1.7143rem',
+    fontWeight: 400,
+    lineHeight: '1.17px',
     '&:hover': {
       color: '#e7e452',
       textDecoration: 'none'

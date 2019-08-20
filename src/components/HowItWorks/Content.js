@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = () => ({
   root: {},
   description: {
-    paddingTop: '0.5625rem', // 9px / 16,
+    paddingTop: '0.643rem', // 9px / 14,
     opacity: 0.6
   }
 });
