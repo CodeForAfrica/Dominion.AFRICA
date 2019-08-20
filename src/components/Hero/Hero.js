@@ -5,7 +5,7 @@ import { Grid, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 
-import ContentLoader from 'react-content-loader';
+import ContentLoader from '../ContentLoader';
 import ArrowButton from '../ArrowButton';
 
 const styles = theme => ({
@@ -126,16 +126,19 @@ HeroTitleGridComponent.defaultProps = {
 
 const HeroTitleGrid = withStyles(styles)(HeroTitleGridComponent);
 
-function HeroTitleComponent({ classes, loading, children, breakWord, small }) {
+function HeroTitleComponent({
+  classes,
+  loaderWidth,
+  loading,
+  children,
+  breakWord,
+  small
+}) {
   if (loading) {
     return (
-      <ContentLoader
-        primaryOpacity={0.01}
-        secondaryOpacity={0.1}
-        style={{ width: 200, height: 100 }}
-      >
-        <rect x="0" y="0" width="100%" height="45%" />
-        <rect x="0" y="50%" width="50%" height="45%" />
+      <ContentLoader style={{ width: loaderWidth, height: 100 }}>
+        <rect x="0" y="0" rx="2px" ry="2px" width="100%" height="45%" />
+        <rect x="0" y="50%" rx="2px" ry="2px" width="50%" height="45%" />
       </ContentLoader>
     );
   }
@@ -158,13 +161,15 @@ HeroTitleComponent.propTypes = {
   children: PropTypes.string.isRequired,
   breakWord: PropTypes.bool,
   small: PropTypes.bool,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+  loaderWidth: PropTypes.oneOf([PropTypes.number, PropTypes.string])
 };
 
 HeroTitleComponent.defaultProps = {
   breakWord: false,
   small: false,
-  loading: false
+  loading: false,
+  loaderWidth: '100%'
 };
 
 const HeroTitle = withStyles(styles)(HeroTitleComponent);
@@ -193,7 +198,8 @@ function HeroDetailComponent({
   loading,
   children,
   label,
-  small
+  small,
+  loader
 }) {
   if (hidden) {
     return null;
@@ -203,12 +209,24 @@ function HeroDetailComponent({
     return (
       <ContentLoader
         className={classes.detailComponent}
-        primaryOpacity={0.01}
-        secondaryOpacity={0.1}
-        style={{ width: 200, height: 74 }}
+        style={{ height: small ? 61 : 74 }}
       >
-        <rect x="0" y="0" width="100%" height="65%" />
-        <rect x="0" y="70%" width="80%" height="30%" />
+        <rect
+          x="0"
+          y="0"
+          rx="2px"
+          ry="2px"
+          width={loader.detailWidth}
+          height="50%"
+        />
+        <rect
+          x="0"
+          y="60%"
+          rx="2px"
+          ry="2px"
+          width={loader.detailLabelWidth}
+          height="30%"
+        />
       </ContentLoader>
     );
   }
@@ -237,12 +255,22 @@ HeroDetailComponent.propTypes = {
   label: PropTypes.string.isRequired,
   small: PropTypes.bool.isRequired,
   loading: PropTypes.bool,
-  hidden: PropTypes.bool
+  hidden: PropTypes.bool,
+  loader: PropTypes.shape({
+    detailWidth: PropTypes.oneOf([PropTypes.number, PropTypes.string])
+      .isRequired,
+    detailLabelWidth: PropTypes.oneOf([PropTypes.number, PropTypes.string])
+      .isRequired
+  })
 };
 
 HeroDetailComponent.defaultProps = {
   loading: false,
-  hidden: false
+  hidden: false,
+  loader: {
+    detailWdith: 100,
+    detailLabelWidth: 50
+  }
 };
 
 const HeroDetail = withStyles(styles)(HeroDetailComponent);

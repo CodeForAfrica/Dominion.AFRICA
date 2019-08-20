@@ -52,6 +52,7 @@ const styles = theme => ({
     }
   },
   caption: {
+    display: 'inline-flex',
     color: '#8d8d8c',
     fontSize: '0.75em',
     width: '100%',
@@ -179,7 +180,7 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
               head2head={head2head}
               classes={{ titleTextGrid: classes.titleGrid }}
             >
-              <HeroTitle loading={loading} breakWord small>
+              <HeroTitle small breakWord loading={loading} loaderWidth={150}>
                 {shortName}
               </HeroTitle>
               <Typography
@@ -189,7 +190,11 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
               >
                 {geoId.split('-')[0]} in{' '}
                 <TypographyLoader
-                  loading
+                  loading={loading}
+                  loader={{
+                    width: 65,
+                    height: 17
+                  }}
                   variant="body"
                   component="span"
                   className={classes.captionItem}
@@ -211,6 +216,10 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
               </Typography>
               <HeroDetail
                 loading={loading}
+                loader={{
+                  detailWidth: 117,
+                  detailLabelWidth: 48
+                }}
                 label="Population"
                 hidden={!population && !loading}
               >
@@ -219,6 +228,10 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
               <HeroDetail
                 small
                 loading={loading}
+                loader={{
+                  detailWidth: 84,
+                  detailLabelWidth: 80
+                }}
                 label="Square kilometers"
                 hidden={!squareKms && !loading}
               >
@@ -227,6 +240,10 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
               <HeroDetail
                 small
                 loading={loading}
+                loader={{
+                  detailWidth: 51,
+                  detailLabelWidth: '123px'
+                }}
                 label="People per square kilometer"
                 hidden={!populationDensity && !loading}
               >
