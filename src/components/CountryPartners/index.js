@@ -24,8 +24,7 @@ const styles = theme => ({
     padding: '1rem',
     [theme.breakpoints.up('md')]: {
       maxWidth: '81.3571429rem',
-      margin: '0 auto',
-      padding: '3rem 0'
+      margin: '0 auto'
     }
   },
   img: {
@@ -39,7 +38,7 @@ const styles = theme => ({
   logoGrid: {
     padding: '2.286rem',
     [theme.breakpoints.up('md')]: {
-      padding: 0
+      padding: '2.286rem 1.143rem'
     }
   },
   imgCfa: {
@@ -79,8 +78,8 @@ function CountryPartners({ classes, dominion: { selectedCountry } }) {
           spacing={6}
           container
           direction="row"
-          justify="center"
-          alignItems="center"
+          justify="flex-start"
+          alignItems="left"
           className={classes.logoGrid}
         >
           {' '}
