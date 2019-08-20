@@ -107,6 +107,14 @@ class Dropdown extends React.Component {
 
     this.state = { isDropdownOpen: false };
     this.toggleDropdown = this.toggleDropdown.bind(this);
+    this.handleBack = this.handleBack.bind(this);
+  }
+
+  componentDidUpdate() {
+    const { onClose } = this.props;
+    window.onpopstate = () => {
+      onClose();
+    };
   }
 
   toggleDropdown() {
