@@ -1,13 +1,11 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
 import { Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 import PartnerContent from './PartnerContent';
 
-import cfa from '../../assets/images/logos/codeforafrica.png';
 import aul from '../../assets/images/logos/aul.png';
 import A from '../A';
 import rapport from '../../assets/images/logos/rapport.png';
@@ -41,10 +39,6 @@ const styles = theme => ({
       padding: '2.286rem 1.143rem'
     }
   },
-  imgCfa: {
-    maxHeight: '6.88rem',
-    padding: '1.143rem'
-  },
   imageGrid: {
     padding: '1.143rem',
     [theme.breakpoints.up('md')]: {
@@ -54,7 +48,6 @@ const styles = theme => ({
 });
 
 function CountryPartners({ classes, dominion: { selectedCountry } }) {
-  const cfaClassName = classNames(classes.img, classes.imgCfa);
   return (
     <Grid className={classes.root}>
       <Grid
@@ -82,12 +75,6 @@ function CountryPartners({ classes, dominion: { selectedCountry } }) {
           alignItems="left"
           className={classes.logoGrid}
         >
-          {' '}
-          <Grid item className={classes.imageGrid}>
-            <A href="https://codeforafrica.org/">
-              <img src={cfa} alt="Code for Africa" className={cfaClassName} />
-            </A>
-          </Grid>
           {((selectedCountry && selectedCountry.slug === 'kenya') ||
             selectedCountry === null) && (
             <Grid item className={classes.imageGrid}>
