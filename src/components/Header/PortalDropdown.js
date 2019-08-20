@@ -113,8 +113,13 @@ class Dropdown extends React.Component {
     this.setState(prevState => ({ isDropdownOpen: !prevState.isDropdownOpen }));
   }
 
+  handleBack() {
+    const { history } = this.props;
+    history.goBack();
+  }
+
   render() {
-    const { classes, countries } = this.props;
+    const { classes, countries, handleBack } = this.props;
     const { isDropdownOpen } = this.state;
     const {
       state: { selectedCountry }
@@ -127,7 +132,7 @@ class Dropdown extends React.Component {
           isOpen={isDropdownOpen}
         />
         {isDropdownOpen ? (
-          <MenuList className={classes.menuList}>
+          <MenuList className={classes.menuList} onClose={handleBack}>
             {Object.keys(countries).map(country => (
               <MenuItem
                 key={country}
