@@ -24,11 +24,11 @@ const styles = theme => ({
     width: '100%',
     [theme.breakpoints.up('md')]: {
       margin: '0 auto',
-      maxWidth: '62.1875rem'
+      maxWidth: '66.5875rem'
     },
     [theme.breakpoints.up('lg')]: {
       margin: '0 auto',
-      maxWidth: '71.1875rem'
+      maxWidth: '81.3571429rem'
     }
   },
   appbar: {

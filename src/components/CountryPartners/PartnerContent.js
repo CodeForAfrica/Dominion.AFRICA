@@ -10,7 +10,6 @@ const styles = () => ({
   },
   title: {
     paddingBottom: '1rem',
-    fontSize: '1.7143rem',
     color: '#293229'
   }
 });

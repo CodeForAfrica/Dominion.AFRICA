@@ -87,7 +87,7 @@ function Content({
       </Grid>
 
       <Grid item xs={12}>
-        <Typography variant="h4">{contentType}</Typography>
+        <Typography variant="h5">{contentType}</Typography>
         <div className={classes.contentText}>
           <Typography variant="body2" className={classes.title}>
             {description}
