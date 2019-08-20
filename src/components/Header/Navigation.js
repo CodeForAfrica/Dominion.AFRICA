@@ -199,7 +199,7 @@ class Navigation extends Component {
         >
           <Grid container className={classes.wrapper}>
             <Topbar />
-            <Search dominion={dominion}>
+            <Search dominion={dominion} placeholder="Search">
               <Dropdown countries={countries} />
               {this.renderMenuList()}
             </Search>
