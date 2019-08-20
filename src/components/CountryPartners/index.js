@@ -72,7 +72,7 @@ function CountryPartners({ classes, dominion: { selectedCountry } }) {
           container
           direction="row"
           justify="flex-start"
-          alignItems="left"
+          alignItems="center"
           className={classes.logoGrid}
         >
           {((selectedCountry && selectedCountry.slug === 'kenya') ||
