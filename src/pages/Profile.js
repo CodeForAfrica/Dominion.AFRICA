@@ -231,7 +231,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
       />
 
       <ProfileTabs
-        loading
+        loading={!chartData.profileVisualsData}
         switchToTab={setActiveTab}
         tabs={[
           {

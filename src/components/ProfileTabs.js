@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { AppBar, Tabs, Tab } from '@material-ui/core';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import { withStyles } from '@material-ui/core/styles';
+import ContentLoader from './ContentLoader';
 
 const styles = theme => ({
   root: {
@@ -35,6 +36,7 @@ const styles = theme => ({
     boxShadow: 'none'
   },
   loader: {
+    width: '100%',
     height: '6.25rem' // 100px / 16
   },
   indicator: {
@@ -86,7 +88,7 @@ class ProfileTabs extends React.Component {
   }
 
   render() {
-    const { classes, tabs, width } = this.props;
+    const { classes, tabs, width, loading } = this.props;
     const { value } = this.state;
 
     const centered = isWidthUp('md', width); // centered is only for md and up
@@ -95,29 +97,52 @@ class ProfileTabs extends React.Component {
     return (
       <div className={classes.root}>
         <div className={classes.content}>
-          <AppBar color="inherit" position="static" className={classes.appbar}>
-            <Tabs
-              value={value}
-              variant={variant}
-              scrollButtons="off" // Never show scroll buttons
-              classes={{ indicator: classes.indicator }}
-              onChange={this.handleChange}
+          {loading ? (
+            <ContentLoader
+              className={classes.loader}
+              primaryOpacity={0.5}
+              secondaryOpacity={1}
+              width={1200}
             >
-              {tabs.map(tab => (
-                <LinkTab
-                  key={tab.href}
-                  value={tab.href}
-                  href="#dominionProfileTabs" // Always show the tabs on click
-                  label={tab.name}
-                  className={classes.tab}
-                  classes={{
-                    selected: classes.tabSelected,
-                    labelContainer: classes.labelContainer
-                  }}
-                />
-              ))}
-            </Tabs>
-          </AppBar>
+              <rect x="0" y="45%" width="55px" height="21px" />
+              <rect x="84px" y="45%" width="55px" height="21px" />
+              <rect x="168px" y="45%" width="55px" height="21px" />
+              <rect x="252px" y="45%" width="95px" height="21px" />
+              <rect x="371px" y="45%" width="95px" height="21px" />
+              <rect x="490px" y="45%" width="110px" height="21px" />
+              <rect x="624px" y="45%" width="95px" height="21px" />
+              <rect x="753px" y="45%" width="221px" height="21px" />
+              <rect x="998px" y="45%" width="55px" height="21px" />
+            </ContentLoader>
+          ) : (
+            <AppBar
+              color="inherit"
+              position="static"
+              className={classes.appbar}
+            >
+              <Tabs
+                value={value}
+                variant={variant}
+                scrollButtons="off" // Never show scroll buttons
+                classes={{ indicator: classes.indicator }}
+                onChange={this.handleChange}
+              >
+                {tabs.map(tab => (
+                  <LinkTab
+                    key={tab.href}
+                    value={tab.href}
+                    href="#dominionProfileTabs" // Always show the tabs on click
+                    label={tab.name}
+                    className={classes.tab}
+                    classes={{
+                      selected: classes.tabSelected,
+                      labelContainer: classes.labelContainer
+                    }}
+                  />
+                ))}
+              </Tabs>
+            </AppBar>
+          )}
         </div>
       </div>
     );
@@ -133,7 +158,12 @@ ProfileTabs.propTypes = {
       href: PropTypes.string.isRequired
     })
   ).isRequired,
-  width: PropTypes.string.isRequired
+  width: PropTypes.string.isRequired,
+  loading: PropTypes.bool
+};
+
+ProfileTabs.defaultProps = {
+  loading: false
 };
 
 export default withWidth()(withStyles(styles)(ProfileTabs));
