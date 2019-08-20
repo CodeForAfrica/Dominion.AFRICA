@@ -41,7 +41,11 @@ function Community({ classes }) {
   const joinClassName = classNames(classes.listText, classes.joinText);
   return (
     <div classes={classes.root}>
-      <Typography variant="body2" className={classes.listText} component="div">
+      <Typography
+        variant="subtitle1"
+        className={classes.listText}
+        component="div"
+      >
         Other openAFRICA Projects
         <ul className={classes.list}>
           <li>
@@ -59,7 +63,7 @@ function Community({ classes }) {
           </li>
         </ul>
       </Typography>
-      <Typography variant="body2" className={joinClassName} component="div">
+      <Typography variant="subtitle1" className={joinClassName} component="div">
         Join Our Community
         <ul className={classes.list}>
           <li>

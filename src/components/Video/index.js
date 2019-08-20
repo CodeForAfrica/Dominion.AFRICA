@@ -20,15 +20,16 @@ const styles = theme => ({
   layout: {
     margin: '0 auto',
     [theme.breakpoints.up('sm')]: {
-      maxWidth: '58.265625rem' // .75 of lg
+      maxWidth: '66.59rem' // .75 of lg
     },
     [theme.breakpoints.up('md')]: {
-      maxWidth: '71.1875rem'
+      maxWidth: '81.3571429rem'
     }
   },
   caption: {
     color: '#fff',
-    textAlign: 'center'
+    textAlign: 'center',
+    fontSize: '0.786rem'
   },
   subheading: { color: '#fff' },
   buttonGrid: { paddingTop: '1rem', textAlign: 'center' },
@@ -90,7 +91,7 @@ class Video extends React.Component {
             Using Dominion
           </Typography>
           <Grid item xs={8} sm={4} style={{ paddingTop: '1rem' }}>
-            <Typography variant="caption" className={classes.caption}>
+            <Typography variant="subtitle1" className={classes.caption}>
               Watch how you can get the most out of Dominion.
             </Typography>
 

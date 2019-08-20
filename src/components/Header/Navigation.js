@@ -29,7 +29,7 @@ const styles = theme => ({
     width: '100%',
     [theme.breakpoints.up('md')]: {
       padding: '1.875rem 0',
-      maxWidth: '71.1875rem',
+      maxWidth: '81.3571429rem',
       margin: '0 auto'
     }
   },
@@ -70,14 +70,20 @@ const styles = theme => ({
     }
   },
   img: {
-    height: '45px',
+    height: '2.572rem',
+    marginTop: '0.3rem',
     maxWidth: 'unset'
+  },
+  logoLink: {
+    position: 'relative',
+    marginRight: '5.6rem'
   },
   link: {
     color: '#fff',
     textDecoration: 'none',
     fontFamily: theme.typography.fontFamily,
     fontWeight: '600',
+    fontSize: '0.7143rem',
     '&:hover': {
       color: '#e7e452',
       textDecoration: 'none'
@@ -113,7 +119,6 @@ class Navigation extends Component {
         ].map(menu => (
           <MenuItem key={menu.link} className={classes.menuListItem}>
             <Link
-              variant="body1"
               className={classes.link}
               href={menu.link}
               onClick={menu.onClick}
@@ -136,7 +141,7 @@ class Navigation extends Component {
       <Link
         component="a"
         href={selectedCountry ? `/${selectedCountry.slug}` : '/'}
-        style={{ position: 'relative', marginRight: '50px' }}
+        className={classes.logoLink}
       >
         <img
           alt="Dominion Logo"
@@ -194,7 +199,7 @@ class Navigation extends Component {
         >
           <Grid container className={classes.wrapper}>
             <Topbar />
-            <Search dominion={dominion}>
+            <Search dominion={dominion} placeholder="Search">
               <Dropdown countries={countries} />
               {this.renderMenuList()}
             </Search>
@@ -228,6 +233,7 @@ class Navigation extends Component {
           <IconButton
             disableRipple
             aria-label="Search"
+            size="small"
             onClick={toggleModal('search')}
             style={{
               marginLeft: 60

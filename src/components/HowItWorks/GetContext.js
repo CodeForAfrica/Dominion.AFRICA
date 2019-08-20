@@ -11,7 +11,7 @@ const styles = theme => ({
       width: '8.578125rem' // .75 of lg
     },
     [theme.breakpoints.up('lg')]: {
-      width: '11.4375rem' // 183px / 16
+      width: '13.07143rem' // 183px / 14
     }
   }
 });

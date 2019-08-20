@@ -51,18 +51,18 @@ const Theme = createTheme({
   typography: {
     fontFamily: FONT_FAMILY_TEXT,
     fontHeading: FONT_FAMILY_HEADING,
-    fontSize: 12,
     h1: {
       color: '#293229',
       fontFamily: FONT_FAMILY_HEADING,
-      fontSize: '4.375rem',
+      fontSize: '5rem',
       fontWeight: 400
     },
     h2: {
       color: '#293229',
       fontFamily: FONT_FAMILY_HEADING,
       textTransform: 'capitalize',
-      fontWeight: 400
+      fontWeight: 400,
+      fontSize: '3.57143rem'
     }, // Hero section  heading
     h3: {
       color: '#293229',
@@ -74,19 +74,19 @@ const Theme = createTheme({
       [defaultTheme.breakpoints.up('md')]: {
         color: '#222822',
         lineHeight: 1,
-        fontSize: '3.125rem'
+        fontSize: '2.8572rem'
       }
     }, // Section heading
     h4: {
       color: '#2b3129',
       fontFamily: FONT_FAMILY_HEADING,
       textTransform: 'capitalize',
-      fontSize: '1.25rem'
+      fontSize: '1.7143rem'
     },
     h5: {
       fontFamily: FONT_FAMILY_HEADING,
       textTransform: 'capitalize',
-      fontSize: '20px',
+      fontSize: '1.4286rem',
       fontWeight: 'normal',
       fontStyle: 'normal',
       lineHeight: 'normal',
@@ -105,22 +105,20 @@ const Theme = createTheme({
     body2: {
       color: 'rgb(34, 40, 34)',
       fontFamily: FONT_FAMILY_TEXT,
-      fontSize: '1rem'
+      fontSize: '0.85715rem'
     },
     subtitle1: {
       fontFamily: FONT_FAMILY_TEXT,
-      fontSize: '0.75rem',
-      fontWeight: 800,
-      lineHeight: 1.92,
-      color: '#222822'
+      fontSize: '0.786rem',
+      lineHeight: 1.92
     },
     subtitle2: {
       fontFamily: FONT_FAMILY_TEXT,
-      fontSize: '0.75rem',
+      fontSize: '0.9286rem',
       fontWeight: 500
     },
     fontSmallDefault: {
-      fontSize: 13,
+      fontSize: 11,
       fontFamily: FONT_FAMILY_TEXT
     },
     useNextVariants: true

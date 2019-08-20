@@ -21,17 +21,18 @@ const styles = theme => ({
   },
   subtitle: {
     fontFamily: theme.typography.fontFamily,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    lineHeight: 1.92
   },
   body: {
     marginTop: '1rem',
-    lineHeight: '1.5rem'
+    lineHeight: 1.92
   }
 });
 
 function InfoSubtitleElement({ classes, children }) {
   return (
-    <Typography variant="subtitle1" className={classes.subtitle}>
+    <Typography variant="body2" className={classes.subtitle}>
       {children}
     </Typography>
   );

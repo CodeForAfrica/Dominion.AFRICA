@@ -48,12 +48,12 @@ const styles = theme => ({
 function About({ classes }) {
   return (
     <div>
-      <Typography variant="body2" className={classes.title}>
+      <Typography variant="subtitle1" className={classes.title}>
         HURUmap gives infomediaries like journalists and Civic activists an easy
         &apos;plug & play&apos; toolkit for finding and embedding interactive
         data visualizations into their storytelling
       </Typography>
-      <Typography variant="body2" className={classes.body}>
+      <Typography variant="subtitle1" className={classes.body}>
         This project is built on software originally created by the Knight Lab
         in the USA for the{' '}
         <A href="https://censusreporter.org/" className={classes.links}>
@@ -89,7 +89,7 @@ function About({ classes }) {
           Zambia
         </A>
       </Typography>
-      <Typography variant="body2" className={classes.body}>
+      <Typography variant="subtitle1" className={classes.body}>
         This site is an{' '}
         <A href="https://openafrica.net/" className={classes.links}>
           openAFRICA

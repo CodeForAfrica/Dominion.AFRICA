@@ -53,7 +53,6 @@ const styles = theme => ({
   },
   caption: {
     color: '#8d8d8c',
-    fontSize: '0.75em',
     width: '100%',
     textTransform: 'capitalize',
     paddingTop: theme.spacing(),
@@ -185,7 +184,7 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
                 {shortName}
               </HeroTitle>
               <Typography
-                variant="body2"
+                variant="subtitile1"
                 className={classes.caption}
                 component="p"
               >

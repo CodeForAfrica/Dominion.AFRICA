@@ -3,6 +3,7 @@ import React, { useCallback } from 'react';
 import { PropTypes } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { MapIt } from '@codeforafrica/hurumap-ui';
+import { Typography } from '@material-ui/core';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import { withRouter } from 'react-router-dom';
 
@@ -34,7 +35,6 @@ const styles = theme => ({
     }
   },
   description: {
-    fontSize: '0.6875rem',
     [theme.breakpoints.up('md')]: {
       whiteSpace: 'nowrap',
       width: '100%'
@@ -80,7 +80,7 @@ function CountryHero({ classes, history, toggleModal, dominion, width }) {
 
         <HeroButton onClick={toggleModal('search')}>Find a place</HeroButton>
 
-        <p style={{ marginTop: '40px' }}>
+        <Typography variant="subtitle2" style={{ marginTop: '40px' }}>
           or view{' '}
           <a
             className={classes.alink}
@@ -88,7 +88,7 @@ function CountryHero({ classes, history, toggleModal, dominion, width }) {
           >
             {selectedCountry.name}
           </a>
-        </p>
+        </Typography>
       </HeroTitleGrid>
       <div className={classes.map}>
         <MapIt

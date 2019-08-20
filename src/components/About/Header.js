@@ -8,7 +8,7 @@ import withWidth from '@material-ui/core/withWidth';
 const styles = theme => ({
   root: {
     width: 'auto',
-    padding: '1.25em 1.875em 0',
+    padding: '1.43rem 2.143rem 0',
     [theme.breakpoints.up('md')]: {
       padding: 0
     }
