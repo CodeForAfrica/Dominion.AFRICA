@@ -13,7 +13,7 @@ export default function TypographyLoader({
     <Typography {...props}>
       {loading ? (
         <ContentLoader style={{ height: loader.height, width: loader.width }}>
-          <rect x="8" y="0" width="100%" height="100%" />
+          <rect x="0" y="0" width="100%" height="100%" />
         </ContentLoader>
       ) : (
         children

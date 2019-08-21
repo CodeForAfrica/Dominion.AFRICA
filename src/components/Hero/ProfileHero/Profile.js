@@ -17,6 +17,7 @@ import searchIcon from '../../../assets/images/icons/location.svg';
 import config from '../../../config';
 import { AppContext } from '../../../AppContext';
 import TypographyLoader from '../../TypographyLoader';
+import ContentLoader from '../../ContentLoader';
 
 const styles = theme => ({
   root: {
@@ -60,7 +61,8 @@ const styles = theme => ({
     paddingBottom: theme.spacing()
   },
   captionItem: {
-    display: 'inline-block'
+    display: 'inline-block',
+    paddingLeft: 4
   },
   release: {
     display: 'none',
@@ -182,18 +184,18 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
               <HeroTitle small breakWord loading={loading} loaderWidth={150}>
                 {shortName}
               </HeroTitle>
-              <Typography
+              <TypographyLoader
+                loading={loading}
+                loader={{
+                  width: 115,
+                  height: 17
+                }}
                 variant="subtitile1"
                 component="span"
                 className={classes.caption}
               >
                 {geoId.split('-')[0]} in{' '}
-                <TypographyLoader
-                  loading={loading}
-                  loader={{
-                    width: 65,
-                    height: 17
-                  }}
+                <Typography
                   variant="body"
                   component="span"
                   className={classes.captionItem}
@@ -211,8 +213,8 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
                       : 'Africa'}
                   </a>
                   {', '}
-                </TypographyLoader>
-              </Typography>
+                </Typography>
+              </TypographyLoader>
               <HeroDetail
                 loading={loading}
                 loader={{
@@ -248,7 +250,14 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
               >
                 {populationDensity}
               </HeroDetail>
-              {!head2head && (
+              {/* Start search skeleton loader */}
+              {!head2head && loading && (
+                <ContentLoader style={{ width: '304px', height: '49px' }}>
+                  <rect x="0" y="0" width="100%" height="100%" />
+                </ContentLoader>
+              )}
+              {/* End search skeleton loader */}
+              {!head2head && !loading && (
                 <Search
                   dominion={dominion}
                   isComparisonSearch
