@@ -1,5 +1,6 @@
 [{
   "sectionTitle": "Demographics",
+  "sectionSlug": "demographics",
   "sectionDescription": "",
   "charts": [{
       "title": "Population",
@@ -44,6 +45,7 @@
 },
 {
   "sectionTitle": "Worker's Hostel Data",
+  "sectionSlug": "workers-hostel-data",
   "sectionDescription": "",
   "charts": [{
       "title": "Number of people living in worker's hostel per age group",
@@ -192,6 +194,7 @@
 },
 {
   "sectionTitle": "Farm Land",
+  "sectionSlug": "farm-land",
   "sectionDescription": "",
   "charts": [{
       "title": "Number of individuals owning farms and agricultural holdings by gender (%)",
@@ -300,6 +303,7 @@
 },
 {
   "sectionTitle": "Erven Land",
+  "sectionSlug": "erven-land",
   "sectionDescription": "",
   "charts": [{
       "title": "Individual ownership of erven land in hectares by gender (%)",
@@ -383,6 +387,7 @@
 },
 {
   "sectionTitle": "Sectional Title land",
+  "sectionSlug": "sectional-title-land",
   "sectionDescription": "",
   "charts": [{
       "title": "Sectional Title Land Ownership",
@@ -492,6 +497,7 @@
 },
 {
   "sectionTitle": "Agricultural Land Sales",
+  "sectionSlug": "agricultural-land-sales",
   "sectionDescription": "",
   "charts": [{
       "title": "Land Sales Distribution 2017/2018",
@@ -563,6 +569,7 @@
 },
 {
   "sectionTitle": "Land traded statistic for transactions of colour",
+  "sectionSlug": "land-traded-statistic-for-transactions-of-colour",
   "sectionDescription": "",
   "charts": [
     {
@@ -642,6 +649,7 @@
 },
 {
   "sectionTitle": "Afrobarometer Round 7",
+  "sectionSlug": "afrobarometer",
   "sectionDescription": "",
   "charts": [{
       "title": "Land Redistribution Prioritisation",

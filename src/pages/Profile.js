@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { ChartContainer } from '@codeforafrica/hurumap-ui';
 import gql from 'graphql-tag';
@@ -15,6 +15,7 @@ import ChartsContainer from '../components/ChartsContainer';
 import sectionedCharts from '../data/charts.json';
 import { AppContext } from '../AppContext';
 import ProfileRelease from '../components/ProfileReleases';
+import ProfileSectionTitle from '../components/ProfileSectionTitle';
 
 function Profile({
   match: {
@@ -26,7 +27,7 @@ function Profile({
     dispatch
   } = useContext(AppContext);
   const head2head = Boolean(geoId && comparisonGeoId);
-  const [activeTab, setActiveTab] = useState('All');
+  // const [activeTab, setActiveTab] = useState('All');
   const [chartData, setChartsData] = useState({});
   const [profiles, setProfiles] = useState({
     profile: {},
@@ -53,6 +54,31 @@ function Profile({
     .map(x => x.charts)
     .reduce((a, b) => a.concat(b));
   const visuals = charts.map(x => x.visuals).reduce((a, b) => a.concat(b));
+
+  // get all available profiletabs
+  const profileTabs = [
+    {
+      name: 'All',
+      href: 'all'
+    },
+    ...sectionedCharts
+      .filter(
+        section =>
+          section.charts.filter(
+            chart =>
+              !chart.visuals.find(
+                visual =>
+                  !chartData.profileVisualsData ||
+                  chartData.profileVisualsData[visual.id].nodes.length === 0
+              )
+          ).length !== 0
+      )
+      .map(section => ({
+        name: section.sectionTitle,
+        href: section.sectionSlug,
+        icon: section.sectionIcon
+      }))
+  ];
 
   useEffect(() => {
     const {
@@ -230,85 +256,65 @@ query charts($geoCode: String!, $geoLevel: String!) {
         }}
       />
 
-      <ProfileTabs
-        switchToTab={setActiveTab}
-        tabs={[
-          {
-            name: 'All',
-            href: 'All'
-          },
-          ...sectionedCharts
-            .filter(
-              section =>
-                section.charts.filter(
-                  chart =>
-                    !chart.visuals.find(
-                      visual =>
-                        !chartData.profileVisualsData ||
-                        chartData.profileVisualsData[visual.id].nodes.length ===
-                          0
-                    )
-                ).length !== 0
-            )
-            .map(section => ({
-              name: section.sectionTitle,
-              href: section.sectionTitle
-            }))
-        ]}
-      />
+      <ProfileTabs tabs={profileTabs} />
       <ChartsContainer>
-        {(activeTab === 'All'
-          ? charts
-          : sectionedCharts.find(x => x.sectionTitle === activeTab).charts
-        )
-          .filter(
-            ({ visuals: v }) =>
-              /* data is not missing */
-              !v.find(
-                x =>
-                  !chartData.profileVisualsData ||
-                  chartData.profileVisualsData[x.id].nodes.length === 0
+        {profileTabs.slice(1).map(tab => (
+          <Fragment>
+            <ProfileSectionTitle tab={tab} />
+            {sectionedCharts
+              .find(x => x.sectionTitle === tab.name)
+              .charts.filter(
+                ({ visuals: v }) =>
+                  /* data is not missing */
+                  !v.find(
+                    x =>
+                      !chartData.profileVisualsData ||
+                      chartData.profileVisualsData[x.id].nodes.length === 0
+                  )
               )
-          )
-          .map(chart => (
-            <Grid
-              item
-              xs={12}
-              md={
-                parseFloat(chart.layout.split('/').reduce((a, b) => a / b)) * 12
-              }
-            >
-              <ChartContainer
-                overflowX={
-                  chart.visuals.find(visual => visual.type === 'pie')
-                    ? 'visible'
-                    : chart.visuals.find(visual => visual.horizontal)
-                    ? 'hidden'
-                    : 'auto'
-                }
-                overflowY={
-                  chart.visuals.find(visual => visual.type === 'pie')
-                    ? 'visible'
-                    : chart.visuals.find(visual => visual.horizontal)
-                    ? 'auto'
-                    : 'hidden'
-                }
-                title={chart.title}
-                subtitle={chart.subtitle}
-              >
-                {chart.visuals.map(
-                  visual =>
-                    profiles.loaded &&
-                    ChartFactory.build(
-                      visual,
-                      chartData.profileVisualsData,
-                      chartData.comparisonVisualsData,
-                      profiles
-                    )
-                )}
-              </ChartContainer>
-            </Grid>
-          ))}
+              .map(chart => (
+                <Grid
+                  item
+                  xs={12}
+                  md={
+                    parseFloat(
+                      chart.layout.split('/').reduce((a, b) => a / b)
+                    ) * 12
+                  }
+                >
+                  <ChartContainer
+                    overflowX={
+                      chart.visuals.find(visual => visual.type === 'pie')
+                        ? 'visible'
+                        : chart.visuals.find(visual => visual.horizontal)
+                        ? 'hidden'
+                        : 'auto'
+                    }
+                    overflowY={
+                      chart.visuals.find(visual => visual.type === 'pie')
+                        ? 'visible'
+                        : chart.visuals.find(visual => visual.horizontal)
+                        ? 'auto'
+                        : 'hidden'
+                    }
+                    title={chart.title}
+                    subtitle={chart.subtitle}
+                  >
+                    {chart.visuals.map(
+                      visual =>
+                        profiles.loaded &&
+                        ChartFactory.build(
+                          visual,
+                          chartData.profileVisualsData,
+                          chartData.comparisonVisualsData,
+                          profiles
+                        )
+                    )}
+                  </ChartContainer>
+                </Grid>
+              ))}
+          </Fragment>
+        ))}
       </ChartsContainer>
       <ProfileRelease />
       <CountryPartners dominion={{ ...config, selectedCountry }} />
