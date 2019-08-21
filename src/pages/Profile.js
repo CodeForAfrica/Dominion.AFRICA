@@ -339,18 +339,14 @@ query charts($geoCode: String!, $geoLevel: String!) {
               </ChartContainer>
             </Grid>
           ))}
-      </ChartsContainer>
-      <ProfileRelease />
-      <CountryPartners dominion={{ ...config, selectedCountry }} />
-
-      <EmbedPopup
-        anchorEl={shareAnchorEl}
-        onClose={handleCloseShare}
-        open={shareAnchorEl !== null}
-        title="Embed code for this chart"
-        subtitle="Copy the code below, then paste into your own CMS or HTML. Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge."
-      >
-        {`<iframe
+        <EmbedPopup
+          anchorEl={shareAnchorEl}
+          onClose={handleCloseShare}
+          open={shareAnchorEl !== null}
+          title="Embed code for this chart"
+          subtitle="Copy the code below, then paste into your own CMS or HTML. Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge."
+        >
+          {`<iframe
   id="cr-embed-region-11-literacy_and_numeracy_tests-english_test_dist"
   className="census-reporter-embed"
   src="https://tanzania.hurumap.org/embed/iframe.html?geoID=region-11&geoVersion=2009&chartDataID=literacy_and_numeracy_tests-english_test_dist&dataYear=2015&chartType=pie&chartHeight=200&chartQualifier=&chartRelease=Uwezo+Annual+Assessment+Report+2015&chartSourceTitle=&chartSourceLink=&chartTitle=Percentage+of+children+aged+6-16+passing+English+literacy+tests&chartSubtitle=&initialSort=-value&statType=percentage"
@@ -360,17 +356,20 @@ query charts($geoCode: String!, $geoLevel: String!) {
   style="margin: 1em; max-width: 300px;"
 />
 <script src="https://tanzania.hurumap.org/static/js/embed.chart.make.js" />`}
-      </EmbedPopup>
-      <InfoPopup
-        anchorEl={infoAnchorEl}
-        onClose={handleCloseInfo}
-        onExploreData={handleExploreData}
-        open={infoAnchorEl !== null}
-        sourceLink="https://codeforafrica.org"
-        sourceTitle="Code for Africa"
-      >
-        Explore Data
-      </InfoPopup>
+        </EmbedPopup>
+        <InfoPopup
+          anchorEl={infoAnchorEl}
+          onClose={handleCloseInfo}
+          onExploreData={handleExploreData}
+          open={infoAnchorEl !== null}
+          sourceLink="https://codeforafrica.org"
+          sourceTitle="Code for Africa"
+        >
+          Explore Data
+        </InfoPopup>
+      </ChartsContainer>
+      <ProfileRelease />
+      <CountryPartners dominion={{ ...config, selectedCountry }} />
     </Page>
   );
 }
