@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { Grid } from '@material-ui/core';
@@ -36,47 +36,46 @@ const styles = theme => ({
   }
 });
 
-class Header extends Component {
-  constructor(props) {
-    super(props);
+function Header({ classes, children, dominion, ...props }) {
+  const [openModal, setOpenModal] = useState();
 
-    this.state = {
-      openModal: null
+  useEffect(() => {
+    const dismissModal = e => {
+      if (e.state === 'modal') {
+        setOpenModal(null);
+      }
     };
-
-    this.toggleModal = this.toggleModal.bind(this);
-  }
-
-  toggleModal(modalName) {
+    window.addEventListener('popstate', dismissModal);
     return () => {
-      this.setState(prevState => ({
-        openModal: prevState.openModal === modalName ? null : modalName
-      }));
+      window.removeEventListener('popstate', dismissModal);
     };
-  }
+  }, []);
 
-  render() {
-    const { classes, children, dominion, ...props } = this.props;
-    const { openModal } = this.state;
+  const toggleModal = modalName => () => {
+    if (openModal || openModal === modalName) {
+      window.history.back();
+    }
+    window.history.pushState('modal', modalName, '#');
+    setOpenModal(openModal === modalName ? null : modalName);
+  };
 
-    return (
-      <div className={classes.root}>
-        <Grid container className={classes.wrapper}>
-          <Navigation
-            toggleModal={this.toggleModal}
-            openModal={openModal}
-            dominion={dominion}
-          />
+  return (
+    <div className={classes.root}>
+      <Grid container className={classes.wrapper}>
+        <Navigation
+          toggleModal={toggleModal}
+          openModal={openModal}
+          dominion={dominion}
+        />
 
-          {React.cloneElement(children, {
-            ...props,
-            dominion,
-            toggleModal: this.toggleModal
-          })}
-        </Grid>
-      </div>
-    );
-  }
+        {React.cloneElement(children, {
+          ...props,
+          dominion,
+          toggleModal
+        })}
+      </Grid>
+    </div>
+  );
 }
 
 Header.propTypes = {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 
 import { Grid, Link, MenuList, MenuItem, IconButton } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
@@ -248,15 +247,7 @@ class Navigation extends Component {
   }
 
   render() {
-    const {
-      classes,
-      width,
-      openModal,
-      toggleModal,
-      dominion,
-      location,
-      handleBack
-    } = this.props;
+    const { classes, width, openModal, toggleModal, dominion } = this.props;
     const { countries } = dominion;
     const nav = isWidthDown('sm', width)
       ? this.renderMobileMenu()
@@ -294,8 +285,6 @@ class Navigation extends Component {
         <Modal
           isOpen={openModal === 'contact'}
           onEscapeKeyDown={toggleModal('contact')}
-          path={location.pathname}
-          onClose={handleBack}
         >
           <Grid container className={classes.wrapper}>
             {nav}
@@ -319,4 +308,4 @@ Navigation.defaultProps = {
   openModal: null
 };
 
-export default withRouter(withWidth()(withStyles(styles)(Navigation)));
+export default withWidth()(withStyles(styles)(Navigation));

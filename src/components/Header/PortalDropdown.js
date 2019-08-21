@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
@@ -110,17 +109,6 @@ class Dropdown extends React.Component {
     this.toggleDropdown = this.toggleDropdown.bind(this);
   }
 
-  componentDidUpdate(prevProps) {
-    const { location } = this.props;
-    window.onpopstate = () => {
-      if (location !== prevProps.location) {
-        this.setState(prevState => ({
-          isDropdownOpen: !prevState.isDropdownOpen
-        }));
-      }
-    };
-  }
-
   toggleDropdown() {
     this.setState(prevState => ({ isDropdownOpen: !prevState.isDropdownOpen }));
   }
@@ -167,4 +155,4 @@ Dropdown.propTypes = {
   countries: PropTypes.shape({}).isRequired
 };
 
-export default withRouter(withStyles(styles)(Dropdown));
+export default withStyles(styles)(Dropdown);
