@@ -27,7 +27,9 @@ function Profile({
   } = useContext(AppContext);
   const head2head = Boolean(geoId && comparisonGeoId);
   const [activeTab, setActiveTab] = useState('All');
-  const [chartData, setChartsData] = useState({});
+  const [chartData, setChartsData] = useState({
+    isLoading: true
+  });
   const [profiles, setProfiles] = useState({
     profile: {},
     parentProfile: {},
@@ -131,6 +133,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
         }
 
         setChartsData({
+          isLoading: false,
           profileVisualsData,
           comparisonVisualsData
         });
@@ -267,8 +270,9 @@ query charts($geoCode: String!, $geoLevel: String!) {
               /* data is not missing */
               !v.find(
                 x =>
-                  !chartData.profileVisualsData ||
-                  chartData.profileVisualsData[x.id].nodes.length === 0
+                  (!chartData.profileVisualsData ||
+                    chartData.profileVisualsData[x.id].nodes.length === 0) &&
+                  !chartData.isLoading
               )
           )
           .map(chart => (
@@ -280,6 +284,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
               }
             >
               <ChartContainer
+                loading={chartData.isLoading}
                 overflowX={
                   chart.visuals.find(visual => visual.type === 'pie')
                     ? 'visible'
@@ -297,16 +302,17 @@ query charts($geoCode: String!, $geoLevel: String!) {
                 title={chart.title}
                 subtitle={chart.subtitle}
               >
-                {chart.visuals.map(
-                  visual =>
-                    profiles.loaded &&
-                    ChartFactory.build(
-                      visual,
-                      chartData.profileVisualsData,
-                      chartData.comparisonVisualsData,
-                      profiles
-                    )
-                )}
+                {!chartData.isLoading &&
+                  chart.visuals.map(
+                    visual =>
+                      profiles.loaded &&
+                      ChartFactory.build(
+                        visual,
+                        chartData.profileVisualsData,
+                        chartData.comparisonVisualsData,
+                        profiles
+                      )
+                  )}
               </ChartContainer>
             </Grid>
           ))}
