@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
+import { withRouter } from 'react-router-dom';
+
 import withWidth from '@material-ui/core/withWidth';
 
 import Navigation from './Navigation';
@@ -36,12 +38,12 @@ const styles = theme => ({
   }
 });
 
-function Header({ classes, children, dominion, ...props }) {
+function Header({ classes, history, children, dominion, ...props }) {
   const [openModal, setOpenModal] = useState();
 
   useEffect(() => {
     const dismissModal = e => {
-      if (e.state === 'modal') {
+      if (e.state && e.state.state === 'modal' && openModal) {
         setOpenModal(null);
       }
     };
@@ -49,13 +51,16 @@ function Header({ classes, children, dominion, ...props }) {
     return () => {
       window.removeEventListener('popstate', dismissModal);
     };
-  }, []);
+  }, [openModal]);
 
   const toggleModal = modalName => () => {
-    if (openModal || openModal === modalName) {
-      window.history.back();
+    if (openModal && openModal === modalName) {
+      history.goBack();
+    } else if (!openModal) {
+      history.push('#', 'modal');
+    } else {
+      //
     }
-    window.history.pushState('modal', modalName, '#');
     setOpenModal(openModal === modalName ? null : modalName);
   };
 
@@ -92,4 +97,4 @@ Header.defaultProps = {
   profile: null
 };
 
-export default withWidth()(withStyles(styles)(Header));
+export default withRouter(withWidth()(withStyles(styles)(Header)));
