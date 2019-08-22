@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Typography } from '@material-ui/core';
@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import PlayerModal from '../Video/PlayerModal';
 import Steps from './Steps';
 import ViewVideos from './ViewVideos';
+import useToggleModal from '../../useToggleModal';
 
 const styles = theme => ({
   root: {
@@ -28,42 +29,27 @@ const styles = theme => ({
   }
 });
 
-class Description extends Component {
-  constructor(props) {
-    super(props);
+function Description({ classes, dominion }) {
+  const { open, toggleModal } = useToggleModal('video');
+  return (
+    <div>
+      <Typography variant="h2" className={classes.title}>
+        How <br />
+        it works
+      </Typography>
 
-    this.state = { open: false };
-    this.toggleState = this.toggleState.bind(this);
-  }
+      <Steps />
+      <div className={classes.viewVideos}>
+        <ViewVideos onClick={toggleModal} />
 
-  toggleState() {
-    this.setState(state => ({ open: !state.open }));
-  }
-
-  render() {
-    const { classes, dominion } = this.props;
-    const { open } = this.state;
-
-    return (
-      <div>
-        <Typography variant="h2" className={classes.title}>
-          How <br />
-          it works
-        </Typography>
-
-        <Steps />
-        <div className={classes.viewVideos}>
-          <ViewVideos onClick={this.toggleState} />
-
-          <PlayerModal
-            dominion={dominion}
-            open={open}
-            handleClose={this.toggleState}
-          />
-        </div>
+        <PlayerModal
+          dominion={dominion}
+          open={open}
+          toggleModal={toggleModal}
+        />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 Description.propTypes = {

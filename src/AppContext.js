@@ -4,13 +4,16 @@ import PropTypes from 'prop-types';
 export const AppContext = React.createContext({});
 
 const initialState = {
-  selectedCountry: {}
+  selectedCountry: {},
+  openModal: null
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
     case 'selectedCountry':
       return { ...state, selectedCountry: action.selectedCountry };
+    case 'modal':
+      return { ...state, openModal: action.openModal };
     default:
       return state;
   }

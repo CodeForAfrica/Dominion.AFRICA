@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Grid } from '@material-ui/core';
@@ -11,6 +11,7 @@ import withWidth from '@material-ui/core/withWidth';
 import Navigation from './Navigation';
 
 import background from '../../assets/images/bg/background.png';
+import useModalPopstate from '../../useModalPopstate';
 
 const styles = theme => ({
   root: {
@@ -39,44 +40,15 @@ const styles = theme => ({
 });
 
 function Header({ classes, history, children, dominion, ...props }) {
-  const [openModal, setOpenModal] = useState();
-
-  useEffect(() => {
-    const dismissModal = e => {
-      if (e.state && e.state.state === 'modal' && openModal) {
-        setOpenModal(null);
-      }
-    };
-    window.addEventListener('popstate', dismissModal);
-    return () => {
-      window.removeEventListener('popstate', dismissModal);
-    };
-  }, [openModal]);
-
-  const toggleModal = modalName => () => {
-    if (openModal && openModal === modalName) {
-      history.goBack();
-    } else if (!openModal) {
-      history.push('#', 'modal');
-    } else {
-      //
-    }
-    setOpenModal(openModal === modalName ? null : modalName);
-  };
-
+  useModalPopstate();
   return (
     <div className={classes.root}>
       <Grid container className={classes.wrapper}>
-        <Navigation
-          toggleModal={toggleModal}
-          openModal={openModal}
-          dominion={dominion}
-        />
+        <Navigation dominion={dominion} />
 
         {React.cloneElement(children, {
           ...props,
-          dominion,
-          toggleModal
+          dominion
         })}
       </Grid>
     </div>
