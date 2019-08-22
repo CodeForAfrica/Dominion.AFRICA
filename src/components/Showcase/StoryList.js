@@ -22,7 +22,7 @@ const styles = () => ({
     //                Promote the list into its own layer on Chrome. This cost
     //                memory but helps keeping high FPS.
     transform: 'translateZ(0)',
-    maxHeight: '100%',
+    height: '100%',
     margin: '0 !important',
     overflowY: 'hidden'
   }
