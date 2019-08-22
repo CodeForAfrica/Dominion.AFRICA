@@ -12,6 +12,7 @@ import Hero, {
   HeroButton
 } from './Hero';
 import config from '../../config';
+import useToggleModal from '../../useToggleModal';
 
 const styles = theme => ({
   root: {
@@ -60,8 +61,9 @@ const styles = theme => ({
   }
 });
 
-function CountryHero({ classes, history, toggleModal, dominion }) {
+function CountryHero({ classes, history, dominion }) {
   const { selectedCountry = { name: '' } } = dominion;
+  const { toggleModal } = useToggleModal('search');
   return (
     <Hero classes={{ root: classes.root }}>
       <HeroTitleGrid classes={{ titleTextGrid: classes.titleGrid }}>
@@ -74,7 +76,7 @@ function CountryHero({ classes, history, toggleModal, dominion }) {
           public discourse and policy-making on vital issues of land ownership.
         </HeroDescription>
 
-        <HeroButton onClick={toggleModal('search')}>Find a place</HeroButton>
+        <HeroButton onClick={toggleModal}>Find a place</HeroButton>
 
         <p style={{ marginTop: '40px' }}>
           or view{' '}
@@ -105,8 +107,7 @@ function CountryHero({ classes, history, toggleModal, dominion }) {
 
 CountryHero.propTypes = {
   classes: PropTypes.shape({}).isRequired,
-  dominion: PropTypes.shape({}).isRequired,
-  toggleModal: PropTypes.func.isRequired
+  dominion: PropTypes.shape({}).isRequired
 };
 
 export default withRouter(withStyles(styles)(CountryHero));
