@@ -2,7 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import {
+  faLeaf,
+  faUsers,
+  faBookOpen,
+  faChartBar,
+  faBuilding,
+  faCoins,
+  faCity,
+  faImage,
+  faBriefcase
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { Grid, Typography } from '@material-ui/core';
@@ -11,35 +21,54 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = () => ({
   grid: {
     height: '5rem',
-    margin: '2rem 0 !important',
-    width: '100%'
+    marginTop: '4rem',
+    marginBottom: '0.5rem',
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center'
   },
   title: {
     textDecoration: 'none',
-    display: 'inline'
+    display: 'inline',
+    marginLeft: '2rem',
+    textTransform: 'uppercase',
+    fontFamily: 'Sans Serif'
   },
   icon: {
-    display: 'inline',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     padding: '1rem',
     borderRadius: '50%',
     border: '1px solid',
-    marginTop: '-4px'
+    marginTop: '-4px',
+    width: '5rem',
+    height: '5rem'
   },
   fa: {
-    fontSize: '1.5rem'
+    fontSize: '2.6rem'
   }
 });
 
-library.add(faUser, faEnvelope);
+library.add(
+  faLeaf,
+  faBuilding,
+  faUsers,
+  faBookOpen,
+  faChartBar,
+  faCoins,
+  faCity,
+  faImage,
+  faBriefcase
+);
 
-function ProfileSectionTitle({ classes, tab: { name, href } }) {
+function ProfileSectionTitle({ classes, tab: { name, href, icon } }) {
   return (
     <Grid item className={classes.grid}>
-      <div className={classes.icon}>
-        <FontAwesomeIcon className={classes.fa} icon="envelope" size="sm" />
-      </div>
-      <Typography variant="h3" id={href} className={classes.title}>
-        {' '}
+      <span className={classes.icon}>
+        <FontAwesomeIcon className={classes.fa} icon={icon} size="sm" />
+      </span>
+      <Typography variant="h4" id={href} className={classes.title}>
         {name}
       </Typography>
     </Grid>
