@@ -13,7 +13,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   root: {
-    height: '20rem',
+    minHeight: '20rem',
+    height: '100%',
     backgroundColor: '#fafafa',
     border: '1px solid #eeeeee',
     opacity: 0.9,
