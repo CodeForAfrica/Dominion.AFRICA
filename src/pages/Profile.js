@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext, Fragment } from 'react';
+import { makeStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import { ChartContainer } from '@codeforafrica/hurumap-ui';
 import gql from 'graphql-tag';
@@ -16,6 +17,15 @@ import sectionedCharts from '../data/charts.json';
 import { AppContext } from '../AppContext';
 import ProfileRelease from '../components/ProfileReleases';
 import ProfileSectionTitle from '../components/ProfileSectionTitle';
+
+const useStyles = makeStyles({
+  title: {
+    fontFamily: 'Sans Serif'
+  },
+  subtitle: {
+    fontFamily: 'Sans Serif'
+  }
+});
 
 function Profile({
   match: {
@@ -35,6 +45,7 @@ function Profile({
     comparisonProfile: {}
   });
   const client = useApolloClient();
+  const classes = useStyles();
 
   // Provide the visuals with unique ids for fetching
   // The unique ids will be used to set alias in graphql
@@ -299,6 +310,10 @@ query charts($geoCode: String!, $geoLevel: String!) {
                     }
                     title={chart.title}
                     subtitle={chart.subtitle}
+                    classes={{
+                      title: classes.title,
+                      subtitle: classes.subtitle
+                    }}
                   >
                     {chart.visuals.map(
                       visual =>
