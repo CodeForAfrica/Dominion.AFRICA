@@ -7,10 +7,10 @@ import { Grid } from '@material-ui/core';
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    padding: '2rem',
+    paddingBottom: '2rem',
     backgroundColor: theme.palette.primary.light,
     [theme.breakpoints.up('md')]: {
-      padding: '3.125rem 0'
+      paddingBottom: '3.125rem'
     }
   },
   layout: {
