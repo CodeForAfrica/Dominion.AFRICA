@@ -23,8 +23,7 @@ const styles = () => ({
     //                memory but helps keeping high FPS.
     transform: 'translateZ(0)',
     height: '100%',
-    margin: '0 !important',
-    overflowY: 'hidden'
+    margin: '0 !important'
   }
 });
 
