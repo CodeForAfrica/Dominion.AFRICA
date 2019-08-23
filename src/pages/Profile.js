@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useContext, Fragment } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { ChartContainer } from '@codeforafrica/hurumap-ui';
 import gql from 'graphql-tag';
 import { useApolloClient } from 'react-apollo-hooks';
@@ -40,7 +41,7 @@ function Profile({
     dispatch
   } = useContext(AppContext);
   const head2head = Boolean(geoId && comparisonGeoId);
-  const [activeTab, setActiveTab] = useState('All');
+  const [activeTab, setActiveTab] = useState('all');
   const [chartData, setChartsData] = useState({});
   const [profiles, setProfiles] = useState({
     profile: {},
@@ -274,7 +275,13 @@ query charts($geoCode: String!, $geoLevel: String!) {
       <ProfileTabs switchToTab={setActiveTab} tabs={profileTabs} />
       <ChartsContainer>
         {profileTabs.slice(1).map(tab => (
-          <Fragment>
+          <Grid
+            container
+            spacing={2}
+            className={classNames({
+              [classes.chartGrid]: activeTab !== tab.href && activeTab !== 'all'
+            })}
+          >
             <ProfileSectionTitle tab={tab} />
             {sectionedCharts
               .find(x => x.sectionTitle === tab.name)
@@ -332,7 +339,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
                   </ChartContainer>
                 </Grid>
               ))}
-          </Fragment>
+          </Grid>
         ))}
       </ChartsContainer>
       <ProfileRelease />
