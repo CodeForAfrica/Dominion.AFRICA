@@ -41,7 +41,7 @@ function Profile({
     dispatch
   } = useContext(AppContext);
   const head2head = Boolean(geoId && comparisonGeoId);
-  const [activeTab, setActiveTab] = useState('all');
+  const [activeTab, setActiveTab] = useState('All');
   const [chartData, setChartsData] = useState({});
   const [profiles, setProfiles] = useState({
     profile: {},
@@ -90,7 +90,7 @@ function Profile({
       )
       .map(section => ({
         name: section.sectionTitle,
-        href: section.sectionSlug,
+        href: section.sectionTitle,
         icon: section.sectionIcon
       }))
   ];
@@ -279,7 +279,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
             container
             spacing={2}
             className={classNames({
-              [classes.chartGrid]: activeTab !== tab.href && activeTab !== 'all'
+              [classes.chartGrid]: activeTab !== tab.href && activeTab !== 'All'
             })}
           >
             <ProfileSectionTitle tab={tab} />
