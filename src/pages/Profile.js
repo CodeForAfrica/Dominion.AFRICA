@@ -52,7 +52,9 @@ function Profile({
   const charts = sectionedCharts
     .map(x => x.charts)
     .reduce((a, b) => a.concat(b));
-  const visuals = charts.map(x => x.visuals).reduce((a, b) => a.concat(b));
+  const visuals = useState(
+    charts.map(x => x.visuals).reduce((a, b) => a.concat(b))
+  );
 
   useEffect(() => {
     const {
@@ -136,7 +138,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
         });
       })();
     }
-  }, [profiles]);
+  }, [geoId, comparisonGeoId, client, profiles, visuals]);
 
   useEffect(() => {
     function workAroundFetchGeo({ geoCode, geoLevel }) {
@@ -217,7 +219,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
     }
 
     workAroundFetchProfileGeos();
-  }, [geoId, comparisonGeoId]);
+  }, [geoId, comparisonGeoId, client, dispatch]);
 
   return (
     <Page>

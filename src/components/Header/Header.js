@@ -11,7 +11,7 @@ import withWidth from '@material-ui/core/withWidth';
 import Navigation from './Navigation';
 
 import background from '../../assets/images/bg/background.png';
-import useModalPopstate from '../../useModalPopstate';
+import useCloseModalOnPopstate from '../../useCloseModalOnPopstate';
 
 const styles = theme => ({
   root: {
@@ -40,7 +40,7 @@ const styles = theme => ({
 });
 
 function Header({ classes, history, children, dominion, ...props }) {
-  useModalPopstate();
+  useCloseModalOnPopstate();
   return (
     <div className={classes.root}>
       <Grid container className={classes.wrapper}>

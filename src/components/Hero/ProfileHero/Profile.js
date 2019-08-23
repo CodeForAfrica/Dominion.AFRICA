@@ -87,9 +87,12 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
     state: { selectedCountry }
   } = useContext(AppContext);
   const { head2head } = dominion;
-  const onClickGeoLayer = useCallback(area => {
-    history.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
-  }, []);
+  const onClickGeoLayer = useCallback(
+    area => {
+      history.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
+    },
+    [history]
+  );
   return (
     <Query
       query={gql`

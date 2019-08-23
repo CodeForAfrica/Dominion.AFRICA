@@ -16,5 +16,5 @@ export default () => {
     return () => {
       window.removeEventListener('popstate', dismissModal);
     };
-  }, [openModal]);
+  }, [openModal, dispatch]);
 };
