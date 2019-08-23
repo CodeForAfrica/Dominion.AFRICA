@@ -24,6 +24,9 @@ const useStyles = makeStyles({
   },
   subtitle: {
     fontFamily: 'Sans Serif'
+  },
+  chartGrid: {
+    display: 'none'
   }
 });
 
@@ -37,7 +40,7 @@ function Profile({
     dispatch
   } = useContext(AppContext);
   const head2head = Boolean(geoId && comparisonGeoId);
-  // const [activeTab, setActiveTab] = useState('All');
+  const [activeTab, setActiveTab] = useState('All');
   const [chartData, setChartsData] = useState({});
   const [profiles, setProfiles] = useState({
     profile: {},
@@ -256,6 +259,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
     workAroundFetchProfileGeos();
   }, [geoId, comparisonGeoId]);
 
+  console.log(activeTab);
   return (
     <Page>
       <ProfilePageHeader
@@ -267,7 +271,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
         }}
       />
 
-      <ProfileTabs tabs={profileTabs} />
+      <ProfileTabs switchToTab={setActiveTab} tabs={profileTabs} />
       <ChartsContainer>
         {profileTabs.slice(1).map(tab => (
           <Fragment>
