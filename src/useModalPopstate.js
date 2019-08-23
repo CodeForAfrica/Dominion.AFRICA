@@ -7,8 +7,8 @@ export default () => {
     dispatch
   } = useContext(AppContext);
   useEffect(() => {
-    function dismissModal(e) {
-      if (e.state && e.state.state === 'modal' && openModal) {
+    function dismissModal() {
+      if (openModal) {
         dispatch({ type: 'modal', openModal: null });
       }
     }

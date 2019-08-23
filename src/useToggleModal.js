@@ -14,7 +14,7 @@ export default modalName => {
       if (openModal && openModal === modalName) {
         history.goBack();
       } else if (!openModal) {
-        history.push('#', 'modal');
+        history.push(`#`);
       } else {
         //
       }

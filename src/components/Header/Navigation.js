@@ -117,7 +117,6 @@ function Navigation({ classes, width, dominion }) {
         { title: 'Resources', link: '/resources' },
         {
           title: 'Contact',
-          link: '#',
           onClick: toggleContact
         }
       ].map(menu => (
