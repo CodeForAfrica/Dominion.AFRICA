@@ -9,6 +9,7 @@ import cfa from '../assets/images/logos/codeforafrica.png';
 import pulitzercenter from '../assets/images/logos/pulitzer.png';
 import ancir from '../assets/images/logos/ancir.png';
 import africadrone from '../assets/images/logos/africa-drone.png';
+import oxpeckers from '../assets/images/logos/oxpeckers.png';
 
 const styles = theme => ({
   root: {
@@ -72,6 +73,11 @@ function Partners({ classes }) {
         <Grid item className={classes.imageGrid}>
           <A href="https://africandrone.org/">
             <img src={africadrone} alt="Africa Drone" className={classes.img} />
+          </A>
+        </Grid>
+        <Grid item className={classes.imageGrid}>
+          <A href="https://oxpeckers.org/">
+            <img src={oxpeckers} alt="Oxpeckers" className={classes.img} />
           </A>
         </Grid>
       </Grid>
