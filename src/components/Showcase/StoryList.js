@@ -10,7 +10,12 @@ import StoryCard from './StoryCard';
 const styles = () => ({
   root: {
     flexGrow: 1,
-    height: '23.125rem',
+    /**
+     * The mixture of rem and px set by GridList is
+     * causing height issues resulting in overflow.
+     * Stick to px for this component to function correctly.
+     */
+    height: '370px', // 23.125rem
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',

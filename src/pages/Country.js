@@ -15,12 +15,17 @@ function Country({
     params: { country }
   }
 }) {
-  const { dispatch } = useContext(AppContext);
-  const selectedCountry = config.countries[country];
+  const {
+    state: { selectedCountry },
+    dispatch
+  } = useContext(AppContext);
 
   useEffect(() => {
-    dispatch({ type: 'selectedCountry', selectedCountry });
-  }, []);
+    dispatch({
+      type: 'selectedCountry',
+      selectedCountry: config.countries[country]
+    });
+  }, [dispatch, country]);
 
   return (
     <Page>
