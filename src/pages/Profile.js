@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ChartContainer } from '@codeforafrica/hurumap-ui';
 import gql from 'graphql-tag';
 import { useApolloClient } from 'react-apollo-hooks';
-import { Grid } from '@material-ui/core';
+import { Grid, makeStyles } from '@material-ui/core';
 import { ProfilePageHeader } from '../components/Header';
 import ProfileTabs from '../components/ProfileTabs';
 import Page from '../components/Page';
@@ -21,6 +21,17 @@ function Profile({
     params: { geoId, comparisonGeoId }
   }
 }) {
+  const classes = makeStyles(() => ({
+    chartContainerContent: {
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+      '& svg': {
+        /* Disable tooltips cutoff, remove after hurumap-ui new version is merged in */
+        overflow: 'visible'
+      }
+    }
+  }))();
   const {
     state: { selectedCountry },
     dispatch
@@ -281,20 +292,10 @@ query charts($geoCode: String!, $geoLevel: String!) {
               }
             >
               <ChartContainer
-                overflowX={
-                  chart.visuals.find(visual => visual.type === 'pie')
-                    ? 'visible'
-                    : chart.visuals.find(visual => visual.horizontal)
-                    ? 'hidden'
-                    : 'auto'
-                }
-                overflowY={
-                  chart.visuals.find(visual => visual.type === 'pie')
-                    ? 'visible'
-                    : chart.visuals.find(visual => visual.horizontal)
-                    ? 'auto'
-                    : 'hidden'
-                }
+                /* TODO: hurumap-ui remove scroll */
+                overflowX="visible"
+                overflowY="visible"
+                classes={{ content: classes.chartContainerContent }}
                 title={chart.title}
                 subtitle={chart.subtitle}
               >
