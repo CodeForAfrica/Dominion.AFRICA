@@ -158,13 +158,13 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
         const squareKmsFloat = parseFloat(squareKms);
         if (!Number.isNaN(squareKms)) {
           if (squareKmsFloat < 1.0) {
-            const numberFormatter = new Intl.NumberFormat('en-IN', {
+            const numberFormatter = new Intl.NumberFormat('en-GB', {
               minimumFractionDigits: 3,
               maximumFractionDigits: 3
             });
             squareKms = numberFormatter.format(squareKmsFloat);
           } else {
-            const numberFormatter = new Intl.NumberFormat('en-IN', {
+            const numberFormatter = new Intl.NumberFormat('en-GB', {
               minimumFractionDigits: 1,
               maximumFractionDigits: 1
             });
@@ -175,9 +175,9 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
         let population;
         let populationDensity;
         if (totalPopulation) {
-          let numberFormatter = new Intl.NumberFormat('en-IN');
+          let numberFormatter = new Intl.NumberFormat('en-GB');
           population = numberFormatter.format(totalPopulation.toFixed(0));
-          numberFormatter = new Intl.NumberFormat('en-IN', {
+          numberFormatter = new Intl.NumberFormat('en-GB', {
             minimumFractionDigits: 1,
             maximumFractionDigits: 1
           });
