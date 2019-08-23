@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Grid, Link, MenuList, MenuItem, IconButton } from '@material-ui/core';
@@ -18,6 +18,7 @@ import backIcon from '../../assets/images/icons/back.svg';
 import searchIcon from '../../assets/images/icons/location.svg';
 
 import Modal from '../Modal';
+import useToggleModal from '../../useToggleModal';
 
 const styles = theme => ({
   root: {
@@ -29,7 +30,7 @@ const styles = theme => ({
     width: '100%',
     [theme.breakpoints.up('md')]: {
       padding: '1.875rem 0',
-      maxWidth: '71.1875rem',
+      maxWidth: '81.3571429rem',
       margin: '0 auto'
     }
   },
@@ -70,14 +71,20 @@ const styles = theme => ({
     }
   },
   img: {
-    height: '45px',
+    height: '2.572rem',
+    marginTop: '0.3rem',
     maxWidth: 'unset'
+  },
+  logoLink: {
+    position: 'relative',
+    marginRight: '5.6rem'
   },
   link: {
     color: '#fff',
     textDecoration: 'none',
     fontFamily: theme.typography.fontFamily,
     fontWeight: '600',
+    fontSize: '0.7143rem',
     '&:hover': {
       color: '#e7e452',
       textDecoration: 'none'
@@ -96,63 +103,61 @@ const styles = theme => ({
   }
 });
 
-class Navigation extends Component {
-  renderMenuList() {
-    const { classes, toggleModal } = this.props;
-    return (
-      <MenuList className={classes.menuList}>
-        {[
-          { title: 'About', link: '/about' },
-          { title: 'Showcase', link: `#showcase` },
-          { title: 'Resources', link: '/resources' },
-          {
-            title: 'Contact',
-            link: '#',
-            onClick: toggleModal('contact')
-          }
-        ].map(menu => (
-          <MenuItem key={menu.link} className={classes.menuListItem}>
-            <Link
-              variant="body1"
-              className={classes.link}
-              href={menu.link}
-              onClick={menu.onClick}
-            >
-              {menu.title}
-            </Link>
-          </MenuItem>
-        ))}
-      </MenuList>
-    );
-  }
+function Navigation({ classes, width, dominion }) {
+  const { countries, selectedCountry } = dominion;
+  const { open: openPortal, toggleModal: togglePortal } = useToggleModal(
+    'portal'
+  );
+  const { open: openSearch, toggleModal: toggleSearch } = useToggleModal(
+    'search'
+  );
+  const { open: openMenu, toggleModal: toggleMenu } = useToggleModal('menu');
+  const { open: openContact, toggleModal: toggleContact } = useToggleModal(
+    'contact'
+  );
+  const renderMenuList = () => (
+    <MenuList className={classes.menuList}>
+      {[
+        { title: 'About', link: '/about' },
+        { title: 'Showcase', link: `#showcase` },
+        { title: 'Resources', link: '/resources' },
+        {
+          title: 'Contact',
+          onClick: toggleContact
+        }
+      ].map(menu => (
+        <MenuItem key={menu.link} className={classes.menuListItem}>
+          <Link
+            variant="body1"
+            className={classes.link}
+            href={menu.link}
+            onClick={menu.onClick}
+          >
+            {menu.title}
+          </Link>
+        </MenuItem>
+      ))}
+    </MenuList>
+  );
 
-  renderBrand() {
-    const {
-      classes,
-      dominion: { selectedCountry }
-    } = this.props;
+  const renderBrand = () => (
+    <Link
+      component="a"
+      href={selectedCountry ? `/${selectedCountry.slug}` : '/'}
+      style={{ position: 'relative', marginRight: '50px' }}
+    >
+      <img
+        alt="Dominion Logo"
+        src={selectedCountry ? logoWithCountrySpace : logo}
+        className={classes.img}
+      />
+      {selectedCountry ? (
+        <p className={classes.logoCountryName}>{selectedCountry.name}</p>
+      ) : null}
+    </Link>
+  );
 
-    return (
-      <Link
-        component="a"
-        href={selectedCountry ? `/${selectedCountry.slug}` : '/'}
-        style={{ position: 'relative', marginRight: '50px' }}
-      >
-        <img
-          alt="Dominion Logo"
-          src={selectedCountry ? logoWithCountrySpace : logo}
-          className={classes.img}
-        />
-        {selectedCountry ? (
-          <p className={classes.logoCountryName}>{selectedCountry.name}</p>
-        ) : null}
-      </Link>
-    );
-  }
-
-  renderMobileMenu() {
-    const { classes, dominion, toggleModal, openModal } = this.props;
-    const { countries } = dominion;
+  const renderMobileMenu = () => {
     const Topbar = () => (
       <Grid
         container
@@ -162,24 +167,13 @@ class Navigation extends Component {
         alignItems="center"
         className={classes.root}
       >
-        {this.renderBrand()}
+        {renderBrand()}
         <IconButton
           disableRipple
           aria-label="Menu"
-          onClick={
-            openModal === 'contact'
-              ? toggleModal('contact')
-              : toggleModal('menu')
-          }
+          onClick={openContact ? toggleContact : toggleMenu}
         >
-          <img
-            alt="Menu"
-            src={
-              openModal === 'menu' || openModal === 'contact'
-                ? backIcon
-                : menuIcon
-            }
-          />
+          <img alt="Menu" src={openMenu || openContact ? backIcon : menuIcon} />
         </IconButton>
       </Grid>
     );
@@ -188,124 +182,92 @@ class Navigation extends Component {
       <React.Fragment>
         <Topbar />
 
-        <Modal
-          isOpen={openModal === 'menu'}
-          onEscapeKeyDown={toggleModal('menu')}
-        >
+        <Modal isOpen={openMenu} onEscapeKeyDown={toggleMenu}>
           <Grid container className={classes.wrapper}>
             <Topbar />
-            <Search dominion={dominion}>
+            <Search dominion={dominion} placeholder="Search">
               <Dropdown countries={countries} />
-              {this.renderMenuList()}
+              {renderMenuList()}
             </Search>
           </Grid>
         </Modal>
       </React.Fragment>
     );
-  }
+  };
 
-  renderDesktopMenu() {
-    const { classes, toggleModal, dominion, openModal } = this.props;
-    const { countries } = dominion;
-    return (
+  const renderDesktopMenu = () => (
+    <Grid
+      container
+      direction="row"
+      wrap="nowrap"
+      justify="space-between"
+      alignItems="center"
+      className={classes.root}
+    >
+      {renderBrand()}
       <Grid
         container
-        direction="row"
+        direction="row-reverse"
+        justify="flex-start"
         wrap="nowrap"
-        justify="space-between"
         alignItems="center"
-        className={classes.root}
+        className={classes.topMenuNav}
       >
-        {this.renderBrand()}
-        <Grid
-          container
-          direction="row-reverse"
-          justify="flex-start"
-          wrap="nowrap"
-          alignItems="center"
-          className={classes.topMenuNav}
+        <IconButton
+          disableRipple
+          aria-label="Search"
+          onClick={toggleSearch}
+          style={{
+            marginLeft: 60
+          }}
         >
-          <IconButton
-            disableRipple
-            aria-label="Search"
-            onClick={toggleModal('search')}
-            style={{
-              marginLeft: 60
-            }}
-          >
-            <img alt="Search" src={searchIcon} />
-          </IconButton>
-          <CountriesButton
-            countries={countries}
-            onClick={toggleModal('portal')}
-            isOpen={openModal === 'portal'}
-          />
-          {this.renderMenuList()}
-        </Grid>
+          <img alt="Search" src={searchIcon} />
+        </IconButton>
+        <CountriesButton
+          countries={countries}
+          onClick={togglePortal}
+          isOpen={openPortal}
+        />
+        {renderMenuList()}
       </Grid>
-    );
-  }
+    </Grid>
+  );
 
-  render() {
-    const { classes, width, openModal, toggleModal, dominion } = this.props;
-    const { countries } = dominion;
-    const nav = isWidthDown('sm', width)
-      ? this.renderMobileMenu()
-      : this.renderDesktopMenu();
+  const nav = isWidthDown('sm', width)
+    ? renderMobileMenu()
+    : renderDesktopMenu();
 
-    return (
-      <React.Fragment>
+  return (
+    <React.Fragment>
+      <Grid container className={classes.wrapper}>
+        {nav}
+      </Grid>
+      <Modal isOpen={openSearch} onEscapeKeyDown={toggleSearch}>
         <Grid container className={classes.wrapper}>
           {nav}
+          <Search handleIconClick={toggleSearch} dominion={dominion} />
         </Grid>
-        <Modal
-          isOpen={openModal === 'search'}
-          onEscapeKeyDown={toggleModal('search')}
-        >
-          <Grid container className={classes.wrapper}>
-            {nav}
-            <Search
-              handleIconClick={toggleModal('search')}
-              dominion={dominion}
-            />
-          </Grid>
-        </Modal>
-        <Modal
-          isOpen={openModal === 'portal'}
-          onEscapeKeyDown={toggleModal('portal')}
-        >
-          <Grid container className={classes.wrapper}>
-            {nav}
-            <PortalChooser
-              handleClose={toggleModal('portal')}
-              countries={countries}
-            />
-          </Grid>
-        </Modal>
-        <Modal
-          isOpen={openModal === 'contact'}
-          onEscapeKeyDown={toggleModal('contact')}
-        >
-          <Grid container className={classes.wrapper}>
-            {nav}
-            <ContactUs handleClose={toggleModal('contact')} />
-          </Grid>
-        </Modal>
-      </React.Fragment>
-    );
-  }
+      </Modal>
+      <Modal isOpen={openPortal} onEscapeKeyDown={togglePortal}>
+        <Grid container className={classes.wrapper}>
+          {nav}
+          <PortalChooser handleClose={togglePortal} countries={countries} />
+        </Grid>
+      </Modal>
+      <Modal isOpen={openContact} onEscapeKeyDown={toggleContact}>
+        <Grid container className={classes.wrapper}>
+          {nav}
+          <ContactUs handleClose={toggleContact} />
+        </Grid>
+      </Modal>
+    </React.Fragment>
+  );
 }
 
 Navigation.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   width: PropTypes.string.isRequired,
-  openModal: PropTypes.string,
-  toggleModal: PropTypes.func.isRequired,
   dominion: PropTypes.shape({}).isRequired
-};
-
-Navigation.defaultProps = {
-  openModal: null
 };
 
 export default withWidth()(withStyles(styles)(Navigation));

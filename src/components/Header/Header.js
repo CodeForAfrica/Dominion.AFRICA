@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+
+import { withRouter } from 'react-router-dom';
 
 import withWidth from '@material-ui/core/withWidth';
 
 import Navigation from './Navigation';
 
 import background from '../../assets/images/bg/background.png';
+import useCloseModalOnPopstate from '../../useCloseModalOnPopstate';
 
 const styles = theme => ({
   root: {
@@ -19,7 +22,7 @@ const styles = theme => ({
   },
   wrapper: {
     [theme.breakpoints.up('md')]: {
-      maxWidth: '71.1875rem',
+      maxWidth: '81.3571429rem',
       margin: '0 auto'
     }
   },
@@ -36,47 +39,20 @@ const styles = theme => ({
   }
 });
 
-class Header extends Component {
-  constructor(props) {
-    super(props);
+function Header({ classes, history, children, dominion, ...props }) {
+  useCloseModalOnPopstate();
+  return (
+    <div className={classes.root}>
+      <Grid container className={classes.wrapper}>
+        <Navigation dominion={dominion} />
 
-    this.state = {
-      openModal: null
-    };
-
-    this.toggleModal = this.toggleModal.bind(this);
-  }
-
-  toggleModal(modalName) {
-    return () => {
-      this.setState(prevState => ({
-        openModal: prevState.openModal === modalName ? null : modalName
-      }));
-    };
-  }
-
-  render() {
-    const { classes, children, dominion, ...props } = this.props;
-    const { openModal } = this.state;
-
-    return (
-      <div className={classes.root}>
-        <Grid container className={classes.wrapper}>
-          <Navigation
-            toggleModal={this.toggleModal}
-            openModal={openModal}
-            dominion={dominion}
-          />
-
-          {React.cloneElement(children, {
-            ...props,
-            dominion,
-            toggleModal: this.toggleModal
-          })}
-        </Grid>
-      </div>
-    );
-  }
+        {React.cloneElement(children, {
+          ...props,
+          dominion
+        })}
+      </Grid>
+    </div>
+  );
 }
 
 Header.propTypes = {
@@ -93,4 +69,4 @@ Header.defaultProps = {
   profile: null
 };
 
-export default withWidth()(withStyles(styles)(Header));
+export default withRouter(withWidth()(withStyles(styles)(Header)));

@@ -8,10 +8,10 @@ import Content from './Content';
 const styles = theme => ({
   description: {
     [theme.breakpoints.up('md')]: {
-      width: '7.734375rem' // .75 of lg
+      width: '8.84rem' // .75 of lg
     },
     [theme.breakpoints.up('lg')]: {
-      width: '10.3125rem' // 165px / 16
+      width: '11.786rem' // 165px / 16
     }
   }
 });

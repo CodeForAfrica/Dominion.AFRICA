@@ -53,7 +53,6 @@ const styles = theme => ({
   },
   caption: {
     color: '#8d8d8c',
-    fontSize: '0.75em',
     width: '100%',
     textTransform: 'capitalize',
     paddingTop: theme.spacing(),
@@ -88,9 +87,12 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
     state: { selectedCountry }
   } = useContext(AppContext);
   const { head2head } = dominion;
-  const onClickGeoLayer = useCallback(area => {
-    history.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
-  }, []);
+  const onClickGeoLayer = useCallback(
+    area => {
+      history.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
+    },
+    [history]
+  );
   return (
     <Query
       query={gql`
@@ -200,7 +202,7 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
                 {shortName}
               </HeroTitle>
               <Typography
-                variant="body2"
+                variant="subtitile1"
                 className={classes.caption}
                 component="p"
               >
