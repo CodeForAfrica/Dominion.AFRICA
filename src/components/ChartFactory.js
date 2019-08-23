@@ -14,7 +14,10 @@ export default class ChartFactory {
       label,
       horizontal,
       reference: { label: referenceLabel } = {},
-      aggregate
+      aggregate,
+      width,
+      height,
+      barWidth
     },
     datas,
     comparisonDatas,
@@ -32,6 +35,7 @@ export default class ChartFactory {
     if (!datas) {
       return null;
     }
+    const numberFormatter = new Intl.NumberFormat('en-IN');
     const key =
       Math.random()
         .toString(36)
@@ -61,56 +65,70 @@ export default class ChartFactory {
             ? summedReferenceData
             : summedData;
         return (
-          <NestedProportionalAreaChart
-            key={key}
-            square={visualType === 'square_nested_proportional_area'}
-            height={isComparison && 500}
-            width={!isComparison ? 200 : 650}
-            groupSpacing={isComparison && 8}
-            data={
-              !isComparison
-                ? [
-                    {
-                      x: summedData,
-                      label: dataLabel
-                    }
-                  ]
-                : [
-                    {
-                      x: summedData,
-                      label: dataLabel
-                    },
-                    {
-                      x: comparisonData.reduce((a, b) => a + b.y, 0),
-                      label:
-                        comparisonData[0].label ||
-                        profiles.comparisonProfile[label] ||
-                        label
-                    }
-                  ]
-            }
-            reference={[
-              {
-                x: summedReferenceData,
-                label: refrenceLabel
+          // Due to responsiveness of nstedchart
+          <div>
+            <NestedProportionalAreaChart
+              key={key}
+              square={visualType === 'square_nested_proportional_area'}
+              height={isComparison && 500}
+              width={!isComparison ? 200 : 650}
+              groupSpacing={isComparison && 8}
+              data={
+                !isComparison
+                  ? [
+                      {
+                        x: summedData,
+                        label: dataLabel
+                      }
+                    ]
+                  : [
+                      {
+                        x: summedData,
+                        label: dataLabel
+                      },
+                      {
+                        x: comparisonData.reduce((a, b) => a + b.y, 0),
+                        label:
+                          comparisonData[0].label ||
+                          profiles.comparisonProfile[label] ||
+                          label
+                      }
+                    ]
               }
-            ]}
-          />
+              reference={[
+                {
+                  x: summedReferenceData,
+                  label: refrenceLabel
+                }
+              ]}
+            />
+          </div>
         );
       }
       case 'pie':
         return (
-          <PieChart
-            key={key}
-            data={!aggregate ? data : aggregateData(aggregate, data)}
-          />
+          // Due to responsiveness of piechart
+          <div>
+            <PieChart
+              key={key}
+              width={width}
+              height={height}
+              data={!aggregate ? data : aggregateData(aggregate, data)}
+            />
+          </div>
         );
       case 'grouped_column':
         return (
           <BarChart
-            horizontal={horizontal}
             key={key}
-            height={200}
+            responsive
+            width={width}
+            height={height || 200}
+            barWidth={barWidth || 50}
+            horizontal={horizontal}
+            labels={datum => numberFormatter.format(datum.y)}
+            // Disable tooltip behaviour
+            labelComponent={undefined}
             data={[...new Set(data.map(d => d.groupBy))].map(group => ({
               label: group,
               data: !aggregate
@@ -130,10 +148,15 @@ export default class ChartFactory {
             : aggregateData(aggregate, comparisonData);
           return (
             <BarChart
-              horizontal={horizontal}
               key={key}
-              barWidth={100}
-              height={200}
+              responsive
+              width={width}
+              height={height || 200}
+              barWidth={barWidth || 100}
+              horizontal={horizontal}
+              labels={datum => numberFormatter.format(datum.y)}
+              // Disable tooltip behaviour
+              labelComponent={undefined}
               data={pData.map(d => ({
                 label: d.x[0].toUpperCase() + d.x.slice(1),
                 data: [
@@ -154,10 +177,15 @@ export default class ChartFactory {
         }
         return (
           <BarChart
-            horizontal={horizontal}
             key={key}
-            barWidth={100}
-            height={200}
+            responsive
+            width={width}
+            height={height || 200}
+            barWidth={barWidth || 100}
+            labels={datum => numberFormatter.format(datum.y)}
+            // Disable tooltip behaviour
+            labelComponent={undefined}
+            horizontal={horizontal}
             data={!aggregate ? data : aggregateData(aggregate, data)}
           />
         );
