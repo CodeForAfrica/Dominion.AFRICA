@@ -2,8 +2,8 @@ import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import {
   ChartContainer,
-  EmbedPopup,
-  InfoPopup
+  ShareDropDown,
+  InfoDropDown
 } from '@codeforafrica/hurumap-ui';
 import gql from 'graphql-tag';
 import { useApolloClient } from 'react-apollo-hooks';
@@ -339,7 +339,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
               </ChartContainer>
             </Grid>
           ))}
-        <EmbedPopup
+        <ShareDropDown
           anchorEl={shareAnchorEl}
           onClose={handleCloseShare}
           open={shareAnchorEl !== null}
@@ -356,8 +356,8 @@ query charts($geoCode: String!, $geoLevel: String!) {
   style="margin: 1em; max-width: 300px;"
 />
 <script src="https://tanzania.hurumap.org/static/js/embed.chart.make.js" />`}
-        </EmbedPopup>
-        <InfoPopup
+        </ShareDropDown>
+        <InfoDropDown
           anchorEl={infoAnchorEl}
           onClose={handleCloseInfo}
           onExploreData={handleExploreData}
@@ -366,7 +366,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
           sourceTitle="Code for Africa"
         >
           Explore Data
-        </InfoPopup>
+        </InfoDropDown>
       </ChartsContainer>
       <ProfileRelease />
       <CountryPartners dominion={{ ...config, selectedCountry }} />
