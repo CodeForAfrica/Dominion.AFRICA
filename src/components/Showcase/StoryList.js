@@ -18,9 +18,8 @@ const styles = () => ({
   },
   gridList: {
     flexWrap: 'nowrap',
-
     // TODO(nyokabi): Material-ui documentation for Grid list componenet
-    //                Promote the list into his own layer on Chrome. This cost
+    //                Promote the list into its own layer on Chrome. This cost
     //                memory but helps keeping high FPS.
     transform: 'translateZ(0)',
     height: '100%',

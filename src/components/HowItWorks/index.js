@@ -12,8 +12,8 @@ import Description from './Description';
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    padding: '2rem 0',
-    paddingLeft: '1.875rem', // 30px / 16
+    padding: '2.286rem 0',
+    paddingLeft: '2.143rem', // 30px / 16
     backgroundColor: '#fff',
     backgroundImage: `url(${databg})`,
     backgroundRepeat: 'no-repeat',
@@ -21,7 +21,7 @@ const styles = theme => ({
     backgroundSize: '80% 70%',
     [theme.breakpoints.up('md')]: {
       paddingLeft: 0, // 30px / 16
-      backgroundPosition: '0 4.5rem', // Match padding + highlight height
+      backgroundPosition: '0 5.143rem', // Match padding + highlight height
       backgroundSize: '62% 100%'
     },
     [theme.breakpoints.up('xl')]: {
@@ -31,21 +31,21 @@ const styles = theme => ({
   wrapper: {
     margin: '0 auto',
     [theme.breakpoints.up('sm')]: {
-      maxWidth: '58.265625rem' // .75 of lg
+      maxWidth: '66.59rem' // .75 of lg
     },
     [theme.breakpoints.up('md')]: {
-      maxWidth: '71.1875rem'
+      maxWidth: '81.3571429rem'
     }
   },
   description: {
     [theme.breakpoints.up('md')]: {
-      paddingTop: '4.625rem', // 74px / 16
-      paddingLeft: '4.625rem' // 74px / 16
+      paddingTop: '5.286rem', // 74px / 16
+      paddingLeft: '5.286rem' // 74px / 16
     }
   },
   imageAlign: {
     [theme.breakpoints.up('md')]: {
-      marginLeft: '-7.9375rem'
+      marginLeft: '-9.07143rem'
     }
   }
 });

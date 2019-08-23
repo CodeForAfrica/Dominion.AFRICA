@@ -16,18 +16,18 @@ const styles = theme => ({
     backgroundImage: `url(${background})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    paddingTop: '3.1875rem',
-    paddingLeft: '1.875rem',
-    paddingBottom: '2.875rem',
+    paddingTop: '3.64rem',
+    paddingLeft: '2.143rem',
+    paddingBottom: '3.286rem',
     [theme.breakpoints.up('md')]: {
-      paddingTop: '5.25rem',
+      paddingTop: '6rem',
       paddingLeft: 0,
-      paddingBottom: '3.375rem'
+      paddingBottom: '3.857rem'
     }
   },
   layout: {
     [theme.breakpoints.up('md')]: {
-      maxWidth: '71.1875rem',
+      maxWidth: '81.3571429rem',
       margin: '0 auto'
     }
   },
@@ -38,7 +38,7 @@ const styles = theme => ({
   },
   organisation: {
     width: '100%',
-    marginTop: '1.625rem', // 26px / 16
+    marginTop: '1.857rem', // 26px / 16
     [theme.breakpoints.up('md')]: {
       width: 'auto',
       marginTop: 0

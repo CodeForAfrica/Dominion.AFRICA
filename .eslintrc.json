@@ -12,6 +12,7 @@
       {
         "extensions": [".js", ".jsx"]
       }
-    ]
+    ],
+    "no-nested-ternary": "off"
   }
 }

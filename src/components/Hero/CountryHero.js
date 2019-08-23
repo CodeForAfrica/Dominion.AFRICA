@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import { PropTypes } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { MapIt } from '@codeforafrica/hurumap-ui';
+import { Typography } from '@material-ui/core';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import { withRouter } from 'react-router-dom';
 
 import Hero, {
@@ -25,7 +27,6 @@ const styles = theme => ({
   titleGrid: {
     pointerEvents: 'none',
     [theme.breakpoints.up('md')]: {
-      marginTop: '-4rem',
       maxWidth: '28%'
     }
   },
@@ -35,9 +36,9 @@ const styles = theme => ({
     }
   },
   description: {
-    fontSize: '0.6875rem',
     [theme.breakpoints.up('md')]: {
-      whiteSpace: 'nowrap'
+      whiteSpace: 'nowrap',
+      width: '100%'
     }
   },
   alink: {
@@ -61,9 +62,12 @@ const styles = theme => ({
   }
 });
 
-function CountryHero({ classes, history, dominion }) {
+function CountryHero({ classes, width, history, dominion }) {
   const { selectedCountry = { name: '' } } = dominion;
   const { toggleModal } = useToggleModal('search');
+  const onClickGeoLayer = useCallback(area => {
+    history.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
+  }, []);
   return (
     <Hero classes={{ root: classes.root }}>
       <HeroTitleGrid classes={{ titleTextGrid: classes.titleGrid }}>
@@ -72,13 +76,13 @@ function CountryHero({ classes, history, dominion }) {
         </HeroTitle>
         <HeroDescription classes={{ body2: classes.description }}>
           Dominion makes data available to help add context and authority to{' '}
-          <br />
+          {isWidthUp('md', width) && <br />}
           public discourse and policy-making on vital issues of land ownership.
         </HeroDescription>
 
         <HeroButton onClick={toggleModal}>Find a place</HeroButton>
 
-        <p style={{ marginTop: '40px' }}>
+        <Typography variant="subtitle2" style={{ marginTop: '40px' }}>
           or view{' '}
           <a
             className={classes.alink}
@@ -86,7 +90,7 @@ function CountryHero({ classes, history, dominion }) {
           >
             {selectedCountry.name}
           </a>
-        </p>
+        </Typography>
       </HeroTitleGrid>
       <div className={classes.map}>
         <MapIt
@@ -96,9 +100,7 @@ function CountryHero({ classes, history, dominion }) {
           codeType={config.MAPIT.codeType}
           geoLevel="country"
           geoCode={selectedCountry.code}
-          onClickGeoLayer={area => {
-            history.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
-          }}
+          onClickGeoLayer={onClickGeoLayer}
         />
       </div>
     </Hero>
@@ -107,7 +109,8 @@ function CountryHero({ classes, history, dominion }) {
 
 CountryHero.propTypes = {
   classes: PropTypes.shape({}).isRequired,
-  dominion: PropTypes.shape({}).isRequired
+  dominion: PropTypes.shape({}).isRequired,
+  width: PropTypes.string.isRequired
 };
 
-export default withRouter(withStyles(styles)(CountryHero));
+export default withRouter(withWidth()(withStyles(styles)(CountryHero)));

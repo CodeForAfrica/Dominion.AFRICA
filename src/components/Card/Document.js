@@ -40,7 +40,7 @@ function Document({ classes, link, title, description, preview }) {
             </Grid>
 
             <Grid item xs={8} container direction="column" justify="center">
-              <Typography variant="h4">{title}</Typography>
+              <Typography variant="h5">{title}</Typography>
               <Typography className={classes.description}>
                 {description}
               </Typography>

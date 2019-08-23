@@ -30,7 +30,7 @@ const styles = theme => ({
     width: '100%',
     [theme.breakpoints.up('md')]: {
       padding: '1.875rem 0',
-      maxWidth: '71.1875rem',
+      maxWidth: '81.3571429rem',
       margin: '0 auto'
     }
   },
@@ -71,14 +71,20 @@ const styles = theme => ({
     }
   },
   img: {
-    height: '45px',
+    height: '2.572rem',
+    marginTop: '0.3rem',
     maxWidth: 'unset'
+  },
+  logoLink: {
+    position: 'relative',
+    marginRight: '5.6rem'
   },
   link: {
     color: '#fff',
     textDecoration: 'none',
     fontFamily: theme.typography.fontFamily,
     fontWeight: '600',
+    fontSize: '0.7143rem',
     '&:hover': {
       color: '#e7e452',
       textDecoration: 'none'
@@ -179,7 +185,7 @@ function Navigation({ classes, width, dominion }) {
         <Modal isOpen={openMenu} onEscapeKeyDown={toggleMenu}>
           <Grid container className={classes.wrapper}>
             <Topbar />
-            <Search dominion={dominion}>
+            <Search dominion={dominion} placeholder="Search">
               <Dropdown countries={countries} />
               {renderMenuList()}
             </Search>

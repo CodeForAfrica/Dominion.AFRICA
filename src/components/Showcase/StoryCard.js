@@ -13,7 +13,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   root: {
-    height: '20rem',
+    minHeight: '20rem',
+    height: '100%',
     backgroundColor: '#fafafa',
     border: '1px solid #eeeeee',
     opacity: 0.9,
@@ -101,13 +102,13 @@ function StoryCard({ story, classes }) {
               alignItems="flex-start"
               style={{ height: '100%' }}
             >
-              <Typography variant="h6" className={classes.overline}>
+              <Typography variant="subtitle2" className={classes.overline}>
                 {date}
               </Typography>
               <Typography variant="h5" className={classes.bodyTitle}>
                 {title}
               </Typography>
-              <Typography variant="subtitle2" className={classes.bodyText}>
+              <Typography variant="body2" className={classes.bodyText}>
                 {brief}{' '}
               </Typography>
             </Grid>

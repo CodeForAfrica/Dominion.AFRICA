@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useContext } from 'react';
 
 import { PropTypes } from 'prop-types';
 import { Typography } from '@material-ui/core';
@@ -15,6 +15,7 @@ import Search from '../../Search';
 // import ReleaseDropdown from '../../ReleaseDropdown';
 import searchIcon from '../../../assets/images/icons/location.svg';
 import config from '../../../config';
+import { AppContext } from '../../../AppContext';
 
 const styles = theme => ({
   root: {
@@ -30,15 +31,15 @@ const styles = theme => ({
     zIndex: 0,
     position: 'relative !important',
     backgroundColor: 'grey',
-    height: '250px !important',
+    height: '15.625rem !important',
     width: '100%',
     left: 'unset !important',
     top: 'unset !important',
     [theme.breakpoints.up('md')]: {
       width: '65% !important',
-      height: '460px !important',
-      maxHeight: '460px !important',
-      maxWidth: '740px !important'
+      height: '28.75rem !important',
+      maxHeight: '28.75rem !important',
+      maxWidth: '46.25rem !important'
     }
   },
   h2hMap: {
@@ -52,7 +53,6 @@ const styles = theme => ({
   },
   caption: {
     color: '#8d8d8c',
-    fontSize: '0.75em',
     width: '100%',
     textTransform: 'capitalize',
     paddingTop: theme.spacing(),
@@ -83,7 +83,13 @@ const styles = theme => ({
   }
 });
 function Profile({ classes, dominion, geoId, history, ...props }) {
+  const {
+    state: { selectedCountry }
+  } = useContext(AppContext);
   const { head2head } = dominion;
+  const onClickGeoLayer = useCallback(area => {
+    history.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
+  }, []);
   return (
     <Query
       query={gql`
@@ -178,7 +184,7 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
                 {shortName}
               </HeroTitle>
               <Typography
-                variant="body2"
+                variant="subtitile1"
                 className={classes.caption}
                 component="p"
               >
@@ -187,10 +193,16 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
                   in{' '}
                   <span>
                     <a
-                      href={`/profile/${parentLevel}-${parentCode}`}
+                      href={
+                        parentLevel !== 'continent'
+                          ? `/profile/${selectedCountry.geoLevel}-${selectedCountry.geoCode}`
+                          : '#'
+                      }
                       className={classes.alink}
                     >
-                      {parentCode}
+                      {parentLevel !== 'continent'
+                        ? selectedCountry.name
+                        : 'Africa'}
                     </a>
                     {', '}
                   </span>
@@ -234,9 +246,13 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
                 codeType={config.MAPIT.codeType}
                 geoLevel={geoLevel}
                 geoCode={geoCode}
-                onClickGeoLayer={area => {
-                  history.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
+                geoLayerFocusStyle={{
+                  fillColor: 'rgb(127, 148, 66)',
+                  color: 'rgb(141, 141, 140)',
+                  opacity: 0.3,
+                  fillOpacity: 0.3
                 }}
+                onClickGeoLayer={onClickGeoLayer}
               />
             </div>
             {/* {activeRelease && (

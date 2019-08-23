@@ -38,6 +38,11 @@ const styles = theme => ({
       padding: 0,
       marginBottom: '3rem'
     }
+  },
+  herotitle: {
+    [theme.breakpoints.down('sm')]: {
+      width: '80%'
+    }
   }
 });
 
@@ -53,7 +58,9 @@ function HomeHero({ classes }) {
         className={classes.heroContentGrid}
       >
         <HeroTitleGrid>
-          <HeroTitle>Discover the stories behind the data.</HeroTitle>
+          <HeroTitle classes={{ title: classes.herotitle }}>
+            Discover the stories behind the data.
+          </HeroTitle>
 
           <HeroDescription>
             Dominion makes data available to help add context and authority to

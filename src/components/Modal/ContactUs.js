@@ -30,6 +30,7 @@ const styles = theme => ({
     }
   },
   title: {
+    fontFamily: theme.typography.fontHeading,
     fontSize: '2.5rem',
     [theme.breakpoints.up('md')]: {
       fontSize: '4.375rem'
@@ -60,7 +61,8 @@ const styles = theme => ({
   },
   listItemLink: {
     color: 'white',
-    fontFamily: '"Lora"',
+    fontFamily: theme.typography.fontHeading,
+    fontWeight: 'normal',
     textDecoration: 'none',
     visibility: 'visible',
     fontSize: '1.25rem',
@@ -71,6 +73,11 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       fontSize: '2.5rem'
     }
+  },
+  overview: {
+    fontSize: '0.6875rem',
+    marginTop: '1rem',
+    opacity: 0.5
   }
 });
 
@@ -89,9 +96,8 @@ function ContactUs({ classes, handleClose }) {
       <Grid container direction="row">
         <Grid item xs={12} md={6}>
           <Typography className={classes.title}>Contact us</Typography>
-          <Typography style={{ opacity: 0.5 }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna.
+          <Typography className={classes.overview}>
+            Got a comment or query? Get in touch:
           </Typography>
         </Grid>
         <Grid item xs={12} md={6}>

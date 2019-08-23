@@ -21,10 +21,10 @@ const styles = theme => ({
     color: 'white',
     width: '100%',
     fontFamily: theme.typography.fontFamily,
-    fontSize: '0.813em',
-    fontWeight: '600',
+    fontSize: theme.typography.subtitle2.fontSize,
+    fontWeight: 'bold',
     [theme.breakpoints.up('md')]: {
-      padding: '15px 0 4px',
+      padding: '1rem 0 0.5rem 1rem',
       borderBottom: '2px solid white'
     }
   },
@@ -32,9 +32,7 @@ const styles = theme => ({
     '&::placeholder': {
       fontFamily: theme.typography.fontFamily,
       color: 'white',
-      fontSize: '1.125em',
-      opacity: 1,
-      fontWeight: '600'
+      opacity: 1
     }
   },
   rootBorderBottom: {

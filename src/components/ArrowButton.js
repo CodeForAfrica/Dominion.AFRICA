@@ -17,7 +17,7 @@ const styles = theme => ({
     pointerEvents: 'all',
     textTransform: 'none',
     fontWeight: 800,
-    fontSize: theme.typography.subtitle1.fontSize,
+    fontSize: theme.typography.subtitle2.fontSize,
     color: 'black',
     height: '4rem',
     width: '100%',

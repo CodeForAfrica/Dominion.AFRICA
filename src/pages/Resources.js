@@ -8,6 +8,8 @@ import DocumentCard from '../components/Card/Document';
 import DataCard from '../components/Card/Data';
 import ArrowButton from '../components/ArrowButton';
 import { AboutDominion } from '../components/About';
+import CountryPartners from '../components/CountryPartners';
+
 import {
   getSourceAfricaDominionData,
   getOpenAfricaDominionGroupData
@@ -45,10 +47,9 @@ function Resources() {
         subtitle="Powered by sourceAFRICA.net"
       >
         <Typography>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
+          Data for Dominion is aggregated from various authoritative sources.
+          Below is a list of documents and datasets used for the project, which
+          is hosted on sourceAFRICA.net and openAFRICA.net
         </Typography>
         <Grid container justify="space-between">
           {documents.map(document => (
@@ -77,7 +78,6 @@ function Resources() {
         light
         title="Data"
         subtitle="Powered by openAfrica.net"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
       >
         <Grid container justify="space-between">
           {packages.map(p => (
@@ -98,6 +98,7 @@ function Resources() {
         </ArrowButton>
       </Section>
       <AboutDominion dominion={config} />
+      <CountryPartners />
     </Page>
   );
 }

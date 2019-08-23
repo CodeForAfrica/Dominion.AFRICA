@@ -8,10 +8,10 @@ import createAPI from '../../lib/api';
 const styles = {
   locationText: {
     color: 'white',
-    fontSize: 13,
+    fontSize: '0.93rem',
     fontWeight: 'bold',
     display: 'inline-block',
-    paddingLeft: 16,
+    paddingLeft: '1.2rem',
     '&:hover': {
       color: '#e7e452'
     }

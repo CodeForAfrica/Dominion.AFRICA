@@ -18,25 +18,25 @@ const styles = theme => ({
   layout: {
     height: '14rem',
     [theme.breakpoints.up('md')]: {
-      maxWidth: '71.1875rem',
+      maxWidth: '81.3571429rem',
       margin: '0 auto',
-      height: '10rem'
+      height: '11.423rem'
     }
   },
 
   // 6 rem image + 4 rem padding = 10rem = 160px
   img: {
-    maxHeight: '3.75rem',
+    maxHeight: '4.288rem',
     maxWidth: '30vw',
     [theme.breakpoints.up('md')]: {
       width: 'auto',
-      maxWidth: '10rem'
+      maxWidth: '11.423rem'
     }
   },
   imageGrid: {
-    padding: '1rem',
+    padding: '1.143remrem',
     [theme.breakpoints.up('md')]: {
-      padding: '2rem 1rem'
+      padding: '2.286rem 1.143rem'
     }
   }
 });
