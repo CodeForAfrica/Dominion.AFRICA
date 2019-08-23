@@ -41,7 +41,7 @@ function Profile({
     dispatch
   } = useContext(AppContext);
   const head2head = Boolean(geoId && comparisonGeoId);
-  const [activeTab, setActiveTab] = useState('All');
+  const [activeTab, setActiveTab] = useState('all');
   const [chartData, setChartsData] = useState({});
   const [profiles, setProfiles] = useState({
     profile: {},
@@ -63,6 +63,17 @@ function Profile({
       })
     )
   );
+
+  const slugify = word =>
+    word
+      .toString()
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^\w-]+/g, '')
+      .replace(/-+/g, '-')
+      .replace(/^-+/, '')
+      .replace(/-+$/, '');
 
   // Flatten all charts
   const charts = sectionedCharts
@@ -90,7 +101,7 @@ function Profile({
       )
       .map(section => ({
         name: section.sectionTitle,
-        href: section.sectionTitle,
+        href: slugify(section.sectionTitle),
         icon: section.sectionIcon
       }))
   ];
@@ -260,7 +271,6 @@ query charts($geoCode: String!, $geoLevel: String!) {
     workAroundFetchProfileGeos();
   }, [geoId, comparisonGeoId]);
 
-  console.log(activeTab);
   return (
     <Page>
       <ProfilePageHeader
@@ -279,7 +289,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
             container
             spacing={2}
             className={classNames({
-              [classes.chartGrid]: activeTab !== tab.href && activeTab !== 'All'
+              [classes.chartGrid]: activeTab !== tab.href && activeTab !== 'all'
             })}
           >
             <ProfileSectionTitle tab={tab} />
