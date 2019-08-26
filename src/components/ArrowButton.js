@@ -46,7 +46,7 @@ function ArrowButton({ secondary, classes, children, onClick, ...props }) {
     <Grid item sm={12} container alignItems="center" className={classes.root}>
       <Button
         variant="outlined"
-        onClick={onClick}
+        onClick={() => onClick()}
         className={classNames(classes.button, {
           [classes.buttonSecondary]: secondary
         })}
