@@ -90,7 +90,7 @@ function Profile({
     .reduce((a, b) => a.concat(b));
   const visuals = useState(
     charts.map(x => x.visuals).reduce((a, b) => a.concat(b))
-  );
+  )[0];
 
   useEffect(() => {
     const {
