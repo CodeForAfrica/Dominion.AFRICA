@@ -119,26 +119,28 @@ export default class ChartFactory {
         );
       case 'grouped_column':
         return (
-          <BarChart
-            key={key}
-            responsive
-            width={width}
-            height={height || 200}
-            barWidth={barWidth || 50}
-            horizontal={horizontal}
-            labels={datum => numberFormatter.format(datum.y)}
-            // Disable tooltip behaviour
-            labelComponent={undefined}
-            data={[...new Set(data.map(d => d.groupBy))].map(group => ({
-              label: group,
-              data: !aggregate
-                ? data.filter(d => d.groupBy === group)
-                : aggregateData(
-                    aggregate,
-                    data.filter(d => d.groupBy === group)
-                  )
-            }))}
-          />
+          <div style={{ width: data.length * 45, height: '300px' }}>
+            <BarChart
+              key={key}
+              responsive
+              barWidth={40}
+              width={data.length * 45}
+              height={height || 300}
+              horizontal={horizontal}
+              labels={datum => numberFormatter.format(datum.y)}
+              // Disable tooltip behaviour
+              labelComponent={undefined}
+              data={[...new Set(data.map(d => d.groupBy))].map(group => ({
+                label: group,
+                data: !aggregate
+                  ? data.filter(d => d.groupBy === group)
+                  : aggregateData(
+                      aggregate,
+                      data.filter(d => d.groupBy === group)
+                    )
+              }))}
+            />
+          </div>
         );
       case 'column':
         if (isComparison) {
@@ -147,47 +149,60 @@ export default class ChartFactory {
             ? comparisonData
             : aggregateData(aggregate, comparisonData);
           return (
-            <BarChart
-              key={key}
-              responsive
-              width={width}
-              height={height || 200}
-              barWidth={barWidth || 100}
-              horizontal={horizontal}
-              labels={datum => numberFormatter.format(datum.y)}
-              // Disable tooltip behaviour
-              labelComponent={undefined}
-              data={pData.map(d => ({
-                label: d.x[0].toUpperCase() + d.x.slice(1),
-                data: [
-                  {
-                    x: 'Country 1',
-                    y: d.y
-                  },
-                  {
-                    x: 'Country 2',
-                    y: pComparisonData.find(z => z.x === d.x)
-                      ? pComparisonData.find(z => z.x === d.x).y
-                      : null
-                  }
-                ]
-              }))}
-            />
+            <div
+              style={{
+                width: pData.length * 2 * (barWidth || 40) + 5,
+                height: '300px'
+              }}
+            >
+              <BarChart
+                key={key}
+                responsive
+                barWidth={barWidth || 40}
+                width={pData.length * 2 * (barWidth || 40) + 5}
+                height={height || 300}
+                horizontal={horizontal}
+                labels={datum => numberFormatter.format(datum.y)}
+                // Disable tooltip behaviour
+                labelComponent={undefined}
+                data={pData.map(d => ({
+                  label: d.x[0].toUpperCase() + d.x.slice(1),
+                  data: [
+                    {
+                      x: 'Country 1',
+                      y: d.y
+                    },
+                    {
+                      x: 'Country 2',
+                      y: pComparisonData.find(z => z.x === d.x)
+                        ? pComparisonData.find(z => z.x === d.x).y
+                        : null
+                    }
+                  ]
+                }))}
+              />
+            </div>
           );
         }
         return (
-          <BarChart
-            key={key}
-            responsive
-            width={width}
-            height={height || 200}
-            barWidth={barWidth || 100}
-            labels={datum => numberFormatter.format(datum.y)}
-            // Disable tooltip behaviour
-            labelComponent={undefined}
-            horizontal={horizontal}
-            data={!aggregate ? data : aggregateData(aggregate, data)}
-          />
+          <div
+            style={{
+              width: data.length * (barWidth || 40) + 5,
+              height: '300px'
+            }}
+          >
+            <BarChart
+              key={key}
+              horizontal={horizontal}
+              barWidth={barWidth || 40}
+              width={data.length * ((barWidth || 40) + 5)}
+              height={height || 300}
+              labels={datum => numberFormatter.format(datum.y)}
+              // Disable tooltip behaviour
+              labelComponent={undefined}
+              data={!aggregate ? data : aggregateData(aggregate, data)}
+            />
+          </div>
         );
       default:
         return null;

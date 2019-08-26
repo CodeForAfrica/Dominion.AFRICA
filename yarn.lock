@@ -929,19 +929,19 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@codeforafrica/hurumap-ui@^0.1.0-rc.11":
-  version "0.1.0-rc.11"
-  resolved "https://registry.yarnpkg.com/@codeforafrica/hurumap-ui/-/hurumap-ui-0.1.0-rc.11.tgz#b493be4812cc0dfc0eb33d75344f95b1e8ab7da6"
-  integrity sha512-fW3XYitegOtJqpL626Hu4L8d0vnrcohx8x+HK2H+d/K9718j13m6WKdQoIZmmEH8NrOYLto2wzdnc98kR6n17A==
+"@codeforafrica/hurumap-ui@^0.1.0-rc.13":
+  version "0.1.0-rc.13"
+  resolved "https://registry.yarnpkg.com/@codeforafrica/hurumap-ui/-/hurumap-ui-0.1.0-rc.13.tgz#ccd8ba3361b0f5b1095f695ec34d9c94a08663fc"
+  integrity sha512-uDe/8xCLrHhfBVRZcODp1OUQAIQjdNM9nrS6RSlAahlgy63r7pWcnhvFpKbBmidl9haVTYcLpXcANl0FfrGsVA==
   dependencies:
     "@material-ui/core" "^4.3.2"
     "@material-ui/styles" "^4.3.0"
-    "@material-ui/types" "^4.1.1"
-    "@types/react-sizes" "^2.0.0"
     dequal "^1.0.0"
     geojson "^0.5.0"
     leaflet "^1.5.1"
     lodash "^4.17.14"
+    prop-types "^15.7.2"
+    react-content-loader "^4.2.2"
     victory "^32.3.1"
 
 "@csstools/convert-colors@^1.4.0":
@@ -1450,11 +1450,6 @@
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.2.tgz#690a1475b84f2a884fd07cd797c00f5f31356ea8"
   integrity sha512-ce5d3q03Ex0sy4R14722Rmt6MT07Ua+k4FwDfdcToYJcMKNtRVQvJ6JCAPdAmAnbRb6CsX6aYb9m96NGod9uTw==
-
-"@types/react-sizes@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@types/react-sizes/-/react-sizes-2.0.0.tgz#28dab82c402527cfdaf4ad933f844276412bbaf6"
-  integrity sha512-XS3lv09Hxmy6AMnnzoUoZcuPAinhVjYPa5dUwfKz5HnEKbeT4dv06xYtM/BKUVsFQmjnkSmegLcfBYK0cOc1aw==
 
 "@types/react-transition-group@^4.2.0":
   version "4.2.0"

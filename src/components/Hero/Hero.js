@@ -5,7 +5,7 @@ import { Grid, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 
-import ContentLoader from '../ContentLoader';
+import { ContentLoader } from '@codeforafrica/hurumap-ui';
 import ArrowButton from '../ArrowButton';
 
 const styles = theme => ({

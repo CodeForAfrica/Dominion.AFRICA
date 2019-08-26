@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { AppBar, Tabs, Tab } from '@material-ui/core';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import { withStyles } from '@material-ui/core/styles';
-import ContentLoader from './ContentLoader';
+import { ContentLoader } from '@codeforafrica/hurumap-ui';
 
 const styles = theme => ({
   root: {

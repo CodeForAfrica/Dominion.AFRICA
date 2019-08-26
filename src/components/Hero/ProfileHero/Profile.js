@@ -6,7 +6,11 @@ import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 
 import classNames from 'classnames';
-import { MapIt } from '@codeforafrica/hurumap-ui';
+import {
+  MapIt,
+  ContentLoader,
+  TypographyLoader
+} from '@codeforafrica/hurumap-ui';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import Hero, { HeroTitle, HeroTitleGrid, HeroDetail } from '../Hero';
@@ -16,8 +20,6 @@ import Search from '../../Search';
 import searchIcon from '../../../assets/images/icons/location.svg';
 import config from '../../../config';
 import { AppContext } from '../../../AppContext';
-import TypographyLoader from '../../TypographyLoader';
-import ContentLoader from '../../ContentLoader';
 
 const styles = theme => ({
   root: {
