@@ -13,6 +13,7 @@ import CountryPartners from '../components/CountryPartners';
 import config from '../config';
 import ChartFactory from '../components/ChartFactory';
 import ChartsContainer from '../components/ChartsContainer';
+import slugify from '../utils/slugify';
 
 import sectionedCharts from '../data/charts.json';
 import { AppContext } from '../AppContext';
@@ -72,17 +73,6 @@ function Profile({
       })
     )
   );
-
-  const slugify = word =>
-    word
-      .toString()
-      .trim()
-      .toLowerCase()
-      .replace(/\s+/g, '-')
-      .replace(/[^\w-]+/g, '')
-      .replace(/-+/g, '-')
-      .replace(/^-+/, '')
-      .replace(/-+$/, '');
 
   // Flatten all charts
   const charts = sectionedCharts
@@ -258,29 +248,29 @@ query charts($geoCode: String!, $geoLevel: String!) {
   }, [geoId, comparisonGeoId, client, dispatch]);
 
   // get all available profiletabs
-  // const profileTabs = useState([
-  //     {
-  //       name: 'All',
-  //       href: 'all'
-  //     },
-  //     ...sectionedCharts
-  //       .filter(
-  //         section =>
-  //           section.charts.filter(
-  //             chart =>
-  //               !chart.visuals.find(
-  //                 visual =>
-  //                   !chartData.profileVisualsData ||
-  //                   chartData.profileVisualsData[visual.id].nodes.length === 0
-  //               )
-  //           ).length !== 0
-  //       )
-  //       .map(section => ({
-  //         name: section.sectionTitle,
-  //         href: slugify(section.sectionTitle),
-  //         icon: section.sectionIcon
-  //       }))
-  // ]);
+  const profileTabs = [
+    {
+      name: 'All',
+      href: 'all'
+    },
+    ...sectionedCharts
+      .filter(
+        section =>
+          section.charts.filter(
+            chart =>
+              !chart.visuals.find(
+                visual =>
+                  !chartData.profileVisualsData ||
+                  chartData.profileVisualsData[visual.id].nodes.length === 0
+              )
+          ).length !== 0
+      )
+      .map(section => ({
+        name: section.sectionTitle,
+        href: slugify(section.sectionTitle),
+        icon: section.sectionIcon
+      }))
+  ];
 
   return (
     <Page>
@@ -293,54 +283,9 @@ query charts($geoCode: String!, $geoLevel: String!) {
         }}
       />
 
-      <ProfileTabs
-        switchToTab={setActiveTab}
-        tabs={[
-          {
-            name: 'All',
-            href: 'all'
-          },
-          ...sectionedCharts
-            .filter(
-              section =>
-                section.charts.filter(
-                  chart =>
-                    !chart.visuals.find(
-                      visual =>
-                        !chartData.profileVisualsData ||
-                        chartData.profileVisualsData[visual.id].nodes.length ===
-                          0
-                    )
-                ).length !== 0
-            )
-            .map(section => ({
-              name: section.sectionTitle,
-              href: slugify(section.sectionTitle),
-              icon: section.sectionIcon
-            }))
-        ]}
-      />
+      <ProfileTabs switchToTab={setActiveTab} tabs={profileTabs} />
       <ChartsContainer>
-        {[
-          ...sectionedCharts
-            .filter(
-              section =>
-                section.charts.filter(
-                  chart =>
-                    !chart.visuals.find(
-                      visual =>
-                        !chartData.profileVisualsData ||
-                        chartData.profileVisualsData[visual.id].nodes.length ===
-                          0
-                    )
-                ).length !== 0
-            )
-            .map(section => ({
-              name: section.sectionTitle,
-              href: slugify(section.sectionTitle),
-              icon: section.sectionIcon
-            }))
-        ].map(tab => (
+        {profileTabs.slice(1).map(tab => (
           <Grid
             container
             spacing={2}
