@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
+import { makeStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { ChartContainer } from '@codeforafrica/hurumap-ui';
 import gql from 'graphql-tag';
 import { useApolloClient } from 'react-apollo-hooks';
-import { Grid, makeStyles } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { ProfilePageHeader } from '../components/Header';
 import ProfileTabs from '../components/ProfileTabs';
 import Page from '../components/Page';
@@ -11,33 +13,45 @@ import CountryPartners from '../components/CountryPartners';
 import config from '../config';
 import ChartFactory from '../components/ChartFactory';
 import ChartsContainer from '../components/ChartsContainer';
+import slugify from '../utils/slugify';
 
 import sectionedCharts from '../data/charts.json';
 import { AppContext } from '../AppContext';
 import ProfileRelease from '../components/ProfileReleases';
+import ProfileSectionTitle from '../components/ProfileSectionTitle';
+
+const useStyles = makeStyles({
+  title: {
+    fontFamily: 'Sans Serif'
+  },
+  subtitle: {
+    fontFamily: 'Sans Serif'
+  },
+  chartGrid: {
+    display: 'none'
+  },
+  chartContainerContent: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    '& svg': {
+      /* Disable tooltips cutoff, remove after hurumap-ui new version is merged in */
+      overflow: 'visible'
+    }
+  }
+});
 
 function Profile({
   match: {
     params: { geoId, comparisonGeoId }
   }
 }) {
-  const classes = makeStyles(() => ({
-    chartContainerContent: {
-      width: '100%',
-      display: 'flex',
-      justifyContent: 'center',
-      '& svg': {
-        /* Disable tooltips cutoff, remove after hurumap-ui new version is merged in */
-        overflow: 'visible'
-      }
-    }
-  }))();
   const {
     state: { selectedCountry },
     dispatch
   } = useContext(AppContext);
   const head2head = Boolean(geoId && comparisonGeoId);
-  const [activeTab, setActiveTab] = useState('All');
+  const [activeTab, setActiveTab] = useState('all');
   const [chartData, setChartsData] = useState({});
   const [profiles, setProfiles] = useState({
     profile: {},
@@ -45,6 +59,7 @@ function Profile({
     comparisonProfile: {}
   });
   const client = useApolloClient();
+  const classes = useStyles();
 
   // Provide the visuals with unique ids for fetching
   // The unique ids will be used to set alias in graphql
@@ -65,7 +80,7 @@ function Profile({
     .reduce((a, b) => a.concat(b));
   const visuals = useState(
     charts.map(x => x.visuals).reduce((a, b) => a.concat(b))
-  );
+  )[0];
 
   useEffect(() => {
     const {
@@ -232,6 +247,31 @@ query charts($geoCode: String!, $geoLevel: String!) {
     workAroundFetchProfileGeos();
   }, [geoId, comparisonGeoId, client, dispatch]);
 
+  // get all available profiletabs
+  const profileTabs = [
+    {
+      name: 'All',
+      href: 'all'
+    },
+    ...sectionedCharts
+      .filter(
+        section =>
+          section.charts.filter(
+            chart =>
+              !chart.visuals.find(
+                visual =>
+                  !chartData.profileVisualsData ||
+                  chartData.profileVisualsData[visual.id].nodes.length === 0
+              )
+          ).length !== 0
+      )
+      .map(section => ({
+        name: section.sectionTitle,
+        href: slugify(section.sectionTitle),
+        icon: section.sectionIcon
+      }))
+  ];
+
   return (
     <Page>
       <ProfilePageHeader
@@ -243,75 +283,61 @@ query charts($geoCode: String!, $geoLevel: String!) {
         }}
       />
 
-      <ProfileTabs
-        switchToTab={setActiveTab}
-        tabs={[
-          {
-            name: 'All',
-            href: 'All'
-          },
-          ...sectionedCharts
-            .filter(
-              section =>
-                section.charts.filter(
-                  chart =>
-                    !chart.visuals.find(
-                      visual =>
-                        !chartData.profileVisualsData ||
-                        chartData.profileVisualsData[visual.id].nodes.length ===
-                          0
-                    )
-                ).length !== 0
-            )
-            .map(section => ({
-              name: section.sectionTitle,
-              href: section.sectionTitle
-            }))
-        ]}
-      />
+      <ProfileTabs switchToTab={setActiveTab} tabs={profileTabs} />
       <ChartsContainer>
-        {(activeTab === 'All'
-          ? charts
-          : sectionedCharts.find(x => x.sectionTitle === activeTab).charts
-        )
-          .filter(
-            ({ visuals: v }) =>
-              /* data is not missing */
-              !v.find(
-                x =>
-                  !chartData.profileVisualsData ||
-                  chartData.profileVisualsData[x.id].nodes.length === 0
+        {profileTabs.slice(1).map(tab => (
+          <Grid
+            container
+            spacing={2}
+            className={classNames({
+              [classes.chartGrid]: activeTab !== tab.href && activeTab !== 'all'
+            })}
+          >
+            <ProfileSectionTitle tab={tab} />
+            {sectionedCharts
+              .find(x => x.sectionTitle === tab.name)
+              .charts.filter(
+                ({ visuals: v }) =>
+                  /* data is not missing */
+                  !v.find(
+                    x =>
+                      !chartData.profileVisualsData ||
+                      chartData.profileVisualsData[x.id].nodes.length === 0
+                  )
               )
-          )
-          .map(chart => (
-            <Grid
-              item
-              xs={12}
-              md={
-                parseFloat(chart.layout.split('/').reduce((a, b) => a / b)) * 12
-              }
-            >
-              <ChartContainer
-                /* TODO: hurumap-ui remove scroll */
-                overflowX="visible"
-                overflowY="visible"
-                classes={{ content: classes.chartContainerContent }}
-                title={chart.title}
-                subtitle={chart.subtitle}
-              >
-                {chart.visuals.map(
-                  visual =>
-                    profiles.loaded &&
-                    ChartFactory.build(
-                      visual,
-                      chartData.profileVisualsData,
-                      chartData.comparisonVisualsData,
-                      profiles
-                    )
-                )}
-              </ChartContainer>
-            </Grid>
-          ))}
+              .map(chart => (
+                <Grid
+                  item
+                  xs={12}
+                  md={
+                    parseFloat(
+                      chart.layout.split('/').reduce((a, b) => a / b)
+                    ) * 12
+                  }
+                >
+                  <ChartContainer
+                    /* TODO: hurumap-ui remove scroll */
+                    overflowX="visible"
+                    overflowY="visible"
+                    classes={{ content: classes.chartContainerContent }}
+                    title={chart.title}
+                    subtitle={chart.subtitle}
+                  >
+                    {chart.visuals.map(
+                      visual =>
+                        profiles.loaded &&
+                        ChartFactory.build(
+                          visual,
+                          chartData.profileVisualsData,
+                          chartData.comparisonVisualsData,
+                          profiles
+                        )
+                    )}
+                  </ChartContainer>
+                </Grid>
+              ))}
+          </Grid>
+        ))}
       </ChartsContainer>
       <ProfileRelease />
       <CountryPartners dominion={{ ...config, selectedCountry }} />
