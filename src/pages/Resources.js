@@ -52,8 +52,8 @@ import {
           is hosted on sourceAFRICA.net and openAFRICA.net
         </Typography>
         <Grid container justify="space-between">
-          {documents.map((document, index) => (
-            <Grid item xs={12} md={6} key={index}>
+          {documents.map((document, documentIndex) => (
+            <Grid item xs={12} md={6} key={documentIndex}>
               <DocumentCard
                 link={document.canonical_url}
                 title={document.title}
@@ -80,9 +80,9 @@ import {
         subtitle="Powered by openAfrica.net"
       >
         <Grid container justify="space-between">
-          {packages.map((p, index) => (
+          {packages.map((p, packageIndex) => (
             <DataCard
-              key={index}
+              key={packageIndex}
               orgLink={`https://openafrica.net/organization/${p.organization.name}`}
               dataLink={`https://openafrica.net/dataset/${p.name}`}
               title={p.title}

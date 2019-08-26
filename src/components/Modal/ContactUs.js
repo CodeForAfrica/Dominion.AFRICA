@@ -80,7 +80,19 @@ const styles = theme => ({
   }
 });
 
-function ContactUs({ classes, handleClose }) {
+const contactList = [
+  { name: 'CodeForAfrica', href: 'mailto:hello@dominion.africa' },
+  { name: 'Twitter', href: 'https://twitter.com/Code4Africa' },
+  {
+    name: 'Facebook',
+    href: 'https://web.facebook.com/CodeForAfrica'
+  }
+]; // --> off
+
+/* eslint react/no-array-index-key: 0 */ function ContactUs({
+  classes,
+  handleClose
+}) {
   return (
     <Grid
       className={classes.root}
@@ -101,17 +113,10 @@ function ContactUs({ classes, handleClose }) {
         </Grid>
         <Grid item xs={12} md={6}>
           <MenuList>
-            {[
-              { name: 'CodeForAfrica', href: 'mailto:hello@dominion.africa' },
-              { name: 'Twitter', href: 'https://twitter.com/Code4Africa' },
-              {
-                name: 'Facebook',
-                href: 'https://web.facebook.com/CodeForAfrica'
-              }
-            ].map((contact, index) => (
-              <MenuItem button key={contact} className={classes.listItem}>
+            {contactList.map((contact, contactIndex) => (
+              <MenuItem button key={contactIndex} className={classes.listItem}>
                 <span className={classes.listIndex}>
-                  {`${index + 1}`.padStart(2, '0')}
+                  {`${contactIndex + 1}`.padStart(2, '0')}
                 </span>
                 <a className={classes.listItemLink} href={`${contact.href}`}>
                   {contact.name}
