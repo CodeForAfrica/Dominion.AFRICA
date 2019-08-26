@@ -28,6 +28,15 @@ const useStyles = makeStyles({
   },
   chartGrid: {
     display: 'none'
+  },
+  chartContainerContent: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    '& svg': {
+      /* Disable tooltips cutoff, remove after hurumap-ui new version is merged in */
+      overflow: 'visible'
+    }
   }
 });
 
@@ -79,32 +88,9 @@ function Profile({
   const charts = sectionedCharts
     .map(x => x.charts)
     .reduce((a, b) => a.concat(b));
-  const visuals = charts.map(x => x.visuals).reduce((a, b) => a.concat(b));
-
-  // get all available profiletabs
-  const profileTabs = [
-    {
-      name: 'All',
-      href: 'all'
-    },
-    ...sectionedCharts
-      .filter(
-        section =>
-          section.charts.filter(
-            chart =>
-              !chart.visuals.find(
-                visual =>
-                  !chartData.profileVisualsData ||
-                  chartData.profileVisualsData[visual.id].nodes.length === 0
-              )
-          ).length !== 0
-      )
-      .map(section => ({
-        name: section.sectionTitle,
-        href: slugify(section.sectionTitle),
-        icon: section.sectionIcon
-      }))
-  ];
+  const visuals = useState(
+    charts.map(x => x.visuals).reduce((a, b) => a.concat(b))
+  );
 
   useEffect(() => {
     const {
@@ -188,7 +174,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
         });
       })();
     }
-  }, [profiles]);
+  }, [geoId, comparisonGeoId, client, profiles, visuals]);
 
   useEffect(() => {
     function workAroundFetchGeo({ geoCode, geoLevel }) {
@@ -269,7 +255,32 @@ query charts($geoCode: String!, $geoLevel: String!) {
     }
 
     workAroundFetchProfileGeos();
-  }, [geoId, comparisonGeoId]);
+  }, [geoId, comparisonGeoId, client, dispatch]);
+
+  // get all available profiletabs
+  // const profileTabs = useState([
+  //     {
+  //       name: 'All',
+  //       href: 'all'
+  //     },
+  //     ...sectionedCharts
+  //       .filter(
+  //         section =>
+  //           section.charts.filter(
+  //             chart =>
+  //               !chart.visuals.find(
+  //                 visual =>
+  //                   !chartData.profileVisualsData ||
+  //                   chartData.profileVisualsData[visual.id].nodes.length === 0
+  //               )
+  //           ).length !== 0
+  //       )
+  //       .map(section => ({
+  //         name: section.sectionTitle,
+  //         href: slugify(section.sectionTitle),
+  //         icon: section.sectionIcon
+  //       }))
+  // ]);
 
   return (
     <Page>
@@ -282,9 +293,54 @@ query charts($geoCode: String!, $geoLevel: String!) {
         }}
       />
 
-      <ProfileTabs switchToTab={setActiveTab} tabs={profileTabs} />
+      <ProfileTabs
+        switchToTab={setActiveTab}
+        tabs={[
+          {
+            name: 'All',
+            href: 'all'
+          },
+          ...sectionedCharts
+            .filter(
+              section =>
+                section.charts.filter(
+                  chart =>
+                    !chart.visuals.find(
+                      visual =>
+                        !chartData.profileVisualsData ||
+                        chartData.profileVisualsData[visual.id].nodes.length ===
+                          0
+                    )
+                ).length !== 0
+            )
+            .map(section => ({
+              name: section.sectionTitle,
+              href: slugify(section.sectionTitle),
+              icon: section.sectionIcon
+            }))
+        ]}
+      />
       <ChartsContainer>
-        {profileTabs.slice(1).map(tab => (
+        {[
+          ...sectionedCharts
+            .filter(
+              section =>
+                section.charts.filter(
+                  chart =>
+                    !chart.visuals.find(
+                      visual =>
+                        !chartData.profileVisualsData ||
+                        chartData.profileVisualsData[visual.id].nodes.length ===
+                          0
+                    )
+                ).length !== 0
+            )
+            .map(section => ({
+              name: section.sectionTitle,
+              href: slugify(section.sectionTitle),
+              icon: section.sectionIcon
+            }))
+        ].map(tab => (
           <Grid
             container
             spacing={2}
@@ -315,26 +371,12 @@ query charts($geoCode: String!, $geoLevel: String!) {
                   }
                 >
                   <ChartContainer
-                    overflowX={
-                      chart.visuals.find(visual => visual.type === 'pie')
-                        ? 'visible'
-                        : chart.visuals.find(visual => visual.horizontal)
-                        ? 'hidden'
-                        : 'auto'
-                    }
-                    overflowY={
-                      chart.visuals.find(visual => visual.type === 'pie')
-                        ? 'visible'
-                        : chart.visuals.find(visual => visual.horizontal)
-                        ? 'auto'
-                        : 'hidden'
-                    }
+                    /* TODO: hurumap-ui remove scroll */
+                    overflowX="visible"
+                    overflowY="visible"
+                    classes={{ content: classes.chartContainerContent }}
                     title={chart.title}
                     subtitle={chart.subtitle}
-                    classes={{
-                      title: classes.title,
-                      subtitle: classes.subtitle
-                    }}
                   >
                     {chart.visuals.map(
                       visual =>

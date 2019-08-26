@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Grid, IconButton } from '@material-ui/core';
@@ -9,6 +9,7 @@ import Sources from './Sources';
 import Thumbnail from './Thumbnail';
 
 import back from '../../assets/images/icons/back.svg';
+import useToggleModal from '../../useToggleModal';
 
 const styles = theme => ({
   root: {
@@ -58,85 +59,73 @@ const styles = theme => ({
   }
 });
 
-class Player extends React.Component {
-  constructor(props) {
-    super(props);
+function Player({ classes }) {
+  const [videoId, setVideoId] = useState((Sources[0] && Sources[0].id) || null);
+  const { toggleModal } = useToggleModal('video');
 
-    const videoId = (Sources[0] && Sources[0].id) || null;
-    this.state = { videoId };
-    this.handleThumbnailClick = this.handleThumbnailClick.bind(this);
-  }
-
-  handleThumbnailClick(videoId) {
-    if (videoId) {
-      this.setState({ videoId });
+  const handleThumbnailClick = id => {
+    if (id) {
+      setVideoId(id);
     }
-  }
+  };
+  return (
+    <Grid container className={classes.root}>
+      <Grid
+        item
+        container
+        justify="center"
+        style={{
+          marginTop: '2.5rem'
+        }}
+      >
+        <Grid item>
+          <div className={classes.videoPlayer}>
+            <IFrame
+              title="Dominion"
+              src={`https://www.youtube-nocookie.com/embed/${videoId}`}
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            />
+          </div>
+        </Grid>
 
-  render() {
-    const { classes, handleClose } = this.props;
-    const { videoId } = this.state;
-
-    return (
-      <Grid container className={classes.root}>
-        <Grid
-          item
-          container
-          justify="center"
-          style={{
-            marginTop: '2.5rem'
-          }}
-        >
-          <Grid item>
-            <div className={classes.videoPlayer}>
-              <IFrame
-                title="Dominion"
-                src={`https://www.youtube-nocookie.com/embed/${videoId}`}
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              />
-            </div>
-          </Grid>
-
-          <Grid item>
-            <Grid
-              item
-              container
-              direction="row"
-              justify="center"
-              alignItems="flex-start"
-              className={classes.videoPlaylist}
-            >
-              {Sources.map(source => (
-                <Grid key={source.id} item>
-                  <Thumbnail
-                    videoId={source.id}
-                    videoTitle={source.title}
-                    className={classes.thumbnail}
-                    onClick={this.handleThumbnailClick}
-                    isSelected={source.id === videoId}
-                  />
-                </Grid>
-              ))}
-            </Grid>
-          </Grid>
-          <Grid constainer item justify="flex-end" alignItems="flex-start">
-            <IconButton
-              className={classes.closeButton}
-              aria-label="Search"
-              onClick={handleClose}
-            >
-              <img alt="Search" src={back} />
-            </IconButton>
+        <Grid item>
+          <Grid
+            item
+            container
+            direction="row"
+            justify="center"
+            alignItems="flex-start"
+            className={classes.videoPlaylist}
+          >
+            {Sources.map(source => (
+              <Grid key={source.id} item>
+                <Thumbnail
+                  videoId={source.id}
+                  videoTitle={source.title}
+                  className={classes.thumbnail}
+                  onClick={handleThumbnailClick}
+                  isSelected={source.id === videoId}
+                />
+              </Grid>
+            ))}
           </Grid>
         </Grid>
+        <Grid constainer item justify="flex-end" alignItems="flex-start">
+          <IconButton
+            className={classes.closeButton}
+            aria-label="Close"
+            onClick={toggleModal}
+          >
+            <img alt="Close" src={back} />
+          </IconButton>
+        </Grid>
       </Grid>
-    );
-  }
+    </Grid>
+  );
 }
 
 Player.propTypes = {
-  classes: PropTypes.shape().isRequired,
-  handleClose: PropTypes.func.isRequired
+  classes: PropTypes.shape().isRequired
 };
 
 export default withStyles(styles)(Player);

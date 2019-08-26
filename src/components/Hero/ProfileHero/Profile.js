@@ -87,9 +87,12 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
     state: { selectedCountry }
   } = useContext(AppContext);
   const { head2head } = dominion;
-  const onClickGeoLayer = useCallback(area => {
-    history.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
-  }, []);
+  const onClickGeoLayer = useCallback(
+    area => {
+      history.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
+    },
+    [history]
+  );
   return (
     <Query
       query={gql`
@@ -152,20 +155,35 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
           );
         }
         let { squareKms } = data.geo;
-        squareKms = parseFloat(squareKms);
+        const squareKmsFloat = parseFloat(squareKms);
         if (!Number.isNaN(squareKms)) {
-          if (squareKms < 1.0) {
-            squareKms = squareKms.toFixed(3);
+          if (squareKmsFloat < 1.0) {
+            const numberFormatter = new Intl.NumberFormat('en-GB', {
+              minimumFractionDigits: 3,
+              maximumFractionDigits: 3
+            });
+            squareKms = numberFormatter.format(squareKmsFloat);
           } else {
-            squareKms = squareKms.toFixed(1);
+            const numberFormatter = new Intl.NumberFormat('en-GB', {
+              minimumFractionDigits: 1,
+              maximumFractionDigits: 1
+            });
+            squareKms = numberFormatter.format(squareKmsFloat);
           }
         }
 
         let population;
         let populationDensity;
         if (totalPopulation) {
-          population = totalPopulation.toFixed(0);
-          populationDensity = (totalPopulation / squareKms).toFixed(2);
+          let numberFormatter = new Intl.NumberFormat('en-GB');
+          population = numberFormatter.format(totalPopulation.toFixed(0));
+          numberFormatter = new Intl.NumberFormat('en-GB', {
+            minimumFractionDigits: 1,
+            maximumFractionDigits: 1
+          });
+          populationDensity = numberFormatter.format(
+            totalPopulation / squareKmsFloat
+          );
         }
 
         const countryConfig = Object.values(config.countries).find(c =>

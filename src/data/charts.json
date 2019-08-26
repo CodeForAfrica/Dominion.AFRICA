@@ -618,7 +618,8 @@
         "groupBy": "month",
         "x": "transactionGroup",
         "y": "total",
-        "aggregate": "sum"
+        "aggregate": "sum",
+        "barWidth": 15
       }]
     },
     {

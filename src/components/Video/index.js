@@ -8,6 +8,7 @@ import PlayArrow from '@material-ui/icons/PlayArrow';
 import PlayerModal from './PlayerModal';
 
 import background from '../../assets/images/hero-image-1.png';
+import useToggleModal from '../../useToggleModal';
 
 const styles = theme => ({
   root: {
@@ -53,69 +54,52 @@ const styles = theme => ({
   }
 });
 
-class Video extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { open: false };
-    this.toggleModal = this.toggleModal.bind(this);
-  }
-
-  toggleModal() {
-    this.setState(prevState => ({
-      open: !prevState.open
-    }));
-  }
-
-  render() {
-    const { classes, dominion } = this.props;
-    const { open } = this.state;
-
-    return (
+function Video({ classes, dominion }) {
+  const { open, toggleModal } = useToggleModal('video');
+  return (
+    <Grid
+      container
+      className={classes.root}
+      justify="center"
+      alignItems="center"
+    >
       <Grid
+        item
+        xs={12}
         container
-        className={classes.root}
+        direction="column"
         justify="center"
         alignItems="center"
+        className={classes.layout}
       >
-        <Grid
-          item
-          xs={12}
-          container
-          direction="column"
-          justify="center"
-          alignItems="center"
-          className={classes.layout}
-        >
-          <Typography variant="h3" className={classes.subheading}>
-            Using Dominion
+        <Typography variant="h3" className={classes.subheading}>
+          Using Dominion
+        </Typography>
+        <Grid item xs={8} sm={4} style={{ paddingTop: '1rem' }}>
+          <Typography variant="caption" className={classes.caption}>
+            Watch how you can get the most out of Dominion.
           </Typography>
-          <Grid item xs={8} sm={4} style={{ paddingTop: '1rem' }}>
-            <Typography variant="subtitle1" className={classes.caption}>
-              Watch how you can get the most out of Dominion.
-            </Typography>
 
-            <Grid item className={classes.buttonGrid}>
-              <Button
-                variant="outlined"
-                color="primary"
-                size="large"
-                className={classes.button}
-                onClick={this.toggleModal}
-              >
-                <PlayArrow />
-              </Button>
-            </Grid>
+          <Grid item className={classes.buttonGrid}>
+            <Button
+              variant="outlined"
+              color="primary"
+              size="large"
+              className={classes.button}
+              onClick={toggleModal}
+            >
+              <PlayArrow />
+            </Button>
           </Grid>
         </Grid>
-        <PlayerModal
-          dominion={dominion}
-          open={open}
-          handleClose={this.toggleModal}
-        />
       </Grid>
-    );
-  }
+      <PlayerModal
+        dominion={dominion}
+        open={open}
+        onEscapeKeyDown={toggleModal}
+      />
+    </Grid>
+  );
 }
 
 Video.propTypes = {

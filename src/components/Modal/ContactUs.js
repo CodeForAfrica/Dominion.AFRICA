@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NumberFormat from 'react-number-format';
 
 import {
   Grid,
@@ -112,11 +111,7 @@ function ContactUs({ classes, handleClose }) {
             ].map((contact, index) => (
               <MenuItem button key={contact} className={classes.listItem}>
                 <span className={classes.listIndex}>
-                  <NumberFormat
-                    value={index + 1}
-                    displayType="text"
-                    prefix="0"
-                  />
+                  {`${index + 1}`.padStart(2, '0')}
                 </span>
                 <a className={classes.listItemLink} href={`${contact.href}`}>
                   {contact.name}

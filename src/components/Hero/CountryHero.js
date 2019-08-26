@@ -14,13 +14,14 @@ import Hero, {
   HeroButton
 } from './Hero';
 import config from '../../config';
+import useToggleModal from '../../useToggleModal';
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    marginTop: '2rem',
+    marginTop: '32px',
     [theme.breakpoints.up('md')]: {
-      marginBottom: '5rem'
+      marginBottom: '80px'
     }
   },
   titleGrid: {
@@ -48,24 +49,28 @@ const styles = theme => ({
     zIndex: 0,
     position: 'relative !important',
     backgroundColor: 'grey',
-    height: '250px !important',
+    height: '15.625rem !important',
     left: 'unset !important',
     top: 'unset !important',
     width: '100%',
     [theme.breakpoints.up('md')]: {
       width: '72% !important',
-      height: '460px !important',
-      maxHeight: '460px !important',
-      maxWidth: '829px !important'
+      height: '28.75rem !important',
+      maxHeight: '28.75rem !important',
+      maxWidth: '51.8125rem !important'
     }
   }
 });
 
-function CountryHero({ classes, history, toggleModal, dominion, width }) {
+function CountryHero({ classes, width, history, dominion }) {
   const { selectedCountry = { name: '' } } = dominion;
-  const onClickGeoLayer = useCallback(area => {
-    history.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
-  }, []);
+  const { toggleModal } = useToggleModal('search');
+  const onClickGeoLayer = useCallback(
+    area => {
+      history.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
+    },
+    [history]
+  );
   return (
     <Hero classes={{ root: classes.root }}>
       <HeroTitleGrid classes={{ titleTextGrid: classes.titleGrid }}>
@@ -78,9 +83,9 @@ function CountryHero({ classes, history, toggleModal, dominion, width }) {
           public discourse and policy-making on vital issues of land ownership.
         </HeroDescription>
 
-        <HeroButton onClick={toggleModal('search')}>Find a place</HeroButton>
+        <HeroButton onClick={toggleModal}>Find a place</HeroButton>
 
-        <Typography variant="subtitle2" style={{ marginTop: '40px' }}>
+        <Typography variant="subtitle2" style={{ marginTop: '2.5rem' }}>
           or view{' '}
           <a
             className={classes.alink}
@@ -108,7 +113,6 @@ function CountryHero({ classes, history, toggleModal, dominion, width }) {
 CountryHero.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   dominion: PropTypes.shape({}).isRequired,
-  toggleModal: PropTypes.func.isRequired,
   width: PropTypes.string.isRequired
 };
 

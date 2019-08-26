@@ -15,6 +15,7 @@ import herobg from '../../assets/images/bg/hero_bg.png';
 import smallscreenbackground from '../../assets/images/bg/smallscreen_background.png';
 
 import HomeHeroMap from './HomeHeroMap';
+import useToggleModal from '../../useToggleModal';
 
 const styles = theme => ({
   root: {
@@ -45,7 +46,8 @@ const styles = theme => ({
   }
 });
 
-function HomeHero({ classes, toggleModal }) {
+function HomeHero({ classes }) {
+  const { toggleModal } = useToggleModal('portal');
   return (
     <Hero classes={{ root: classes.root }}>
       <Grid
@@ -66,9 +68,7 @@ function HomeHero({ classes, toggleModal }) {
             ownership.
           </HeroDescription>
 
-          <HeroButton onClick={toggleModal('portal')}>
-            Select a Country
-          </HeroButton>
+          <HeroButton onClick={toggleModal}>Select a Country</HeroButton>
         </HeroTitleGrid>
         <HomeHeroMap />
       </Grid>
@@ -77,8 +77,7 @@ function HomeHero({ classes, toggleModal }) {
 }
 
 HomeHero.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
-  toggleModal: PropTypes.func.isRequired
+  classes: PropTypes.shape({}).isRequired
 };
 
 export default withStyles(styles)(HomeHero);

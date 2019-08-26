@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import NumberFormat from 'react-number-format';
 
 import {
   Grid,
@@ -198,7 +197,7 @@ function PortalChooser({ classes, children, countries, handleClose }) {
               selected={selectedCountry.slug === country}
             >
               <span className={classes.listIndex}>
-                <NumberFormat value={index + 1} displayType="text" prefix="0" />
+                {`${index + 1}`.padStart(2, '0')}
               </span>
               <a className={classes.listItemLink} href={`/${country}`}>
                 {countries[country].name}
