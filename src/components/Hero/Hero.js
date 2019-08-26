@@ -140,7 +140,10 @@ function HeroTitleComponent({ classes, children, breakWord, small }) {
 
 HeroTitleComponent.propTypes = {
   classes: PropTypes.shape({}).isRequired,
-  children: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
   breakWord: PropTypes.bool,
   small: PropTypes.bool
 };
