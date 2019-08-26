@@ -159,7 +159,11 @@ function PortalChooser({ classes, children, countries, handleClose }) {
         item
         className={classes.locationGrid}
       >
-        <Typography variant="body2" className={classes.locationText}>
+        <Typography
+          component="div"
+          variant="body2"
+          className={classes.locationText}
+        >
           <GetLocation countries={countries} />
           <img
             src={geolocate}
