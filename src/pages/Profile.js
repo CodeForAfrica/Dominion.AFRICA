@@ -52,7 +52,9 @@ function Profile({
   } = useContext(AppContext);
   const head2head = Boolean(geoId && comparisonGeoId);
   const [activeTab, setActiveTab] = useState('all');
-  const [chartData, setChartsData] = useState({});
+  const [chartData, setChartsData] = useState({
+    isLoading: true
+  });
   const [profiles, setProfiles] = useState({
     profile: {},
     parentProfile: {},
@@ -78,9 +80,9 @@ function Profile({
   const charts = sectionedCharts
     .map(x => x.charts)
     .reduce((a, b) => a.concat(b));
-  const visuals = useState(
+  const [visuals] = useState(
     charts.map(x => x.visuals).reduce((a, b) => a.concat(b))
-  )[0];
+  );
 
   useEffect(() => {
     const {
@@ -159,6 +161,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
         }
 
         setChartsData({
+          isLoading: false,
           profileVisualsData,
           comparisonVisualsData
         });
@@ -283,7 +286,11 @@ query charts($geoCode: String!, $geoLevel: String!) {
         }}
       />
 
-      <ProfileTabs switchToTab={setActiveTab} tabs={profileTabs} />
+      <ProfileTabs
+        loading={!chartData.profileVisualsData}
+        switchToTab={setActiveTab}
+        tabs={profileTabs}
+      />
       <ChartsContainer>
         {profileTabs.slice(1).map(tab => (
           <Grid
@@ -301,8 +308,10 @@ query charts($geoCode: String!, $geoLevel: String!) {
                   /* data is not missing */
                   !v.find(
                     x =>
-                      !chartData.profileVisualsData ||
-                      chartData.profileVisualsData[x.id].nodes.length === 0
+                      (!chartData.profileVisualsData ||
+                        chartData.profileVisualsData[x.id].nodes.length ===
+                          0) &&
+                      !chartData.isLoading
                   )
               )
               .map(chart => (
@@ -316,23 +325,21 @@ query charts($geoCode: String!, $geoLevel: String!) {
                   }
                 >
                   <ChartContainer
-                    /* TODO: hurumap-ui remove scroll */
-                    overflowX="visible"
-                    overflowY="visible"
-                    classes={{ content: classes.chartContainerContent }}
+                    loading={chartData.isLoading}
                     title={chart.title}
                     subtitle={chart.subtitle}
                   >
-                    {chart.visuals.map(
-                      visual =>
-                        profiles.loaded &&
-                        ChartFactory.build(
-                          visual,
-                          chartData.profileVisualsData,
-                          chartData.comparisonVisualsData,
-                          profiles
-                        )
-                    )}
+                    {!chartData.isLoading &&
+                      chart.visuals.map(
+                        visual =>
+                          profiles.loaded &&
+                          ChartFactory.build(
+                            visual,
+                            chartData.profileVisualsData,
+                            chartData.comparisonVisualsData,
+                            profiles
+                          )
+                      )}
                   </ChartContainer>
                 </Grid>
               ))}
