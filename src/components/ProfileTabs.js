@@ -102,6 +102,7 @@ class ProfileTabs extends React.Component {
               className={classes.loader}
               primaryOpacity={0.5}
               secondaryOpacity={1}
+              height={88}
               width={1200}
             >
               <rect x="0" y="45%" width="55px" height="21px" />
