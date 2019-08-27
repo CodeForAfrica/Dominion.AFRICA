@@ -7,10 +7,10 @@ import { Grid } from '@material-ui/core';
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    padding: '2rem',
+    paddingBottom: '2rem',
     backgroundColor: theme.palette.primary.light,
     [theme.breakpoints.up('md')]: {
-      padding: '3.125rem 0'
+      paddingBottom: '3.125rem'
     }
   },
   layout: {
@@ -28,7 +28,7 @@ const styles = theme => ({
 function ChartsContainer({ classes, children }) {
   return (
     <div className={classes.root}>
-      <Grid container spacing={2} className={classes.layout}>
+      <Grid container className={classes.layout}>
         {children}
       </Grid>
     </div>

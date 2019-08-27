@@ -131,7 +131,7 @@ class ProfileTabs extends React.Component {
                   <LinkTab
                     key={tab.href}
                     value={tab.href}
-                    href="#dominionProfileTabs" // Always show the tabs on click
+                    href={`#${tab.href}`} // Always show the tabs on click
                     label={tab.name}
                     className={classes.tab}
                     classes={{
