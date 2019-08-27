@@ -19,7 +19,6 @@ const styles = theme => ({
     pointerEvents: 'all',
     zIndex: '100',
     color: 'white',
-    display: 'flex',
     [theme.breakpoints.down('sm')]: {
       margin: '2rem',
       marginTop: 0
@@ -97,6 +96,7 @@ function HeroTitleGridComponent({ classes, children, quater, head2head }) {
       sm={12}
       md={quater ? 4 : 8}
       lg={quater ? 4 : 8}
+      wrap="nowrap"
       direction="column"
       alignContent="center"
       className={classNames(classes.titleTextGrid, {
