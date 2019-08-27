@@ -104,18 +104,27 @@ export default class ChartFactory {
           </div>
         );
       }
-      case 'pie':
+      case 'pie': {
+        let pieData = !aggregate ? data : aggregateData(aggregate, data);
+        pieData = pieData.map(d => ({
+          ...d,
+          name: d.x,
+          label: `${d.x} ${numberFormatter.format(d.y)}`
+        }));
         return (
           // Due to responsiveness of piechart
           <div>
             <PieChart
               key={key}
-              width={width}
+              width={width || 400}
+              legendWidth={50}
               height={height}
-              data={!aggregate ? data : aggregateData(aggregate, data)}
+              data={pieData}
+              donutLabelKey={{ dataIndex: 0, sortKey: '' }}
             />
           </div>
         );
+      }
       case 'grouped_column': {
         // Create array of grouped data arrays
         let groupedData = [...new Set(data.map(d => d.groupBy))].map(group =>
