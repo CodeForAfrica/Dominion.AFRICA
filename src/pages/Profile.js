@@ -29,15 +29,6 @@ const useStyles = makeStyles({
   },
   chartGrid: {
     display: 'none'
-  },
-  chartContainerContent: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    '& svg': {
-      /* Disable tooltips cutoff, remove after hurumap-ui new version is merged in */
-      overflow: 'visible'
-    }
   }
 });
 
@@ -328,6 +319,10 @@ query charts($geoCode: String!, $geoLevel: String!) {
                     loading={chartData.isLoading}
                     title={chart.title}
                     subtitle={chart.subtitle}
+                    classes={{
+                      title: classes.title,
+                      subtitle: classes.subtitle
+                    }}
                   >
                     {!chartData.isLoading &&
                       chart.visuals.map(
