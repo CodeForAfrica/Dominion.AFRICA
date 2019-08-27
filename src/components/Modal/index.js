@@ -42,7 +42,11 @@ Modal.propTypes = {
     PropTypes.node
   ]).isRequired,
   isOpen: PropTypes.bool.isRequired,
-  onEscapeKeyDown: PropTypes.func.isRequired
+  onEscapeKeyDown: PropTypes.func
+};
+
+Modal.defaultProps = {
+  onEscapeKeyDown: () => {}
 };
 
 export default withStyles(styles)(Modal);

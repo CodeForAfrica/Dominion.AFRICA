@@ -69,12 +69,13 @@ ArrowButton.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]).isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   secondary: PropTypes.bool
 };
 
 ArrowButton.defaultProps = {
-  secondary: false
+  secondary: false,
+  onClick: () => {}
 };
 
 export default withStyles(styles)(ArrowButton);

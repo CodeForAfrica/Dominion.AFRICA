@@ -227,9 +227,13 @@ PortalChooser.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
-  ]).isRequired,
+  ]),
   countries: PropTypes.shape({}).isRequired,
   handleClose: PropTypes.func.isRequired
+};
+
+PortalChooser.defaultProps = {
+  children: null
 };
 
 export default withStyles(styles)(PortalChooser);
