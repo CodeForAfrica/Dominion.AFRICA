@@ -145,8 +145,8 @@ function ProfileRelease({ classes }) {
 }
 
 ProfileRelease.propTypes = {
-  classes: PropTypes.shape().isRequired,
-  profile: PropTypes.shape({}).isRequired
+  classes: PropTypes.shape().isRequired
+  // profile: PropTypes.shape({}).isRequired
 };
 
 export default withStyles(styles)(ProfileRelease);
