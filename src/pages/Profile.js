@@ -252,6 +252,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
         section =>
           section.charts.filter(
             chart =>
+              chartData.isLoading ||
               !chart.visuals.find(
                 visual =>
                   !chartData.profileVisualsData ||
@@ -278,7 +279,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
       />
 
       <ProfileTabs
-        loading={!chartData.profileVisualsData}
+        loading={chartData.isLoading}
         switchToTab={setActiveTab}
         tabs={profileTabs}
       />
@@ -291,18 +292,17 @@ query charts($geoCode: String!, $geoLevel: String!) {
               [classes.chartGrid]: activeTab !== tab.href && activeTab !== 'all'
             })}
           >
-            <ProfileSectionTitle tab={tab} />
+            <ProfileSectionTitle loading={chartData.isLoading} tab={tab} />
             {sectionedCharts
               .find(x => x.sectionTitle === tab.name)
               .charts.filter(
                 ({ visuals: v }) =>
+                  chartData.isLoading ||
                   /* data is not missing */
                   !v.find(
                     x =>
-                      (!chartData.profileVisualsData ||
-                        chartData.profileVisualsData[x.id].nodes.length ===
-                          0) &&
-                      !chartData.isLoading
+                      !chartData.profileVisualsData ||
+                      chartData.profileVisualsData[x.id].nodes.length === 0
                   )
               )
               .map(chart => (

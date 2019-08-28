@@ -17,9 +17,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { Grid, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import { ContentLoader } from '@codeforafrica/hurumap-ui';
 
 const styles = () => ({
-  grid: {
+  root: {
     height: '5rem',
     marginTop: '4rem',
     marginBottom: '0.5rem',
@@ -62,15 +63,31 @@ library.add(
   faBriefcase
 );
 
-function ProfileSectionTitle({ classes, tab: { name, icon } }) {
+function ProfileSectionTitle({ classes, loading, tab: { name, icon } }) {
   return (
-    <Grid item className={classes.grid}>
-      <span className={classes.icon}>
-        <FontAwesomeIcon className={classes.fa} icon={icon} size="sm" />
-      </span>
-      <Typography variant="h4" className={classes.title}>
-        {name}
-      </Typography>
+    <Grid item className={classes.root}>
+      {loading ? (
+        <ContentLoader primaryOpacity={1} secondaryOpacity={0.5} height="5rem">
+          <circle cx="2.5rem" cy="2.5rem" r="2.5rem" />
+          <rect
+            x="5.5rem"
+            y="1.25rem"
+            rx="0.125rem"
+            ry="0.125rem"
+            height="2.5rem"
+            width="20rem"
+          />
+        </ContentLoader>
+      ) : (
+        <>
+          <span className={classes.icon}>
+            <FontAwesomeIcon className={classes.fa} icon={icon} size="sm" />
+          </span>
+          <Typography variant="h4" className={classes.title}>
+            {name}
+          </Typography>
+        </>
+      )}
     </Grid>
   );
 }
@@ -80,7 +97,12 @@ ProfileSectionTitle.propTypes = {
   tab: PropTypes.shape({
     name: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired
-  }).isRequired
+  }).isRequired,
+  loading: PropTypes.bool
+};
+
+ProfileSectionTitle.defaultProps = {
+  loading: false
 };
 
 export default withStyles(styles)(ProfileSectionTitle);
