@@ -108,8 +108,8 @@ class ProfileTabs extends React.Component {
                   label={tab.name}
                   className={classes.tab}
                   classes={{
-                    selected: classes.tabSelected,
-                    labelContainer: classes.labelContainer
+                    selected: classes.tabSelected
+                    // labelContainer: classes.labelContainer
                   }}
                 />
               ))}

@@ -207,7 +207,7 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
                 component="p"
               >
                 {geoLevel}{' '}
-                <Typography variant="body" className={classes.captionItem}>
+                <Typography variant="caption" className={classes.captionItem}>
                   in{' '}
                   <span>
                     <a
