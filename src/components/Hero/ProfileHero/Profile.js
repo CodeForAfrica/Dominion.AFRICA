@@ -202,7 +202,7 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
                 {shortName}
               </HeroTitle>
               <Typography
-                variant="subtitile1"
+                variant="subtitle1"
                 className={classes.caption}
                 component="p"
               >
