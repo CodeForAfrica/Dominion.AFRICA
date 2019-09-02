@@ -6,13 +6,16 @@ import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 
 import classNames from 'classnames';
-import { MapIt } from '@codeforafrica/hurumap-ui';
+import {
+  MapIt,
+  ContentLoader,
+  TypographyLoader
+} from '@codeforafrica/hurumap-ui';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import Hero, { HeroTitle, HeroTitleGrid, HeroDetail } from '../Hero';
 
 import Search from '../../Search';
-// import ReleaseDropdown from '../../ReleaseDropdown';
 import searchIcon from '../../../assets/images/icons/location.svg';
 import config from '../../../config';
 import { AppContext } from '../../../AppContext';
@@ -23,7 +26,6 @@ const styles = theme => ({
   },
   titleGrid: {
     [theme.breakpoints.up('md')]: {
-      marginTop: '-2rem',
       maxWidth: '35%'
     }
   },
@@ -52,6 +54,7 @@ const styles = theme => ({
     }
   },
   caption: {
+    display: 'inline-flex',
     color: '#8d8d8c',
     width: '100%',
     textTransform: 'capitalize',
@@ -59,7 +62,8 @@ const styles = theme => ({
     paddingBottom: theme.spacing()
   },
   captionItem: {
-    display: 'inline-block'
+    display: 'inline-block',
+    paddingLeft: 4
   },
   release: {
     display: 'none',
@@ -131,8 +135,6 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
       }}
     >
       {({ loading, error, data }) => {
-        if (loading)
-          return <Hero classes={{ root: classes.root }} {...props} />;
         if (error) return `Error! ${error.message}`;
 
         const {
@@ -141,20 +143,18 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
           shortName,
           parentCode,
           parentLevel
-        } = data.geo;
+        } = loading ? {} : data.geo;
         // South Africa population data is in pupolation by group
-        let totalPopulation = data.populationGroup.nodes.reduce(
-          (a, b) => a + b.total,
-          0
-        );
+        let totalPopulation = loading
+          ? 0
+          : data.populationGroup.nodes.reduce((a, b) => a + b.total, 0);
         if (totalPopulation === 0) {
           // Kenya population data is in pupolation by residence
-          totalPopulation = data.populationResidence.nodes.reduce(
-            (a, b) => a + b.total,
-            0
-          );
+          totalPopulation = loading
+            ? 0
+            : data.populationResidence.nodes.reduce((a, b) => a + b.total, 0);
         }
-        let { squareKms } = data.geo;
+        let { squareKms } = loading ? {} : data.geo;
         const squareKmsFloat = parseFloat(squareKms);
         if (!Number.isNaN(squareKms)) {
           if (squareKmsFloat < 1.0) {
@@ -186,11 +186,13 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
           );
         }
 
-        const countryConfig = Object.values(config.countries).find(c =>
-          parentLevel === 'continent'
-            ? c.code === geoCode
-            : c.code === parentCode
-        );
+        const countryConfig = loading
+          ? {}
+          : Object.values(config.countries).find(c =>
+              parentLevel === 'continent'
+                ? c.code === geoCode
+                : c.code === parentCode
+            );
         return (
           <Hero classes={{ root: classes.root }} {...props}>
             <HeroTitleGrid
@@ -198,14 +200,10 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
               head2head={head2head}
               classes={{ titleTextGrid: classes.titleGrid }}
             >
-              <HeroTitle breakWord small>
+              <HeroTitle small breakWord loading={loading} loaderWidth={150}>
                 {shortName}
               </HeroTitle>
-              <Typography
-                variant="subtitle1"
-                className={classes.caption}
-                component="p"
-              >
+              <TypographyLoader variant="subtitle1" className={classes.caption}>
                 {geoLevel}{' '}
                 <Typography variant="caption" className={classes.captionItem}>
                   in{' '}
@@ -225,21 +223,50 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
                     {', '}
                   </span>
                 </Typography>
-              </Typography>
-              {population && (
-                <HeroDetail label="Population">{population}</HeroDetail>
+              </TypographyLoader>
+              <HeroDetail
+                loading={loading}
+                loader={{
+                  detailWidth: 117,
+                  detailLabelWidth: 48
+                }}
+                label="Population"
+                hidden={!population && !loading}
+              >
+                {population}
+              </HeroDetail>
+              <HeroDetail
+                small
+                loading={loading}
+                loader={{
+                  detailWidth: 84,
+                  detailLabelWidth: 80
+                }}
+                label="Square kilometers"
+                hidden={!squareKms && !loading}
+              >
+                {squareKms}
+              </HeroDetail>
+              <HeroDetail
+                small
+                loading={loading}
+                loader={{
+                  detailWidth: 51,
+                  detailLabelWidth: '123px'
+                }}
+                label="People per square kilometer"
+                hidden={!populationDensity && !loading}
+              >
+                {populationDensity}
+              </HeroDetail>
+              {/* Start search skeleton loader */}
+              {!head2head && loading && (
+                <ContentLoader style={{ width: '304px', height: '49px' }}>
+                  <rect x="0" y="0" width="100%" height="100%" />
+                </ContentLoader>
               )}
-              {squareKms && (
-                <HeroDetail small label="square kilometers">
-                  {squareKms}
-                </HeroDetail>
-              )}
-              {populationDensity && (
-                <HeroDetail small label="people per square kilometer">
-                  {populationDensity}
-                </HeroDetail>
-              )}
-              {!head2head && (
+              {/* End search skeleton loader */}
+              {!head2head && !loading && (
                 <Search
                   dominion={dominion}
                   isComparisonSearch

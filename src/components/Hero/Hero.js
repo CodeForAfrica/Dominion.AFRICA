@@ -5,6 +5,7 @@ import { Grid, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 
+import { ContentLoader } from '@codeforafrica/hurumap-ui';
 import ArrowButton from '../ArrowButton';
 
 const styles = theme => ({
@@ -18,7 +19,6 @@ const styles = theme => ({
     pointerEvents: 'all',
     zIndex: '100',
     color: 'white',
-    display: 'flex',
     [theme.breakpoints.down('sm')]: {
       margin: '2rem',
       marginTop: 0
@@ -96,6 +96,8 @@ function HeroTitleGridComponent({ classes, children, quater, head2head }) {
       sm={12}
       md={quater ? 4 : 8}
       lg={quater ? 4 : 8}
+      wrap="nowrap"
+      direction="column"
       alignContent="center"
       className={classNames(classes.titleTextGrid, {
         [classes.h2hTitleGrid]: head2head
@@ -123,7 +125,22 @@ HeroTitleGridComponent.defaultProps = {
 
 const HeroTitleGrid = withStyles(styles)(HeroTitleGridComponent);
 
-function HeroTitleComponent({ classes, children, breakWord, small }) {
+function HeroTitleComponent({
+  classes,
+  loaderWidth,
+  loading,
+  children,
+  breakWord,
+  small
+}) {
+  if (loading) {
+    return (
+      <ContentLoader style={{ width: loaderWidth, height: 100 }}>
+        <rect x="0" y="0" rx="2px" ry="2px" width="100%" height="45%" />
+        <rect x="0" y="50%" rx="2px" ry="2px" width="50%" height="45%" />
+      </ContentLoader>
+    );
+  }
   return (
     <Typography
       variant="h1"
@@ -145,12 +162,16 @@ HeroTitleComponent.propTypes = {
     PropTypes.node
   ]).isRequired,
   breakWord: PropTypes.bool,
-  small: PropTypes.bool
+  small: PropTypes.bool,
+  loading: PropTypes.bool,
+  loaderWidth: PropTypes.oneOf([PropTypes.number, PropTypes.string])
 };
 
 HeroTitleComponent.defaultProps = {
   breakWord: false,
-  small: false
+  small: false,
+  loading: false,
+  loaderWidth: '100%'
 };
 
 const HeroTitle = withStyles(styles)(HeroTitleComponent);
@@ -173,7 +194,44 @@ HeroDescriptionComponent.propTypes = {
 
 const HeroDescription = withStyles(styles)(HeroDescriptionComponent);
 
-function HeroDetailComponent({ classes, children, label, small }) {
+function HeroDetailComponent({
+  classes,
+  hidden,
+  loading,
+  children,
+  label,
+  small,
+  loader
+}) {
+  if (hidden) {
+    return null;
+  }
+
+  if (loading) {
+    return (
+      <ContentLoader
+        className={classes.detailComponent}
+        style={{ height: small ? 61 : 74 }}
+      >
+        <rect
+          x="0"
+          y="0"
+          rx="2px"
+          ry="2px"
+          width={loader.detailWidth}
+          height="50%"
+        />
+        <rect
+          x="0"
+          y="60%"
+          rx="2px"
+          ry="2px"
+          width={loader.detailLabelWidth}
+          height="30%"
+        />
+      </ContentLoader>
+    );
+  }
   return (
     <Grid className={classes.detailComponent}>
       <Typography
@@ -197,7 +255,24 @@ HeroDetailComponent.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   children: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  small: PropTypes.bool.isRequired
+  small: PropTypes.bool.isRequired,
+  loading: PropTypes.bool,
+  hidden: PropTypes.bool,
+  loader: PropTypes.shape({
+    detailWidth: PropTypes.oneOf([PropTypes.number, PropTypes.string])
+      .isRequired,
+    detailLabelWidth: PropTypes.oneOf([PropTypes.number, PropTypes.string])
+      .isRequired
+  })
+};
+
+HeroDetailComponent.defaultProps = {
+  loading: false,
+  hidden: false,
+  loader: {
+    detailWdith: 100,
+    detailLabelWidth: 50
+  }
 };
 
 const HeroDetail = withStyles(styles)(HeroDetailComponent);

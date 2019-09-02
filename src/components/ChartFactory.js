@@ -65,8 +65,7 @@ export default class ChartFactory {
             ? summedReferenceData
             : summedData;
         return (
-          // Due to responsiveness of nstedchart
-          <div>
+          <div style={{ width: !isComparison ? 200 : 650 }}>
             <NestedProportionalAreaChart
               key={key}
               square={visualType === 'square_nested_proportional_area'}
@@ -105,90 +104,153 @@ export default class ChartFactory {
           </div>
         );
       }
-      case 'pie':
+      case 'pie': {
+        let pieData = !aggregate ? data : aggregateData(aggregate, data);
+        pieData = pieData.map(d => ({
+          ...d,
+          name: d.x,
+          label: `${d.x} ${numberFormatter.format(d.y)}`
+        }));
         return (
           // Due to responsiveness of piechart
           <div>
             <PieChart
               key={key}
-              width={width}
+              width={width || 400}
+              legendWidth={50}
               height={height}
-              data={!aggregate ? data : aggregateData(aggregate, data)}
+              data={pieData}
+              donutLabelKey={{ dataIndex: 0, sortKey: '' }}
             />
           </div>
         );
-      case 'grouped_column':
-        return (
-          <BarChart
-            key={key}
-            responsive
-            width={width}
-            height={height || 200}
-            barWidth={barWidth || 50}
-            horizontal={horizontal}
-            labels={datum => numberFormatter.format(datum.y)}
-            // Disable tooltip behaviour
-            labelComponent={undefined}
-            data={[...new Set(data.map(d => d.groupBy))].map(group => ({
-              label: group,
-              data: !aggregate
-                ? data.filter(d => d.groupBy === group)
-                : aggregateData(
-                    aggregate,
-                    data.filter(d => d.groupBy === group)
-                  )
-            }))}
-          />
+      }
+      case 'grouped_column': {
+        // Create array of grouped data arrays
+        let groupedData = [...new Set(data.map(d => d.groupBy))].map(group =>
+          !aggregate
+            ? data.filter(d => d.groupBy === group)
+            : aggregateData(
+                aggregate,
+                data.filter(d => d.groupBy === group)
+              ).map(d => ({ ...d, x: group }))
         );
-      case 'column':
-        if (isComparison) {
-          const pData = !aggregate ? data : aggregateData(aggregate, data);
-          const pComparisonData = !aggregate
-            ? comparisonData
-            : aggregateData(aggregate, comparisonData);
-          return (
+        // Transpose
+        groupedData = groupedData[0].map((_c, i) => groupedData.map(r => r[i]));
+
+        return (
+          <div
+            style={{
+              width: groupedData.length * groupedData[0].length * 45,
+              height: '300px'
+            }}
+          >
             <BarChart
               key={key}
               responsive
-              width={width}
-              height={height || 200}
-              barWidth={barWidth || 100}
+              offset={45}
+              barWidth={40}
+              width={groupedData.length * groupedData[0].length * 45}
+              height={height || 300}
               horizontal={horizontal}
               labels={datum => numberFormatter.format(datum.y)}
               // Disable tooltip behaviour
               labelComponent={undefined}
-              data={pData.map(d => ({
-                label: d.x[0].toUpperCase() + d.x.slice(1),
-                data: [
-                  {
-                    x: 'Country 1',
-                    y: d.y
-                  },
-                  {
-                    x: 'Country 2',
-                    y: pComparisonData.find(z => z.x === d.x)
-                      ? pComparisonData.find(z => z.x === d.x).y
-                      : null
+              data={groupedData}
+              parts={{
+                axis: {
+                  labelWidth: 40,
+                  independent: {
+                    style: {
+                      tickLabels: {
+                        display: 'block'
+                      }
+                    }
                   }
-                ]
-              }))}
+                }
+              }}
             />
+          </div>
+        );
+      }
+      case 'column': {
+        const processedData = aggregate ? aggregateData(aggregate, data) : data;
+        if (isComparison) {
+          const processedComparisonData = aggregate
+            ? aggregateData(aggregate, comparisonData)
+            : comparisonData;
+          return (
+            <div
+              style={{
+                width: processedData.length * 2 * (barWidth || 40) + 5,
+                height: '300px'
+              }}
+            >
+              <BarChart
+                key={key}
+                responsive
+                offset={45}
+                barWidth={barWidth || 40}
+                width={processedData.length * 2 * ((barWidth || 40) + 5)}
+                height={height || 300}
+                horizontal={horizontal}
+                labels={datum => numberFormatter.format(datum.y)}
+                // Disable tooltip behaviour
+                labelComponent={undefined}
+                data={[processedData, processedComparisonData]}
+                parts={{
+                  axis: {
+                    independent: {
+                      style: {
+                        axis: {
+                          display: 'block'
+                        },
+                        ticks: {
+                          display: 'block'
+                        },
+                        tickLabels: {
+                          display: 'block'
+                        }
+                      }
+                    }
+                  }
+                }}
+              />
+            </div>
           );
         }
         return (
-          <BarChart
-            key={key}
-            responsive
-            width={width}
-            height={height || 200}
-            barWidth={barWidth || 100}
-            labels={datum => numberFormatter.format(datum.y)}
-            // Disable tooltip behaviour
-            labelComponent={undefined}
-            horizontal={horizontal}
-            data={!aggregate ? data : aggregateData(aggregate, data)}
-          />
+          <div
+            style={{
+              width: processedData.length * (barWidth || 80) + 5,
+              height: '300px'
+            }}
+          >
+            <BarChart
+              key={key}
+              horizontal={horizontal}
+              barWidth={barWidth || 80}
+              width={processedData.length * ((barWidth || 80) + 5)}
+              height={height || 300}
+              labels={datum => numberFormatter.format(datum.y)}
+              // Disable tooltip behaviour
+              labelComponent={undefined}
+              data={processedData}
+              parts={{
+                axis: {
+                  independent: {
+                    style: {
+                      tickLabels: {
+                        display: 'block'
+                      }
+                    }
+                  }
+                }
+              }}
+            />
+          </div>
         );
+      }
       default:
         return null;
     }
