@@ -154,8 +154,6 @@ export default class ChartFactory {
               height={height || 300}
               horizontal={horizontal}
               labels={datum => numberFormatter.format(datum.y)}
-              // Disable tooltip behaviour
-              labelComponent={undefined}
               data={groupedData}
               parts={{
                 axis: {
@@ -195,8 +193,6 @@ export default class ChartFactory {
                 height={height || 300}
                 horizontal={horizontal}
                 labels={datum => numberFormatter.format(datum.y)}
-                // Disable tooltip behaviour
-                labelComponent={undefined}
                 data={[processedData, processedComparisonData]}
                 parts={{
                   axis: {
@@ -232,9 +228,6 @@ export default class ChartFactory {
               barWidth={barWidth || 80}
               width={processedData.length * ((barWidth || 80) + 5)}
               height={height || 300}
-              labels={datum => numberFormatter.format(datum.y)}
-              // Disable tooltip behaviour
-              labelComponent={undefined}
               data={processedData}
               parts={{
                 axis: {
