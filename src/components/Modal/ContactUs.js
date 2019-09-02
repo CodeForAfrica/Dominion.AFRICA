@@ -111,7 +111,7 @@ function ContactUs({ classes, handleClose }) {
         <Grid item xs={12} md={6}>
           <MenuList>
             {contactList.map((contact, index) => (
-              <MenuItem button className={classes.listItem}>
+              <MenuItem button key={contact.name} className={classes.listItem}>
                 <span className={classes.listIndex}>
                   {`${index + 1}`.padStart(2, '0')}
                 </span>
