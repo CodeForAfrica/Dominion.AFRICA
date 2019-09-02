@@ -63,7 +63,7 @@ library.add(
   faBriefcase
 );
 
-function ProfileSectionTitle({ classes, loading, tab: { name, icon } }) {
+function ProfileSectionTitle({ classes, loading, tab: { title, icon } }) {
   return (
     <Grid item className={classes.root}>
       {loading ? (
@@ -84,7 +84,7 @@ function ProfileSectionTitle({ classes, loading, tab: { name, icon } }) {
             <FontAwesomeIcon className={classes.fa} icon={icon} size="sm" />
           </span>
           <Typography variant="h4" className={classes.title}>
-            {name}
+            {title}
           </Typography>
         </>
       )}
@@ -95,7 +95,7 @@ function ProfileSectionTitle({ classes, loading, tab: { name, icon } }) {
 ProfileSectionTitle.propTypes = {
   classes: PropTypes.shape().isRequired,
   tab: PropTypes.shape({
-    name: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired
   }).isRequired,
   loading: PropTypes.bool

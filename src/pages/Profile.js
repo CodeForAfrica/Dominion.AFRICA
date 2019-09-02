@@ -10,7 +10,7 @@ import ProfileTabs from '../components/ProfileTabs';
 import Page from '../components/Page';
 import CountryPartners from '../components/CountryPartners';
 import config from '../config';
-import ChartFactory from '../components/ChartFactory';
+import Chart from '../components/ChartFactory';
 import ChartsContainer from '../components/ChartsContainer';
 import slugify from '../utils/slugify';
 
@@ -249,6 +249,10 @@ query charts($geoCode: String!, $geoLevel: String!) {
         slug: 'all'
       },
       ...sectionedCharts
+        .map((section, i) => ({
+          ...section,
+          index: i
+        }))
         .filter(
           section =>
             section.charts.filter(
@@ -264,7 +268,8 @@ query charts($geoCode: String!, $geoLevel: String!) {
         .map(section => ({
           title: section.sectionTitle,
           slug: slugify(section.sectionTitle),
-          icon: section.sectionIcon
+          icon: section.sectionIcon,
+          index: section.index
         }))
     ],
     [chartData.isLoading, chartData.profileVisualsData]
@@ -287,61 +292,61 @@ query charts($geoCode: String!, $geoLevel: String!) {
         switchToTab={setActiveTab}
         tabs={profileTabs}
       />
+
       <ChartsContainer>
-        {profileTabs
-          .slice(1)
-          .filter(tab => activeTab === 'all' || activeTab === tab.slug)
-          .map(tab => (
-            <Grid container spacing={2}>
-              <ProfileSectionTitle loading={chartData.isLoading} tab={tab} />
-              {sectionedCharts
-                .find(x => x.sectionTitle === tab.title)
-                .charts.filter(
-                  ({ visuals: v }) =>
-                    chartData.isLoading ||
-                    (chartData.profileVisualsData &&
-                      /* data is not missing */
-                      !v.find(
-                        ({ id }) =>
-                          chartData.profileVisualsData[id].nodes.length === 0
-                      ))
-                )
-                .map(chart => (
-                  <Grid
-                    item
-                    xs={12}
-                    md={
-                      parseFloat(
-                        chart.layout.split('/').reduce((a, b) => a / b)
-                      ) * 12
-                    }
+        {profileTabs.slice(1).map(tab => (
+          <Grid key={tab.slug} container spacing={2}>
+            <ProfileSectionTitle loading={chartData.isLoading} tab={tab} />
+            {sectionedCharts[tab.index].charts
+              .filter(
+                ({ visuals: v }) =>
+                  chartData.isLoading ||
+                  (chartData.profileVisualsData &&
+                    /* data is not missing */
+                    !v.find(
+                      ({ id }) =>
+                        chartData.profileVisualsData[id].nodes.length === 0
+                    ))
+              )
+              .map(chart => (
+                <Grid
+                  key={`${chart.id}grid`}
+                  item
+                  xs={12}
+                  md={
+                    parseFloat(
+                      chart.layout.split('/').reduce((a, b) => a / b)
+                    ) * 12
+                  }
+                >
+                  <ChartContainer
+                    key={chart.id}
+                    loading={chartData.isLoading}
+                    title={chart.title}
+                    subtitle={chart.subtitle}
+                    classes={{
+                      title: classes.title,
+                      subtitle: classes.subtitle
+                    }}
                   >
-                    <ChartContainer
-                      key={chart.id}
-                      loading={chartData.isLoading}
-                      title={chart.title}
-                      subtitle={chart.subtitle}
-                      classes={{
-                        title: classes.title,
-                        subtitle: classes.subtitle
-                      }}
-                    >
-                      {!chartData.isLoading &&
-                        chart.visuals.map(
-                          visual =>
-                            profiles.loaded &&
-                            ChartFactory.build(
-                              visual,
-                              chartData.profileVisualsData,
-                              chartData.comparisonVisualsData,
-                              profiles
-                            )
-                        )}
-                    </ChartContainer>
-                  </Grid>
-                ))}
-            </Grid>
-          ))}
+                    {!chartData.isLoading &&
+                      chart.visuals.map(
+                        visual =>
+                          profiles.loaded && (
+                            <Chart
+                              key={visual.id}
+                              visual={visual}
+                              profiles={profiles}
+                              data={chartData.profileVisualsData}
+                              comparisonData={chartData.comparisonVisualsData}
+                            />
+                          )
+                      )}
+                  </ChartContainer>
+                </Grid>
+              ))}
+          </Grid>
+        ))}
       </ChartsContainer>
       <ProfileRelease />
       <CountryPartners dominion={{ ...config, selectedCountry }} />
