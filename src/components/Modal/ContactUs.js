@@ -87,12 +87,9 @@ const contactList = [
     name: 'Facebook',
     href: 'https://web.facebook.com/CodeForAfrica'
   }
-]; // --> off
+];
 
-/* eslint react/no-array-index-key: 0 */ function ContactUs({
-  classes,
-  handleClose
-}) {
+function ContactUs({ classes, handleClose }) {
   return (
     <Grid
       className={classes.root}
@@ -113,10 +110,10 @@ const contactList = [
         </Grid>
         <Grid item xs={12} md={6}>
           <MenuList>
-            {contactList.map((contact, contactIndex) => (
-              <MenuItem button key={contactIndex} className={classes.listItem}>
+            {contactList.map((contact, index) => (
+              <MenuItem button className={classes.listItem}>
                 <span className={classes.listIndex}>
-                  {`${contactIndex + 1}`.padStart(2, '0')}
+                  {`${index + 1}`.padStart(2, '0')}
                 </span>
                 <a className={classes.listItemLink} href={`${contact.href}`}>
                   {contact.name}

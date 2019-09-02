@@ -62,11 +62,6 @@ Header.propTypes = {
     PropTypes.node
   ]).isRequired,
   dominion: PropTypes.shape({}).isRequired
-  // profile: PropTypes.shape({})
-};
-
-Header.defaultProps = {
-  // profile: null
 };
 
 export default withRouter(withWidth()(withStyles(styles)(Header)));

@@ -122,10 +122,10 @@ function Navigation({ classes, width, dominion }) {
     { title: 'Contact', onClick: toggleContact }
   ]; // --> off
 
-  /* eslint react/no-array-index-key: 0 */ const renderMenuList = () => (
+  const renderMenuList = () => (
     <MenuList className={classes.menuList}>
-      {navList.map((menu, menuIndex) => (
-        <MenuItem key={menuIndex} className={classes.menuListItem}>
+      {navList.map(menu => (
+        <MenuItem key={menu.title} className={classes.menuListItem}>
           <Link
             variant="body1"
             className={classes.link}

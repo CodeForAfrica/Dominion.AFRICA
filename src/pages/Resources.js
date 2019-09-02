@@ -13,9 +13,9 @@ import CountryPartners from '../components/CountryPartners';
 import {
   getSourceAfricaDominionData,
   getOpenAfricaDominionGroupData
-} from '../lib/api'; // --> OFF
+} from '../lib/api';
 
-/* eslint react/no-array-index-key: 0 */ function Resources() {
+function Resources() {
   const [packages, setPackages] = useState([]);
   const [documents, setDocuments] = useState([]);
   useEffect(() => {
@@ -52,8 +52,8 @@ import {
           is hosted on sourceAFRICA.net and openAFRICA.net
         </Typography>
         <Grid container justify="space-between">
-          {documents.map((document, documentIndex) => (
-            <Grid item xs={12} md={6} key={documentIndex}>
+          {documents.map(document => (
+            <Grid item xs={12} md={6} key={document.title}>
               <DocumentCard
                 link={document.canonical_url}
                 title={document.title}
@@ -80,9 +80,9 @@ import {
         subtitle="Powered by openAfrica.net"
       >
         <Grid container justify="space-between">
-          {packages.map((p, packageIndex) => (
+          {packages.map(p => (
             <DataCard
-              key={packageIndex}
+              key={p.title}
               orgLink={`https://openafrica.net/organization/${p.organization.name}`}
               dataLink={`https://openafrica.net/dataset/${p.name}`}
               title={p.title}
