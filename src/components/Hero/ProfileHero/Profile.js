@@ -16,7 +16,6 @@ import { Query } from 'react-apollo';
 import Hero, { HeroTitle, HeroTitleGrid, HeroDetail } from '../Hero';
 
 import Search from '../../Search';
-// import ReleaseDropdown from '../../ReleaseDropdown';
 import searchIcon from '../../../assets/images/icons/location.svg';
 import config from '../../../config';
 import { AppContext } from '../../../AppContext';
@@ -204,35 +203,25 @@ function Profile({ classes, dominion, geoId, history, ...props }) {
               <HeroTitle small breakWord loading={loading} loaderWidth={150}>
                 {shortName}
               </HeroTitle>
-              <TypographyLoader
-                loading={loading}
-                loader={{
-                  width: 115,
-                  height: 17
-                }}
-                variant="subtitile1"
-                component="span"
-                className={classes.caption}
-              >
-                {geoId.split('-')[0]} in{' '}
-                <Typography
-                  variant="body"
-                  component="span"
-                  className={classes.captionItem}
-                >
-                  <a
-                    href={
-                      parentLevel !== 'continent'
-                        ? `/profile/${selectedCountry.geoLevel}-${selectedCountry.geoCode}`
-                        : '#'
-                    }
-                    className={classes.alink}
-                  >
-                    {parentLevel !== 'continent'
-                      ? selectedCountry.name
-                      : 'Africa'}
-                  </a>
-                  {', '}
+              <TypographyLoader variant="subtitle1" className={classes.caption}>
+                {geoLevel}{' '}
+                <Typography variant="caption" className={classes.captionItem}>
+                  in{' '}
+                  <span>
+                    <a
+                      href={
+                        parentLevel !== 'continent'
+                          ? `/profile/${selectedCountry.geoLevel}-${selectedCountry.geoCode}`
+                          : '#'
+                      }
+                      className={classes.alink}
+                    >
+                      {parentLevel !== 'continent'
+                        ? selectedCountry.name
+                        : 'Africa'}
+                    </a>
+                    {', '}
+                  </span>
                 </Typography>
               </TypographyLoader>
               <HeroDetail

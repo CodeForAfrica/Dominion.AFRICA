@@ -143,7 +143,7 @@ CountryPartners.defaultProps = {
 CountryPartners.propTypes = {
   classes: PropTypes.shape().isRequired,
   dominion: PropTypes.shape({
-    selectedCountry: PropTypes.shape({}).isRequired
+    selectedCountry: PropTypes.object
   })
 };
 

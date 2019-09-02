@@ -78,6 +78,16 @@ const styles = theme => ({
     }
   },
   locationGrid: {
+    flexDirection: 'column',
+    alignItem: 'flex-start',
+    paddingTop: theme.spacing(5),
+    [theme.breakpoints.up('md')]: {
+      paddingTop: 0
+    }
+  },
+  countryLocationGrid: {
+    justifyContent: 'flex-start',
+    alignItem: 'flex-start',
     paddingTop: theme.spacing(5),
     [theme.breakpoints.up('md')]: {
       paddingTop: 0
@@ -146,11 +156,14 @@ function PortalChooser({ classes, children, countries, handleClose }) {
         md={5}
         lg={5}
         xl={5}
-        direction="column"
-        alignItems="flex-start"
+        item
         className={classes.locationGrid}
       >
-        <Typography variant="body2" className={classes.locationText}>
+        <Typography
+          component="div"
+          variant="body2"
+          className={classes.locationText}
+        >
           <GetLocation countries={countries} />
           <img
             src={geolocate}
@@ -176,14 +189,13 @@ function PortalChooser({ classes, children, countries, handleClose }) {
         </Grid>
       </Grid>
       <Grid
-        justify="flex-start"
-        alignItems="flex-start"
         xs={12}
         sm={12}
         md={7}
         lg={7}
         xl={7}
-        className={classes.locationGrid}
+        item
+        className={classes.countryLocationGrid}
       >
         <MenuList className={classes.countryList}>
           {Object.keys(countries).map((country, index) => (
@@ -215,9 +227,13 @@ PortalChooser.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
-  ]).isRequired,
+  ]),
   countries: PropTypes.shape({}).isRequired,
   handleClose: PropTypes.func.isRequired
+};
+
+PortalChooser.defaultProps = {
+  children: null
 };
 
 export default withStyles(styles)(PortalChooser);

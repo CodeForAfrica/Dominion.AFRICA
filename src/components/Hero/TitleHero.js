@@ -27,7 +27,10 @@ function TitleHero({ classes, children }) {
 
 TitleHero.propTypes = {
   classes: PropTypes.shape({}).isRequired,
-  children: PropTypes.shape({}).isRequired
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired
 };
 
 export default withStyles(styles)(TitleHero);
