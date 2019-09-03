@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { AppBar, Tabs, Tab } from '@material-ui/core';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import { withStyles } from '@material-ui/core/styles';
 import { ContentLoader } from '@codeforafrica/hurumap-ui';
+
+import classNames from 'classnames';
 
 const styles = theme => ({
   root: {
@@ -20,6 +22,20 @@ const styles = theme => ({
     [theme.breakpoints.up('lg')]: {
       padding: 0
     }
+  },
+  /**
+   * This class fills the position when the bar is
+   * set to position fixed.
+   */
+  filler: {
+    height: '6.25rem' // 100px / 16
+  },
+  fix: {
+    position: 'fixed',
+    zIndex: 999,
+    top: 0,
+    right: 0,
+    left: 0
   },
   content: {
     width: '100%',
@@ -73,61 +89,97 @@ function ProfileTabs({
   activeTab,
   switchToTab
 }) {
-  const handleChange = (event, value) => {
-    if (switchToTab) {
-      switchToTab(value);
-    }
-  };
-
+  const [fixToTop, setFixToTop] = useState(false);
   const centered = isWidthUp('md', width); // centered is only for md and up
   const variant = centered ? 'standard' : 'scrollable';
 
+  useEffect(() => {
+    function handleScroll() {
+      const el = document.getElementById('section-tabs');
+      const rect = el.getBoundingClientRect();
+      if (rect.y <= 0 && !fixToTop) {
+        setFixToTop(true);
+      } else if (rect.y > 0 && fixToTop) {
+        setFixToTop(false);
+      } else {
+        //
+      }
+    }
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [fixToTop]);
+
+  const handleChange = (_event, value) => {
+    if (switchToTab) {
+      switchToTab(value);
+    }
+
+    setTimeout(() => {
+      const sectionTab = document.getElementById('section-tabs');
+      if (sectionTab) {
+        sectionTab.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 200);
+  };
+
   return (
-    <div className={classes.root}>
-      <div className={classes.content}>
-        {loading ? (
-          <ContentLoader
-            className={classes.loader}
-            primaryOpacity={0.5}
-            secondaryOpacity={1}
-            height={88}
-            width={1200}
-          >
-            <rect x="0" y="45%" width="55px" height="21px" />
-            <rect x="84px" y="45%" width="55px" height="21px" />
-            <rect x="168px" y="45%" width="55px" height="21px" />
-            <rect x="252px" y="45%" width="95px" height="21px" />
-            <rect x="371px" y="45%" width="95px" height="21px" />
-            <rect x="490px" y="45%" width="110px" height="21px" />
-            <rect x="624px" y="45%" width="95px" height="21px" />
-            <rect x="753px" y="45%" width="221px" height="21px" />
-            <rect x="998px" y="45%" width="55px" height="21px" />
-          </ContentLoader>
-        ) : (
-          <AppBar color="inherit" position="static" className={classes.appbar}>
-            <Tabs
-              value={activeTab}
-              variant={variant}
-              scrollButtons="off" // Never show scroll buttons
-              classes={{ indicator: classes.indicator }}
-              onChange={handleChange}
+    <div id="section-tabs" className={classes.filler}>
+      <div
+        className={classNames(classes.root, {
+          [classes.fix]: fixToTop
+        })}
+      >
+        <div className={classes.content}>
+          {loading ? (
+            <ContentLoader
+              className={classes.loader}
+              primaryOpacity={0.5}
+              secondaryOpacity={1}
+              height={88}
+              width={1200}
             >
-              {tabs.map(tab => (
-                <LinkTab
-                  key={tab.slug}
-                  value={tab.slug}
-                  href={`#${tab.slug}`} // Always show the tabs on click
-                  label={tab.title}
-                  className={classes.tab}
-                  classes={{
-                    selected: classes.tabSelected,
-                    labelContainer: classes.labelContainer
-                  }}
-                />
-              ))}
-            </Tabs>
-          </AppBar>
-        )}
+              <rect x="0" y="45%" width="55px" height="21px" />
+              <rect x="84px" y="45%" width="55px" height="21px" />
+              <rect x="168px" y="45%" width="55px" height="21px" />
+              <rect x="252px" y="45%" width="95px" height="21px" />
+              <rect x="371px" y="45%" width="95px" height="21px" />
+              <rect x="490px" y="45%" width="110px" height="21px" />
+              <rect x="624px" y="45%" width="95px" height="21px" />
+              <rect x="753px" y="45%" width="221px" height="21px" />
+              <rect x="998px" y="45%" width="55px" height="21px" />
+            </ContentLoader>
+          ) : (
+            <AppBar
+              color="inherit"
+              position="static"
+              className={classes.appbar}
+            >
+              <Tabs
+                value={activeTab}
+                variant={variant}
+                scrollButtons="off" // Never show scroll buttons
+                classes={{ indicator: classes.indicator }}
+                onChange={handleChange}
+              >
+                {tabs.map(tab => (
+                  <LinkTab
+                    key={tab.slug}
+                    value={tab.slug}
+                    href={`#${tab.slug}`} // Always show the tabs on click
+                    label={tab.title}
+                    className={classes.tab}
+                    classes={{
+                      selected: classes.tabSelected,
+                      labelContainer: classes.labelContainer
+                    }}
+                  />
+                ))}
+              </Tabs>
+            </AppBar>
+          )}
+        </div>
       </div>
     </div>
   );
