@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { AppBar, Tabs, Tab } from '@material-ui/core';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import { withStyles } from '@material-ui/core/styles';
 import { ContentLoader } from '@codeforafrica/hurumap-ui';
+
+import classNames from 'classnames';
 
 const styles = theme => ({
   root: {
@@ -20,6 +22,20 @@ const styles = theme => ({
     [theme.breakpoints.up('lg')]: {
       padding: 0
     }
+  },
+  /**
+   * This class fills the position when the bar is
+   * set to position fixed.
+   */
+  filler: {
+    height: '6.25rem' // 100px / 16
+  },
+  fix: {
+    position: 'fixed',
+    zIndex: 999,
+    top: 0,
+    right: 0,
+    left: 0
   },
   content: {
     width: '100%',
@@ -65,37 +81,56 @@ function LinkTab(props) {
   return <Tab component="a" {...props} />;
 }
 
-class ProfileTabs extends React.Component {
-  constructor(props) {
-    super(props);
+function ProfileTabs({
+  classes,
+  tabs,
+  width,
+  loading,
+  activeTab,
+  switchToTab
+}) {
+  const [fixToTop, setFixToTop] = useState(false);
+  const centered = isWidthUp('md', width); // centered is only for md and up
+  const variant = centered ? 'standard' : 'scrollable';
 
-    const { tabs } = props;
-    let value;
-    if (tabs.length) {
-      const [{ href }] = tabs;
-      value = href;
+  useEffect(() => {
+    function handleScroll() {
+      const el = document.getElementById('section-tabs');
+      const rect = el.getBoundingClientRect();
+      if (rect.y <= 0 && !fixToTop) {
+        setFixToTop(true);
+      } else if (rect.y > 0 && fixToTop) {
+        setFixToTop(false);
+      } else {
+        //
+      }
     }
-    this.state = { value };
-    this.handleChange = this.handleChange.bind(this);
-  }
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [fixToTop]);
 
-  handleChange(event, value) {
-    const { switchToTab } = this.props;
-    this.setState({ value });
+  const handleChange = (_event, value) => {
     if (switchToTab) {
       switchToTab(value);
     }
-  }
 
-  render() {
-    const { classes, tabs, width, loading } = this.props;
-    const { value } = this.state;
+    setTimeout(() => {
+      const sectionTab = document.getElementById('section-tabs');
+      if (sectionTab) {
+        sectionTab.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 200);
+  };
 
-    const centered = isWidthUp('md', width); // centered is only for md and up
-    const variant = centered ? 'standard' : 'scrollable';
-
-    return (
-      <div className={classes.root}>
+  return (
+    <div id="section-tabs" className={classes.filler}>
+      <div
+        className={classNames(classes.root, {
+          [classes.fix]: fixToTop
+        })}
+      >
         <div className={classes.content}>
           {loading ? (
             <ContentLoader
@@ -122,18 +157,18 @@ class ProfileTabs extends React.Component {
               className={classes.appbar}
             >
               <Tabs
-                value={value}
+                value={activeTab}
                 variant={variant}
                 scrollButtons="off" // Never show scroll buttons
                 classes={{ indicator: classes.indicator }}
-                onChange={this.handleChange}
+                onChange={handleChange}
               >
                 {tabs.map(tab => (
                   <LinkTab
-                    key={tab.href}
-                    value={tab.href}
-                    href={`#${tab.href}`} // Always show the tabs on click
-                    label={tab.name}
+                    key={tab.slug}
+                    value={tab.slug}
+                    href={`#${tab.slug}`} // Always show the tabs on click
+                    label={tab.title}
                     className={classes.tab}
                     classes={{
                       selected: classes.tabSelected
@@ -145,17 +180,18 @@ class ProfileTabs extends React.Component {
           )}
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 ProfileTabs.propTypes = {
   classes: PropTypes.shape().isRequired,
+  activeTab: PropTypes.string.isRequired,
   switchToTab: PropTypes.func.isRequired,
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      href: PropTypes.string.isRequired
+      title: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired
     })
   ).isRequired,
   width: PropTypes.string.isRequired,
