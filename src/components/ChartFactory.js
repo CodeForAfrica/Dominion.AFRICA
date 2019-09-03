@@ -31,7 +31,6 @@ export default function ChartFactory({
    */
   profiles
 }) {
-  const numberFormatter = new Intl.NumberFormat('en-IN');
   const key =
     Math.random()
       .toString(36)
@@ -43,7 +42,8 @@ export default function ChartFactory({
     ? datas[`${visualId}Reference`].nodes
     : [];
 
-  const testD = useMemo(() => {
+  const primaryData = useMemo(() => {
+    const numberFormatter = new Intl.NumberFormat('en-GB');
     if (visualType === 'column') {
       return aggregate ? aggregateData(aggregate, data) : data;
     }
@@ -66,10 +66,14 @@ export default function ChartFactory({
 
     groupedData = groupedData[0].map((_c, i) => groupedData.map(r => r[i]));
     return groupedData;
-  }, []);
+  }, [visualType, aggregate, data]);
+
   if (!datas) {
     return null;
   }
+
+  const numberFormatter = new Intl.NumberFormat('en-GB');
+
   switch (visualType) {
     case 'square_nested_proportional_area':
     case 'circle_nested_proportional_area': {
@@ -137,7 +141,7 @@ export default function ChartFactory({
             width={width || 400}
             legendWidth={50}
             height={height}
-            data={testD}
+            data={primaryData}
             donutLabelKey={{ dataIndex: 0, sortKey: '' }}
           />
         </div>
@@ -147,7 +151,7 @@ export default function ChartFactory({
       return (
         <div
           style={{
-            width: testD.length * testD[0].length * 45,
+            width: primaryData.length * primaryData[0].length * 45,
             height: '300px'
           }}
         >
@@ -156,13 +160,11 @@ export default function ChartFactory({
             responsive
             offset={45}
             barWidth={40}
-            width={testD.length * testD[0].length * 45}
+            width={primaryData.length * primaryData[0].length * 45}
             height={height || 300}
             horizontal={horizontal}
             labels={datum => numberFormatter.format(datum.y)}
-            // Disable tooltip behaviour
-            labelComponent={undefined}
-            data={testD}
+            data={primaryData}
             parts={{
               axis: {
                 labelWidth: 40,
@@ -187,7 +189,7 @@ export default function ChartFactory({
         return (
           <div
             style={{
-              width: testD.length * 2 * (barWidth || 40) + 5,
+              width: primaryData.length * 2 * (barWidth || 40) + 5,
               height: '300px'
             }}
           >
@@ -196,13 +198,11 @@ export default function ChartFactory({
               responsive
               offset={45}
               barWidth={barWidth || 40}
-              width={testD.length * 2 * ((barWidth || 40) + 5)}
+              width={primaryData.length * 2 * ((barWidth || 40) + 5)}
               height={height || 300}
               horizontal={horizontal}
               labels={datum => numberFormatter.format(datum.y)}
-              // Disable tooltip behaviour
-              labelComponent={undefined}
-              data={[testD, processedComparisonData]}
+              data={[primaryData, processedComparisonData]}
               parts={{
                 axis: {
                   independent: {
@@ -227,7 +227,7 @@ export default function ChartFactory({
       return (
         <div
           style={{
-            width: testD.length * (barWidth || 80) + 5,
+            width: primaryData.length * (barWidth || 80) + 5,
             height: '300px'
           }}
         >
@@ -235,12 +235,12 @@ export default function ChartFactory({
             key={key}
             horizontal={horizontal}
             barWidth={barWidth || 80}
-            width={testD.length * ((barWidth || 80) + 5)}
+            width={
+              horizontal ? 200 : primaryData.length * ((barWidth || 80) + 5)
+            }
             height={height || 300}
             labels={datum => numberFormatter.format(datum.y)}
-            // Disable tooltip behaviour
-            labelComponent={undefined}
-            data={testD}
+            data={primaryData}
             parts={{
               axis: {
                 independent: {
