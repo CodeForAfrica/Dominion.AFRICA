@@ -155,7 +155,7 @@ function SearchResults({
 SearchResults.propTypes = {
   classes: PropTypes.shape().isRequired,
   codeType: PropTypes.string.isRequired,
-  results: PropTypes.arrayOf({}).isRequired,
+  results: PropTypes.arrayOf(PropTypes.object).isRequired,
   thisGeoId: PropTypes.string,
   isComparisonSearch: PropTypes.bool.isRequired
 };

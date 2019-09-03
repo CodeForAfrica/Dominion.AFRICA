@@ -109,7 +109,7 @@ function ContactUs({ classes, handleClose }) {
                 href: 'https://web.facebook.com/CodeForAfrica'
               }
             ].map((contact, index) => (
-              <MenuItem button key={contact} className={classes.listItem}>
+              <MenuItem button key={contact.name} className={classes.listItem}>
                 <span className={classes.listIndex}>
                   {`${index + 1}`.padStart(2, '0')}
                 </span>

@@ -171,8 +171,7 @@ function ProfileTabs({
                     label={tab.title}
                     className={classes.tab}
                     classes={{
-                      selected: classes.tabSelected,
-                      labelContainer: classes.labelContainer
+                      selected: classes.tabSelected
                     }}
                   />
                 ))}

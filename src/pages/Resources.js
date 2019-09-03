@@ -53,7 +53,7 @@ function Resources() {
         </Typography>
         <Grid container justify="space-between">
           {documents.map(document => (
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={6} key={document.title}>
               <DocumentCard
                 link={document.canonical_url}
                 title={document.title}
@@ -82,6 +82,7 @@ function Resources() {
         <Grid container justify="space-between">
           {packages.map(p => (
             <DataCard
+              key={p.title}
               orgLink={`https://openafrica.net/organization/${p.organization.name}`}
               dataLink={`https://openafrica.net/dataset/${p.name}`}
               title={p.title}

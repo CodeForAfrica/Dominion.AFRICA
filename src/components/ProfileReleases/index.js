@@ -5,7 +5,6 @@ import { Grid, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 import A from '../A';
-// import ReleaseDropdown from '../ReleaseDropdown';
 
 const styles = theme => ({
   root: {
@@ -136,17 +135,13 @@ function ProfileRelease({ classes }) {
             )}
           </Typography>
         </Grid>
-        {/* <Grid item className={classes.releaseSelector}>
-          <ReleaseDropdown primaryReleases={primaryReleases} />
-        </Grid> */}
       </Grid>
     </div>
   );
 }
 
 ProfileRelease.propTypes = {
-  classes: PropTypes.shape().isRequired,
-  profile: PropTypes.shape({}).isRequired
+  classes: PropTypes.shape().isRequired
 };
 
 export default withStyles(styles)(ProfileRelease);

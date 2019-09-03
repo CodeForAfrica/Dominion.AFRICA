@@ -32,7 +32,7 @@ const styles = theme => ({
 
 function InfoSubtitleElement({ classes, children }) {
   return (
-    <Typography variant="body2" className={classes.subtitle}>
+    <Typography component="div" variant="body2" className={classes.subtitle}>
       {children}
     </Typography>
   );

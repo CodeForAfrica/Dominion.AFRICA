@@ -134,8 +134,8 @@ Search.propTypes = {
     PropTypes.node
   ]),
   dominion: PropTypes.shape({
-    countries: PropTypes.arrayOf({}).isRequired
-  }).isRequired,
+    countries: PropTypes.object
+  }),
   handleIconClick: PropTypes.func,
   placeholder: PropTypes.string,
   isComparisonSearch: PropTypes.bool,
@@ -149,7 +149,10 @@ Search.defaultProps = {
   icon: null,
   placeholder: '',
   isComparisonSearch: false,
-  handleIconClick: null
+  handleIconClick: null,
+  dominion: {
+    countries: null
+  }
 };
 
 export default withStyles(styles)(Search);

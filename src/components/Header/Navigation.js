@@ -115,18 +115,16 @@ function Navigation({ classes, width, dominion }) {
   const { open: openContact, toggleModal: toggleContact } = useToggleModal(
     'contact'
   );
+
   const renderMenuList = () => (
     <MenuList className={classes.menuList}>
       {[
         { title: 'About', link: '/about' },
         { title: 'Showcase', link: `#showcase` },
         { title: 'Resources', link: '/resources' },
-        {
-          title: 'Contact',
-          onClick: toggleContact
-        }
+        { title: 'Contact', onClick: toggleContact }
       ].map(menu => (
-        <MenuItem key={menu.link} className={classes.menuListItem}>
+        <MenuItem key={menu.title} className={classes.menuListItem}>
           <Link
             variant="body1"
             className={classes.link}

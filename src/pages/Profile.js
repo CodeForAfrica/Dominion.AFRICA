@@ -392,7 +392,6 @@ query charts($geoCode: String!, $geoLevel: String!) {
 }
 
 Profile.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       geoId: PropTypes.string.isRequired,

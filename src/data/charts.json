@@ -47,7 +47,8 @@
   "sectionTitle": "Worker's Hostel Data",
   "sectionIcon": "building",
   "sectionDescription": "",
-  "charts": [{
+  "charts": [
+    {
       "title": "Number of people living in worker's hostel per age group",
       "subtitle": "",
       "layout": "1",
@@ -61,7 +62,7 @@
     {
       "title": "Number of people living in worker's hostel per gender",
       "subtitle": "",
-      "layout": "1",
+      "layout": "1/3",
       "visuals": [{
         "type": "pie",
         "table": "allWorkersHostelGenders",
@@ -72,7 +73,7 @@
     {
       "title": "Number of people living in worker's hostel per geography",
       "subtitle": "",
-      "layout": "1",
+      "layout": "1/3",
       "visuals": [{
         "type": "pie",
         "table": "allWorkersHostelGeographies",
@@ -655,7 +656,7 @@
   "charts": [{
       "title": "Land Redistribution Prioritisation",
       "subtitle": "Type of land that government should prioritise for redistribution",
-      "layout": "1",
+      "layout": "1/2",
       "visuals": [{
         "type": "pie",
         "table": "allLandToPrioritiseForRedistributions",
@@ -667,7 +668,7 @@
     {
       "title": "Access to Information",
       "subtitle": "How is easy is it to access to Information",
-      "layout": "1",
+      "layout": "1/2",
       "visuals": [{
         "type": "pie",
         "table": "allAccessToInformations",
@@ -679,7 +680,7 @@
     {
       "title": "Buyer & Selling Policy",
       "subtitle": "The government must abide by willing buyer-willing seller policy in acquiring any property?",
-      "layout": "1",
+      "layout": "1/2",
       "visuals": [{
         "type": "pie",
         "table": "allMaintainWillingBuyerWillingSellerPolicies",
@@ -691,7 +692,7 @@
     {
       "title": "Farmers land",
       "subtitle": "Should the government allow farmers to retain ownership of land on which their labourers live?",
-      "layout": "1",
+      "layout": "1/2",
       "visuals": [{
         "type": "pie",
         "table": "allAllowFarmersRetainLandOwnerships",
