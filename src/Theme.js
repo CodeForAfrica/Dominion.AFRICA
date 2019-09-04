@@ -27,6 +27,7 @@ const defaultTheme = createMuiTheme();
 const Theme = createTheme({
   chart: {
     pie: {
+      legendWidth: 50,
       colorScale: COLOR_BREWER_DIVERGING
     },
     area: {
@@ -39,6 +40,23 @@ const Theme = createTheme({
       style: {
         data: {
           fill: COLOR_BREWER_DIVERGING[0]
+        },
+        labels: {
+          fontFamily: FONT_FAMILY_TEXT,
+          fill: 'rgb(0,0,0)'
+        }
+      }
+    },
+    axis: {
+      labelWidth: 50,
+      style: {
+        tickLabels: {
+          fontFamily: FONT_FAMILY_TEXT,
+          fill: 'rgb(0,0,0)'
+        },
+        axisLabels: {
+          fontFamily: FONT_FAMILY_TEXT,
+          fill: 'rgb(0,0,0)'
         }
       }
     }

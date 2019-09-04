@@ -139,7 +139,6 @@ export default function ChartFactory({
           <PieChart
             key={key}
             width={width || 400}
-            legendWidth={50}
             height={height}
             data={primaryData}
             donutLabelKey={{ dataIndex: 0, sortKey: '' }}
