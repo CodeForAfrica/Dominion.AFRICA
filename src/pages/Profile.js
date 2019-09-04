@@ -134,6 +134,10 @@ query charts($geoCode: String!, $geoLevel: String!) {
 `;
 
       (async () => {
+        setChartsData({
+          isLoading: true
+        });
+
         // Load profile chart data
         const { data: profileVisualsData } = await client.query({
           query: visualsQuery,
