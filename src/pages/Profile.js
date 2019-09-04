@@ -21,10 +21,15 @@ import ProfileSectionTitle from '../components/ProfileSectionTitle';
 
 const useStyles = makeStyles({
   title: {
-    fontFamily: 'Sans Serif'
+    fontFamily: '"Montserrat", "sans-serif"',
+    fontWeight: 'bold',
+    fontSize: '24px',
+    letterSpacing: '0.86px'
   },
   subtitle: {
-    fontFamily: 'Sans Serif'
+    fontFamily: '"Montserrat", "sans-serif"',
+    opacity: 0.4,
+    fontSize: '12px'
   },
   chartsSection: {
     display: 'none'
