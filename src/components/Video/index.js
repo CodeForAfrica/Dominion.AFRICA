@@ -30,6 +30,7 @@ const styles = theme => ({
   caption: {
     color: '#fff',
     textAlign: 'center',
+    paddingTop: '1rem',
     fontSize: '0.786rem'
   },
   subheading: { color: '#fff' },
@@ -75,8 +76,8 @@ function Video({ classes, dominion }) {
         <Typography variant="h3" className={classes.subheading}>
           Using Dominion
         </Typography>
-        <Grid item xs={8} sm={4} style={{ paddingTop: '1rem' }}>
-          <Typography variant="caption" className={classes.caption}>
+        <Grid item xs={8} sm={4} className={classes.caption}>
+          <Typography variant="caption">
             Watch how you can get the most out of Dominion.
           </Typography>
 
