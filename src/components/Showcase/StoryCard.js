@@ -28,7 +28,14 @@ const styles = theme => ({
   },
   contentRoot: {
     flexGrow: 1,
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    '@media (min-width:768px)': {
+      // eslint-disable-line no-useless-computed-key //For ipad devices portrait: 768px
+      paddingRight: '8rem'
+    },
+    [theme.breakpoints.up('md')]: {
+      paddingRight: 0
+    }
   },
   cardContent: {
     alignItems: 'flex-end',
