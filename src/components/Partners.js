@@ -18,6 +18,7 @@ const styles = theme => ({
   },
   layout: {
     height: '14rem',
+    padding: '1rem 0 1rem 0',
     [theme.breakpoints.up('md')]: {
       maxWidth: '81.3571429rem',
       margin: '0 auto',
@@ -36,6 +37,7 @@ const styles = theme => ({
   },
   imageGrid: {
     padding: '1.143remrem',
+    margin: '1rem',
     [theme.breakpoints.up('md')]: {
       padding: '2.286rem 1.143rem'
     }
