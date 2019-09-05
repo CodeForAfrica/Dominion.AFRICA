@@ -20,6 +20,7 @@ const styles = theme => ({
   },
   layout: {
     padding: '1rem',
+    alignItems: 'flex-start',
     '@media (min-width:768px)': {
       // eslint-disable-line no-useless-computed-key //For ipad devices portrait: 768
       alignItems: 'flex-start'
@@ -40,7 +41,7 @@ const styles = theme => ({
   },
   logoGrid: {
     padding: '2.286rem',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       padding: '2.286rem 1.143rem',
       flexDirection: 'row'
     },
