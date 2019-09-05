@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Grid, Hidden } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 import databg from '../../assets/images/bg/databg.png';
@@ -38,9 +38,19 @@ const styles = theme => ({
     }
   },
   description: {
+    '@media (min-width:768px)': {
+      // eslint-disable-line no-useless-computed-key //For ipad devices portrait: 768px
+      maxWidth: '45%',
+      marginRight: '2rem',
+      marginLeft: '2rem'
+    },
     [theme.breakpoints.up('md')]: {
       paddingTop: '5.286rem', // 74px / 16
-      paddingLeft: '5.286rem' // 74px / 16
+      paddingLeft: '5.286rem', // 74px / 16
+      maxWidth: '66.59rem' // .75 of lg
+    },
+    [theme.breakpoints.up('lg')]: {
+      maxWidth: '81.3571429rem'
     }
   },
   imageAlign: {
@@ -54,11 +64,9 @@ function HowItWorks({ classes, dominion }) {
   return (
     <div className={classes.root}>
       <Grid container className={classes.wrapper}>
-        <Hidden smDown>
-          <Grid item className={classes.imageAlign}>
-            <Map />
-          </Grid>
-        </Hidden>
+        <Grid item className={classes.imageAlign}>
+          <Map />
+        </Grid>
 
         <Grid item className={classes.description}>
           <Description dominion={dominion} />

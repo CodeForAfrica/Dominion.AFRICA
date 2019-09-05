@@ -9,6 +9,10 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     width: '100%',
+    '@media (min-width:768px)': {
+      // eslint-disable-line no-useless-computed-key //For ipad devices portrait: 768px
+      width: '23.4375rem' // .75 of lg
+    },
     [theme.breakpoints.up('md')]: {
       width: '23.4375rem' // .75 of lg
     },
@@ -18,6 +22,10 @@ const styles = theme => ({
   },
   map: {
     width: 0,
+    '@media (min-width:768px)': {
+      // eslint-disable-line no-useless-computed-key //For ipad devices portrait: 768px
+      width: '23.4375rem' // .75 of lg // .75 of lg
+    },
     [theme.breakpoints.up('md')]: {
       width: '23.4375rem' // .75 of lg
     },
@@ -30,6 +38,10 @@ const styles = theme => ({
     marginRight: 0,
     height: '2.5rem',
     background: '#e7e452',
+    '@media (min-width:768px)': {
+      // eslint-disable-line no-useless-computed-key //For ipad devices portrait: 768px
+      width: '15.9375rem' // .75 of lg // .75 of lg
+    },
     [theme.breakpoints.up('md')]: {
       width: '15.9375rem' // .75 of lg
     },
@@ -42,6 +54,11 @@ const styles = theme => ({
     backgroundImage: `url(${background})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
+    '@media (min-width:768px)': {
+      // eslint-disable-line no-useless-computed-key //For ipad devices portrait: 768px
+      height: '18.75rem', // 400px / 16
+      width: '23.4375rem' // .75 of lg
+    },
     [theme.breakpoints.up('md')]: {
       height: '18.75rem', // 400px / 16
       width: '23.4375rem' // .75 of lg
