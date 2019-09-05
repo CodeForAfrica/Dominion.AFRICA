@@ -19,22 +19,22 @@ import { AppContext } from '../AppContext';
 import ProfileRelease from '../components/ProfileReleases';
 import ProfileSectionTitle from '../components/ProfileSectionTitle';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   title: {
-    fontFamily: '"Montserrat", "sans-serif"',
+    fontFamily: theme.typography.fontFamily,
     fontWeight: 'bold',
     fontSize: '24px',
     letterSpacing: '0.86px'
   },
   subtitle: {
-    fontFamily: '"Montserrat", "sans-serif"',
+    fontFamily: theme.typography.fontFamily,
     opacity: 0.4,
     fontSize: '12px'
   },
   chartsSection: {
     display: 'none'
   }
-});
+}));
 
 function Profile({
   match: {
