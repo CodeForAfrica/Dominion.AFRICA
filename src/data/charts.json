@@ -5,6 +5,8 @@
   "charts": [{
       "title": "Population",
       "subtitle": "People living there",
+      "sourceLink": "https://s3-eu-west-1.amazonaws.com/s3.sourceafrica.net/documents/21195/Census-2009.pdf",
+      "sourceTitle": "Census, 2009",
       "layout": "2/3",
       "visuals": [{
         "type": "circle_nested_proportional_area",
@@ -18,6 +20,8 @@
     {
       "title": "Population",
       "subtitle": "People living there",
+      "sourceLink": "http://cs2016.statssa.gov.za/wp-content/uploads/2016/07/NT-30-06-2016-RELEASE-for-CS-2016-_Statistical-releas_1-July-2016.pdf",
+      "sourceTitle": "Community Survey, 2016",
       "layout": "2/3",
       "visuals": [{
         "type": "circle_nested_proportional_area",
