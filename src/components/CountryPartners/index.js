@@ -20,9 +20,14 @@ const styles = theme => ({
   },
   layout: {
     padding: '1rem',
+    '@media (min-width:768px)': {
+      // eslint-disable-line no-useless-computed-key //For ipad devices portrait: 768
+      alignItems: 'flex-start'
+    },
     [theme.breakpoints.up('md')]: {
       maxWidth: '81.3571429rem',
-      margin: '0 auto'
+      margin: '0 auto',
+      alignItems: 'center'
     }
   },
   img: {
@@ -36,7 +41,12 @@ const styles = theme => ({
   logoGrid: {
     padding: '2.286rem',
     [theme.breakpoints.up('md')]: {
-      padding: '2.286rem 1.143rem'
+      padding: '2.286rem 1.143rem',
+      flexDirection: 'row'
+    },
+    '@media (min-width:768px)': {
+      // eslint-disable-line no-useless-computed-key //For ipad devices portrait: 768
+      flexDirection: 'row'
     }
   },
   imageGrid: {
@@ -70,7 +80,7 @@ function CountryPartners({ classes, dominion: { selectedCountry } }) {
           sm={8}
           spacing={6}
           container
-          direction="row"
+          direction="column"
           justify="flex-start"
           alignItems="center"
           className={classes.logoGrid}
