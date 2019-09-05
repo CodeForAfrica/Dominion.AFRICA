@@ -33,6 +33,9 @@ const useStyles = makeStyles(theme => ({
   },
   chartsSection: {
     display: 'none'
+  },
+  sourceLink: {
+    display: 'none'
   }
 }));
 
@@ -334,7 +337,8 @@ query charts($geoCode: String!, $geoLevel: String!) {
                   subtitle={chart.subtitle}
                   classes={{
                     title: classes.title,
-                    subtitle: classes.subtitle
+                    subtitle: classes.subtitle,
+                    sourceLink: classes.sourceLink
                   }}
                 >
                   {!chartData.isLoading &&
@@ -355,7 +359,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
             ))}
         </Grid>
       )),
-    [chartData.isLoading]
+    [chartData, classes, profileTabs, profiles]
   );
 
   // Show and hide sections
