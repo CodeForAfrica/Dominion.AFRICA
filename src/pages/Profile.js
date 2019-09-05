@@ -34,8 +34,13 @@ const useStyles = makeStyles(theme => ({
   chartsSection: {
     display: 'none'
   },
-  sourceLink: {
-    display: 'none'
+  shareDropDownExploreButton: {
+    color: 'black'
+  },
+  embedDropDownModal: {
+    [theme.breakpoints.up('sm')]: {
+      width: '30rem'
+    }
   }
 }));
 
@@ -338,7 +343,14 @@ query charts($geoCode: String!, $geoLevel: String!) {
                   classes={{
                     title: classes.title,
                     subtitle: classes.subtitle,
-                    sourceLink: classes.sourceLink
+                    shareDropDown: {
+                      explore: classes.shareDropDownExploreButton
+                    },
+                    embedDropDown: {
+                      modal: {
+                        root: classes.embedDropDownModal
+                      }
+                    }
                   }}
                 >
                   {!chartData.isLoading &&
