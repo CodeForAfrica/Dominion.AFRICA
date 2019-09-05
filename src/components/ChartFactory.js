@@ -96,6 +96,7 @@ export default function ChartFactory({
         <div style={{ width: !isComparison ? 200 : 650 }}>
           <NestedProportionalAreaChart
             key={key}
+            formatNumberForLabel={x => numberFormatter.format(x)}
             square={visualType === 'square_nested_proportional_area'}
             height={isComparison && 500}
             width={!isComparison ? 200 : 650}
