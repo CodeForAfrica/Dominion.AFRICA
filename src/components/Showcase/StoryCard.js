@@ -12,6 +12,7 @@ import {
 import { withStyles } from '@material-ui/core/styles';
 
 // Use @media queries for ipad portait devices: 768px
+// eslint-disable-line no-useless-computed-key /
 const styles = theme => ({
   root: {
     minHeight: '20rem',
@@ -31,7 +32,6 @@ const styles = theme => ({
     flexGrow: 1,
     justifyContent: 'flex-end',
     '@media (min-width:768px)': {
-      // eslint-disable-line no-useless-computed-key /
       paddingRight: '10rem'
     },
     [theme.breakpoints.up('md')]: {

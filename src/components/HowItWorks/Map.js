@@ -6,12 +6,12 @@ import { withStyles } from '@material-ui/core/styles';
 import background from '../../assets/images/hero-image-3_2.png';
 
 // Use @media queries for ipad portait devices: 768px
+// eslint-disable-line no-useless-computed-key
 const styles = theme => ({
   root: {
     flexGrow: 1,
     width: '100%',
     '@media (min-width:768px)': {
-      // eslint-disable-line no-useless-computed-key
       width: '23.4375rem' // .75 of lg
     },
     [theme.breakpoints.up('md')]: {
@@ -24,7 +24,6 @@ const styles = theme => ({
   map: {
     width: 0,
     '@media (min-width:768px)': {
-      // eslint-disable-line no-useless-computed-key
       width: '23.4375rem' // .75 of lg // .75 of lg
     },
     [theme.breakpoints.up('md')]: {
@@ -40,7 +39,6 @@ const styles = theme => ({
     height: '2.5rem',
     background: '#e7e452',
     '@media (min-width:768px)': {
-      // eslint-disable-line no-useless-computed-key
       width: '15.9375rem' // .75 of lg // .75 of lg
     },
     [theme.breakpoints.up('md')]: {
@@ -56,7 +54,6 @@ const styles = theme => ({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     '@media (min-width:768px)': {
-      // eslint-disable-line no-useless-computed-key
       height: '18.75rem', // 400px / 16
       width: '23.4375rem' // .75 of lg
     },

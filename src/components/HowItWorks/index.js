@@ -10,6 +10,7 @@ import Map from './Map';
 import Description from './Description';
 
 // Use @media queries for ipad portait devices: 768px
+// eslint-disable-line no-useless-computed-key
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -40,7 +41,6 @@ const styles = theme => ({
   },
   description: {
     '@media (min-width:768px)': {
-      // eslint-disable-line no-useless-computed-key
       maxWidth: '45%',
       marginRight: '2rem',
       marginLeft: '2rem'

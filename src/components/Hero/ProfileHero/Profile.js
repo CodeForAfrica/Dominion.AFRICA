@@ -63,7 +63,8 @@ const styles = theme => ({
   },
   captionItem: {
     display: 'inline-block',
-    paddingLeft: 4
+    paddingLeft: 4,
+    paddingTop: 2
   },
   release: {
     display: 'none',
