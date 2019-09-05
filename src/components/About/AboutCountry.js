@@ -11,6 +11,7 @@ import Land from './Land';
 import land from '../../assets/images/hero-image-3.png';
 import config from '../../config';
 
+// Use @media queries for ipad portait devices: 768px
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -29,13 +30,13 @@ const styles = theme => ({
   },
   headerGrid: {
     '@media (min-width:768px)': {
-      // eslint-disable-line no-useless-computed-key //For ipad devices portrait: 768px
+      // eslint-disable-line no-useless-computed-key
       width: '25%'
     }
   },
   infoGrid: {
     '@media (min-width:768px)': {
-      // eslint-disable-line no-useless-computed-key //For ipad devices portrait: 768px
+      // eslint-disable-line no-useless-computed-key
       width: '35%'
     }
   },
@@ -45,8 +46,7 @@ const styles = theme => ({
       alignItems: 'flex-end'
     },
     '@media (min-width:768px)': {
-      // eslint-disable-line no-useless-computed-key //For ipad devices portrait: 768px
-      width: '35%'
+      // eslint-disable-line no-useless-computed-key
     }
   },
   info: {
