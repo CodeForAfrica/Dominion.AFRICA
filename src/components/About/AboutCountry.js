@@ -19,6 +19,7 @@ const styles = theme => ({
   layout: {
     padding: '60px 0',
     margin: '0 auto',
+
     [theme.breakpoints.up('sm')]: {
       maxWidth: '66.59rem' // .75 of lg
     },
@@ -26,10 +27,26 @@ const styles = theme => ({
       maxWidth: '81.3571429rem'
     }
   },
+  headerGrid: {
+    '@media (min-width:768px)': {
+      // eslint-disable-line no-useless-computed-key //For ipad devices portrait: 768px
+      width: '25%'
+    }
+  },
+  infoGrid: {
+    '@media (min-width:768px)': {
+      // eslint-disable-line no-useless-computed-key //For ipad devices portrait: 768px
+      width: '35%'
+    }
+  },
   imgGrid: {
     alignItems: 'flex-start',
     [theme.breakpoints.up('lg')]: {
       alignItems: 'flex-end'
+    },
+    '@media (min-width:768px)': {
+      // eslint-disable-line no-useless-computed-key //For ipad devices portrait: 768px
+      width: '35%'
     }
   },
   info: {
@@ -54,13 +71,13 @@ function AboutCountry({ classes, dominion }) {
   return (
     <div className={classes.root}>
       <Grid container direction="row" className={classes.layout} spacing={4}>
-        <Grid item md={4}>
+        <Grid item md={4} className={classes.headerGrid}>
           <Header>
             About <br />
             {selectedCountry.name}
           </Header>
         </Grid>
-        <Grid item md={4}>
+        <Grid item md={4} className={classes.infoGrid}>
           <Info classes={{ root: classes.info }}>
             <InfoSubtitle classes={{ subtitle: classes.infoTitle }}>
               {info.intro}
