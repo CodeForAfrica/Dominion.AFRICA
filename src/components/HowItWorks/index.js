@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Grid } from '@material-ui/core';
+import { Grid, Hidden } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 import databg from '../../assets/images/bg/databg.png';
@@ -57,9 +57,11 @@ function HowItWorks({ classes, dominion }) {
   return (
     <div className={classes.root}>
       <Grid container className={classes.wrapper}>
-        <Grid item className={classes.imageAlign}>
-          <Map />
-        </Grid>
+        <Hidden smDown>
+          <Grid item className={classes.imageAlign}>
+            <Map />
+          </Grid>
+        </Hidden>
 
         <Grid item className={classes.description}>
           <Description dominion={dominion} />

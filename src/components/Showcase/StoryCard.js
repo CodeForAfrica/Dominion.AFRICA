@@ -28,10 +28,7 @@ const styles = theme => ({
   },
   contentRoot: {
     flexGrow: 1,
-    justifyContent: 'flex-end',
-    [theme.breakpoints.up('md')]: {
-      paddingRight: '10rem'
-    }
+    justifyContent: 'flex-end'
   },
   cardContent: {
     alignItems: 'flex-end',
