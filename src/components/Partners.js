@@ -41,7 +41,6 @@ const styles = theme => ({
   imageGrid: {
     margin: '0.5rem',
     [theme.breakpoints.up('md')]: {
-      // padding: '2.286rem 1.143rem'
       margin: '1rem'
     }
   }

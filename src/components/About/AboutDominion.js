@@ -36,7 +36,8 @@ const styles = theme => ({
   info: {
     order: 3,
     [theme.breakpoints.up('md')]: {
-      order: 2
+      order: 2,
+      paddingLeft: '2rem'
     }
   },
   land: {
