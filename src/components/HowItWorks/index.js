@@ -9,8 +9,6 @@ import databg from '../../assets/images/bg/databg.png';
 import Map from './Map';
 import Description from './Description';
 
-// Use @media queries for ipad portait devices: 768px
-// eslint-disable-line no-useless-computed-key
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -40,14 +38,9 @@ const styles = theme => ({
     }
   },
   description: {
-    '@media (min-width:768px)': {
-      maxWidth: '45%',
-      marginRight: '2rem',
-      marginLeft: '2rem'
-    },
     [theme.breakpoints.up('md')]: {
-      paddingTop: '5.286rem', // 74px / 16
-      paddingLeft: '5.286rem', // 74px / 16
+      // paddingRight: '4.286rem', // 74px / 16
+      // paddingLeft: '5.286rem', // 74px / 16
       maxWidth: '66.59rem' // .75 of lg
     },
     [theme.breakpoints.up('lg')]: {

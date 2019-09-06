@@ -13,7 +13,6 @@ import ourland from '../../assets/images/logos/onground.png';
 import landbou from '../../assets/images/logos/landbou.png';
 import citypress from '../../assets/images/logos/citypress.png';
 
-// Use @media queries for ipad portait devices: 768px
 const styles = theme => ({
   root: {
     flexRow: 1,
@@ -22,14 +21,10 @@ const styles = theme => ({
   layout: {
     padding: '1rem',
     alignItems: 'flex-start',
-    '@media (min-width:768px)': {
-      // eslint-disable-line no-useless-computed-key
-      alignItems: 'flex-start'
-    },
     [theme.breakpoints.up('md')]: {
       maxWidth: '81.3571429rem',
       margin: '0 auto',
-      alignItems: 'center'
+      alignItems: 'flex-start'
     }
   },
   img: {
@@ -46,8 +41,7 @@ const styles = theme => ({
       padding: '2.286rem 1.143rem',
       flexDirection: 'row'
     },
-    '@media (min-width:768px)': {
-      // eslint-disable-line no-useless-computed-key
+    [theme.breakpoints.up('md')]: {
       flexDirection: 'row',
       paddingRight: '5rem',
       paddingLeft: '5rem'

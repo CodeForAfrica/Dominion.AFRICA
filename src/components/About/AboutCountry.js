@@ -11,8 +11,6 @@ import Land from './Land';
 import land from '../../assets/images/hero-image-3.png';
 import config from '../../config';
 
-// Use @media queries for ipad portait devices: 768px
-// eslint-disable-line no-useless-computed-key
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -29,23 +27,10 @@ const styles = theme => ({
       maxWidth: '81.3571429rem'
     }
   },
-  headerGrid: {
-    '@media (min-width:768px)': {
-      width: '25%'
-    }
-  },
-  infoGrid: {
-    '@media (min-width:768px)': {
-      width: '35%'
-    }
-  },
   imgGrid: {
     alignItems: 'flex-start',
     [theme.breakpoints.up('lg')]: {
       alignItems: 'flex-end'
-    },
-    '@media (min-width:768px)': {
-      width: '35%'
     }
   },
   info: {
@@ -70,13 +55,13 @@ function AboutCountry({ classes, dominion }) {
   return (
     <div className={classes.root}>
       <Grid container direction="row" className={classes.layout} spacing={4}>
-        <Grid item md={4} className={classes.headerGrid}>
+        <Grid item md={4}>
           <Header>
             About <br />
             {selectedCountry.name}
           </Header>
         </Grid>
-        <Grid item md={4} className={classes.infoGrid}>
+        <Grid item md={4}>
           <Info classes={{ root: classes.info }}>
             <InfoSubtitle classes={{ subtitle: classes.infoTitle }}>
               {info.intro}

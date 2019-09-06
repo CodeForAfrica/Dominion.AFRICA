@@ -25,6 +25,15 @@ const COLOR_BREWER_DIVERGING = [
 
 const defaultTheme = createMuiTheme();
 const Theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 768,
+      lg: 1280,
+      xl: 1980
+    }
+  },
   chart: {
     pie: {
       legendWidth: 50,

@@ -24,10 +24,6 @@ const styles = theme => ({
     },
     [theme.breakpoints.up('lg')]: {
       width: '26.25rem'
-    },
-    '@media (min-width:768px)': {
-      // eslint-disable-line no-useless-computed-key //For ipad devices portrait: 768px
-      width: '18.875rem'
     }
   },
   highlight: {
