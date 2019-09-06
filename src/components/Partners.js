@@ -14,7 +14,10 @@ import oxpeckers from '../assets/images/logos/oxpeckers.png';
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.secondary.light
+    backgroundColor: theme.palette.secondary.light,
+    [theme.breakpoints.up('md')]: {
+      height: '14.423rem'
+    }
   },
   layout: {
     height: '14rem',
@@ -22,7 +25,7 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       maxWidth: '81.3571429rem',
       margin: '0 auto',
-      height: '11.423rem'
+      height: '14.423rem'
     }
   },
 
@@ -36,10 +39,10 @@ const styles = theme => ({
     }
   },
   imageGrid: {
-    padding: '1.143remrem',
-    margin: '1rem',
+    margin: '0.5rem',
     [theme.breakpoints.up('md')]: {
-      padding: '2.286rem 1.143rem'
+      // padding: '2.286rem 1.143rem'
+      margin: '1rem'
     }
   }
 });

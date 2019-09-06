@@ -29,6 +29,9 @@ const styles = () => ({
     transform: 'translateZ(0)',
     height: '100%',
     margin: '0 !important'
+  },
+  gridListTile: {
+    width: '20rem !important'
   }
 });
 
@@ -55,7 +58,7 @@ function StoryList({ classes, storyData, width }) {
     >
       <GridList cellHeight={320} className={classes.gridList} cols={cards}>
         {storyData.map(story => (
-          <GridListTile key={story.index}>
+          <GridListTile key={story.index} className={classes.gridListTile}>
             <StoryCard story={story} />
           </GridListTile>
         ))}
