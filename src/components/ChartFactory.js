@@ -153,7 +153,6 @@ export default function ChartFactory({
     case 'number': {
       const dataStat = data[0].y;
       return (
-        // Due to responsiveness of piechart
         <div>
           <NumberVisuals
             key={key}
