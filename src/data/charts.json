@@ -35,6 +35,8 @@
     {
       "title": "Extension",
       "subtitle": "Surface in km2",
+      "sourceLink": "https://africaopendata.org/dataset?q=boundaries",
+      "sourceTitle": "openAfrica",
       "layout": "1/3",
       "visuals": [{
         "type": "square_nested_proportional_area",
@@ -62,7 +64,8 @@
         "type": "column",
         "table": "allWorkersHostelAgeGroups",
         "x": "workersHostelAgeGroup",
-        "y": "total"
+        "y": "total",
+        "barWidth": 60
       }]
     },
     {
@@ -70,7 +73,7 @@
       "subtitle": "",
       "sourceLink": "http://www.statssa.gov.za/publications/P0318/P03182018.pdf",
       "sourceTitle": "General Household Survey, 2018",
-      "layout": "1/3",
+      "layout": "1/2",
       "visuals": [{
         "type": "pie",
         "table": "allWorkersHostelGenders",
@@ -83,7 +86,7 @@
       "subtitle": "",
       "sourceLink": "http://www.statssa.gov.za/publications/P0318/P03182018.pdf",
       "sourceTitle": "General Household Survey, 2018",
-      "layout": "1/3",
+      "layout": "1/2",
       "visuals": [{
         "type": "pie",
         "table": "allWorkersHostelGeographies",
@@ -744,6 +747,246 @@
         "aggregate": "sum"
       }]
     }
+  ]
+},
+{
+  "sectionTitle": "Land Redistribution and Restitution",
+  "sectionIcon": "handshake",
+  "sectionDescription": "",
+  "charts": [{
+      "title": "Hectares transferred in the Redistribution Programme from 2009/2010 to 2017/2018",
+      "subtitle": "Land Redistribution Programme",
+      "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
+      "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
+      "layout": "1",
+      "visuals": [{
+        "type": "column",
+        "table": "allHectaresTransferredPerProvinceByYears",
+        "x": "hectaresTransferredPerProvinceByYear",
+        "y": "total"
+      }]
+    },
+    {
+        "title": "Land Redistribution Programme",
+        "subtitle": "",
+        "layout": "1/3",
+        "visuals": [{
+          "type": "number",
+          "table": "allRedistributedlandnumhectares",
+          "subtitle": "Redistributed Land in Hectares in 2017/2018",
+          "description": "Number of hectares (ha)",
+          "x": "redistributedland",
+          "y": "total"
+        }]
+      },
+      {
+          "title": "Land Redistribution Programme",
+          "subtitle": "",
+          "layout": "1/3",
+          "visuals": [{
+            "type": "number",
+            "table": "allRedistributedlandcostinrands",
+            "subtitle": "Cost of redistributed land in 2017/2018",
+            "description": "Cost in Rands (ZAR)",
+            "x": "redistributedland",
+            "y": "total"
+          }]
+        },
+    {
+        "title": "Land Redistribution Programme",
+        "subtitle": "",
+        "layout": "1/3",
+        "visuals": [{
+          "type": "number",
+          "subtitle": "Average cost per hectares in 2017/2018",
+          "description": "Cost in Rands (ZAR)",
+          "table": "allRedistributedlandinhectares",
+          "x": "redistributedland",
+          "y": "total"
+        }]
+      },
+      {
+          "title": "Percent land use breakdown year 2017/2018",
+          "subtitle": "Land Redistribution Programme",
+          "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
+          "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
+          "layout": "1",
+          "visuals": [{
+            "type": "column",
+            "table": "allRedistributedlandusebreakdowns",
+            "x": "redistributedLandUseBreakdown",
+            "y": "total"
+          }]
+      },
+      {
+          "title": "Project transferred in redistribution programme in the year 2009/2010 to 2017/2018",
+          "subtitle": "Land Redistribution Programme",
+          "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
+          "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
+          "layout": "1",
+          "visuals": [{
+            "type": "column",
+            "table": "allProjecttransferreds",
+            "x": "year",
+            "y": "total"
+          }]
+      },
+      {
+          "title": "Benefeficiaries of redistribution programme in the year 2009/2010 to 2017/2018",
+          "subtitle": "Land Redistribution Programme",
+          "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
+          "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
+          "layout": "1",
+          "visuals": [{
+            "type": "column",
+            "table": "allBenefitedbeneficiaries",
+            "x": "year",
+            "y": "total"
+          }]
+      },
+      {
+          "title": "Household benefited from redistribution programme in the year 2009/2010 to 2017/2018",
+          "subtitle": "Land Redistribution Programme",
+          "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
+          "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
+          "layout": "1",
+          "visuals": [{
+            "type": "column",
+            "table": "allBenefitedhouseholds",
+            "x": "year",
+            "y": "total"
+          }]
+      },
+      {
+          "title": "Number of female benefited from redistribution programme in the year 2009/2010 to 2017/2018",
+          "subtitle": "Land Redistribution Programme",
+          "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
+          "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
+          "layout": "1",
+          "visuals": [{
+            "type": "column",
+            "table": "allFemalepartybenefiteds",
+            "x": "year",
+            "y": "total"
+          }]
+      },
+      {
+          "title": "Number of disabled people benefited from redistribution programme in the year 2009/2010 to 2017/2018",
+          "subtitle": "Land Redistribution Programme",
+          "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
+          "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
+          "layout": "1",
+          "visuals": [{
+            "type": "column",
+            "table": "allDisabledpeoplepartybenefiteds",
+            "x": "year",
+            "y": "total"
+          }]
+      },
+      {
+          "title": "Number of youth benefited from redistribution programme in the year 2009/2010 to 2017/2018",
+          "subtitle": "Land Redistribution Programme",
+          "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
+          "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
+          "layout": "1",
+          "visuals": [{
+            "type": "column",
+            "table": "allYouthpartybenefiteds",
+            "x": "year",
+            "y": "total"
+          }]
+      },
+      {
+          "title": "Hectares acquired in the restitution programme for year 2009/2010 to 2017/2018",
+          "subtitle": "Land Restitution Programme",
+          "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
+          "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
+          "layout": "1",
+          "visuals": [{
+            "type": "column",
+            "table": "allRestitutionhectaresacquireds",
+            "x": "year",
+            "y": "total"
+          }]
+      },
+      {
+          "title": "households benefited in the restitution programme for year 2009/2010 to 2017/2018",
+          "subtitle": "Land Restitution Programme",
+          "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
+          "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
+          "layout": "1",
+          "visuals": [{
+            "type": "column",
+            "table": "allRestitutionhouseholds",
+            "x": "year",
+            "y": "total"
+          }]
+      },
+      {
+          "title": "Benefeficiaries in the restitution programme for year 2009/2010 to 2017/2018",
+          "subtitle": "Land Restitution Programme",
+          "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
+          "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
+          "layout": "1",
+          "visuals": [{
+            "type": "column",
+            "table": "allRestitutionbeneficiaries",
+            "x": "year",
+            "y": "total"
+          }]
+      },
+      {
+          "title": "Number of female headed households benefited in the restitution programme from 2009/2010 to 2017/2018",
+          "subtitle": "Land Restitution Programme",
+          "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
+          "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
+          "layout": "1",
+          "visuals": [{
+            "type": "column",
+            "table": "allRestitutionfemaleheadedhhs",
+            "x": "year",
+            "y": "total"
+          }]
+      },
+      {
+          "title": "Land Restitution Programme",
+          "subtitle": "",
+          "layout": "1/3",
+          "visuals": [{
+            "type": "number",
+            "table": "allRestitutionfinancialcompensations",
+            "subtitle": "Financial Compensation in 2017/2018",
+            "description": "Rands (ZAR)",
+            "x": "year",
+            "y": "total"
+          }]
+      },
+      {
+          "title": "Land Restitution Programme",
+          "subtitle": "",
+          "layout": "1/3",
+          "visuals": [{
+            "type": "number",
+            "table": "allRestitutionpeoplewdisabilities",
+            "subtitle": "People with disabilities benefited in 2017/2018",
+            "description": "Number of People",
+            "x": "year",
+            "y": "total"
+          }]
+      },
+      {
+          "title": "Land Restitution Programme",
+          "subtitle": "",
+          "layout": "1/3",
+          "visuals": [{
+            "type": "number",
+            "subtitle": "Land Cost in restitution programme in 2017/2018",
+            "description": "Cost in Rands (ZAR)",
+            "table": "allRestitutionlandcosts",
+            "x": "year",
+            "y": "total"
+          }]
+      }
   ]
 },
 {
