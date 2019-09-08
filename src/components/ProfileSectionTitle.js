@@ -11,7 +11,8 @@ import {
   faCoins,
   faCity,
   faImage,
-  faBriefcase
+  faBriefcase,
+  faHandshake
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -60,7 +61,8 @@ library.add(
   faCoins,
   faCity,
   faImage,
-  faBriefcase
+  faBriefcase,
+  faHandshake
 );
 
 function ProfileSectionTitle({ classes, loading, tab: { title, icon } }) {
