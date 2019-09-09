@@ -1,20 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faLeaf,
-  faUsers,
-  faBookOpen,
-  faChartBar,
-  faBuilding,
-  faCoins,
-  faCity,
-  faImage,
-  faBriefcase
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { Grid, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { ContentLoader } from '@codeforafrica/hurumap-ui';
@@ -29,41 +15,16 @@ const styles = () => ({
     alignItems: 'center'
   },
   title: {
-    textDecoration: 'none',
-    display: 'inline',
-    marginLeft: '2rem',
-    textTransform: 'uppercase',
-    fontFamily: 'Sans Serif'
-  },
-  icon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '1rem',
-    borderRadius: '50%',
-    border: '1px solid',
-    marginTop: '-4px',
-    width: '5rem',
-    height: '5rem'
-  },
-  fa: {
-    fontSize: '2.6rem'
+    textTransform: 'capitalize',
+    fontFamily: 'Lora, serif'
   }
 });
 
-library.add(
-  faLeaf,
-  faBuilding,
-  faUsers,
-  faBookOpen,
-  faChartBar,
-  faCoins,
-  faCity,
-  faImage,
-  faBriefcase
-);
-
-function ProfileSectionTitle({ classes, loading, tab: { title, icon } }) {
+function ProfileSectionTitle({
+  classes,
+  loading,
+  tab: { title, description }
+}) {
   return (
     <Grid item className={classes.root}>
       {loading ? (
@@ -80,12 +41,11 @@ function ProfileSectionTitle({ classes, loading, tab: { title, icon } }) {
         </ContentLoader>
       ) : (
         <>
-          <span className={classes.icon}>
-            <FontAwesomeIcon className={classes.fa} icon={icon} size="sm" />
-          </span>
-          <Typography variant="h4" className={classes.title}>
+          <Typography variant="h3" className={classes.title}>
             {title}
           </Typography>
+          <></>
+          <Typography variant="p">{description}</Typography>
         </>
       )}
     </Grid>
@@ -95,8 +55,7 @@ function ProfileSectionTitle({ classes, loading, tab: { title, icon } }) {
 ProfileSectionTitle.propTypes = {
   classes: PropTypes.shape().isRequired,
   tab: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    icon: PropTypes.string.isRequired
+    title: PropTypes.string.isRequired
   }).isRequired,
   loading: PropTypes.bool
 };
