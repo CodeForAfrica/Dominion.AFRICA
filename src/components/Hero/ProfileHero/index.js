@@ -9,7 +9,7 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     marginTop: '2rem',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       marginBottom: '5rem'
     }
   }

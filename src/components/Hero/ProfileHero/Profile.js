@@ -25,7 +25,7 @@ const styles = theme => ({
     flexGrow: 1
   },
   titleGrid: {
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       maxWidth: '35%'
     }
   },
@@ -37,7 +37,7 @@ const styles = theme => ({
     width: '100%',
     left: 'unset !important',
     top: 'unset !important',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       width: '65% !important',
       height: '28.75rem !important',
       maxHeight: '28.75rem !important',
@@ -49,7 +49,7 @@ const styles = theme => ({
     height: '11.875rem !important',
     width: '100% !important',
     right: 'unset',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       height: '16.875rem !important'
     }
   },
@@ -68,7 +68,7 @@ const styles = theme => ({
   },
   release: {
     display: 'none',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       color: '#8d8d8c',
       fontSize: '0.688em',
       position: 'absolute',

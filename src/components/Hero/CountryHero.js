@@ -20,23 +20,23 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     marginTop: '32px',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       marginBottom: '80px'
     }
   },
   titleGrid: {
     pointerEvents: 'none',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       maxWidth: '28%'
     }
   },
   countryName: {
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       whiteSpace: 'nowrap'
     }
   },
   description: {
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       whiteSpace: 'nowrap',
       width: '100%'
     }
@@ -53,7 +53,7 @@ const styles = theme => ({
     left: 'unset !important',
     top: 'unset !important',
     width: '100%',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       width: '72% !important',
       height: '28.75rem !important',
       maxHeight: '28.75rem !important',
