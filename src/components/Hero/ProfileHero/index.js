@@ -15,23 +15,30 @@ const styles = theme => ({
   }
 });
 
-function ProfileHero({ classes, profile, ...props }) {
-  return profile.length === 1 ? (
-    <Profile classes={{ root: classes.root }} geoId={profile[0]} {...props} />
+function ProfileHero({ classes, profiles, head2head, ...props }) {
+  return !head2head ? (
+    <Profile
+      classes={{ root: classes.root }}
+      isLoading={profiles.isLoading}
+      profile={profiles.profile}
+      {...props}
+    />
   ) : (
     <Grid className={classes.root} container direction="row" spacing={1}>
       <Profile
         item
         md={6}
         alignItems="flex-start"
-        geoId={profile[0]}
+        isLoading={profiles.isLoading}
+        profile={profiles.profile}
         {...props}
       />
       <Profile
         item
         md={6}
         alignItems="flex-start"
-        geoId={profile[1]}
+        isLoading={profiles.isLoading}
+        profile={profiles.comparison}
         {...props}
       />
     </Grid>
@@ -41,7 +48,7 @@ function ProfileHero({ classes, profile, ...props }) {
 ProfileHero.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   dominion: PropTypes.shape({}).isRequired,
-  profile: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
+  profiles: PropTypes.shape({}).isRequired
 };
 
 export default withStyles(styles)(ProfileHero);
