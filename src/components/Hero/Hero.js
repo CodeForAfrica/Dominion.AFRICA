@@ -94,8 +94,8 @@ function HeroTitleGridComponent({ classes, children, quater, head2head }) {
       item
       xs={12}
       sm={12}
-      md={quater ? 4 : 8}
-      lg={quater ? 4 : 8}
+      md={quater ? 12 : 8}
+      lg={quater ? 12 : 8}
       wrap="nowrap"
       direction="column"
       alignContent="center"
