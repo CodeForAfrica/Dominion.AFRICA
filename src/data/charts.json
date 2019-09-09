@@ -1,6 +1,5 @@
 [{
   "sectionTitle": "Demographics",
-  "sectionIcon": "users",
   "sectionDescription": "",
   "charts": [{
       "title": "Population",
@@ -51,7 +50,6 @@
 },
 {
   "sectionTitle": "Worker's Hostel Data",
-  "sectionIcon": "building",
   "sectionDescription": "",
   "charts": [
     {
@@ -226,7 +224,6 @@
 },
 {
   "sectionTitle": "Farm Land",
-  "sectionIcon": "leaf",
   "sectionDescription": "",
   "charts": [{
       "title": "Number of individuals owning farms and agricultural holdings by gender (%)",
@@ -351,7 +348,6 @@
 },
 {
   "sectionTitle": "Erven Land",
-  "sectionIcon": "city",
   "sectionDescription": "",
   "charts": [{
       "title": "Individual ownership of erven land in hectares by gender (%)",
@@ -447,7 +443,6 @@
 },
 {
   "sectionTitle": "Sectional Title land",
-  "sectionIcon": "image",
   "sectionDescription": "",
   "charts": [
     {
@@ -574,7 +569,6 @@
 },
 {
   "sectionTitle": "Agricultural Land Sales",
-  "sectionIcon": "coins",
   "sectionDescription": "",
   "charts": [{
       "title": "Land Sales Distribution 2017/2018",
@@ -658,7 +652,6 @@
 },
 {
   "sectionTitle": "Land traded statistic for transactions of colour",
-  "sectionIcon": "briefcase",
   "sectionDescription": "",
   "charts": [
     {
@@ -751,7 +744,6 @@
 },
 {
   "sectionTitle": "Land Redistribution and Restitution",
-  "sectionIcon": "handshake",
   "sectionDescription": "",
   "charts": [{
       "title": "Hectares transferred in the Redistribution Programme from 2009/2010 to 2017/2018",
@@ -991,7 +983,6 @@
 },
 {
   "sectionTitle": "Afrobarometer Round 7",
-  "sectionIcon": "chart-bar",
   "sectionDescription": "",
   "charts": [{
       "title": "Land Redistribution Prioritisation",

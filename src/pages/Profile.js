@@ -291,7 +291,6 @@ query charts($geoCode: String!, $geoLevel: String!) {
         .map(section => ({
           title: section.sectionTitle,
           slug: slugify(section.sectionTitle),
-          icon: section.sectionIcon,
           index: section.index
         }))
     ],
