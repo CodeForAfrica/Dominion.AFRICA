@@ -21,7 +21,8 @@ const styles = theme => ({
     paddingBottom: '3.286rem',
     [theme.breakpoints.up('md')]: {
       paddingTop: '6rem',
-      paddingLeft: 0,
+      paddingLeft: '2.143rem',
+      paddingRight: '2.143rem',
       paddingBottom: '3.857rem'
     }
   },
