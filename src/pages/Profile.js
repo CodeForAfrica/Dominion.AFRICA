@@ -2,8 +2,6 @@ import React, { useEffect, useState, useContext, useMemo } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import { ChartContainer } from '@codeforafrica/hurumap-ui';
-import gql from 'graphql-tag';
-import { useApolloClient } from 'react-apollo-hooks';
 import { Grid } from '@material-ui/core';
 import { ProfilePageHeader } from '../components/Header';
 import ProfileTabs from '../components/ProfileTabs';
@@ -14,10 +12,11 @@ import ChartFactory from '../components/ChartFactory';
 import ChartsContainer from '../components/ChartsContainer';
 import slugify from '../utils/slugify';
 
-import sectionedCharts from '../data/charts.json';
 import { AppContext } from '../AppContext';
 import ProfileRelease from '../components/ProfileReleases';
 import ProfileSectionTitle from '../components/ProfileSectionTitle';
+import useProfileLoader from '../data/useProfileLoader';
+import useChartDefinitions from '../data/useChartDefinitions';
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -49,34 +48,9 @@ function Profile({
   const [activeTab, setActiveTab] = useState(
     window.location.hash.slice(1) ? window.location.hash.slice(1) : 'all'
   );
-  const [chartData, setChartsData] = useState({
-    isLoading: true
-  });
-  const [profiles, setProfiles] = useState({
-    profile: {},
-    parentProfile: {},
-    comparisonProfile: {}
-  });
-  const client = useApolloClient();
   const classes = useStyles();
 
-  // Provide the visuals with unique ids for fetching
-  // The unique ids will be used to set alias in graphql
-  let index = 0;
-  let chartIndex = 0;
-  sectionedCharts.forEach(x =>
-    x.charts.forEach(y => {
-      // eslint-disable-next-line no-param-reassign
-      y.id = `chart${chartIndex}`;
-      chartIndex += 1;
-      y.visuals.forEach(z => {
-        // eslint-disable-next-line no-param-reassign
-        z.id = `viz${index}`;
-        index += 1;
-      });
-    })
-  );
-
+  const sectionedCharts = useChartDefinitions();
   // Flatten all charts
   const charts = sectionedCharts
     .map(x => x.charts)
@@ -85,175 +59,17 @@ function Profile({
     charts.map(x => x.visuals).reduce((a, b) => a.concat(b))
   );
 
-  useEffect(() => {
-    const {
-      parentProfile: { geoLevel: parentLevel, geoCode: parentCode }
-    } = profiles;
-    if (parentLevel && parentCode) {
-      // Build chart data query
-      const visualsQuery = gql`
-query charts($geoCode: String!, $geoLevel: String!) {
-  ${visuals
-    .map(
-      visual => `${visual.id}: ${visual.table} (
-    condition: { geoCode: $geoCode, geoLevel: $geoLevel }
-  ) {
-    nodes {
-      ${
-        visual.label && visual.label[0] === '$'
-          ? `label: ${visual.label.slice(1)}`
-          : ''
-      }
-      ${visual.groupBy ? `groupBy: ${visual.groupBy}` : ''}
-      x: ${visual.x}
-      y: ${visual.y}
-    }
-  }
-  ${
-    visual.reference
-      ? `${visual.id}Reference: ${visual.reference.table || visual.table} (
-    condition: ${JSON.stringify(
-      visual.reference.condition || {
-        geoLevel: parentLevel,
-        geoCode: parentCode
-      }
-    ).replace(/"([^(")"]+)":/g, '$1:')}
-  ) {
-    nodes {
-      ${
-        (visual.reference.label || visual.label) &&
-        (visual.reference.label || visual.label)[0] === '$'
-          ? `label: ${(visual.reference.label || visual.label).slice(1)}`
-          : ''
-      }
-      x: ${visual.reference.x || visual.x}
-      y: ${visual.reference.y || visual.y}
-    }
-  }`
-      : ''
-  }
-  `
-    )
-    .join('')}
-}
-`;
-
-      (async () => {
-        setChartsData({
-          isLoading: true
-        });
-
-        // Load profile chart data
-        const { data: profileVisualsData } = await client.query({
-          query: visualsQuery,
-          variables: {
-            geoCode: geoId.split('-')[1],
-            geoLevel: geoId.split('-')[0]
-          }
-        });
-
-        // Load comparison chart data
-        let comparisonVisualsData;
-        if (comparisonGeoId) {
-          const { data } = await client.query({
-            query: visualsQuery,
-            variables: {
-              geoCode: comparisonGeoId ? comparisonGeoId.split('-')[1] : '',
-              geoLevel: comparisonGeoId ? comparisonGeoId.split('-')[0] : ''
-            }
-          });
-          comparisonVisualsData = data;
-        }
-
-        setChartsData({
-          isLoading: false,
-          profileVisualsData,
-          comparisonVisualsData
-        });
-      })();
-    }
-  }, [geoId, comparisonGeoId, client, profiles, visuals]);
+  const { profiles, chartData } = useProfileLoader(
+    geoId,
+    comparisonGeoId,
+    visuals
+  );
 
   useEffect(() => {
-    function workAroundFetchGeo({ geoCode, geoLevel }) {
-      return client.query({
-        query: gql`
-          query profile($geoCode: String!, $geoLevel: String!) {
-            geo: wazimapGeographyByGeoLevelAndGeoCodeAndVersion(
-              geoLevel: $geoLevel
-              geoCode: $geoCode
-              version: "2009"
-            ) {
-              geoLevel
-              geoCode
-              squareKms
-              parentLevel
-              parentCode
-              longName
-              name
-            }
-          }
-        `,
-        variables: {
-          geoCode,
-          geoLevel
-        }
-      });
+    if (!profiles.isLoading) {
+      dispatch({ type: 'selectedCountry', selectedCountry: profiles.profile });
     }
-
-    /*
-     * Since we have no relationships in the database
-     * we query all profiles in this work around solution
-     * to have those profile data available to us.
-     */
-    async function workAroundFetchProfileGeos() {
-      const profile = await workAroundFetchGeo({
-        geoLevel: geoId.split('-')[0],
-        geoCode: geoId.split('-')[1]
-      });
-      const {
-        data: {
-          geo: { parentLevel, parentCode }
-        }
-      } = profile;
-      let parentProfile;
-      if (parentLevel === 'continent') {
-        parentProfile = profile;
-      } else {
-        parentProfile = await workAroundFetchGeo({
-          geoLevel: parentLevel,
-          geoCode: parentCode
-        });
-      }
-
-      let comparisonProfile;
-      if (comparisonGeoId) {
-        comparisonProfile = await workAroundFetchGeo({
-          geoLevel: comparisonGeoId.split('-')[0],
-          geoCode: comparisonGeoId.split('-')[1]
-        });
-      }
-
-      dispatch({
-        type: 'selectedCountry',
-        selectedCountry: {
-          ...parentProfile.data.geo,
-          ...Object.values(config.countries).find(
-            c => c.code === parentProfile.data.geo.geoCode
-          )
-        }
-      });
-
-      setProfiles({
-        loaded: true,
-        profile: profile.data.geo,
-        parentProfile: parentProfile.data.geo,
-        comparisonProfile: comparisonProfile ? comparisonProfile.data.geo : {}
-      });
-    }
-
-    workAroundFetchProfileGeos();
-  }, [geoId, comparisonGeoId, client, dispatch]);
+  }, [profiles]);
 
   // get all available profiletabs
   const profileTabs = useMemo(
@@ -287,7 +103,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
           index: section.index
         }))
     ],
-    [chartData.isLoading, chartData.profileVisualsData]
+    [chartData.isLoading, chartData.profileVisualsData, sectionedCharts]
   );
 
   /**
@@ -319,7 +135,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
             )
             .map(chart => (
               <Grid
-                key={`${chart.id}grid`}
+                key={chart.id}
                 item
                 xs={12}
                 md={
@@ -336,11 +152,19 @@ query charts($geoCode: String!, $geoLevel: String!) {
                     title: classes.title,
                     subtitle: classes.subtitle
                   }}
+                  embed={{
+                    title: 'Embed code for this chart',
+                    subtitle:
+                      'Copy the code below, then paste into your own CMS or HTML. Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge.',
+                    code: `<iframe src="https://dev.takwimu.africa/embed/${geoId}/${slugify(
+                      tab.title
+                    )}/${slugify(chart.title)}" />`
+                  }}
                 >
                   {!chartData.isLoading &&
                     chart.visuals.map(
                       visual =>
-                        profiles.loaded && (
+                        !profiles.isLoading && (
                           <ChartFactory
                             key={visual.id}
                             visual={visual}
@@ -355,7 +179,13 @@ query charts($geoCode: String!, $geoLevel: String!) {
             ))}
         </Grid>
       )),
-    [chartData.isLoading]
+    [
+      chartData.isLoading,
+      chartData.profileVisualsData,
+      chartData.comparisonVisualsData,
+      sectionedCharts,
+      profiles
+    ]
   );
 
   // Show and hide sections
@@ -378,7 +208,7 @@ query charts($geoCode: String!, $geoLevel: String!) {
   return (
     <Page>
       <ProfilePageHeader
-        profile={comparisonGeoId ? [geoId, comparisonGeoId] : [geoId]}
+        profiles={profiles}
         dominion={{
           ...config,
           selectedCountry,
