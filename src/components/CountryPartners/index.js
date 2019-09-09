@@ -23,8 +23,7 @@ const styles = theme => ({
     alignItems: 'flex-start',
     [theme.breakpoints.up('md')]: {
       maxWidth: '81.3571429rem',
-      margin: '0 auto',
-      alignItems: 'flex-start'
+      margin: '0 auto'
     }
   },
   img: {

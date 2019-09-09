@@ -39,7 +39,7 @@ const styles = theme => ({
   },
   description: {
     [theme.breakpoints.up('md')]: {
-      paddingLeft: '3.286rem', // 74px / 16
+      paddingLeft: '3.286rem',
       maxWidth: '66.59rem' // .75 of lg
     },
     [theme.breakpoints.up('lg')]: {
