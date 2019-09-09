@@ -19,7 +19,7 @@ const styles = theme => ({
     flexGrow: 1,
     width: '100%',
     color: 'white',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       height: 400,
       alignItems: 'flex-end'
     }
@@ -34,7 +34,7 @@ const styles = theme => ({
     '&:hover': {
       color: '#e7e452'
     },
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       paddingRight: '150px'
     }
   },
@@ -44,7 +44,7 @@ const styles = theme => ({
   listIndex: {
     marginRight: '50px',
     width: '80px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'none'
     }
   },
@@ -54,7 +54,7 @@ const styles = theme => ({
     fontSize: 13,
     fontWeight: 'bold',
     textTransform: 'none',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       paddingLeft: 0,
       marginTop: theme.spacing(10)
     }
@@ -73,7 +73,7 @@ const styles = theme => ({
   browseText: {
     color: 'white',
     opacity: 0.5,
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       width: '100%'
     }
   },
@@ -81,7 +81,7 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItem: 'flex-start',
     paddingTop: theme.spacing(5),
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       paddingTop: 0
     }
   },
@@ -89,7 +89,7 @@ const styles = theme => ({
     justifyContent: 'flex-start',
     alignItem: 'flex-start',
     paddingTop: theme.spacing(5),
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       paddingTop: 0
     }
   },
@@ -109,7 +109,7 @@ const styles = theme => ({
       visibility: 'visible',
       color: '#e7e452'
     },
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       fontSize: '3.5715rem',
       lineHeight: 1.2
     }
@@ -153,7 +153,7 @@ function PortalChooser({ classes, children, countries, handleClose }) {
       <Grid
         xs={12}
         sm={12}
-        md={5}
+        md={12}
         lg={5}
         xl={5}
         item

@@ -12,7 +12,7 @@ const styles = theme => ({
   root: {
     width: '100%',
     paddingTop: '3.25rem',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       width: theme.spacing(20),
       marginRight: theme.spacing(10),
       paddingTop: 0
@@ -23,7 +23,7 @@ const styles = theme => ({
     textTransform: 'none',
     padding: 0,
     minWidth: 'auto',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '100%'
     }
   },
@@ -34,7 +34,7 @@ const styles = theme => ({
     fontWeight: '600',
     letterSpacing: '0.195rem',
     fontSize: '0.7143rem',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '100%',
       textAlign: 'left',
       lineHeight: '7em'
@@ -45,7 +45,7 @@ const styles = theme => ({
     cursor: 'pointer'
   },
   menuList: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       flexDirection: 'column',
       paddingTop: '2rem',
       paddingBottom: '3rem'
