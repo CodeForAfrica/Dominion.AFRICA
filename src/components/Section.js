@@ -11,12 +11,12 @@ const styles = theme => ({
     flexGrow: 1,
     padding: '2rem',
     backgroundColor: 'white',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       padding: '5rem 0'
     }
   },
   wrapper: {
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       maxWidth: '81.3571429rem',
       margin: '0 auto'
     }
@@ -36,11 +36,11 @@ function Section({ id, classes, light, title, subtitle, children }) {
       className={classNames(classes.root, { [classes.light]: light })}
     >
       <Grid container className={classes.wrapper}>
-        <Grid item xs={12} md={4} className={classes.gridMargin}>
+        <Grid item xs={12} md={12} className={classes.gridMargin}>
           <Typography variant="h3">{title}</Typography>
           <Typography variant="subtitle1">{subtitle}</Typography>
         </Grid>
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={12}>
           <div>{children}</div>
         </Grid>
       </Grid>
