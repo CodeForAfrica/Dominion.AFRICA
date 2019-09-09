@@ -19,7 +19,7 @@ const styles = theme => ({
     pointerEvents: 'all',
     zIndex: '100',
     color: 'white',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       margin: '2rem',
       marginTop: 0
     }
@@ -34,7 +34,7 @@ const styles = theme => ({
   title: {
     color: 'white',
     pointerEvents: 'all',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '3rem',
       width: '60%'
     }
@@ -75,7 +75,7 @@ const styles = theme => ({
     opacity: '0.8',
     fontSize: '0.786rem',
     lineHeight: 2.09,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '100%'
     }
   },

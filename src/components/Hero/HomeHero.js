@@ -32,7 +32,7 @@ const styles = theme => ({
     padding: '4rem 0',
     marginTop: '2rem',
     marginBottom: '6rem',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       backgroundImage: `url(${smallscreenbackground})`,
       backgroundPosition: 'right top',
       padding: 0,
@@ -40,7 +40,7 @@ const styles = theme => ({
     }
   },
   herotitle: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '80%'
     }
   }

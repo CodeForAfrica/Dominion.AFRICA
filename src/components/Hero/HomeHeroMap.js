@@ -18,7 +18,7 @@ const styles = theme => ({
     textAlign: 'right',
     width: '100%',
     display: 'none',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       display: 'block'
     }
   },
