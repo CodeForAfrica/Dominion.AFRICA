@@ -59,7 +59,7 @@ const styles = theme => ({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     [theme.breakpoints.up('md')]: {
-      width: '37.7143rem', // .75 of lg
+      width: '30.7143rem',
       height: '28.5714rem' // 400px / 16
     }
   },

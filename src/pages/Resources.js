@@ -53,7 +53,7 @@ function Resources() {
         </Typography>
         <Grid container justify="space-between">
           {documents.map(document => (
-            <Grid item xs={12} md={6} key={document.title}>
+            <Grid item xs={12} md={12} lg={6} xl={6} key={document.title}>
               <DocumentCard
                 link={document.canonical_url}
                 title={document.title}

@@ -10,7 +10,7 @@ import { getOpenAfricaDominionGroupData } from '../../lib/api';
 const styles = theme => ({
   root: {
     marginTop: '3rem',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       marginTop: 0
     }
   }
