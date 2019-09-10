@@ -6,6 +6,8 @@ import Country from './pages/Country';
 import Profile from './pages/Profile';
 import Resources from './pages/Resources';
 import About from './pages/About';
+import ServerError from './pages/ServerError';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/resources" component={Resources} />
         <Route exact path="/about" component={About} />
+        <Route exact path="/server" component={ServerError} />
+        <Route exact path="/notfound" component={NotFound} />
         <Route exact path="/:country" component={Country} />
         <Route exact path="/profile/:geoId" component={Profile} />
         <Route
