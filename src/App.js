@@ -24,7 +24,7 @@ function App() {
         />
         <Route
           exact
-          path="/embed/:geoId/:sectionTitleSlug/:chartTitleSlug"
+          path="/embed/:geoId/:sectionId/:chartId"
           component={Embed}
         />
       </Switch>

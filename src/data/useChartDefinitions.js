@@ -8,13 +8,13 @@ export default () =>
     let index = 0;
     let chartIndex = 0;
     sectionedCharts.forEach(x =>
-      x.charts.forEach(y => {
+      x.charts.forEach(chart => {
         // eslint-disable-next-line no-param-reassign
-        y.id = `chart${chartIndex}`;
+        chart.queryAlias = `chart${chartIndex}`;
         chartIndex += 1;
-        y.visuals.forEach(z => {
+        chart.visuals.forEach(visual => {
           // eslint-disable-next-line no-param-reassign
-          z.id = `viz${index}`;
+          visual.queryAlias = `viz${index}`;
           index += 1;
         });
       })

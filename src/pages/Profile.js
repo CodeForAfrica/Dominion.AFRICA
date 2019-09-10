@@ -98,9 +98,9 @@ function Profile({
               chart =>
                 chartData.isLoading ||
                 !chart.visuals.find(
-                  visual =>
+                  ({ queryAlias }) =>
                     !chartData.profileVisualsData ||
-                    chartData.profileVisualsData[visual.id].nodes.length === 0
+                    chartData.profileVisualsData[queryAlias].nodes.length === 0
                 )
             ).length !== 0
         )
@@ -108,7 +108,8 @@ function Profile({
           title: section.sectionTitle,
           slug: slugify(section.sectionTitle),
           icon: section.sectionIcon,
-          index: section.index
+          sectionIndex: section.index,
+          sectionId: section.id
         }))
     ],
     [chartData.isLoading, chartData.profileVisualsData, sectionedCharts]
@@ -130,15 +131,16 @@ function Profile({
           className={classes.chartsSection}
         >
           <ProfileSectionTitle loading={chartData.isLoading} tab={tab} />
-          {sectionedCharts[tab.index].charts
+          {sectionedCharts[tab.sectionIndex].charts
             .filter(
               ({ visuals: v }) =>
                 chartData.isLoading ||
                 (chartData.profileVisualsData &&
                   /* data is not missing */
                   !v.find(
-                    ({ id }) =>
-                      chartData.profileVisualsData[id].nodes.length === 0
+                    ({ queryAlias }) =>
+                      chartData.profileVisualsData[queryAlias].nodes.length ===
+                      0
                   ))
             )
             .map(chart => (
@@ -172,9 +174,7 @@ function Profile({
                     title: 'Embed code for this chart',
                     subtitle:
                       'Copy the code below, then paste into your own CMS or HTML. Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge.',
-                    code: `<iframe src="https://dev.takwimu.africa/embed/${geoId}/${slugify(
-                      tab.title
-                    )}/${slugify(chart.title)}" />`
+                    code: `<iframe src="https://dev.takwimu.africa/embed/${geoId}/${tab.sectionId}/${chart.id}" />`
                   }}
                 >
                   {!chartData.isLoading &&

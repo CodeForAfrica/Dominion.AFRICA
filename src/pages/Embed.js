@@ -4,25 +4,20 @@ import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
 import ChartFactory from '../components/ChartFactory';
 
-import slugify from '../utils/slugify';
 import useChartDefinitions from '../data/useChartDefinitions';
 import useProfileLoader from '../data/useProfileLoader';
 
 function Embed({
   match: {
-    params: { geoId, sectionTitleSlug, chartTitleSlug }
+    params: { geoId, sectionId, chartId }
   }
 }) {
   const sectionedCharts = useChartDefinitions();
 
   const chart = useMemo(() => {
-    const section = sectionedCharts.find(
-      s => slugify(s.sectionTitle) === sectionTitleSlug
-    );
-    return section
-      ? section.charts.find(c => slugify(c.title) === chartTitleSlug)
-      : null;
-  }, [sectionedCharts, sectionTitleSlug, chartTitleSlug]);
+    const section = sectionedCharts.find(s => s.id === sectionId);
+    return section ? section.charts.find(c => c.id === chartId) : null;
+  }, [sectionedCharts, sectionId, chartId]);
 
   const { profiles, chartData } = useProfileLoader(
     geoId,
@@ -41,7 +36,8 @@ function Embed({
   if (
     !chartData.isLoading &&
     chart.visuals.find(
-      visual => chartData.profileVisualsData[visual.id].nodes.length === 0
+      ({ queryAlias }) =>
+        chartData.profileVisualsData[queryAlias].nodes.length === 0
     )
   ) {
     return (
@@ -65,7 +61,7 @@ function Embed({
           title: 'Embed code for this chart',
           subtitle:
             'Copy the code below, then paste into your own CMS or HTML. Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge.',
-          code: `<iframe src="https://dev.takwimu.africa/embed/${geoId}/${sectionTitleSlug}/${chartTitleSlug}" />`
+          code: `<iframe src="https://dev.takwimu.africa/embed/${geoId}/${sectionId}/${chartId}" />`
         }}
       >
         {!chartData.isLoading &&
@@ -85,8 +81,8 @@ Embed.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       geoId: PropTypes.string.isRequired,
-      sectionTitleSlug: PropTypes.string.isRequired,
-      chartTitleSlug: PropTypes.string.isRequired
+      sectionId: PropTypes.string.isRequired,
+      chartId: PropTypes.string.isRequired
     }).isRequired
   }).isRequired
 };
