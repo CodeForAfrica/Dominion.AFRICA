@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Header from './Header';
 import Info, { InfoSubtitle, InfoBody } from './Info';
 import Land from './Land';
+import NotFound from '../../pages/NotFound';
 
 import land from '../../assets/images/hero-image-3.png';
 import config from '../../config';
@@ -47,10 +48,11 @@ const styles = theme => ({
 
 function AboutCountry({ classes, dominion }) {
   const { selectedCountry = {} } = dominion;
-  const info = config.about[selectedCountry.slug] || {
-    intro: 'Not found',
-    other: 'Not found'
-  };
+  const info = config.about[selectedCountry.slug] || {};
+
+  if (!config.about[selectedCountry.slug]) {
+    return <NotFound />;
+  }
   return (
     <div className={classes.root}>
       <Grid container direction="row" className={classes.layout} spacing={4}>
