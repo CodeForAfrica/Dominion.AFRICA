@@ -35,7 +35,7 @@ const styles = theme => ({
   },
   dataWrapper: {
     paddingTop: '4.2rem',
-    height: '35.713rem', // 500px / 16
+    height: '31.713rem', // 500px / 16
     paddingLeft: '2.143rem',
     paddingRight: '2.143rem',
     [theme.breakpoints.up('md')]: {
@@ -50,7 +50,7 @@ const styles = theme => ({
     height: '2.858rem',
     background: '#e7e452',
     [theme.breakpoints.up('md')]: {
-      width: '24.286rem' // 340px / 16
+      width: '21.286rem' // 340px / 16
     }
   },
   img: {
@@ -60,7 +60,11 @@ const styles = theme => ({
     backgroundSize: 'cover',
     [theme.breakpoints.up('md')]: {
       width: '30.7143rem',
-      height: '28.5714rem' // 400px / 16
+      height: '25.5714rem' // 400px / 16
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: '37.7143rem',
+      height: '28.5714rem'
     }
   },
   imageHighlight: {
