@@ -6,6 +6,7 @@ import Country from './pages/Country';
 import Profile from './pages/Profile';
 import Resources from './pages/Resources';
 import About from './pages/About';
+import Embed from './pages/Embed';
 
 function App() {
   return (
@@ -20,6 +21,11 @@ function App() {
           exact
           path="/compare/:geoId/vs/:comparisonGeoId"
           component={Profile}
+        />
+        <Route
+          exact
+          path="/embed/:geoId/:sectionId/:chartId"
+          component={Embed}
         />
       </Switch>
     </BrowserRouter>

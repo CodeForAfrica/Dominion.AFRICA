@@ -29,6 +29,7 @@
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
+    "shortid": "^2.2.15",
     "typescript": "*"
   },
   "devDependencies": {
@@ -46,12 +47,16 @@
     "prettier": "^1.16.1"
   },
   "scripts": {
+    "commitChartDefinitions": "git add src/data/charts.json && git commit -m 'updated chart ids' && git push",
+    "applyIdsToChartDefinitions": "node scripts/chartsDefinitionsApplyUniqueId.js",
+    "prestart": "yarn applyIdsToChartDefinitions",
     "start": "react-scripts start",
+    "prebuild": "yarn applyIdsToChartDefinitions",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "lint": "node_modules/eslint/bin/eslint.js --fix src",
+    "lint": "node_modules/eslint/bin/eslint.js --fix src scripts",
     "eject": "react-scripts eject",
-    "predeploy": "yarn run build",
+    "predeploy": "yarn build && yarn commitChartDefinitions",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
@@ -71,7 +76,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "yarn applyIdsToChartDefinitions && git add src/data/charts.json && lint-staged"
     }
   },
   "lint-staged": {

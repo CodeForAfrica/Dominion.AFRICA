@@ -9,7 +9,7 @@ import aggregateData from '../utils/aggregateData';
 
 export default function ChartFactory({
   visual: {
-    id: visualId,
+    queryAlias,
     type: visualType,
     label,
     horizontal,
@@ -39,10 +39,10 @@ export default function ChartFactory({
       .toString(36)
       .substring(2) + Date.now().toString(36);
   const isComparison = datas && comparisonDatas;
-  const comparisonData = comparisonDatas && comparisonDatas[visualId].nodes;
-  const data = datas[visualId].nodes;
-  const refrenceData = datas[`${visualId}Reference`]
-    ? datas[`${visualId}Reference`].nodes
+  const comparisonData = comparisonDatas && comparisonDatas[queryAlias].nodes;
+  const data = datas[queryAlias].nodes;
+  const refrenceData = datas[`${queryAlias}Reference`]
+    ? datas[`${queryAlias}Reference`].nodes
     : [];
 
   const primaryData = useMemo(() => {
