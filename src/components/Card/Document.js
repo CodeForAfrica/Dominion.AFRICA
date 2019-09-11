@@ -12,7 +12,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
   root: {
-    width: 'available'
+    width: 'available',
+    padding: '1rem'
   },
   preview: {
     width: 'available',

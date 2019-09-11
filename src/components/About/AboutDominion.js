@@ -24,6 +24,9 @@ const styles = theme => ({
       maxWidth: '66.59rem' // .75 of lg
     },
     [theme.breakpoints.up('md')]: {
+      maxWidth: '70.3571429rem'
+    },
+    [theme.breakpoints.up('lg')]: {
       maxWidth: '81.3571429rem'
     }
   },
