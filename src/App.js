@@ -24,7 +24,7 @@ function App() {
           path="/compare/:geoId/vs/:comparisonGeoId"
           component={Profile}
         />
-        <Route path="*" component={NotFound} />
+        <Route component={NotFound} />
       </Switch>
     </BrowserRouter>
   );

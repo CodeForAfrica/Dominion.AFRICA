@@ -31,16 +31,16 @@ function ErrorContent({ classes, title, description }) {
       alignItems="center"
       className={classes.root}
     >
-      <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
-        <Grid className={classes.title}>
+      <div xs={12} sm={12} md={8}>
+        <div className={classes.title}>
           <Typography variant="h2">{title}</Typography>
-        </Grid>
-        <Grid className={classes.subtitleGrid}>
+        </div>
+        <div className={classes.subtitleGrid}>
           <Typography variant="body1" className={classes.subtitle}>
             {description}
           </Typography>
-        </Grid>
-      </Grid>
+        </div>
+      </div>
     </Grid>
   );
 }
