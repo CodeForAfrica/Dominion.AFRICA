@@ -29,7 +29,6 @@ const styles = theme => ({
     position: 'relative',
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      // padding: '1.875rem 0',
       maxWidth: '81.3571429rem',
       margin: '0 auto'
     }
@@ -100,6 +99,12 @@ const styles = theme => ({
     fontWeight: 500,
     fontSize: 'x-small',
     textTransform: 'uppercase'
+  },
+  iconButton: {
+    marginLeft: '60px',
+    [theme.breakpoints.only('md')]: {
+      marginLeft: '30px'
+    }
   }
 });
 
@@ -215,9 +220,7 @@ function Navigation({ classes, width, dominion }) {
           disableRipple
           aria-label="Search"
           onClick={toggleSearch}
-          style={{
-            marginLeft: 60
-          }}
+          className={classes.iconButton}
         >
           <img alt="Search" src={searchIcon} />
         </IconButton>
