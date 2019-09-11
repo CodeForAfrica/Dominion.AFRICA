@@ -20,10 +20,7 @@ const styles = theme => ({
     paddingLeft: '2.143rem',
     paddingBottom: '3.286rem',
     [theme.breakpoints.up('md')]: {
-      paddingTop: '6rem',
-      paddingLeft: '2.143rem',
-      paddingRight: '2.143rem',
-      paddingBottom: '3.857rem'
+      padding: '6rem 2.143rem 3.857rem'
     }
   },
   layout: {
@@ -39,7 +36,7 @@ const styles = theme => ({
   },
   organisation: {
     width: '100%',
-    marginTop: '1.857rem', // 26px / 16
+    marginTop: '1.625rem', // 26px / 16
     [theme.breakpoints.up('md')]: {
       width: 'auto',
       marginTop: 0

@@ -11,7 +11,7 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     height: '100%',
-    width: '9.75rem', // 156px / 16
+    width: '7rem', // 115px / 16
     [theme.breakpoints.up('md')]: {
       width: '12.5625rem' // 201px / 16
     }
@@ -35,7 +35,7 @@ const styles = theme => ({
 
 function Community({ classes }) {
   return (
-    <Grid container className={classes.root} justify="flex-start">
+    <Grid container className={classes.root}>
       <Grid item xs={12}>
         <Typography
           variant="subtitle1"
