@@ -5,17 +5,17 @@ const sectionedCharts = require('../src/data/charts.json');
 sectionedCharts.forEach(section => {
   if (!section.id) {
     // eslint-disable-next-line no-param-reassign
-    section.id = `section${shortid.generate()}`;
+    section.id = `section-${shortid.generate()}`;
   }
   section.charts.forEach(chart => {
     if (!chart.id) {
       // eslint-disable-next-line no-param-reassign
-      chart.id = `chart${shortid.generate()}`;
+      chart.id = `chart-${shortid.generate()}`;
     }
     chart.visuals.forEach(visual => {
       if (!visual.id) {
         // eslint-disable-next-line no-param-reassign
-        visual.id = `visual${shortid.generate()}`;
+        visual.id = `visual-${shortid.generate()}`;
       }
     });
   });

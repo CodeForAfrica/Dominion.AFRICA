@@ -49,13 +49,13 @@
   "scripts": {
     "applyIdsToChartDefinitions": "node scripts/chartsDefinitionsApplyUniqueId.js",
     "prestart": "yarn applyIdsToChartDefinitions",
-    "prebuild": "yarn applyIdsToChartDefinitions",
-    "predeploy": "yarn run build",
     "start": "react-scripts start",
+    "prebuild": "yarn applyIdsToChartDefinitions",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "lint": "node_modules/eslint/bin/eslint.js --fix src",
+    "lint": "node_modules/eslint/bin/eslint.js --fix src scripts",
     "eject": "react-scripts eject",
+    "predeploy": "yarn build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
