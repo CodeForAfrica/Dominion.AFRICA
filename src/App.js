@@ -16,7 +16,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/resources" component={Resources} />
         <Route exact path="/about" component={About} />
-        <Route exact path="/server" component={ServerError} />
+        <Route exact path="/500" component={ServerError} />
         <Route exact path="/:country" component={Country} />
         <Route exact path="/profile/:geoId" component={Profile} />
         <Route

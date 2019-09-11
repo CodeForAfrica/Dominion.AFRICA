@@ -7,7 +7,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Header from './Header';
 import Info, { InfoSubtitle, InfoBody } from './Info';
 import Land from './Land';
-// import NotFound from '../../pages/NotFound';
 
 import land from '../../assets/images/hero-image-3.png';
 import config from '../../config';
