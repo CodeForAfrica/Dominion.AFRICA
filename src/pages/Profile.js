@@ -158,6 +158,8 @@ function Profile({
                   loading={chartData.isLoading}
                   title={chart.title}
                   subtitle={chart.subtitle}
+                  sourceLink={chart.sourceLink}
+                  sourceTitle={chart.sourceTitle}
                   classes={{
                     title: classes.title,
                     subtitle: classes.subtitle,

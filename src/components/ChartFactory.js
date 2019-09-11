@@ -2,7 +2,8 @@ import React, { useMemo } from 'react';
 import {
   BarChart,
   PieChart,
-  NestedProportionalAreaChart
+  NestedProportionalAreaChart,
+  NumberVisuals
 } from '@codeforafrica/hurumap-ui';
 import aggregateData from '../utils/aggregateData';
 
@@ -16,7 +17,9 @@ export default function ChartFactory({
     aggregate,
     width,
     height,
-    barWidth
+    barWidth,
+    subtitle,
+    description
   },
   data: datas,
   comparisonData: comparisonDatas,
@@ -143,6 +146,21 @@ export default function ChartFactory({
             height={height}
             data={primaryData}
             donutLabelKey={{ dataIndex: 0, sortKey: '' }}
+          />
+        </div>
+      );
+    }
+    case 'number': {
+      const dataStat = data[0].y;
+      return (
+        <div>
+          <NumberVisuals
+            key={key}
+            subtitle={subtitle}
+            statistic={dataStat}
+            description={description}
+            comparisonData={[]} // TODO: pending NumberVisuals components (HURUmap-UI) fix on this proptypes
+            classes={{}} // TODO: pending NumberVisuals style configurations - update root margin
           />
         </div>
       );
