@@ -4,15 +4,19 @@ import PropTypes from 'prop-types';
 import { Grid, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-const styles = () => ({
+const styles = theme => ({
   root: {
-    height: '25rem',
-    maxWidth: '100%',
-    marginRight: '2rem',
-    marginLeft: '2rem'
+    padding: '2rem',
+    [theme.breakpoints.up('md')]: {
+      padding: 0
+    }
   },
   title: {
-    margin: '2rem'
+    margin: '1.5rem'
+  },
+  mainGrid: {
+    paddingTop: '8rem',
+    paddingBottom: '8rem'
   },
   subtitleGrid: {
     backgroundColor: '#F0F0F0'
@@ -31,7 +35,7 @@ function ErrorContent({ classes, title, description }) {
       alignItems="center"
       className={classes.root}
     >
-      <div xs={12} sm={12} md={8}>
+      <Grid xs={12} md={8} className={classes.mainGrid}>
         <div className={classes.title}>
           <Typography variant="h2">{title}</Typography>
         </div>
@@ -40,7 +44,7 @@ function ErrorContent({ classes, title, description }) {
             {description}
           </Typography>
         </div>
-      </div>
+      </Grid>
     </Grid>
   );
 }
