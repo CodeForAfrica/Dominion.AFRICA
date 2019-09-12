@@ -10,7 +10,6 @@ import ServerError from './pages/ServerError';
 import NotFound from './pages/NotFound';
 import Embed from './pages/Embed';
 
-
 function App() {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
