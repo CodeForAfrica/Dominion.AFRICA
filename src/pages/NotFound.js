@@ -5,7 +5,7 @@ import config from '../config';
 import { TitlePageHeader } from '../components/Header';
 import ErrorContent from '../components/ErrorContent';
 
-function ServerError() {
+function NotFound() {
   return (
     <Page>
       <TitlePageHeader dominion={config} profile={{}} />
@@ -17,4 +17,4 @@ function ServerError() {
   );
 }
 
-export default ServerError;
+export default NotFound;
