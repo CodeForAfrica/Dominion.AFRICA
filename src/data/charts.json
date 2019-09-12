@@ -1,718 +1,1339 @@
-[{
-  "sectionTitle": "Demographics",
-  "sectionIcon": "users",
-  "sectionDescription": "",
-  "charts": [{
-      "title": "Population",
-      "subtitle": "People living there",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "circle_nested_proportional_area",
-        "table": "allPopulationResidence2009S",
-        "reference": {},
-        "label": "longName",
-        "x": "populationResidence2009",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Population",
-      "subtitle": "People living there",
-      "layout": "2/3",
-      "visuals": [{
-        "type": "circle_nested_proportional_area",
-        "table": "allPopulationGroup2016S",
-        "reference": {},
-        "label": "longName",
-        "x": "populationGroup2016",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Extension",
-      "subtitle": "Surface in km2",
-      "layout": "1/3",
-      "visuals": [{
-        "type": "square_nested_proportional_area",
-        "table": "allWazimapGeographies",
-        "reference": {},
-        "label": "$longName",
-        "x": "longName",
-        "y": "squareKms"
-      }]
-    }
-  ]
-},
-{
-  "sectionTitle": "Worker's Hostel Data",
-  "sectionIcon": "building",
-  "sectionDescription": "",
-  "charts": [
-    {
-      "title": "Number of people living in worker's hostel per age group",
-      "subtitle": "",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allWorkersHostelAgeGroups",
-        "x": "workersHostelAgeGroup",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Number of people living in worker's hostel per gender",
-      "subtitle": "",
-      "layout": "1/3",
-      "visuals": [{
-        "type": "pie",
-        "table": "allWorkersHostelGenders",
-        "x": "workersHostelGender",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Number of people living in worker's hostel per geography",
-      "subtitle": "",
-      "layout": "1/3",
-      "visuals": [{
-        "type": "pie",
-        "table": "allWorkersHostelGeographies",
-        "x": "workersHostelGeography",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Handwashing Facility",
-      "subtitle": "",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allWorkersHostelHandwashingFacilities",
-        "x": "workersHostelHandwashingFacility",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Ownership of dwelling",
-      "subtitle": "",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allWorkersHostelOwnerships",
-
-        "label": "",
-        "x": "workersHostelOwnership",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Number of people living in workers hostels per year",
-      "subtitle": "",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allWorkersHostelPopulations",
-        "label": "",
-        "x": "workersHostelPopulationYear",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Number of people living in workers hostels per population group",
-      "subtitle": "",
-      "layout": "1",
-      "visuals": [{
-        "type": "pie",
-        "table": "allWorkersHostelPopulationGroups",
-        "label": "",
-        "x": "workersHostelPopulationGroup",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Monthly Rent or Mortgage",
-      "subtitle": "",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allWorkersHostelRents",
-
-        "label": "",
-        "x": "workersHostelRent",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Residential Ownership",
-      "subtitle": "Number of people by residential property",
-      "layout": "1",
-      "visuals": [{
-        "type": "pie",
-        "table": "allWorkersHostelResidentialOwnerships",
-        "label": "",
-        "x": "workersHostelResidentialOwnership",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "state-subsidised dwellings",
-      "subtitle": "Number of people living in state subsidised dwelling",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allWorkersHostelSsDwellings",
-        "label": "",
-        "x": "workersHostelSsDwelling",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Access to Electricity",
-      "subtitle": "",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allWorkersHostelAccessElectricities",
-        "label": "",
-        "x": "workersHostelAccessElectricity",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Water Source",
-      "subtitle": "",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allWorkersHostelWaterSources",
-        "label": "",
-        "x": "workersHostelWaterSource",
-        "y": "total"
-      }]
-    }
-
-  ]
-},
-{
-  "sectionTitle": "Farm Land",
-  "sectionIcon": "leaf",
-  "sectionDescription": "",
-  "charts": [{
-      "title": "Number of individuals owning farms and agricultural holdings by gender (%)",
-      "subtitle": "",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allNumberoflandownerspergenders",
-
-        "label": "",
-        "x": "numberOfLandOwnersPerGender",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Number of individuals owning farms and agricultural holdings by Nationality (%)",
-      "subtitle": "",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allNumberoflandownerspernationalities",
-
-        "label": "",
-        "x": "numberOfLandOwnersPerNationality",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Number of individuals owning farms and agricultural holdings by race (%)",
-      "subtitle": "",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allNumberoflandownersperraces",
-
-        "label": "",
-        "x": "numberOfLandOwnersPerRace",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Number of Private Land Owners by Category (%)",
-      "subtitle": "",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allNumberofprivatelandownersbycategories",
-
-        "label": "",
-        "x": "numberOfPrivateLandOwnersByCategory",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Private land ownership in hectares by category (%)",
-      "subtitle": "",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allPrivatelandownershipinhectarespercategories",
-
-        "label": "",
-        "x": "privateLandOwnershipInHectaresPerCategory",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Farm Land",
-      "subtitle": "Individual land ownership of farms and agricultural holdings in hectares by race (%)",
-      "layout": "1",
-      "visuals": [{
-        "type": "pie",
-        "table": "allLandownershipinhectaresbyraces",
-
-        "label": "",
-        "x": "landOwnershipInHectaresByRace",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Individual land ownership of farms and agricultural holdings in hectares by gemder (%)",
-      "subtitle": "",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allLandownershipinhectaresbygenders",
-
-        "label": "",
-        "x": "landOwnershipInHectaresByGender",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Individual Land Ownership percent Hectares by Nationality (%)",
-      "subtitle": "",
-      "layout": "1",
-      "visuals": [{
-        "type": "pie",
-        "table": "allLandownershipinhectaresbynationalities",
-        "label": "",
-        "x": "landOwnershipInHectaresByNationality",
-        "y": "total"
-      }]
-    }
-  ]
-},
-{
-  "sectionTitle": "Erven Land",
-  "sectionIcon": "city",
-  "sectionDescription": "",
-  "charts": [{
-      "title": "Individual ownership of erven land in hectares by gender (%)",
-      "subtitle": "",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allErvenLandOwnershipInHectaresByGenders",
-
-        "label": "",
-        "x": "ervenLandOwnershipInHectaresByGender",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Number of individuals owning erven land by gender (%)",
-      "subtitle": "",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allNumberOfErvenLandOwnersPerGenders",
-
-        "label": "",
-        "x": "numberOfErvenLandOwnersPerGender",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Number of individuals owning erven land by nationality (%)",
-      "subtitle": "",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allNumberOfErvenLandOwnersPerNationalities",
-
-        "label": "",
-        "x": "numberOfErvenLandOwnersPerNationality",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Individual ownership of erven land in hectares by nationality (%)",
-      "subtitle": "",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allErvenLandOwnershipInHectaresByNationalities",
-
-        "label": "",
-        "x": "ervenLandOwnershipInHectaresByNationality",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Individual ownership of erven land in hectares by race (%)",
-      "subtitle": "",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allErvenLandOwnershipInHectaresByRaces",
-
-        "label": "",
-        "x": "ervenLandOwnershipInHectaresByRace",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Number of individuals owning erven land by race (%)",
-      "subtitle": "",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allNumberOfErvenLandOwnersPerRaces",
-
-        "label": "",
-        "x": "numberOfErvenLandOwnersPerRace",
-        "y": "total"
-      }]
-    }
-  ]
-},
-{
-  "sectionTitle": "Sectional Title land",
-  "sectionIcon": "image",
-  "sectionDescription": "",
-  "charts": [{
-      "title": "Sectional Title Land Ownership",
-      "subtitle": "Number of individuals owning sectional title land by category (%)",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allNumberofsectionaltitleownersbycategories",
-
-        "label": "",
-        "x": "numberOfSectionalTitleOwnersByCategory",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Sectional Title Land Ownership",
-      "subtitle": "Individual ownership of sectional title land in hectares by nationality (%)",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allSectionaltitleownershipinhectarespercategories",
-
-        "label": "",
-        "x": "sectionalTitleOwnershipInHectaresPerCategory",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Sectional Title Land Ownership",
-      "subtitle": "Individual ownership of sectional title land in hectares by race (%)",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allSectionaltitleownershipinhectaresperraces",
-
-        "label": "",
-        "x": "sectionalTitleOwnershipInHectaresPerRace",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Sectional Title Land Ownership",
-      "subtitle": "Number of individuals owning sectional title land by race (%)",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allNumberofsectionaltitleownersbyraces",
-
-        "label": "",
-        "x": "numberOfSectionalTitleOwnersByRace",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Sectional Title Land Ownership",
-      "subtitle": "Individual ownership of sectional title land in hectares by gender (%)",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allSectionaltitleownershipinhectarespergenders",
-
-        "label": "",
-        "x": "sectionalTitleOwnershipInHectaresPerGender",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Sectional Title Land Ownership",
-      "subtitle": "Number of individuals owning sectional title land by gender (%)",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allNumberofsectionaltitleownersbygenders",
-
-        "label": "",
-        "x": "numberOfSectionalTitleOwnersByGender",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Sectional Title Land Ownership",
-      "subtitle": "Individual ownership of sectional title land in hectares by nationality (%)",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allSectionaltitleownershipinhectaresnationalities",
-
-        "label": "",
-        "x": "sectionalTitleOwnershipInHectaresNationality",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Sectional Title Land Ownership",
-      "subtitle": "Number of individuals owning sectional title land by nationality (%)",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allNumberofsectionaltitleownersbynationalities",
-
-        "label": "",
-        "x": "numberOfSectionalTitleOwnersByNationality",
-        "y": "total"
-      }]
-    }
-  ]
-},
-{
-  "sectionTitle": "Agricultural Land Sales",
-  "sectionIcon": "coins",
-  "sectionDescription": "",
-  "charts": [{
-      "title": "Land Sales Distribution 2017/2018",
-      "subtitle": "Number of transactions from December 2017 to November 2018 by land class in R/ha",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allNumTransactionsTradedPerClass2018S",
-        "x": "classDistribution",
-        "y": "total"
-      }]
-    },
-    {
-        "title": "Land Sales Distribution 2017/2018",
-        "subtitle": "Amount of hectares sold from December 2017 to November 2018 by land class in R/ha",
-        "layout": "1",
-        "visuals": [{
-          "type": "column",
-          "table": "allTotalHectaresTradedPerClass2018S",
-          "x": "classDistribution",
-          "y": "total"
-        }]
+[
+  {
+    "sectionTitle": "Demographics",
+    "sectionDescription": "",
+    "charts": [
+      {
+        "title": "Population",
+        "subtitle": "People living there",
+        "sourceLink": "https://s3-eu-west-1.amazonaws.com/s3.sourceafrica.net/documents/21195/Census-2009.pdf",
+        "sourceTitle": "Census, 2009",
+        "layout": "2/3",
+        "visuals": [
+          {
+            "type": "circle_nested_proportional_area",
+            "table": "allPopulationResidence2009S",
+            "reference": {},
+            "label": "longName",
+            "x": "populationResidence2009",
+            "y": "total",
+            "id": "visual-VOlHv47k"
+          }
+        ],
+        "id": "chart-5WNZtQiG"
       },
       {
-          "title": "Land Sales Distribution 2017/2018",
-          "subtitle": "Average price of hectares sold from December 2017 to November 2018 by Land Class in R/ha",
-          "layout": "1",
-          "visuals": [{
+        "title": "Population",
+        "subtitle": "People living there",
+        "sourceLink": "http://cs2016.statssa.gov.za/wp-content/uploads/2016/07/NT-30-06-2016-RELEASE-for-CS-2016-_Statistical-releas_1-July-2016.pdf",
+        "sourceTitle": "Community Survey, 2016",
+        "layout": "2/3",
+        "visuals": [
+          {
+            "type": "circle_nested_proportional_area",
+            "table": "allPopulationGroup2016S",
+            "reference": {},
+            "label": "longName",
+            "x": "populationGroup2016",
+            "y": "total",
+            "id": "visual--vAbXGLV"
+          }
+        ],
+        "id": "chart-PUnqUyTJ"
+      },
+      {
+        "title": "Extension",
+        "subtitle": "Surface in km2",
+        "sourceLink": "https://africaopendata.org/dataset?q=boundaries",
+        "sourceTitle": "openAfrica",
+        "layout": "1/3",
+        "visuals": [
+          {
+            "type": "square_nested_proportional_area",
+            "table": "allWazimapGeographies",
+            "reference": {},
+            "label": "$longName",
+            "x": "longName",
+            "y": "squareKms",
+            "id": "visual-BRi50mhE"
+          }
+        ],
+        "id": "chart-mbLL8cFW"
+      }
+    ],
+    "id": "section-0M2eSmy"
+  },
+  {
+    "sectionTitle": "Worker's Hostel Data",
+    "sectionDescription": "",
+    "charts": [
+      {
+        "title": "Number of people living in worker's hostel per age group",
+        "subtitle": "",
+        "sourceLink": "http://www.statssa.gov.za/publications/P0318/P03182018.pdf",
+        "sourceTitle": "General Household Survey, 2018",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allWorkersHostelAgeGroups",
+            "x": "workersHostelAgeGroup",
+            "y": "total",
+            "barWidth": 60,
+            "id": "visual-NwXN60yd"
+          }
+        ],
+        "id": "chart-wB5806xr"
+      },
+      {
+        "title": "Number of people living in worker's hostel per gender",
+        "subtitle": "",
+        "sourceLink": "http://www.statssa.gov.za/publications/P0318/P03182018.pdf",
+        "sourceTitle": "General Household Survey, 2018",
+        "layout": "1/2",
+        "visuals": [
+          {
+            "type": "pie",
+            "table": "allWorkersHostelGenders",
+            "x": "workersHostelGender",
+            "y": "total",
+            "id": "visual-qNhYgZBE"
+          }
+        ],
+        "id": "chart-HtZtHlMi"
+      },
+      {
+        "title": "Number of people living in worker's hostel per geography",
+        "subtitle": "",
+        "sourceLink": "http://www.statssa.gov.za/publications/P0318/P03182018.pdf",
+        "sourceTitle": "General Household Survey, 2018",
+        "layout": "1/2",
+        "visuals": [
+          {
+            "type": "pie",
+            "table": "allWorkersHostelGeographies",
+            "x": "workersHostelGeography",
+            "y": "total",
+            "id": "visual-2QqN3f6-"
+          }
+        ],
+        "id": "chart-adPPBdfn"
+      },
+      {
+        "title": "Handwashing Facility",
+        "subtitle": "",
+        "sourceLink": "http://www.statssa.gov.za/publications/P0318/P03182018.pdf",
+        "sourceTitle": "General Household Survey, 2018",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allWorkersHostelHandwashingFacilities",
+            "x": "workersHostelHandwashingFacility",
+            "y": "total",
+            "id": "visual-MvFhzVLj"
+          }
+        ],
+        "id": "chart-ql3umWrl"
+      },
+      {
+        "title": "Ownership of dwelling",
+        "subtitle": "",
+        "sourceLink": "http://www.statssa.gov.za/publications/P0318/P03182018.pdf",
+        "sourceTitle": "General Household Survey, 2018",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allWorkersHostelOwnerships",
+            "label": "",
+            "x": "workersHostelOwnership",
+            "y": "total",
+            "id": "visual-8BvOdFd14"
+          }
+        ],
+        "id": "chart-pRWtLr7wQ"
+      },
+      {
+        "title": "Number of people living in workers hostels per year",
+        "subtitle": "",
+        "sourceLink": "http://www.statssa.gov.za/publications/P0318/P03182018.pdf",
+        "sourceTitle": "General Household Survey, 2018",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allWorkersHostelPopulations",
+            "label": "",
+            "x": "workersHostelPopulationYear",
+            "y": "total",
+            "id": "visual-WUEfJ4Wtr"
+          }
+        ],
+        "id": "chart-Y2wkq872g"
+      },
+      {
+        "title": "Number of people living in workers hostels per population group",
+        "subtitle": "",
+        "sourceLink": "http://www.statssa.gov.za/publications/P0318/P03182018.pdf",
+        "sourceTitle": "General Household Survey, 2018",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "pie",
+            "table": "allWorkersHostelPopulationGroups",
+            "label": "",
+            "x": "workersHostelPopulationGroup",
+            "y": "total",
+            "id": "visual-oSOUhVXyP"
+          }
+        ],
+        "id": "chart-jLe6B2KjU"
+      },
+      {
+        "title": "Monthly Rent or Mortgage",
+        "subtitle": "",
+        "sourceLink": "http://www.statssa.gov.za/publications/P0318/P03182018.pdf",
+        "sourceTitle": "General Household Survey, 2018",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allWorkersHostelRents",
+            "label": "",
+            "x": "workersHostelRent",
+            "y": "total",
+            "id": "visual-YNiR3OxRX"
+          }
+        ],
+        "id": "chart-DGNRXRS4o"
+      },
+      {
+        "title": "Residential Ownership",
+        "subtitle": "Number of people by residential property",
+        "sourceLink": "http://www.statssa.gov.za/publications/P0318/P03182018.pdf",
+        "sourceTitle": "General Household Survey, 2018",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "pie",
+            "table": "allWorkersHostelResidentialOwnerships",
+            "label": "",
+            "x": "workersHostelResidentialOwnership",
+            "y": "total",
+            "id": "visual-h9WcfDPY9"
+          }
+        ],
+        "id": "chart-pFsCMsBxz"
+      },
+      {
+        "title": "state-subsidised dwellings",
+        "subtitle": "Number of people living in state subsidised dwelling",
+        "sourceLink": "http://www.statssa.gov.za/publications/P0318/P03182018.pdf",
+        "sourceTitle": "General Household Survey, 2018",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allWorkersHostelSsDwellings",
+            "label": "",
+            "x": "workersHostelSsDwelling",
+            "y": "total",
+            "id": "visual-tKcXAZ76a"
+          }
+        ],
+        "id": "chart-PAyg4XfJT"
+      },
+      {
+        "title": "Access to Electricity",
+        "subtitle": "",
+        "sourceLink": "http://www.statssa.gov.za/publications/P0318/P03182018.pdf",
+        "sourceTitle": "General Household Survey, 2018",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allWorkersHostelAccessElectricities",
+            "label": "",
+            "x": "workersHostelAccessElectricity",
+            "y": "total",
+            "id": "visual-bEz7XFi7b"
+          }
+        ],
+        "id": "chart-CrjGNL0H5"
+      },
+      {
+        "title": "Water Source",
+        "subtitle": "",
+        "sourceLink": "http://www.statssa.gov.za/publications/P0318/P03182018.pdf",
+        "sourceTitle": "General Household Survey, 2018",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allWorkersHostelWaterSources",
+            "label": "",
+            "x": "workersHostelWaterSource",
+            "y": "total",
+            "id": "visual-w6ZmdvjT3"
+          }
+        ],
+        "id": "chart--Mt66heTp"
+      }
+    ],
+    "id": "section-K-fkSD-f"
+  },
+  {
+    "sectionTitle": "Farm Land",
+    "sectionDescription": "",
+    "charts": [
+      {
+        "title": "Number of individuals owning farms and agricultural holdings by gender (%)",
+        "subtitle": "",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
+        "sourceTitle": "Land Audit Report, 2017",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allNumberoflandownerspergenders",
+            "label": "",
+            "x": "numberOfLandOwnersPerGender",
+            "y": "total",
+            "id": "visual-eo9bB8LTg"
+          }
+        ],
+        "id": "chart-oORMHQttb"
+      },
+      {
+        "title": "Number of individuals owning farms and agricultural holdings by Nationality (%)",
+        "subtitle": "",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
+        "sourceTitle": "Land Audit Report, 2017",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allNumberoflandownerspernationalities",
+            "label": "",
+            "x": "numberOfLandOwnersPerNationality",
+            "y": "total",
+            "id": "visual-HRjurXQNL"
+          }
+        ],
+        "id": "chart-C2HyLN-U2"
+      },
+      {
+        "title": "Number of individuals owning farms and agricultural holdings by race (%)",
+        "subtitle": "",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
+        "sourceTitle": "Land Audit Report, 2017",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allNumberoflandownersperraces",
+            "label": "",
+            "x": "numberOfLandOwnersPerRace",
+            "y": "total",
+            "id": "visual-PQi-CrVct"
+          }
+        ],
+        "id": "chart-RO6UgKW38"
+      },
+      {
+        "title": "Number of Private Land Owners by Category (%)",
+        "subtitle": "",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
+        "sourceTitle": "Land Audit Report, 2017",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allNumberofprivatelandownersbycategories",
+            "label": "",
+            "x": "numberOfPrivateLandOwnersByCategory",
+            "y": "total",
+            "id": "visual-gkL8l6n0t"
+          }
+        ],
+        "id": "chart-WxEHQLeAh"
+      },
+      {
+        "title": "Private land ownership in hectares by category (%)",
+        "subtitle": "",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
+        "sourceTitle": "Land Audit Report, 2017",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allPrivatelandownershipinhectarespercategories",
+            "label": "",
+            "x": "privateLandOwnershipInHectaresPerCategory",
+            "y": "total",
+            "id": "visual-bEesRO9pg"
+          }
+        ],
+        "id": "chart-eJEpC3Ddz"
+      },
+      {
+        "title": "Farm Land",
+        "subtitle": "Individual land ownership of farms and agricultural holdings in hectares by race (%)",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
+        "sourceTitle": "Land Audit Report, 2017",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "pie",
+            "table": "allLandownershipinhectaresbyraces",
+            "label": "",
+            "x": "landOwnershipInHectaresByRace",
+            "y": "total",
+            "id": "visual-NnmsB7kr4"
+          }
+        ],
+        "id": "chart-NdLW2pJ7V"
+      },
+      {
+        "title": "Individual land ownership of farms and agricultural holdings in hectares by gemder (%)",
+        "subtitle": "",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
+        "sourceTitle": "Land Audit Report, 2017",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allLandownershipinhectaresbygenders",
+            "label": "",
+            "x": "landOwnershipInHectaresByGender",
+            "y": "total",
+            "id": "visual-IroOjrLl9"
+          }
+        ],
+        "id": "chart-ZTJun8Uj3"
+      },
+      {
+        "title": "Individual Land Ownership percent Hectares by Nationality (%)",
+        "subtitle": "",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
+        "sourceTitle": "Land Audit Report, 2017",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "pie",
+            "table": "allLandownershipinhectaresbynationalities",
+            "label": "",
+            "x": "landOwnershipInHectaresByNationality",
+            "y": "total",
+            "id": "visual-WpgZqqBOG"
+          }
+        ],
+        "id": "chart-KXLgbxSVk"
+      }
+    ],
+    "id": "section-KPH6kRIEN"
+  },
+  {
+    "sectionTitle": "Erven Land",
+    "sectionDescription": "",
+    "charts": [
+      {
+        "title": "Individual ownership of erven land in hectares by gender (%)",
+        "subtitle": "",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
+        "sourceTitle": "Land Audit Report, 2017",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allErvenLandOwnershipInHectaresByGenders",
+            "label": "",
+            "x": "ervenLandOwnershipInHectaresByGender",
+            "y": "total",
+            "id": "visual-kzuux6sbe"
+          }
+        ],
+        "id": "chart-N6mMWTL_j"
+      },
+      {
+        "title": "Number of individuals owning erven land by gender (%)",
+        "subtitle": "",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
+        "sourceTitle": "Land Audit Report, 2017",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allNumberOfErvenLandOwnersPerGenders",
+            "label": "",
+            "x": "numberOfErvenLandOwnersPerGender",
+            "y": "total",
+            "id": "visual-fd6k2hJUI"
+          }
+        ],
+        "id": "chart-SJZWtZKyE"
+      },
+      {
+        "title": "Number of individuals owning erven land by nationality (%)",
+        "subtitle": "",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
+        "sourceTitle": "Land Audit Report, 2017",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allNumberOfErvenLandOwnersPerNationalities",
+            "label": "",
+            "x": "numberOfErvenLandOwnersPerNationality",
+            "y": "total",
+            "id": "visual-vABBH8fCi"
+          }
+        ],
+        "id": "chart-tXC-7umSr"
+      },
+      {
+        "title": "Individual ownership of erven land in hectares by nationality (%)",
+        "subtitle": "",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
+        "sourceTitle": "Land Audit Report, 2017",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allErvenLandOwnershipInHectaresByNationalities",
+            "label": "",
+            "x": "ervenLandOwnershipInHectaresByNationality",
+            "y": "total",
+            "id": "visual-ZiiM7Qgrh"
+          }
+        ],
+        "id": "chart-YwZQL94BC"
+      },
+      {
+        "title": "Individual ownership of erven land in hectares by race (%)",
+        "subtitle": "",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
+        "sourceTitle": "Land Audit Report, 2017",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allErvenLandOwnershipInHectaresByRaces",
+            "label": "",
+            "x": "ervenLandOwnershipInHectaresByRace",
+            "y": "total",
+            "id": "visual-_NGXFE8nW"
+          }
+        ],
+        "id": "chart-hmMyFnDk1"
+      },
+      {
+        "title": "Number of individuals owning erven land by race (%)",
+        "subtitle": "",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
+        "sourceTitle": "Land Audit Report, 2017",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allNumberOfErvenLandOwnersPerRaces",
+            "label": "",
+            "x": "numberOfErvenLandOwnersPerRace",
+            "y": "total",
+            "id": "visual-L7OpEfGpf"
+          }
+        ],
+        "id": "chart-TKanjG8KK"
+      }
+    ],
+    "id": "section-b4x9Ue_Z4"
+  },
+  {
+    "sectionTitle": "Sectional Title land",
+    "sectionDescription": "",
+    "charts": [
+      {
+        "title": "Sectional Title Land Ownership",
+        "subtitle": "Number of individuals owning sectional title land by category (%)",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
+        "sourceTitle": "Land Audit Report, 2017",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allNumberofsectionaltitleownersbycategories",
+            "label": "",
+            "x": "numberOfSectionalTitleOwnersByCategory",
+            "y": "total",
+            "id": "visual-FuEBwzmM_"
+          }
+        ],
+        "id": "chart-X58FOrh4k"
+      },
+      {
+        "title": "Sectional Title Land Ownership",
+        "subtitle": "Individual ownership of sectional title land in hectares by nationality (%)",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
+        "sourceTitle": "Land Audit Report, 2017",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allSectionaltitleownershipinhectarespercategories",
+            "label": "",
+            "x": "sectionalTitleOwnershipInHectaresPerCategory",
+            "y": "total",
+            "id": "visual-EhcAsMSNZ"
+          }
+        ],
+        "id": "chart-AnHUCu-Wi"
+      },
+      {
+        "title": "Sectional Title Land Ownership",
+        "subtitle": "Individual ownership of sectional title land in hectares by race (%)",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
+        "sourceTitle": "Land Audit Report, 2017",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allSectionaltitleownershipinhectaresperraces",
+            "label": "",
+            "x": "sectionalTitleOwnershipInHectaresPerRace",
+            "y": "total",
+            "id": "visual-nI-c90a-4"
+          }
+        ],
+        "id": "chart-w7J2nc4_y"
+      },
+      {
+        "title": "Sectional Title Land Ownership",
+        "subtitle": "Number of individuals owning sectional title land by race (%)",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
+        "sourceTitle": "Land Audit Report, 2017",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allNumberofsectionaltitleownersbyraces",
+            "label": "",
+            "x": "numberOfSectionalTitleOwnersByRace",
+            "y": "total",
+            "id": "visual-4mAE8mFmB"
+          }
+        ],
+        "id": "chart-vNnNDbr3U"
+      },
+      {
+        "title": "Sectional Title Land Ownership",
+        "subtitle": "Individual ownership of sectional title land in hectares by gender (%)",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
+        "sourceTitle": "Land Audit Report, 2017",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allSectionaltitleownershipinhectarespergenders",
+            "label": "",
+            "x": "sectionalTitleOwnershipInHectaresPerGender",
+            "y": "total",
+            "id": "visual-JyuYmIljM"
+          }
+        ],
+        "id": "chart-TC2swzljN"
+      },
+      {
+        "title": "Sectional Title Land Ownership",
+        "subtitle": "Number of individuals owning sectional title land by gender (%)",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
+        "sourceTitle": "Land Audit Report, 2017",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allNumberofsectionaltitleownersbygenders",
+            "label": "",
+            "x": "numberOfSectionalTitleOwnersByGender",
+            "y": "total",
+            "id": "visual-MD_K2D2zR"
+          }
+        ],
+        "id": "chart-9VAjiM15T"
+      },
+      {
+        "title": "Sectional Title Land Ownership",
+        "subtitle": "Individual ownership of sectional title land in hectares by nationality (%)",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
+        "sourceTitle": "Land Audit Report, 2017",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allSectionaltitleownershipinhectaresnationalities",
+            "label": "",
+            "x": "sectionalTitleOwnershipInHectaresNationality",
+            "y": "total",
+            "id": "visual-F3Vq9JNF9"
+          }
+        ],
+        "id": "chart-MDtP4-rJv"
+      },
+      {
+        "title": "Sectional Title Land Ownership",
+        "subtitle": "Number of individuals owning sectional title land by nationality (%)",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
+        "sourceTitle": "Land Audit Report, 2017",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allNumberofsectionaltitleownersbynationalities",
+            "label": "",
+            "x": "numberOfSectionalTitleOwnersByNationality",
+            "y": "total",
+            "id": "visual-U2278TfzY"
+          }
+        ],
+        "id": "chart-KgLT7BZSE"
+      }
+    ],
+    "id": "section-0TIrZM_Wj"
+  },
+  {
+    "sectionTitle": "Agricultural Land Sales",
+    "sectionDescription": "",
+    "charts": [
+      {
+        "title": "Land Sales Distribution 2017/2018",
+        "subtitle": "Number of transactions from December 2017 to November 2018 by land class in R/ha",
+        "sourceLink": "http://land.agrids.co.za/",
+        "sourceTitle": "AGRIDS, 2019",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allNumTransactionsTradedPerClass2018S",
+            "x": "classDistribution",
+            "y": "total",
+            "id": "visual-QoroNEUog"
+          }
+        ],
+        "id": "chart-410BZSL4y"
+      },
+      {
+        "title": "Land Sales Distribution 2017/2018",
+        "subtitle": "Amount of hectares sold from December 2017 to November 2018 by land class in R/ha",
+        "sourceLink": "http://land.agrids.co.za/",
+        "sourceTitle": "AGRIDS, 2019",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allTotalHectaresTradedPerClass2018S",
+            "x": "classDistribution",
+            "y": "total",
+            "id": "visualh4mWzNbzc"
+          }
+        ],
+        "id": "chartPEIHZQ4t-"
+      },
+      {
+        "title": "Land Sales Distribution 2017/2018",
+        "subtitle": "Average price of hectares sold from December 2017 to November 2018 by Land Class in R/ha",
+        "sourceLink": "http://land.agrids.co.za/",
+        "sourceTitle": "AGRIDS, 2019",
+        "layout": "1",
+        "visuals": [
+          {
             "type": "column",
             "table": "allAvgPricePerHectaresPerClass2018S",
             "x": "classDistribution",
-            "y": "total"
-          }]
-        },
-        {
-            "title": "Land Sales Distribution 2017/2018",
-            "subtitle": "Highest Price per hectares sold from December 2017 to November 2018 by Land Class in R/ha",
-            "layout": "1",
-            "visuals": [{
-              "type": "column",
-              "table": "allHighestPriceTradedPerClass2018S",
-              "x": "classDistribution",
-              "y": "total"
-            }]
-          },
+            "y": "total",
+            "id": "visual-iZliAHREq"
+          }
+        ],
+        "id": "chart-U5ajN3ION"
+      },
+      {
+        "title": "Land Sales Distribution 2017/2018",
+        "subtitle": "Highest Price per hectares sold from December 2017 to November 2018 by Land Class in R/ha",
+        "sourceLink": "http://land.agrids.co.za/",
+        "sourceTitle": "AGRIDS, 2019",
+        "layout": "1",
+        "visuals": [
           {
-              "title": "Land Sales Distribution 2017/2018",
-              "subtitle": "Lowest Price per hectares sold from December 2017 to November 2018 by Land Class in R/ha",
-              "layout": "1",
-              "visuals": [{
-                "type": "column",
-                "table": "allLowestPriceTradedPerClass2018S",
-                "x": "classDistribution",
-                "y": "total"
-              }]
-            },
-            {
-                "title": "Land Sales Distribution 2017/2018",
-                "subtitle": "Price trends per hectares from December 2017 to November 2018 by Land Class in R/ha",
-                "layout": "1",
-                "visuals": [{
-                  "type": "column",
-                  "table": "allPriceTrendsTradedPerClass2018S",
-                  "x": "classDistribution",
-                  "y": "total"
-                }]
-              }
-  ]
-},
-{
-  "sectionTitle": "Land traded statistic for transactions of colour",
-  "sectionIcon": "briefcase",
-  "sectionDescription": "",
-  "charts": [
-    {
-      "title": "Land Sales",
-      "subtitle": "Transactions of colour traded from Dec 2017/Nov 2018 for transaction of colour",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allLandTradedColourTransactions2018S",
-        "x": "monthCc",
-        "y": "total",
-        "aggregate": "sum"
-      }]
-    },
-    {
-      "title": "Land Sales",
-      "subtitle": "Total cost in R million for transactions of colour in each month",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allLandTradedColourCostBreakdown2018S",
-        "x": "monthCc",
-        "y": "total",
-        "aggregate": "sum"
-      }]
-    },
-    {
-      "title": "Land Sales Transaction",
-      "subtitle": "Total number of all transactions vs total number of transactions of colour from Dec 2017 to Nov 2018",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allLandTradedAllVsColour2018S",
-        "x": "transactionGroup",
-        "y": "total",
-        "aggregate": "sum"
-      }]
-    },
-    {
-      "title": "Land Sales",
-      "subtitle": "Number of all transactions vs number of transactions of colour for Land traded per month",
-      "layout": "1",
-      "visuals": [{
-        "type": "grouped_column",
-        "table": "allLandTradedAllVsColour2018S",
-        "groupBy": "month",
-        "x": "transactionGroup",
-        "y": "total",
-        "aggregate": "sum",
-        "barWidth": 15
-      }]
-    },
-    {
-      "title": "Land Sales Transaction of Colour",
-      "subtitle": "Breakdown of number of transactions of color from Dec 2017 to Nov 2018",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allLandTradedColourTransactions2018S",
-        "x": "breakdownCc",
-        "y": "total",
-        "aggregate": "sum"
-      }]
-    },
-    {
-      "title": "Land Sales Transaction of Colour",
-      "subtitle": "Breakdown of total hectares sold from Dec 2017 to Nov 2018",
-      "layout": "1",
-      "visuals": [{
-        "type": "column",
-        "table": "allLandTradedColourHectaresBreakdown2018S",
-        "x": "breakdownCc",
-        "y": "total",
-        "aggregate": "sum"
-      }]
-    }
-  ]
-},
-{
-  "sectionTitle": "Afrobarometer Round 7",
-  "sectionIcon": "chart-bar",
-  "sectionDescription": "",
-  "charts": [{
-      "title": "Land Redistribution Prioritisation",
-      "subtitle": "Type of land that government should prioritise for redistribution",
-      "layout": "1/2",
-      "visuals": [{
-        "type": "pie",
-        "table": "allLandToPrioritiseForRedistributions",
-        "label": "",
-        "x": "landToPrioritiseForRedistribution",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Access to Information",
-      "subtitle": "How is easy is it to access to Information",
-      "layout": "1/2",
-      "visuals": [{
-        "type": "pie",
-        "table": "allAccessToInformations",
-        "label": "",
-        "x": "accessToInformation",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Buyer & Selling Policy",
-      "subtitle": "The government must abide by willing buyer-willing seller policy in acquiring any property?",
-      "layout": "1/2",
-      "visuals": [{
-        "type": "pie",
-        "table": "allMaintainWillingBuyerWillingSellerPolicies",
-        "label": "",
-        "x": "maintainWillingBuyerWillingSellerPolicy",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Farmers land",
-      "subtitle": "Should the government allow farmers to retain ownership of land on which their labourers live?",
-      "layout": "1/2",
-      "visuals": [{
-        "type": "pie",
-        "table": "allAllowFarmersRetainLandOwnerships",
-        "label": "",
-        "x": "allowFarmersRetainLandOwnership",
-        "y": "total"
-      }]
-    },
-    {
-      "title": "Land Acquisition Challenges",
-      "subtitle": "What is the greatest challenge to acquiring land today?",
-      "layout": "1",
-      "visuals": [{
-        "type": "pie",
-        "table": "allLandAcquisationChallenges",
-        "label": "",
-        "x": "landAcquisationChallenges",
-        "y": "total"
-      }]
-    }
-
-  ]
-}]
+            "type": "column",
+            "table": "allHighestPriceTradedPerClass2018S",
+            "x": "classDistribution",
+            "y": "total",
+            "id": "visual-WJ10v1hhK"
+          }
+        ],
+        "id": "chart-1EXthEMQt"
+      },
+      {
+        "title": "Land Sales Distribution 2017/2018",
+        "subtitle": "Lowest Price per hectares sold from December 2017 to November 2018 by Land Class in R/ha",
+        "sourceLink": "http://land.agrids.co.za/",
+        "sourceTitle": "AGRIDS, 2019",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allLowestPriceTradedPerClass2018S",
+            "x": "classDistribution",
+            "y": "total",
+            "id": "visual-DqRnc1nOE"
+          }
+        ],
+        "id": "chart-7LEt0TruL"
+      },
+      {
+        "title": "Land Sales Distribution 2017/2018",
+        "subtitle": "Price trends per hectares from December 2017 to November 2018 by Land Class in R/ha",
+        "sourceLink": "http://land.agrids.co.za/",
+        "sourceTitle": "AGRIDS, 2019",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allPriceTrendsTradedPerClass2018S",
+            "x": "classDistribution",
+            "y": "total",
+            "id": "visual-tcdILqnq5"
+          }
+        ],
+        "id": "chart-1rBEJ86GI"
+      }
+    ],
+    "id": "section-YXCVfeQ7g"
+  },
+  {
+    "sectionTitle": "Land traded statistic for transactions of colour",
+    "sectionDescription": "",
+    "charts": [
+      {
+        "title": "Land Sales",
+        "subtitle": "Transactions of colour traded from Dec 2017/Nov 2018 for transaction of colour",
+        "sourceLink": "http://land.agrids.co.za/",
+        "sourceTitle": "AGRIDS, 2019",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allLandTradedColourTransactions2018S",
+            "x": "monthCc",
+            "y": "total",
+            "aggregate": "sum",
+            "id": "visual-gSE-RM0dq"
+          }
+        ],
+        "id": "chart-CN7hCYZ5K"
+      },
+      {
+        "title": "Land Sales",
+        "subtitle": "Total cost in R million for transactions of colour in each month",
+        "sourceLink": "http://land.agrids.co.za/",
+        "sourceTitle": "AGRIDS, 2019",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allLandTradedColourCostBreakdown2018S",
+            "x": "monthCc",
+            "y": "total",
+            "aggregate": "sum",
+            "id": "visual-XxFawAzmB"
+          }
+        ],
+        "id": "chart-k9_rl3XYe"
+      },
+      {
+        "title": "Land Sales Transaction",
+        "subtitle": "Total number of all transactions vs total number of transactions of colour from Dec 2017 to Nov 2018",
+        "sourceLink": "http://land.agrids.co.za/",
+        "sourceTitle": "AGRIDS, 2019",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allLandTradedAllVsColour2018S",
+            "x": "transactionGroup",
+            "y": "total",
+            "aggregate": "sum",
+            "id": "visual-OcsjPU42P"
+          }
+        ],
+        "id": "chart-cjDF4Hosw"
+      },
+      {
+        "title": "Land Sales",
+        "subtitle": "Number of all transactions vs number of transactions of colour for Land traded per month",
+        "sourceLink": "http://land.agrids.co.za/",
+        "sourceTitle": "AGRIDS, 2019",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "grouped_column",
+            "table": "allLandTradedAllVsColour2018S",
+            "groupBy": "month",
+            "x": "transactionGroup",
+            "y": "total",
+            "aggregate": "sum",
+            "barWidth": 15,
+            "id": "visual-3_lWw-8NB"
+          }
+        ],
+        "id": "chart-cl9AM1Rzr"
+      },
+      {
+        "title": "Land Sales Transaction of Colour",
+        "subtitle": "Breakdown of number of transactions of color from Dec 2017 to Nov 2018",
+        "sourceLink": "http://land.agrids.co.za/",
+        "sourceTitle": "AGRIDS, 2019",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allLandTradedColourTransactions2018S",
+            "x": "breakdownCc",
+            "y": "total",
+            "aggregate": "sum",
+            "id": "visual-Srvm9tMxn"
+          }
+        ],
+        "id": "chart-g9102dcYq"
+      },
+      {
+        "title": "Land Sales Transaction of Colour",
+        "subtitle": "Breakdown of total hectares sold from Dec 2017 to Nov 2018",
+        "sourceLink": "http://land.agrids.co.za/",
+        "sourceTitle": "AGRIDS, 2019",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allLandTradedColourHectaresBreakdown2018S",
+            "x": "breakdownCc",
+            "y": "total",
+            "aggregate": "sum",
+            "id": "visual-Cl8cQtdYe"
+          }
+        ],
+        "id": "chart-68w-lI0wI"
+      }
+    ],
+    "id": "section-VMNLzVnGL"
+  },
+  {
+    "sectionTitle": "Land Redistribution and Restitution",
+    "sectionDescription": "",
+    "charts": [
+      {
+        "title": "Hectares transferred in the Redistribution Programme from 2009/2010 to 2017/2018",
+        "subtitle": "Land Redistribution Programme",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
+        "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allHectaresTransferredPerProvinceByYears",
+            "x": "hectaresTransferredPerProvinceByYear",
+            "y": "total",
+            "id": "visual-fCLZwYiYO"
+          }
+        ],
+        "id": "chart-hli4kyVJI"
+      },
+      {
+        "title": "Land Redistribution Programme",
+        "subtitle": "",
+        "layout": "1/3",
+        "visuals": [
+          {
+            "type": "number",
+            "table": "allRedistributedlandnumhectares",
+            "subtitle": "Redistributed Land in Hectares in 2017/2018",
+            "description": "Number of hectares (ha)",
+            "x": "redistributedland",
+            "y": "total",
+            "id": "visual-fAaz21gvF"
+          }
+        ],
+        "id": "chart-IhafM8JA2"
+      },
+      {
+        "title": "Land Redistribution Programme",
+        "subtitle": "",
+        "layout": "1/3",
+        "visuals": [
+          {
+            "type": "number",
+            "table": "allRedistributedlandcostinrands",
+            "subtitle": "Cost of redistributed land in 2017/2018",
+            "description": "Cost in Rands (ZAR)",
+            "x": "redistributedland",
+            "y": "total",
+            "id": "visual--610tAo-4"
+          }
+        ],
+        "id": "chart-oHfq1TfwS"
+      },
+      {
+        "title": "Land Redistribution Programme",
+        "subtitle": "",
+        "layout": "1/3",
+        "visuals": [
+          {
+            "type": "number",
+            "subtitle": "Average cost per hectares in 2017/2018",
+            "description": "Cost in Rands (ZAR)",
+            "table": "allRedistributedlandinhectares",
+            "x": "redistributedland",
+            "y": "total",
+            "id": "visual-g6JZrr3lq"
+          }
+        ],
+        "id": "chart-PXfKczfI5"
+      },
+      {
+        "title": "Percent land use breakdown year 2017/2018",
+        "subtitle": "Land Redistribution Programme",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
+        "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allRedistributedlandusebreakdowns",
+            "x": "redistributedLandUseBreakdown",
+            "y": "total",
+            "id": "visual-oM-bUyzHJ"
+          }
+        ],
+        "id": "chart-q0m47qbMf"
+      },
+      {
+        "title": "Project transferred in redistribution programme in the year 2009/2010 to 2017/2018",
+        "subtitle": "Land Redistribution Programme",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
+        "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allProjecttransferreds",
+            "x": "year",
+            "y": "total",
+            "id": "visual-flN2yrlAu"
+          }
+        ],
+        "id": "chart-w-XdN54jR"
+      },
+      {
+        "title": "Benefeficiaries of redistribution programme in the year 2009/2010 to 2017/2018",
+        "subtitle": "Land Redistribution Programme",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
+        "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allBenefitedbeneficiaries",
+            "x": "year",
+            "y": "total",
+            "id": "visual-MrHNP1MT-"
+          }
+        ],
+        "id": "chart-4iN3LBcXJ"
+      },
+      {
+        "title": "Household benefited from redistribution programme in the year 2009/2010 to 2017/2018",
+        "subtitle": "Land Redistribution Programme",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
+        "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allBenefitedhouseholds",
+            "x": "year",
+            "y": "total",
+            "id": "visual-boqwMlXS1"
+          }
+        ],
+        "id": "chart-U4KmVb4Rh"
+      },
+      {
+        "title": "Number of female benefited from redistribution programme in the year 2009/2010 to 2017/2018",
+        "subtitle": "Land Redistribution Programme",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
+        "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allFemalepartybenefiteds",
+            "x": "year",
+            "y": "total",
+            "id": "visual-JKC-PPQ6z"
+          }
+        ],
+        "id": "chart-ZqY0vutW5"
+      },
+      {
+        "title": "Number of disabled people benefited from redistribution programme in the year 2009/2010 to 2017/2018",
+        "subtitle": "Land Redistribution Programme",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
+        "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allDisabledpeoplepartybenefiteds",
+            "x": "year",
+            "y": "total",
+            "id": "visual-_adHKljyH"
+          }
+        ],
+        "id": "chart-twuiJHzcg"
+      },
+      {
+        "title": "Number of youth benefited from redistribution programme in the year 2009/2010 to 2017/2018",
+        "subtitle": "Land Redistribution Programme",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
+        "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allYouthpartybenefiteds",
+            "x": "year",
+            "y": "total",
+            "id": "visual-ehPnnHUKG"
+          }
+        ],
+        "id": "chart-TRlV1aQqU"
+      },
+      {
+        "title": "Hectares acquired in the restitution programme for year 2009/2010 to 2017/2018",
+        "subtitle": "Land Restitution Programme",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
+        "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allRestitutionhectaresacquireds",
+            "x": "year",
+            "y": "total",
+            "id": "visual-ISAI8yO8E"
+          }
+        ],
+        "id": "chart-lrMrp5j_s"
+      },
+      {
+        "title": "households benefited in the restitution programme for year 2009/2010 to 2017/2018",
+        "subtitle": "Land Restitution Programme",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
+        "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allRestitutionhouseholds",
+            "x": "year",
+            "y": "total",
+            "id": "visual-azJDdL2sl"
+          }
+        ],
+        "id": "chart-3dmv320Fj"
+      },
+      {
+        "title": "Benefeficiaries in the restitution programme for year 2009/2010 to 2017/2018",
+        "subtitle": "Land Restitution Programme",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
+        "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allRestitutionbeneficiaries",
+            "x": "year",
+            "y": "total",
+            "id": "visual-Na6HOEFUo"
+          }
+        ],
+        "id": "chart-hRxXW06uu"
+      },
+      {
+        "title": "Number of female headed households benefited in the restitution programme from 2009/2010 to 2017/2018",
+        "subtitle": "Land Restitution Programme",
+        "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
+        "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "column",
+            "table": "allRestitutionfemaleheadedhhs",
+            "x": "year",
+            "y": "total",
+            "id": "visual-INJuHvBPN"
+          }
+        ],
+        "id": "chart-kI7HChPFu"
+      },
+      {
+        "title": "Land Restitution Programme",
+        "subtitle": "",
+        "layout": "1/3",
+        "visuals": [
+          {
+            "type": "number",
+            "table": "allRestitutionfinancialcompensations",
+            "subtitle": "Financial Compensation in 2017/2018",
+            "description": "Rands (ZAR)",
+            "x": "year",
+            "y": "total",
+            "id": "visual-2KeKamG9f"
+          }
+        ],
+        "id": "chart-PzO1mP0xW"
+      },
+      {
+        "title": "Land Restitution Programme",
+        "subtitle": "",
+        "layout": "1/3",
+        "visuals": [
+          {
+            "type": "number",
+            "table": "allRestitutionpeoplewdisabilities",
+            "subtitle": "People with disabilities benefited in 2017/2018",
+            "description": "Number of People",
+            "x": "year",
+            "y": "total",
+            "id": "visual-a7vjUIrtz"
+          }
+        ],
+        "id": "chart-inpPVZpd4"
+      },
+      {
+        "title": "Land Restitution Programme",
+        "subtitle": "",
+        "layout": "1/3",
+        "visuals": [
+          {
+            "type": "number",
+            "subtitle": "Land Cost in restitution programme in 2017/2018",
+            "description": "Cost in Rands (ZAR)",
+            "table": "allRestitutionlandcosts",
+            "x": "year",
+            "y": "total",
+            "id": "visual-MiG-eWCPs"
+          }
+        ],
+        "id": "chart-x2aYgtRJf"
+      }
+    ],
+    "id": "section-fQ6pMEI7I"
+  },
+  {
+    "sectionTitle": "Afrobarometer Round 7",
+    "sectionDescription": "",
+    "charts": [
+      {
+        "title": "Land Redistribution Prioritisation",
+        "subtitle": "Type of land that government should prioritise for redistribution",
+        "sourceLink": "http://afrobarometer.org/publications/south-africa-summary-results-2018",
+        "sourceTitle": "Afrobarometer Round 7: Survey, 2018",
+        "layout": "1/2",
+        "visuals": [
+          {
+            "type": "pie",
+            "table": "allLandToPrioritiseForRedistributions",
+            "label": "",
+            "x": "landToPrioritiseForRedistribution",
+            "y": "total",
+            "id": "visual-fOiytRUrb"
+          }
+        ],
+        "id": "chart-g_l12zK5E"
+      },
+      {
+        "title": "Access to Information",
+        "subtitle": "How is easy is it to access to Information",
+        "sourceLink": "http://afrobarometer.org/publications/south-africa-summary-results-2018",
+        "sourceTitle": "Afrobarometer Round 7: Survey, 2018",
+        "layout": "1/2",
+        "visuals": [
+          {
+            "type": "pie",
+            "table": "allAccessToInformations",
+            "label": "",
+            "x": "accessToInformation",
+            "y": "total",
+            "id": "visual-GYXK59_9P"
+          }
+        ],
+        "id": "chart-N0ErYiYCw"
+      },
+      {
+        "title": "Buyer & Selling Policy",
+        "subtitle": "The government must abide by willing buyer-willing seller policy in acquiring any property?",
+        "sourceLink": "http://afrobarometer.org/publications/south-africa-summary-results-2018",
+        "sourceTitle": "Afrobarometer Round 7: Survey, 2018",
+        "layout": "1/2",
+        "visuals": [
+          {
+            "type": "pie",
+            "table": "allMaintainWillingBuyerWillingSellerPolicies",
+            "label": "",
+            "x": "maintainWillingBuyerWillingSellerPolicy",
+            "y": "total",
+            "id": "visual-upiOMaQ0Z"
+          }
+        ],
+        "id": "chart-QDNjUKqoy"
+      },
+      {
+        "title": "Farmers land",
+        "subtitle": "Should the government allow farmers to retain ownership of land on which their labourers live?",
+        "sourceLink": "http://afrobarometer.org/publications/south-africa-summary-results-2018",
+        "sourceTitle": "Afrobarometer Round 7: Survey, 2018",
+        "layout": "1/2",
+        "visuals": [
+          {
+            "type": "pie",
+            "table": "allAllowFarmersRetainLandOwnerships",
+            "label": "",
+            "x": "allowFarmersRetainLandOwnership",
+            "y": "total",
+            "id": "visual-fzkvzR04B"
+          }
+        ],
+        "id": "chart-HtvgOfdJq"
+      },
+      {
+        "title": "Land Acquisition Challenges",
+        "subtitle": "What is the greatest challenge to acquiring land today?",
+        "sourceLink": "http://afrobarometer.org/publications/south-africa-summary-results-2018",
+        "sourceTitle": "Afrobarometer Round 7: Survey, 2018",
+        "layout": "1",
+        "visuals": [
+          {
+            "type": "pie",
+            "table": "allLandAcquisationChallenges",
+            "label": "",
+            "x": "landAcquisationChallenges",
+            "y": "total",
+            "id": "visual-l5i_8KQTR"
+          }
+        ],
+        "id": "chart-2h6dPy1DZ"
+      }
+    ],
+    "id": "section-cOH1cc7X8"
+  }
+]

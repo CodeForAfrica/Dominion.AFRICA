@@ -2,13 +2,14 @@ import React, { useMemo } from 'react';
 import {
   BarChart,
   PieChart,
-  NestedProportionalAreaChart
+  NestedProportionalAreaChart,
+  NumberVisuals
 } from '@codeforafrica/hurumap-ui';
 import aggregateData from '../utils/aggregateData';
 
 export default function ChartFactory({
   visual: {
-    id: visualId,
+    queryAlias,
     type: visualType,
     label,
     horizontal,
@@ -16,7 +17,9 @@ export default function ChartFactory({
     aggregate,
     width,
     height,
-    barWidth
+    barWidth,
+    subtitle,
+    description
   },
   data: datas,
   comparisonData: comparisonDatas,
@@ -36,10 +39,10 @@ export default function ChartFactory({
       .toString(36)
       .substring(2) + Date.now().toString(36);
   const isComparison = datas && comparisonDatas;
-  const comparisonData = comparisonDatas && comparisonDatas[visualId].nodes;
-  const data = datas[visualId].nodes;
-  const refrenceData = datas[`${visualId}Reference`]
-    ? datas[`${visualId}Reference`].nodes
+  const comparisonData = comparisonDatas && comparisonDatas[queryAlias].nodes;
+  const data = datas[queryAlias].nodes;
+  const refrenceData = datas[`${queryAlias}Reference`]
+    ? datas[`${queryAlias}Reference`].nodes
     : [];
 
   const primaryData = useMemo(() => {
@@ -96,6 +99,7 @@ export default function ChartFactory({
         <div style={{ width: !isComparison ? 200 : 650 }}>
           <NestedProportionalAreaChart
             key={key}
+            formatNumberForLabel={x => numberFormatter.format(x)}
             square={visualType === 'square_nested_proportional_area'}
             height={isComparison && 500}
             width={!isComparison ? 200 : 650}
@@ -142,6 +146,21 @@ export default function ChartFactory({
             height={height}
             data={primaryData}
             donutLabelKey={{ dataIndex: 0, sortKey: '' }}
+          />
+        </div>
+      );
+    }
+    case 'number': {
+      const dataStat = data[0].y;
+      return (
+        <div>
+          <NumberVisuals
+            key={key}
+            subtitle={subtitle}
+            statistic={dataStat}
+            description={description}
+            comparisonData={[]} // TODO: pending NumberVisuals components (HURUmap-UI) fix on this proptypes
+            classes={{}} // TODO: pending NumberVisuals style configurations - update root margin
           />
         </div>
       );

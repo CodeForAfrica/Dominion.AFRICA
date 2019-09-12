@@ -8,6 +8,8 @@ import Resources from './pages/Resources';
 import About from './pages/About';
 import ServerError from './pages/ServerError';
 import NotFound from './pages/NotFound';
+import Embed from './pages/Embed';
+
 
 function App() {
   return (
@@ -25,6 +27,11 @@ function App() {
           component={Profile}
         />
         <Route component={NotFound} />
+        <Route
+          exact
+          path="/embed/:geoId/:sectionId/:chartId"
+          component={Embed}
+        />
       </Switch>
     </BrowserRouter>
   );

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { AppBar, Tabs, Tab } from '@material-ui/core';
-import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import { withStyles } from '@material-ui/core/styles';
 import { ContentLoader } from '@codeforafrica/hurumap-ui';
 
@@ -81,17 +80,8 @@ function LinkTab(props) {
   return <Tab component="a" {...props} />;
 }
 
-function ProfileTabs({
-  classes,
-  tabs,
-  width,
-  loading,
-  activeTab,
-  switchToTab
-}) {
+function ProfileTabs({ classes, tabs, loading, activeTab, switchToTab }) {
   const [fixToTop, setFixToTop] = useState(false);
-  const centered = isWidthUp('md', width); // centered is only for md and up
-  const variant = centered ? 'standard' : 'scrollable';
 
   useEffect(() => {
     function handleScroll() {
@@ -158,8 +148,8 @@ function ProfileTabs({
             >
               <Tabs
                 value={activeTab}
-                variant={variant}
-                scrollButtons="off" // Never show scroll buttons
+                variant="scrollable"
+                scrollButtons="auto"
                 classes={{ indicator: classes.indicator }}
                 onChange={handleChange}
               >
@@ -194,7 +184,6 @@ ProfileTabs.propTypes = {
       slug: PropTypes.string.isRequired
     })
   ).isRequired,
-  width: PropTypes.string.isRequired,
   loading: PropTypes.bool
 };
 
@@ -202,4 +191,4 @@ ProfileTabs.defaultProps = {
   loading: false
 };
 
-export default withWidth()(withStyles(styles)(ProfileTabs));
+export default withStyles(styles)(ProfileTabs);
