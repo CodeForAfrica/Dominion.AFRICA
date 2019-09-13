@@ -1,4 +1,7 @@
 import React, { useMemo } from 'react';
+
+import { useTheme } from '@material-ui/core';
+
 import {
   BarChart,
   PieChart,
@@ -12,12 +15,9 @@ export default function ChartFactory({
     queryAlias,
     type: visualType,
     label,
-    horizontal,
+    horizontal = true,
     reference: { label: referenceLabel } = {},
     aggregate,
-    width,
-    height,
-    barWidth,
     subtitle,
     description
   },
@@ -34,6 +34,7 @@ export default function ChartFactory({
    */
   profiles
 }) {
+  const theme = useTheme();
   const key =
     Math.random()
       .toString(36)
@@ -138,14 +139,13 @@ export default function ChartFactory({
     }
     case 'pie': {
       return (
-        // Due to responsiveness of piechart
         <div>
           <PieChart
             key={key}
-            width={width || 400}
-            height={height}
             data={primaryData}
+            donut
             donutLabelKey={{ dataIndex: 0, sortKey: '' }}
+            theme={theme.chart}
           />
         </div>
       );
@@ -166,103 +166,78 @@ export default function ChartFactory({
       );
     }
     case 'grouped_column': {
+      const barCount = primaryData[0].length;
+      const computedSize =
+        primaryData.length * barCount * (theme.chart.bar.barWidth + 2) +
+        2 * theme.chart.bar.domainPadding.x;
+      const computedWidth = horizontal ? theme.chart.bar.height : computedSize;
+      const computedHeight = horizontal ? computedSize : theme.chart.bar.height;
+      console.log('grouped_column', {
+        barCount,
+        computedSize,
+        computedHeight,
+        computedWidth
+      });
+
       return (
-        <div
-          style={{
-            width: primaryData.length * primaryData[0].length * 45,
-            height: '300px'
-          }}
-        >
-          <BarChart
-            key={key}
-            responsive
-            offset={45}
-            barWidth={40}
-            width={primaryData.length * primaryData[0].length * 45}
-            height={height || 300}
-            horizontal={horizontal}
-            labels={datum => numberFormatter.format(datum.y)}
-            data={primaryData}
-            parts={{
-              axis: {
-                labelWidth: 40,
-                independent: {
-                  style: {
-                    tickLabels: {
-                      display: 'block'
-                    }
+        <BarChart
+          data={primaryData}
+          key={key}
+          height={computedHeight}
+          horizontal={horizontal}
+          labels={datum => numberFormatter.format(datum.y)}
+          offset={theme.chart.bar.barWidth + 2}
+          parts={{
+            axis: {
+              independent: {
+                style: {
+                  axis: {
+                    display: 'block'
+                  },
+                  ticks: {
+                    display: 'block'
+                  },
+                  tickLabels: {
+                    display: 'block'
                   }
                 }
               }
-            }}
-          />
-        </div>
+            }
+          }}
+          theme={theme.chart}
+          width={computedWidth}
+        />
       );
     }
     case 'column': {
+      const barCount = isComparison ? 2 : 1;
+      const computedSize =
+        primaryData.length * barCount * theme.chart.bar.offset +
+        2 * theme.chart.bar.domainPadding.x;
+      const computedWidth = horizontal ? theme.chart.bar.height : computedSize;
+      const computedHeight = horizontal ? computedSize : theme.chart.bar.height;
       if (isComparison) {
         const processedComparisonData = aggregate
           ? aggregateData(aggregate, comparisonData)
           : comparisonData;
+
         return (
-          <div
-            style={{
-              width: primaryData.length * 2 * (barWidth || 40) + 5,
-              height: '300px'
-            }}
-          >
-            <BarChart
-              key={key}
-              responsive
-              offset={45}
-              barWidth={barWidth || 40}
-              width={primaryData.length * 2 * ((barWidth || 40) + 5)}
-              height={height || 300}
-              horizontal={horizontal}
-              labels={datum => numberFormatter.format(datum.y)}
-              data={[primaryData, processedComparisonData]}
-              parts={{
-                axis: {
-                  independent: {
-                    style: {
-                      axis: {
-                        display: 'block'
-                      },
-                      ticks: {
-                        display: 'block'
-                      },
-                      tickLabels: {
-                        display: 'block'
-                      }
-                    }
-                  }
-                }
-              }}
-            />
-          </div>
-        );
-      }
-      return (
-        <div
-          style={{
-            width: primaryData.length * (barWidth || 80) + 5,
-            height: '300px'
-          }}
-        >
           <BarChart
+            data={[primaryData, processedComparisonData]}
             key={key}
+            height={computedHeight}
             horizontal={horizontal}
-            barWidth={barWidth || 80}
-            width={
-              horizontal ? 200 : primaryData.length * ((barWidth || 80) + 5)
-            }
-            height={height || 300}
             labels={datum => numberFormatter.format(datum.y)}
-            data={primaryData}
             parts={{
               axis: {
                 independent: {
                   style: {
+                    axis: {
+                      display: 'block'
+                    },
+                    ticks: {
+                      display: 'block'
+                    },
                     tickLabels: {
                       display: 'block'
                     }
@@ -270,8 +245,46 @@ export default function ChartFactory({
                 }
               }
             }}
+            theme={theme.chart}
+            width={computedWidth}
           />
-        </div>
+        );
+      }
+
+      return (
+        <BarChart
+          data={primaryData}
+          key={key}
+          height={computedHeight}
+          horizontal={horizontal}
+          labels={datum => numberFormatter.format(datum.y)}
+          parts={{
+            axis: {
+              independent: {
+                style: {
+                  axis: {
+                    display: 'block'
+                  },
+                  grid: {
+                    display: 'block'
+                  },
+                  tickLabels: {
+                    display: 'block'
+                  }
+                }
+              },
+              dependent: {
+                style: {
+                  grid: {
+                    display: 'block'
+                  }
+                }
+              }
+            }
+          }}
+          theme={theme.chart}
+          width={computedWidth}
+        />
       );
     }
     default:

@@ -77,7 +77,7 @@ function Profile({
     if (!profiles.isLoading) {
       dispatch({ type: 'selectedCountry', selectedCountry: profiles.profile });
     }
-  }, [profiles]);
+  }, [profiles, dispatch]);
 
   // get all available profiletabs
   const profileTabs = useMemo(
@@ -197,7 +197,7 @@ function Profile({
             ))}
         </Grid>
       )),
-    [chartData, classes, profileTabs, profiles, sectionedCharts]
+    [chartData, classes, geoId, profileTabs, profiles, sectionedCharts]
   );
 
   // Show and hide sections

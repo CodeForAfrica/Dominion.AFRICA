@@ -824,10 +824,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@codeforafrica/hurumap-ui@^0.1.9":
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/@codeforafrica/hurumap-ui/-/hurumap-ui-0.1.9.tgz#d558b43c85dba2dfd0fcf8956550c89e436ceecc"
-  integrity sha512-bP5LhCefInGrjkaKPs4r/RfobqGqRsgqPLfqe0W9wf75gQmT6xW2mUNBNI/9y/6P68rllF+lVuLKM38uvWRpKA==
+"@codeforafrica/hurumap-ui@^0.1.11":
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/@codeforafrica/hurumap-ui/-/hurumap-ui-0.1.11.tgz#3492a5829926df5227c0603ca297929920922d70"
+  integrity sha512-1Qr9LKtRjTzdFXUTNkcTGN5v+PrIZpjrVeBng9NiGLg07XYWF5wVD3qD3X3/CQimbQsvfqkUJ/RcGJJ0d0lsPQ==
   dependencies:
     "@material-ui/core" "^4.3.2"
     "@material-ui/styles" "^4.3.0"
@@ -837,6 +837,8 @@
     lodash "^4.17.14"
     prop-types "^15.7.2"
     react-content-loader "^4.2.2"
+    react-share "^3.0.1"
+    shortid "^2.2.15"
     victory "^32.3.1"
 
 "@csstools/convert-colors@^1.4.0":
@@ -2652,7 +2654,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@^2.2.6:
+classnames@^2.2.5, classnames@^2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
@@ -3368,7 +3370,7 @@ date-now@^0.1.4:
   resolved "https://registry.yarnpkg.com/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
   integrity sha1-6vQ5/U1ISK105cx9vvIAZyueNFs=
 
-debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.8, debug@^2.6.9:
+debug@2.6.9, debug@^2.1.3, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.8, debug@^2.6.9:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
   integrity sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==
@@ -6358,6 +6360,13 @@ jsonify@~0.0.0:
   resolved "https://registry.yarnpkg.com/jsonify/-/jsonify-0.0.0.tgz#2c74b6ee41d93ca51b7b5aaee8f503631d252a73"
   integrity sha1-LHS27kHZPKUbe1qu6PUDYx0lKnM=
 
+jsonp@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/jsonp/-/jsonp-0.2.1.tgz#a65b4fa0f10bda719a05441ea7b94c55f3e15bae"
+  integrity sha1-pltPoPEL2nGaBUQep7lMVfPhW64=
+  dependencies:
+    debug "^2.1.3"
+
 jsprim@^1.2.2:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/jsprim/-/jsprim-1.4.1.tgz#313e66bc1e5cc06e438bc1b7499c2e5c56acb6a2"
@@ -9001,6 +9010,16 @@ react-scripts@3.0.1:
     workbox-webpack-plugin "4.2.0"
   optionalDependencies:
     fsevents "2.0.6"
+
+react-share@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/react-share/-/react-share-3.0.1.tgz#be9dc3f80059c4fed33542472f4e7425bb3a76cb"
+  integrity sha512-xo4zjYP78h6zrBN5rlC06bb877js7216KFeZELAZP6sYxVoqmU27ChrfnpKUCL9H8F5PwYXh6DLNdAp+0E17GA==
+  dependencies:
+    babel-runtime "^6.26.0"
+    classnames "^2.2.5"
+    jsonp "^0.2.1"
+    prop-types "^15.5.8"
 
 react-transition-group@^4.0.0:
   version "4.2.2"
