@@ -9,7 +9,6 @@ import CountryPartners from '../components/CountryPartners';
 import Page from '../components/Page';
 import config from '../config';
 import { AppContext } from '../AppContext';
-import NotFound from './NotFound';
 
 function Country({
   match: {
@@ -27,10 +26,6 @@ function Country({
       selectedCountry: config.countries[country]
     });
   }, [dispatch, country]);
-
-  if (!selectedCountry) {
-    return <NotFound />;
-  }
   return (
     <Page>
       <CountryPageHeader

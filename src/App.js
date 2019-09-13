@@ -18,7 +18,7 @@ function App() {
         <Route exact path="/resources" component={Resources} />
         <Route exact path="/about" component={About} />
         <Route exact path="/500" component={ServerError} />
-        <Route exact path="/:country" component={Country} />
+        <Route exact path="/:country(kenya|southfrica)" component={Country} />
         <Route exact path="/profile/:geoId" component={Profile} />
         <Route
           exact
