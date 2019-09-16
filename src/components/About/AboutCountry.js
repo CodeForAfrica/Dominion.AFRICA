@@ -47,7 +47,10 @@ const styles = theme => ({
 
 function AboutCountry({ classes, dominion }) {
   const { selectedCountry = {} } = dominion;
-  const info = config.about[selectedCountry.slug] || {};
+  const info = config.about[selectedCountry.slug] || {
+    intro: 'Not Found',
+    other: 'Not found'
+  };
   return (
     <div className={classes.root}>
       <Grid container direction="row" className={classes.layout} spacing={4}>
