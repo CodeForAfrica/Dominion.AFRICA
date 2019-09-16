@@ -48,7 +48,7 @@ const styles = theme => ({
 function AboutCountry({ classes, dominion }) {
   const { selectedCountry = {} } = dominion;
   const info = config.about[selectedCountry.slug] || {
-    intro: 'Not found',
+    intro: 'Not Found',
     other: 'Not found'
   };
   return (

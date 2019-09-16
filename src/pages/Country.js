@@ -26,7 +26,6 @@ function Country({
       selectedCountry: config.countries[country]
     });
   }, [dispatch, country]);
-
   return (
     <Page>
       <CountryPageHeader
