@@ -80,7 +80,11 @@
             "x": "workersHostelAgeGroup",
             "y": "total",
             "barWidth": 60,
-            "id": "visual-NwXN60yd"
+            "id": "visual-NwXN60yd",
+            "props": {
+              "horizontal": true,
+              "labelWidth": 100
+            }
           }
         ],
         "id": "chart-wB5806xr"
@@ -131,7 +135,10 @@
             "table": "allWorkersHostelHandwashingFacilities",
             "x": "workersHostelHandwashingFacility",
             "y": "total",
-            "id": "visual-MvFhzVLj"
+            "id": "visual-MvFhzVLj",
+            "props": {
+              "offset": 70
+            }
           }
         ],
         "id": "chart-ql3umWrl"
@@ -149,7 +156,11 @@
             "label": "",
             "x": "workersHostelOwnership",
             "y": "total",
-            "id": "visual-8BvOdFd14"
+            "id": "visual-8BvOdFd14",
+            "props": {
+              "horizontal": true,
+              "labelWidth": 2000
+            }
           }
         ],
         "id": "chart-pRWtLr7wQ"
@@ -203,7 +214,11 @@
             "label": "",
             "x": "workersHostelRent",
             "y": "total",
-            "id": "visual-YNiR3OxRX"
+            "id": "visual-YNiR3OxRX",
+            "props": {
+              "horizontal": true,
+              "labelWidth": 100
+            }
           }
         ],
         "id": "chart-DGNRXRS4o"
@@ -275,7 +290,11 @@
             "label": "",
             "x": "workersHostelWaterSource",
             "y": "total",
-            "id": "visual-w6ZmdvjT3"
+            "id": "visual-w6ZmdvjT3",
+            "props": {
+              "horizontal": true,
+              "labelWidth": 100
+            }
           }
         ],
         "id": "chart--Mt66heTp"
@@ -300,7 +319,10 @@
             "label": "",
             "x": "numberOfLandOwnersPerGender",
             "y": "total",
-            "id": "visual-eo9bB8LTg"
+            "id": "visual-eo9bB8LTg",
+            "props": {
+              "offset": 60
+            }
           }
         ],
         "id": "chart-oORMHQttb"
@@ -318,7 +340,10 @@
             "label": "",
             "x": "numberOfLandOwnersPerNationality",
             "y": "total",
-            "id": "visual-HRjurXQNL"
+            "id": "visual-HRjurXQNL",
+            "props": {
+              "offset": 60
+            }
           }
         ],
         "id": "chart-C2HyLN-U2"
@@ -336,7 +361,10 @@
             "label": "",
             "x": "numberOfLandOwnersPerRace",
             "y": "total",
-            "id": "visual-PQi-CrVct"
+            "id": "visual-PQi-CrVct",
+            "props": {
+              "offset": 65
+            }
           }
         ],
         "id": "chart-RO6UgKW38"
@@ -354,7 +382,10 @@
             "label": "",
             "x": "numberOfPrivateLandOwnersByCategory",
             "y": "total",
-            "id": "visual-gkL8l6n0t"
+            "id": "visual-gkL8l6n0t",
+            "props": {
+              "offset": 65
+            }
           }
         ],
         "id": "chart-WxEHQLeAh"
@@ -372,7 +403,10 @@
             "label": "",
             "x": "privateLandOwnershipInHectaresPerCategory",
             "y": "total",
-            "id": "visual-bEesRO9pg"
+            "id": "visual-bEesRO9pg",
+            "props": {
+              "offset": 70
+            }
           }
         ],
         "id": "chart-eJEpC3Ddz"
@@ -396,7 +430,7 @@
         "id": "chart-NdLW2pJ7V"
       },
       {
-        "title": "Individual land ownership of farms and agricultural holdings in hectares by gemder (%)",
+        "title": "Individual land ownership of farms and agricultural holdings in hectares by gender (%)",
         "subtitle": "",
         "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
         "sourceTitle": "Land Audit Report, 2017",
@@ -408,7 +442,10 @@
             "label": "",
             "x": "landOwnershipInHectaresByGender",
             "y": "total",
-            "id": "visual-IroOjrLl9"
+            "id": "visual-IroOjrLl9",
+            "props": {
+              "offset": 60
+            }
           }
         ],
         "id": "chart-ZTJun8Uj3"
@@ -426,7 +463,10 @@
             "label": "",
             "x": "landOwnershipInHectaresByNationality",
             "y": "total",
-            "id": "visual-WpgZqqBOG"
+            "id": "visual-WpgZqqBOG",
+            "props": {
+              "offset": 60
+            }
           }
         ],
         "id": "chart-KXLgbxSVk"
@@ -451,7 +491,10 @@
             "label": "",
             "x": "ervenLandOwnershipInHectaresByGender",
             "y": "total",
-            "id": "visual-kzuux6sbe"
+            "id": "visual-kzuux6sbe",
+            "props": {
+              "offset": 60
+            }
           }
         ],
         "id": "chart-N6mMWTL_j"
@@ -469,7 +512,10 @@
             "label": "",
             "x": "numberOfErvenLandOwnersPerGender",
             "y": "total",
-            "id": "visual-fd6k2hJUI"
+            "id": "visual-fd6k2hJUI",
+            "props": {
+              "offset": 60
+            }
           }
         ],
         "id": "chart-SJZWtZKyE"
@@ -487,7 +533,10 @@
             "label": "",
             "x": "numberOfErvenLandOwnersPerNationality",
             "y": "total",
-            "id": "visual-vABBH8fCi"
+            "id": "visual-vABBH8fCi",
+            "props": {
+              "offset": 60
+            }
           }
         ],
         "id": "chart-tXC-7umSr"
@@ -505,7 +554,10 @@
             "label": "",
             "x": "ervenLandOwnershipInHectaresByNationality",
             "y": "total",
-            "id": "visual-ZiiM7Qgrh"
+            "id": "visual-ZiiM7Qgrh",
+            "props": {
+              "offset": 70
+            }
           }
         ],
         "id": "chart-YwZQL94BC"
@@ -523,7 +575,10 @@
             "label": "",
             "x": "ervenLandOwnershipInHectaresByRace",
             "y": "total",
-            "id": "visual-_NGXFE8nW"
+            "id": "visual-_NGXFE8nW",
+            "props": {
+              "offset": 70
+            }
           }
         ],
         "id": "chart-hmMyFnDk1"
@@ -541,7 +596,10 @@
             "label": "",
             "x": "numberOfErvenLandOwnersPerRace",
             "y": "total",
-            "id": "visual-L7OpEfGpf"
+            "id": "visual-L7OpEfGpf",
+            "props": {
+              "offset": 60
+            }
           }
         ],
         "id": "chart-TKanjG8KK"
@@ -566,7 +624,10 @@
             "label": "",
             "x": "numberOfSectionalTitleOwnersByCategory",
             "y": "total",
-            "id": "visual-FuEBwzmM_"
+            "id": "visual-FuEBwzmM_",
+            "props": {
+              "offset": 70
+            }
           }
         ],
         "id": "chart-X58FOrh4k"
@@ -584,7 +645,10 @@
             "label": "",
             "x": "sectionalTitleOwnershipInHectaresPerCategory",
             "y": "total",
-            "id": "visual-EhcAsMSNZ"
+            "id": "visual-EhcAsMSNZ",
+            "props": {
+              "offset": 70
+            }
           }
         ],
         "id": "chart-AnHUCu-Wi"
@@ -602,7 +666,10 @@
             "label": "",
             "x": "sectionalTitleOwnershipInHectaresPerRace",
             "y": "total",
-            "id": "visual-nI-c90a-4"
+            "id": "visual-nI-c90a-4",
+            "props": {
+              "offset": 70
+            }
           }
         ],
         "id": "chart-w7J2nc4_y"
@@ -620,7 +687,10 @@
             "label": "",
             "x": "numberOfSectionalTitleOwnersByRace",
             "y": "total",
-            "id": "visual-4mAE8mFmB"
+            "id": "visual-4mAE8mFmB",
+            "props": {
+              "offset": 70
+            }
           }
         ],
         "id": "chart-vNnNDbr3U"
@@ -656,7 +726,10 @@
             "label": "",
             "x": "numberOfSectionalTitleOwnersByGender",
             "y": "total",
-            "id": "visual-MD_K2D2zR"
+            "id": "visual-MD_K2D2zR",
+            "props": {
+              "offset": 60
+            }
           }
         ],
         "id": "chart-9VAjiM15T"
@@ -674,7 +747,10 @@
             "label": "",
             "x": "sectionalTitleOwnershipInHectaresNationality",
             "y": "total",
-            "id": "visual-F3Vq9JNF9"
+            "id": "visual-F3Vq9JNF9",
+            "props": {
+              "offset": 70
+            }
           }
         ],
         "id": "chart-MDtP4-rJv"
@@ -692,7 +768,10 @@
             "label": "",
             "x": "numberOfSectionalTitleOwnersByNationality",
             "y": "total",
-            "id": "visual-U2278TfzY"
+            "id": "visual-U2278TfzY",
+            "props": {
+              "offset": 60
+            }
           }
         ],
         "id": "chart-KgLT7BZSE"
@@ -716,7 +795,10 @@
             "table": "allNumTransactionsTradedPerClass2018S",
             "x": "classDistribution",
             "y": "total",
-            "id": "visual-QoroNEUog"
+            "id": "visual-QoroNEUog",
+            "props": {
+              "horizontal": true
+            }
           }
         ],
         "id": "chart-410BZSL4y"
@@ -733,10 +815,13 @@
             "table": "allTotalHectaresTradedPerClass2018S",
             "x": "classDistribution",
             "y": "total",
-            "id": "visualh4mWzNbzc"
+            "id": "visualh4mWzNbzc",
+            "props": {
+              "horizontal": true
+            }
           }
         ],
-        "id": "chartPEIHZQ4t-"
+        "id": "chart-PEIHZQ4t"
       },
       {
         "title": "Land Sales Distribution 2017/2018",
@@ -750,7 +835,10 @@
             "table": "allAvgPricePerHectaresPerClass2018S",
             "x": "classDistribution",
             "y": "total",
-            "id": "visual-iZliAHREq"
+            "id": "visual-iZliAHREq",
+            "props": {
+              "horizontal": true
+            }
           }
         ],
         "id": "chart-U5ajN3ION"
@@ -767,7 +855,10 @@
             "table": "allHighestPriceTradedPerClass2018S",
             "x": "classDistribution",
             "y": "total",
-            "id": "visual-WJ10v1hhK"
+            "id": "visual-WJ10v1hhK",
+            "props": {
+              "horizontal": true
+            }
           }
         ],
         "id": "chart-1EXthEMQt"
@@ -784,7 +875,10 @@
             "table": "allLowestPriceTradedPerClass2018S",
             "x": "classDistribution",
             "y": "total",
-            "id": "visual-DqRnc1nOE"
+            "id": "visual-DqRnc1nOE",
+            "props": {
+              "horizontal": true
+            }
           }
         ],
         "id": "chart-7LEt0TruL"
@@ -801,7 +895,10 @@
             "table": "allPriceTrendsTradedPerClass2018S",
             "x": "classDistribution",
             "y": "total",
-            "id": "visual-tcdILqnq5"
+            "id": "visual-tcdILqnq5",
+            "props": {
+              "horizontal": true
+            }
           }
         ],
         "id": "chart-1rBEJ86GI"
@@ -862,7 +959,10 @@
             "x": "transactionGroup",
             "y": "total",
             "aggregate": "sum",
-            "id": "visual-OcsjPU42P"
+            "id": "visual-OcsjPU42P",
+            "props": {
+              "offset": 60
+            }
           }
         ],
         "id": "chart-cjDF4Hosw"
@@ -882,7 +982,10 @@
             "y": "total",
             "aggregate": "sum",
             "barWidth": 15,
-            "id": "visual-3_lWw-8NB"
+            "id": "visual-3_lWw-8NB",
+            "props": {
+              "offset": 30
+            }
           }
         ],
         "id": "chart-cl9AM1Rzr"
@@ -900,7 +1003,10 @@
             "x": "breakdownCc",
             "y": "total",
             "aggregate": "sum",
-            "id": "visual-Srvm9tMxn"
+            "id": "visual-Srvm9tMxn",
+            "props": {
+              "offset": 80
+            }
           }
         ],
         "id": "chart-g9102dcYq"
@@ -918,7 +1024,10 @@
             "x": "breakdownCc",
             "y": "total",
             "aggregate": "sum",
-            "id": "visual-Cl8cQtdYe"
+            "id": "visual-Cl8cQtdYe",
+            "props": {
+              "offset": 80
+            }
           }
         ],
         "id": "chart-68w-lI0wI"
@@ -942,7 +1051,10 @@
             "table": "allHectaresTransferredPerProvinceByYears",
             "x": "hectaresTransferredPerProvinceByYear",
             "y": "total",
-            "id": "visual-fCLZwYiYO"
+            "id": "visual-fCLZwYiYO",
+            "props": {
+              "offset": 60
+            }
           }
         ],
         "id": "chart-hli4kyVJI"
@@ -1010,7 +1122,10 @@
             "table": "allRedistributedlandusebreakdowns",
             "x": "redistributedLandUseBreakdown",
             "y": "total",
-            "id": "visual-oM-bUyzHJ"
+            "id": "visual-oM-bUyzHJ",
+            "props": {
+              "offset": 80
+            }
           }
         ],
         "id": "chart-q0m47qbMf"
@@ -1027,7 +1142,10 @@
             "table": "allProjecttransferreds",
             "x": "year",
             "y": "total",
-            "id": "visual-flN2yrlAu"
+            "id": "visual-flN2yrlAu",
+            "props": {
+              "offset": 65
+            }
           }
         ],
         "id": "chart-w-XdN54jR"
@@ -1044,7 +1162,10 @@
             "table": "allBenefitedbeneficiaries",
             "x": "year",
             "y": "total",
-            "id": "visual-MrHNP1MT-"
+            "id": "visual-MrHNP1MT-",
+            "props": {
+              "offset": 65
+            }
           }
         ],
         "id": "chart-4iN3LBcXJ"
@@ -1061,7 +1182,10 @@
             "table": "allBenefitedhouseholds",
             "x": "year",
             "y": "total",
-            "id": "visual-boqwMlXS1"
+            "id": "visual-boqwMlXS1",
+            "props": {
+              "offset": 65
+            }
           }
         ],
         "id": "chart-U4KmVb4Rh"
@@ -1078,7 +1202,10 @@
             "table": "allFemalepartybenefiteds",
             "x": "year",
             "y": "total",
-            "id": "visual-JKC-PPQ6z"
+            "id": "visual-JKC-PPQ6z",
+            "props": {
+              "offset": 65
+            }
           }
         ],
         "id": "chart-ZqY0vutW5"
@@ -1095,7 +1222,10 @@
             "table": "allDisabledpeoplepartybenefiteds",
             "x": "year",
             "y": "total",
-            "id": "visual-_adHKljyH"
+            "id": "visual-_adHKljyH",
+            "props": {
+              "offset": 65
+            }
           }
         ],
         "id": "chart-twuiJHzcg"
@@ -1112,7 +1242,10 @@
             "table": "allYouthpartybenefiteds",
             "x": "year",
             "y": "total",
-            "id": "visual-ehPnnHUKG"
+            "id": "visual-ehPnnHUKG",
+            "props": {
+              "offset": 65
+            }
           }
         ],
         "id": "chart-TRlV1aQqU"
@@ -1129,7 +1262,10 @@
             "table": "allRestitutionhectaresacquireds",
             "x": "year",
             "y": "total",
-            "id": "visual-ISAI8yO8E"
+            "id": "visual-ISAI8yO8E",
+            "props": {
+              "offset": 65
+            }
           }
         ],
         "id": "chart-lrMrp5j_s"
@@ -1146,7 +1282,10 @@
             "table": "allRestitutionhouseholds",
             "x": "year",
             "y": "total",
-            "id": "visual-azJDdL2sl"
+            "id": "visual-azJDdL2sl",
+            "props": {
+              "offset": 65
+            }
           }
         ],
         "id": "chart-3dmv320Fj"
@@ -1163,7 +1302,10 @@
             "table": "allRestitutionbeneficiaries",
             "x": "year",
             "y": "total",
-            "id": "visual-Na6HOEFUo"
+            "id": "visual-Na6HOEFUo",
+            "props": {
+              "offset": 65
+            }
           }
         ],
         "id": "chart-hRxXW06uu"
@@ -1180,7 +1322,10 @@
             "table": "allRestitutionfemaleheadedhhs",
             "x": "year",
             "y": "total",
-            "id": "visual-INJuHvBPN"
+            "id": "visual-INJuHvBPN",
+            "props": {
+              "offset": 65
+            }
           }
         ],
         "id": "chart-kI7HChPFu"
@@ -1256,7 +1401,10 @@
             "label": "",
             "x": "landToPrioritiseForRedistribution",
             "y": "total",
-            "id": "visual-fOiytRUrb"
+            "id": "visual-fOiytRUrb",
+            "props": {
+              "height": 300
+            }
           }
         ],
         "id": "chart-g_l12zK5E"
@@ -1328,7 +1476,10 @@
             "label": "",
             "x": "landAcquisationChallenges",
             "y": "total",
-            "id": "visual-l5i_8KQTR"
+            "id": "visual-l5i_8KQTR",
+            "props": {
+              "height": 300
+            }
           }
         ],
         "id": "chart-2h6dPy1DZ"

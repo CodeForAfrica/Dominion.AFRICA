@@ -23,9 +23,9 @@ const theme = createTheme({
     colorScale: COLOR_SCALE,
     pie: {
       colorScale: COLOR_SCALE,
-      height: 300,
+      height: 250,
       legendWidth: 150,
-      origin: { x: 200, y: 150 },
+      origin: { x: 150, y: 125 },
       padding: 0,
       style: {
         data: {
@@ -38,7 +38,7 @@ const theme = createTheme({
           fill: 'rgb(0,0,0)'
         }
       },
-      width: 550
+      width: 450
     },
     area: {
       colorScale: COLOR_SCALE
@@ -48,25 +48,24 @@ const theme = createTheme({
       // padding: 0
     },
     bar: {
-      barWidth: 20,
-      domainPadding: { x: 20, y: 20 },
+      barWidth: 25,
+      domainPadding: { x: [25, 25] },
       height: 300,
-      offset: 25,
+      offset: 50,
       style: {
         data: {
+          fill: COLOR_SCALE[0],
           fontFamily: FONT_FAMILY_TEXT,
-          fontSize: 10,
-          fill: COLOR_SCALE[0]
+          fontSize: 10
         },
         labels: {
+          fill: 'black',
           fontFamily: FONT_FAMILY_TEXT,
-          fontSize: 10,
-          fill: 'rgb(0,0,0)'
+          fontSize: 10
         }
       }
     },
     axis: {
-      labelWidth: 3000,
       style: {
         tickLabels: {
           fontFamily: FONT_FAMILY_TEXT,
