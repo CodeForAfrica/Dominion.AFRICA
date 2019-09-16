@@ -18,19 +18,20 @@ function App() {
         <Route exact path="/resources" component={Resources} />
         <Route exact path="/about" component={About} />
         <Route exact path="/500" component={ServerError} />
-        <Route exact path="/:country(kenya|southfrica)" component={Country} />
+        <Route exact path="/:country(kenya|south-africa)" component={Country} />
         <Route exact path="/profile/:geoId" component={Profile} />
         <Route
           exact
           path="/compare/:geoId/vs/:comparisonGeoId"
           component={Profile}
         />
-        <Route component={NotFound} />
+
         <Route
           exact
           path="/embed/:geoId/:sectionId/:chartId"
           component={Embed}
         />
+        <Route component={NotFound} />
       </Switch>
     </BrowserRouter>
   );
