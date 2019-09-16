@@ -99,7 +99,7 @@ const theme = createTheme({
       textTransform: 'capitalize',
       fontWeight: 400,
       fontSize: '3.57143rem'
-    }, // Hero section  heading
+    },
     h4: {
       color: '#2b3129',
       fontFamily: FONT_FAMILY_HEADING,
@@ -165,7 +165,6 @@ const theme = createTheme({
 theme.typography.h3 = {
   color: '#293229',
   fontFamily: FONT_FAMILY_HEADING,
-  // textTransform: 'capitalize',
   fontWeight: 'normal',
   fontSize: '1.5rem',
   lineHeight: 1.17,

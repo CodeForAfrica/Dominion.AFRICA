@@ -824,14 +824,15 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@codeforafrica/hurumap-ui@^0.1.11":
-  version "0.1.11"
-  resolved "https://registry.yarnpkg.com/@codeforafrica/hurumap-ui/-/hurumap-ui-0.1.11.tgz#3492a5829926df5227c0603ca297929920922d70"
-  integrity sha512-1Qr9LKtRjTzdFXUTNkcTGN5v+PrIZpjrVeBng9NiGLg07XYWF5wVD3qD3X3/CQimbQsvfqkUJ/RcGJJ0d0lsPQ==
+"@codeforafrica/hurumap-ui@^0.1.12":
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/@codeforafrica/hurumap-ui/-/hurumap-ui-0.1.12.tgz#cee3bdcd6c2f4a17c70d48f7e7b6b983e08d14ce"
+  integrity sha512-kaeDUBxNvosnY/dPNVFm8G+Q1jGdxEE5JQtrVOOoZ/tM6DqFXpHS4Y+zyUVmCIaVVcG5MRHHipAMveDIk3MAjg==
   dependencies:
     "@material-ui/core" "^4.3.2"
     "@material-ui/styles" "^4.3.0"
     dequal "^1.0.0"
+    dom-to-image "^2.6.0"
     geojson "^0.5.0"
     leaflet "^1.5.1"
     lodash "^4.17.14"
@@ -3649,6 +3650,11 @@ dom-serializer@0:
   dependencies:
     domelementtype "^2.0.1"
     entities "^2.0.0"
+
+dom-to-image@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/dom-to-image/-/dom-to-image-2.6.0.tgz#8a503608088c87b1c22f9034ae032e1898955867"
+  integrity sha1-ilA2CAiMh7HCL5A0rgMuGJiVWGc=
 
 domain-browser@^1.1.1:
   version "1.2.0"
