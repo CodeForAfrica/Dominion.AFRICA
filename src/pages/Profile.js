@@ -40,6 +40,9 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('sm')]: {
       width: '30rem'
     }
+  },
+  sourceLink: {
+    fontSize: theme.typography.caption.fontSize
   }
 }));
 
@@ -77,7 +80,7 @@ function Profile({
     if (!profiles.isLoading) {
       dispatch({ type: 'selectedCountry', selectedCountry: profiles.profile });
     }
-  }, [profiles]);
+  }, [profiles, dispatch]);
 
   // get all available profiletabs
   const profileTabs = useMemo(
@@ -171,13 +174,14 @@ function Profile({
                       modal: {
                         root: classes.embedDropDownModal
                       }
-                    }
+                    },
+                    sourceLink: classes.sourceLink
                   }}
                   embed={{
                     title: 'Embed code for this chart',
                     subtitle:
                       'Copy the code below, then paste into your own CMS or HTML. Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge.',
-                    code: `<iframe src="https://dev.takwimu.africa/embed/${geoId}/${tab.sectionId}/${chart.id}" />`
+                    code: `<iframe src="${config.url}/embed/${geoId}/${tab.sectionId}/${chart.id}" />`
                   }}
                 >
                   {!chartData.isLoading &&
@@ -198,7 +202,7 @@ function Profile({
             ))}
         </Grid>
       )),
-    [chartData, classes, profileTabs, profiles, sectionedCharts]
+    [chartData, classes, geoId, profileTabs, profiles, sectionedCharts]
   );
 
   // Show and hide sections

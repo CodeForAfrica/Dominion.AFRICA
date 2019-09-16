@@ -1,4 +1,7 @@
 import React, { useMemo } from 'react';
+
+import { useTheme } from '@material-ui/core';
+
 import {
   BarChart,
   PieChart,
@@ -12,14 +15,11 @@ export default function ChartFactory({
     queryAlias,
     type: visualType,
     label,
-    horizontal,
     reference: { label: referenceLabel } = {},
     aggregate,
-    width,
-    height,
-    barWidth,
     subtitle,
-    description
+    description,
+    props = {}
   },
   data: datas,
   comparisonData: comparisonDatas,
@@ -34,6 +34,7 @@ export default function ChartFactory({
    */
   profiles
 }) {
+  const theme = useTheme();
   const key =
     Math.random()
       .toString(36)
@@ -76,6 +77,7 @@ export default function ChartFactory({
   }
 
   const numberFormatter = new Intl.NumberFormat('en-GB');
+  const { horizontal } = props;
 
   switch (visualType) {
     case 'square_nested_proportional_area':
@@ -132,20 +134,29 @@ export default function ChartFactory({
                 label: refrenceLabel
               }
             ]}
+            {...props}
           />
         </div>
       );
     }
     case 'pie': {
+      const height = props.height || theme.chart.pie.height;
+
       return (
-        // Due to responsiveness of piechart
-        <div>
+        <div style={{ height }}>
           <PieChart
             key={key}
-            width={width || 400}
-            height={height}
             data={primaryData}
+            donut
             donutLabelKey={{ dataIndex: 0, sortKey: '' }}
+            style={{
+              labels: {
+                fontFamily: theme.typography.fontFamily,
+                fill: 'black'
+              }
+            }}
+            theme={theme.chart}
+            {...props}
           />
         </div>
       );
@@ -161,66 +172,86 @@ export default function ChartFactory({
             description={description}
             comparisonData={[]} // TODO: pending NumberVisuals components (HURUmap-UI) fix on this proptypes
             classes={{}} // TODO: pending NumberVisuals style configurations - update root margin
+            {...props}
           />
         </div>
       );
     }
     case 'grouped_column': {
+      const barCount = primaryData[0].length;
+      const offset = props.offset || theme.chart.bar.offset;
+      const { domainPadding } = theme.chart.bar;
+      const computedSize =
+        primaryData.length * barCount * offset +
+        domainPadding.x[0] +
+        domainPadding.x[1];
+      const height = props.height || theme.chart.bar.height;
+      const computedWidth = horizontal ? height : computedSize;
+      const computedHeight = horizontal ? computedSize : height;
+
       return (
-        <div
-          style={{
-            width: primaryData.length * primaryData[0].length * 45,
-            height: '300px'
-          }}
-        >
+        <div style={{ width: computedWidth, height: computedHeight }}>
           <BarChart
+            data={primaryData}
+            domainPadding={domainPadding}
             key={key}
-            responsive
-            offset={45}
-            barWidth={40}
-            width={primaryData.length * primaryData[0].length * 45}
-            height={height || 300}
+            height={computedHeight}
             horizontal={horizontal}
             labels={datum => numberFormatter.format(datum.y)}
-            data={primaryData}
+            offset={offset}
             parts={{
               axis: {
-                labelWidth: 40,
                 independent: {
                   style: {
+                    axis: {
+                      display: 'block'
+                    },
                     tickLabels: {
+                      display: 'block'
+                    }
+                  }
+                },
+                dependent: {
+                  style: {
+                    grid: {
                       display: 'block'
                     }
                   }
                 }
               }
             }}
+            theme={theme.chart}
+            width={computedWidth}
+            {...props}
           />
         </div>
       );
     }
     case 'column': {
+      const barCount = isComparison ? 2 : 1;
+      const offset = props.offset || theme.chart.bar.offset;
+      const { domainPadding } = theme.chart.bar;
+      const computedSize =
+        primaryData.length * barCount * offset +
+        domainPadding.x[0] +
+        domainPadding.x[1];
+      const height = props.height || theme.chart.height;
+      const computedWidth = horizontal ? height : computedSize;
+      const computedHeight = horizontal ? computedSize : height;
       if (isComparison) {
         const processedComparisonData = aggregate
           ? aggregateData(aggregate, comparisonData)
           : comparisonData;
+
         return (
-          <div
-            style={{
-              width: primaryData.length * 2 * (barWidth || 40) + 5,
-              height: '300px'
-            }}
-          >
+          <div style={{ width: computedWidth, height: computedHeight }}>
             <BarChart
+              data={[primaryData, processedComparisonData]}
+              domainPadding={domainPadding}
               key={key}
-              responsive
-              offset={45}
-              barWidth={barWidth || 40}
-              width={primaryData.length * 2 * ((barWidth || 40) + 5)}
-              height={height || 300}
+              height={computedHeight}
               horizontal={horizontal}
               labels={datum => numberFormatter.format(datum.y)}
-              data={[primaryData, processedComparisonData]}
               parts={{
                 axis: {
                   independent: {
@@ -228,48 +259,61 @@ export default function ChartFactory({
                       axis: {
                         display: 'block'
                       },
-                      ticks: {
-                        display: 'block'
-                      },
                       tickLabels: {
+                        display: 'block'
+                      }
+                    }
+                  },
+                  dependent: {
+                    style: {
+                      grid: {
                         display: 'block'
                       }
                     }
                   }
                 }
               }}
+              theme={theme.chart}
+              width={computedWidth}
+              {...props}
             />
           </div>
         );
       }
+
       return (
-        <div
-          style={{
-            width: primaryData.length * (barWidth || 80) + 5,
-            height: '300px'
-          }}
-        >
+        <div style={{ width: computedWidth, height: computedHeight }}>
           <BarChart
-            key={key}
-            horizontal={horizontal}
-            barWidth={barWidth || 80}
-            width={
-              horizontal ? 200 : primaryData.length * ((barWidth || 80) + 5)
-            }
-            height={height || 300}
-            labels={datum => numberFormatter.format(datum.y)}
             data={primaryData}
+            domainPadding={domainPadding}
+            key={key}
+            height={computedHeight}
+            horizontal={horizontal}
+            labels={datum => numberFormatter.format(datum.y)}
             parts={{
               axis: {
                 independent: {
                   style: {
+                    axis: {
+                      display: 'block'
+                    },
                     tickLabels: {
+                      display: 'block'
+                    }
+                  }
+                },
+                dependent: {
+                  style: {
+                    grid: {
                       display: 'block'
                     }
                   }
                 }
               }
             }}
+            theme={theme.chart}
+            width={computedWidth}
+            {...props}
           />
         </div>
       );

@@ -1,61 +1,79 @@
 import { createTheme } from '@codeforafrica/hurumap-ui';
-import { createMuiTheme } from '@material-ui/core';
 
 const FONT_FAMILY_HEADING = '"Lora", "serif"';
 const FONT_FAMILY_TEXT = '"Montserrat", "sans-serif"';
 
 /**
- * http://colorbrewer2.org/#type=diverging&scheme=RdYlGn&n=11
+ * Used color bender to extend the 2 dominion colors: KHAKI_GREEN ('#7f9442') & DULL_ORANGE (#de9f3a)
+ * https://meyerweb.com/eric/tools/color-blend/#DE9F3A:7F9442:6:hex
  */
-// const KHAKI_GREEN = '#7f9442';
-// const DULL_ORANGE = '#de9f3a';
-const COLOR_BREWER_DIVERGING = [
-  '#a50026',
-  '#d73027',
-  '#f46d43',
-  '#fdae61',
-  '#fee08b',
-  '#ffffbf',
-  '#d9ef8b',
-  '#a6d96a',
-  '#66bd63',
-  '#1a9850',
-  '#006837'
-].reverse();
+const COLOR_SCALE = [
+  '#7F9442',
+  '#DE9F3A',
+  '#8D9641',
+  '#D09D3B',
+  '#9A9740',
+  '#C39C3C',
+  '#A8993F',
+  '#B59A3D'
+];
 
-const defaultTheme = createMuiTheme();
-const Theme = createTheme({
+const theme = createTheme({
   chart: {
+    colorScale: COLOR_SCALE,
     pie: {
-      legendWidth: 50,
-      colorScale: COLOR_BREWER_DIVERGING
-    },
-    area: {
-      colorScale: COLOR_BREWER_DIVERGING
-    },
-    group: {
-      colorScale: COLOR_BREWER_DIVERGING
-    },
-    bar: {
+      colorScale: COLOR_SCALE,
+      height: 250,
+      legendWidth: 150,
+      origin: { x: 150, y: 125 },
+      padding: 0,
       style: {
         data: {
-          fill: COLOR_BREWER_DIVERGING[0]
+          fontFamily: FONT_FAMILY_TEXT,
+          fontSize: 10
         },
         labels: {
           fontFamily: FONT_FAMILY_TEXT,
+          fontSize: 16,
           fill: 'rgb(0,0,0)'
+        }
+      },
+      width: 450
+    },
+    area: {
+      colorScale: COLOR_SCALE
+    },
+    group: {
+      colorScale: COLOR_SCALE
+    },
+    bar: {
+      barWidth: 25,
+      domainPadding: { x: [25, 25] },
+      height: 300,
+      offset: 50,
+      style: {
+        data: {
+          fill: COLOR_SCALE[0],
+          fontFamily: FONT_FAMILY_TEXT,
+          fontSize: 10
+        },
+        labels: {
+          fill: 'rgb(0,0,0)',
+          fontFamily: FONT_FAMILY_TEXT,
+          fontSize: 10
         }
       }
     },
     axis: {
-      labelWidth: 50,
       style: {
         tickLabels: {
+          fill: 'rgb(0,0,0)',
           fontFamily: FONT_FAMILY_TEXT,
-          fill: 'rgb(0,0,0)'
+          fontSize: 10
         },
         axisLabels: {
           fontFamily: FONT_FAMILY_TEXT,
+          fontSize: 10,
           fill: 'rgb(0,0,0)'
         }
       }
@@ -81,20 +99,7 @@ const Theme = createTheme({
       textTransform: 'capitalize',
       fontWeight: 400,
       fontSize: '3.57143rem'
-    }, // Hero section  heading
-    h3: {
-      color: '#293229',
-      fontFamily: FONT_FAMILY_HEADING,
-      // textTransform: 'capitalize',
-      fontWeight: 'normal',
-      fontSize: '1.5rem',
-      lineHeight: 1.17,
-      [defaultTheme.breakpoints.up('md')]: {
-        color: '#222822',
-        lineHeight: 1,
-        fontSize: '2.8572rem'
-      }
-    }, // Section heading
+    },
     h4: {
       color: '#2b3129',
       fontFamily: FONT_FAMILY_HEADING,
@@ -157,5 +162,17 @@ const Theme = createTheme({
     }
   }
 });
+theme.typography.h3 = {
+  color: '#293229',
+  fontFamily: FONT_FAMILY_HEADING,
+  fontWeight: 'normal',
+  fontSize: '1.5rem',
+  lineHeight: 1.17,
+  [theme.breakpoints.up('md')]: {
+    color: '#222822',
+    lineHeight: 1,
+    fontSize: '2.8572rem'
+  }
+};
 
-export default Theme;
+export default theme;
