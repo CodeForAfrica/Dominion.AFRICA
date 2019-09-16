@@ -45,7 +45,6 @@ const theme = createTheme({
     },
     group: {
       colorScale: COLOR_SCALE
-      // padding: 0
     },
     bar: {
       barWidth: 25,
@@ -59,7 +58,7 @@ const theme = createTheme({
           fontSize: 10
         },
         labels: {
-          fill: 'black',
+          fill: 'rgb(0,0,0)',
           fontFamily: FONT_FAMILY_TEXT,
           fontSize: 10
         }
@@ -68,9 +67,9 @@ const theme = createTheme({
     axis: {
       style: {
         tickLabels: {
+          fill: 'rgb(0,0,0)',
           fontFamily: FONT_FAMILY_TEXT,
-          fontSize: 10,
-          fill: 'rgb(0,0,0)'
+          fontSize: 10
         },
         axisLabels: {
           fontFamily: FONT_FAMILY_TEXT,
