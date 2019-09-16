@@ -55,7 +55,8 @@ function ProfileSectionTitle({
 ProfileSectionTitle.propTypes = {
   classes: PropTypes.shape().isRequired,
   tab: PropTypes.shape({
-    title: PropTypes.string.isRequired
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired
   }).isRequired,
   loading: PropTypes.bool
 };

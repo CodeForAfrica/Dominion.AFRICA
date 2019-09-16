@@ -106,6 +106,7 @@ function Profile({
         )
         .map(section => ({
           title: section.sectionTitle,
+          description: section.sectionDescription,
           slug: slugify(section.sectionTitle),
           icon: section.sectionIcon,
           sectionIndex: section.index,
