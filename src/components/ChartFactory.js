@@ -15,11 +15,11 @@ export default function ChartFactory({
     queryAlias,
     type: visualType,
     label,
-    horizontal = true,
     reference: { label: referenceLabel } = {},
     aggregate,
     subtitle,
-    description
+    description,
+    props = {}
   },
   data: datas,
   comparisonData: comparisonDatas,
@@ -77,6 +77,7 @@ export default function ChartFactory({
   }
 
   const numberFormatter = new Intl.NumberFormat('en-GB');
+  const { horizontal } = props;
 
   switch (visualType) {
     case 'square_nested_proportional_area':
@@ -133,19 +134,29 @@ export default function ChartFactory({
                 label: refrenceLabel
               }
             ]}
+            {...props}
           />
         </div>
       );
     }
     case 'pie': {
+      const height = props.height || theme.chart.pie.height;
+
       return (
-        <div>
+        <div style={{ height }}>
           <PieChart
             key={key}
             data={primaryData}
             donut
             donutLabelKey={{ dataIndex: 0, sortKey: '' }}
+            style={{
+              labels: {
+                fontFamily: theme.typography.fontFamily,
+                fill: 'black'
+              }
+            }}
             theme={theme.chart}
+            {...props}
           />
         </div>
       );
@@ -161,69 +172,120 @@ export default function ChartFactory({
             description={description}
             comparisonData={[]} // TODO: pending NumberVisuals components (HURUmap-UI) fix on this proptypes
             classes={{}} // TODO: pending NumberVisuals style configurations - update root margin
+            {...props}
           />
         </div>
       );
     }
     case 'grouped_column': {
       const barCount = primaryData[0].length;
+      const offset = props.offset || theme.chart.bar.offset;
+      const { domainPadding } = theme.chart.bar;
       const computedSize =
-        primaryData.length * barCount * (theme.chart.bar.barWidth + 2) +
-        2 * theme.chart.bar.domainPadding.x;
-      const computedWidth = horizontal ? theme.chart.bar.height : computedSize;
-      const computedHeight = horizontal ? computedSize : theme.chart.bar.height;
-      console.log('grouped_column', {
-        barCount,
-        computedSize,
-        computedHeight,
-        computedWidth
-      });
+        primaryData.length * barCount * offset +
+        domainPadding.x[0] +
+        domainPadding.x[1];
+      const height = props.height || theme.chart.bar.height;
+      const computedWidth = horizontal ? height : computedSize;
+      const computedHeight = horizontal ? computedSize : height;
 
       return (
-        <BarChart
-          data={primaryData}
-          key={key}
-          height={computedHeight}
-          horizontal={horizontal}
-          labels={datum => numberFormatter.format(datum.y)}
-          offset={theme.chart.bar.barWidth + 2}
-          parts={{
-            axis: {
-              independent: {
-                style: {
-                  axis: {
-                    display: 'block'
-                  },
-                  ticks: {
-                    display: 'block'
-                  },
-                  tickLabels: {
-                    display: 'block'
+        <div style={{ width: computedWidth, height: computedHeight }}>
+          <BarChart
+            data={primaryData}
+            domainPadding={domainPadding}
+            key={key}
+            height={computedHeight}
+            horizontal={horizontal}
+            labels={datum => numberFormatter.format(datum.y)}
+            offset={offset}
+            parts={{
+              axis: {
+                independent: {
+                  style: {
+                    axis: {
+                      display: 'block'
+                    },
+                    tickLabels: {
+                      display: 'block'
+                    }
+                  }
+                },
+                dependent: {
+                  style: {
+                    grid: {
+                      display: 'block'
+                    }
                   }
                 }
               }
-            }
-          }}
-          theme={theme.chart}
-          width={computedWidth}
-        />
+            }}
+            theme={theme.chart}
+            width={computedWidth}
+            {...props}
+          />
+        </div>
       );
     }
     case 'column': {
       const barCount = isComparison ? 2 : 1;
+      const offset = props.offset || theme.chart.bar.offset;
+      const { domainPadding } = theme.chart.bar;
       const computedSize =
-        primaryData.length * barCount * theme.chart.bar.offset +
-        2 * theme.chart.bar.domainPadding.x;
-      const computedWidth = horizontal ? theme.chart.bar.height : computedSize;
-      const computedHeight = horizontal ? computedSize : theme.chart.bar.height;
+        primaryData.length * barCount * offset +
+        domainPadding.x[0] +
+        domainPadding.x[1];
+      const height = props.height || theme.chart.height;
+      const computedWidth = horizontal ? height : computedSize;
+      const computedHeight = horizontal ? computedSize : height;
       if (isComparison) {
         const processedComparisonData = aggregate
           ? aggregateData(aggregate, comparisonData)
           : comparisonData;
 
         return (
+          <div style={{ width: computedWidth, height: computedHeight }}>
+            <BarChart
+              data={[primaryData, processedComparisonData]}
+              domainPadding={domainPadding}
+              key={key}
+              height={computedHeight}
+              horizontal={horizontal}
+              labels={datum => numberFormatter.format(datum.y)}
+              parts={{
+                axis: {
+                  independent: {
+                    style: {
+                      axis: {
+                        display: 'block'
+                      },
+                      tickLabels: {
+                        display: 'block'
+                      }
+                    }
+                  },
+                  dependent: {
+                    style: {
+                      grid: {
+                        display: 'block'
+                      }
+                    }
+                  }
+                }
+              }}
+              theme={theme.chart}
+              width={computedWidth}
+              {...props}
+            />
+          </div>
+        );
+      }
+
+      return (
+        <div style={{ width: computedWidth, height: computedHeight }}>
           <BarChart
-            data={[primaryData, processedComparisonData]}
+            data={primaryData}
+            domainPadding={domainPadding}
             key={key}
             height={computedHeight}
             horizontal={horizontal}
@@ -235,10 +297,14 @@ export default function ChartFactory({
                     axis: {
                       display: 'block'
                     },
-                    ticks: {
-                      display: 'block'
-                    },
                     tickLabels: {
+                      display: 'block'
+                    }
+                  }
+                },
+                dependent: {
+                  style: {
+                    grid: {
                       display: 'block'
                     }
                   }
@@ -247,44 +313,9 @@ export default function ChartFactory({
             }}
             theme={theme.chart}
             width={computedWidth}
+            {...props}
           />
-        );
-      }
-
-      return (
-        <BarChart
-          data={primaryData}
-          key={key}
-          height={computedHeight}
-          horizontal={horizontal}
-          labels={datum => numberFormatter.format(datum.y)}
-          parts={{
-            axis: {
-              independent: {
-                style: {
-                  axis: {
-                    display: 'block'
-                  },
-                  grid: {
-                    display: 'block'
-                  },
-                  tickLabels: {
-                    display: 'block'
-                  }
-                }
-              },
-              dependent: {
-                style: {
-                  grid: {
-                    display: 'block'
-                  }
-                }
-              }
-            }
-          }}
-          theme={theme.chart}
-          width={computedWidth}
-        />
+        </div>
       );
     }
     default:
