@@ -1,4 +1,5 @@
 const config = {
+  url: 'https://dev.dominion.africa',
   MAPIT: {
     url: 'https://mapit.hurumap.org',
     codeType: 'AFR'
