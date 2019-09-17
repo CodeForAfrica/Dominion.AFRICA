@@ -64,11 +64,11 @@
     "id": "section-0M2eSmy"
   },
   {
-    "sectionTitle": "Worker's Hostel Data",
+    "sectionTitle": "Workers' Hostel Data",
     "sectionDescription": "",
     "charts": [
       {
-        "title": "Number of people living in worker's hostel per age group",
+        "title": "Number of people living in workers' hostel per age group",
         "subtitle": "",
         "sourceLink": "http://www.statssa.gov.za/publications/P0318/P03182018.pdf",
         "sourceTitle": "General Household Survey, 2018",
@@ -90,7 +90,7 @@
         "id": "chart-wB5806xr"
       },
       {
-        "title": "Number of people living in worker's hostel per gender",
+        "title": "Number of people living in workers' hostel per gender",
         "subtitle": "",
         "sourceLink": "http://www.statssa.gov.za/publications/P0318/P03182018.pdf",
         "sourceTitle": "General Household Survey, 2018",
@@ -107,7 +107,7 @@
         "id": "chart-HtZtHlMi"
       },
       {
-        "title": "Number of people living in worker's hostel per geography",
+        "title": "Number of people living in workers' hostel per geography",
         "subtitle": "",
         "sourceLink": "http://www.statssa.gov.za/publications/P0318/P03182018.pdf",
         "sourceTitle": "General Household Survey, 2018",
