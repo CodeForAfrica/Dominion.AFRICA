@@ -11,7 +11,6 @@ const styles = {
     fontSize: '0.93rem',
     fontWeight: 'bold',
     display: 'inline-block',
-    paddingLeft: '1.2rem',
     '&:hover': {
       color: '#e7e452'
     }
@@ -63,6 +62,9 @@ class GetLocation extends React.Component {
       },
       failure => {
         this.setState(() => ({ buttonText: failure.message }));
+      },
+      {
+        timeout: 10000
       }
     );
   }
