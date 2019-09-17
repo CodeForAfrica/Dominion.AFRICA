@@ -19,6 +19,15 @@ const COLOR_SCALE = [
 ];
 
 const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 576,
+      md: 768,
+      lg: 1280,
+      xl: 1980
+    }
+  },
   chart: {
     colorScale: COLOR_SCALE,
     pie: {
