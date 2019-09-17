@@ -59,7 +59,7 @@ function HomeHero({ classes }) {
       >
         <HeroTitleGrid>
           <HeroTitle classes={{ title: classes.herotitle }}>
-            Discover the stories behind the data.
+            Discover the stories behind the data
           </HeroTitle>
 
           <HeroDescription>
