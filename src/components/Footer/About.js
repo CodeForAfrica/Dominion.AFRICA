@@ -49,9 +49,9 @@ function About({ classes }) {
   return (
     <div>
       <Typography variant="subtitle1" className={classes.title}>
-        HURUmap gives infomediaries like journalists and Civic activists an easy
+        HURUmap gives infomediaries like journalists and civic activists an easy
         &apos;plug & play&apos; toolkit for finding and embedding interactive
-        data visualizations into their storytelling
+        data visualizations into their storytelling.
       </Typography>
       <Typography variant="subtitle1" className={classes.body}>
         This project is built on software originally created by the Knight Lab
@@ -63,8 +63,7 @@ function About({ classes }) {
         <A href="https://openup.org.za/" className={classes.links}>
           OpenUp
         </A>{' '}
-        and Media Monitoring Africa for Wazimap in South Africa for Wazimap in
-        South Africa and by{' '}
+        and Media Monitoring Africa for Wazimap in South Africa, and by{' '}
         <A href="https://codeforafrica.org/" className={classes.links}>
           Code for Africa
         </A>{' '}
@@ -88,6 +87,7 @@ function About({ classes }) {
         <A href="https://zambia.hurumap.org/" className={classes.links}>
           Zambia
         </A>
+        .
       </Typography>
       <Typography variant="subtitle1" className={classes.body}>
         This site is an{' '}
@@ -105,7 +105,7 @@ function About({ classes }) {
         >
           Creative Commons 4 Attribution Licence
         </A>
-        . Reuse it to help empower your own community. The code os available on{' '}
+        . Reuse it to help empower your own community. The code is available on{' '}
         <A href="https://github.com/CodeForAfrica" className={classes.links}>
           Github
         </A>{' '}

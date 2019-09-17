@@ -78,7 +78,7 @@ function CountryHero({ classes, width, history, dominion }) {
           {selectedCountry.name}
         </HeroTitle>
         <HeroDescription classes={{ body2: classes.description }}>
-          Dominion makes data available to help add context and authority to{' '}
+          Dominion gives you the data to add context and authority to{' '}
           {isWidthUp('md', width) && <br />}
           public discourse and policy-making on vital issues of land ownership.
         </HeroDescription>

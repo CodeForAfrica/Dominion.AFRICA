@@ -101,7 +101,7 @@ function ProfileRelease({ classes }) {
             Citations
           </Typography>
           <Typography className={classes.descriptionText}>
-            Workers&apos; Hostel Data, General Househod Survey Hostel 2018{' '}
+            Workers&apos; Hostel Data, General Household Survey Hostel 2018{' '}
             {citationLink(
               'http://www.statssa.gov.za/publications/P0318/P03182018.pdf'
             )}
