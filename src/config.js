@@ -78,7 +78,7 @@ const config = {
     },
     {
       index: 3,
-      title: "A farmers' 15-year wait for land justice",
+      title: "A farmer's 15-year wait for land justice",
       author: 'Jeanne-Marié Versluis',
       brief:
         'The government offered the farm to Rakgase in 2002 and accepted the offer he made, but nothing has come of the agreement. ',
