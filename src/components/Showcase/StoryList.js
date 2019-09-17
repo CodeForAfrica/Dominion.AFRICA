@@ -1,13 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withWidth, { isWidthDown } from '@material-ui/core/withWidth';
 
-import { Grid, GridList, GridListTile } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  useMediaQuery,
+  Grid,
+  GridList,
+  GridListTile
+} from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles';
 
 import StoryCard from './StoryCard';
 
-const styles = () => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
     /**
@@ -23,26 +28,23 @@ const styles = () => ({
   },
   gridList: {
     flexWrap: 'nowrap',
-    // TODO(nyokabi): Material-ui documentation for Grid list componenet
+    // TODO(nyokabi): Material-ui documentation for Grid list component
     //                Promote the list into its own layer on Chrome. This cost
     //                memory but helps keeping high FPS.
     transform: 'translateZ(0)',
     height: '100%',
     margin: '0 !important'
   }
-});
+}));
 
-function StoryList({ classes, storyData, width }) {
-  // TODO(kilemensi): GridListTile computes the size of item and sets it using
-  //                  style. This means we can't use classes since element
-  //                  style has higher preference. Hence the use of style here.
-  //                  We need to match exact size of StoryCard so we don't end
-  //                  up with a lot of spaces around StoryCard.
+function StoryList({ storyData, width, ...props }) {
+  const classes = useStyles(props);
+  const theme = useTheme();
   let cards = 4;
-  if (isWidthDown('md', width)) {
-    cards = 3;
+  if (useMediaQuery(theme.breakpoints.down('md'))) {
+    cards = 2;
   }
-  if (isWidthDown('sm', width)) {
+  if (useMediaQuery(theme.breakpoints.down('sm'))) {
     cards = 1;
   }
 
@@ -65,9 +67,8 @@ function StoryList({ classes, storyData, width }) {
 }
 
 StoryList.propTypes = {
-  classes: PropTypes.shape().isRequired,
   storyData: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   width: PropTypes.string.isRequired
 };
 
-export default withWidth()(withStyles(styles)(StoryList));
+export default StoryList;
