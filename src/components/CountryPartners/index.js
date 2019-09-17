@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import { Grid } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, Grid } from '@material-ui/core';
 
 import PartnerContent from './PartnerContent';
 
@@ -13,7 +12,7 @@ import ourland from '../../assets/images/logos/onground.png';
 import landbou from '../../assets/images/logos/landbou.png';
 import citypress from '../../assets/images/logos/citypress.png';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexRow: 1,
     backgroundColor: theme.palette.primary.light
@@ -28,8 +27,11 @@ const styles = theme => ({
   img: {
     maxHeight: '6.88rem',
     maxWidth: '30vw',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       width: 'auto',
+      maxWidth: '8vw'
+    },
+    [theme.breakpoints.up('lg')]: {
       maxWidth: '11.423rem'
     }
   },
@@ -40,14 +42,22 @@ const styles = theme => ({
     }
   },
   imageGrid: {
-    padding: '1.143rem',
-    [theme.breakpoints.up('md')]: {
+    textAlign: 'center',
+    width: '100%',
+    padding: '0.75rem',
+    [theme.breakpoints.up('sm')]: {
+      textAlign: 'left',
+      width: 'auto'
+    },
+    [theme.breakpoints.up('lg')]: {
       padding: '2.286rem 1.143rem'
     }
   }
-});
+}));
 
-function CountryPartners({ classes, dominion: { selectedCountry } }) {
+function CountryPartners({ dominion: { selectedCountry }, ...props }) {
+  const classes = useStyles(props);
+
   return (
     <Grid className={classes.root}>
       <Grid
@@ -68,7 +78,6 @@ function CountryPartners({ classes, dominion: { selectedCountry } }) {
           item
           xs={12}
           sm={8}
-          spacing={6}
           container
           direction="row"
           justify="flex-start"
@@ -90,7 +99,7 @@ function CountryPartners({ classes, dominion: { selectedCountry } }) {
           {((selectedCountry && selectedCountry.slug === 'south-africa') ||
             selectedCountry === null) && (
             <Fragment>
-              <Grid item className={classes.imageGrid}>
+              <Grid className={classes.imageGrid} item>
                 <A href="http://africauncensored.net/about/">
                   <img
                     src={citypress}
@@ -141,10 +150,9 @@ CountryPartners.defaultProps = {
 };
 
 CountryPartners.propTypes = {
-  classes: PropTypes.shape().isRequired,
   dominion: PropTypes.shape({
     selectedCountry: PropTypes.object
   })
 };
 
-export default withStyles(styles)(CountryPartners);
+export default CountryPartners;

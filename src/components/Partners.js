@@ -13,7 +13,11 @@ import oxpeckers from '../assets/images/logos/oxpeckers.png';
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.secondary.light
+    backgroundColor: theme.palette.secondary.light,
+    padding: '1.5rem 0',
+    [theme.breakpoints.up('sm')]: {
+      padding: 0
+    }
   },
   layout: {
     [theme.breakpoints.up('sm')]: {
@@ -30,21 +34,24 @@ const useStyles = makeStyles(theme => ({
   img: {
     maxHeight: '4.288rem',
     maxWidth: '30vw',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       width: 'auto',
+      maxWidth: '15vw'
+    },
+    [theme.breakpoints.up('lg')]: {
       maxWidth: '11.423rem'
     }
   },
   imageGrid: {
     textAlign: 'center',
     width: '100%',
-    padding: '1.143rem',
+    padding: '0.75rem',
     [theme.breakpoints.up('sm')]: {
       textAlign: 'left',
       width: 'auto'
     },
-    [theme.breakpoints.up('md')]: {
-      padding: '2.286rem 1.143rem'
+    [theme.breakpoints.up('lg')]: {
+      padding: '2.286rem 2.643rem'
     }
   }
 }));
