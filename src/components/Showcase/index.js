@@ -73,8 +73,8 @@ function Showcase({ classes, showcaseStories, dominion: { selectedCountry } }) {
 
           <Grid item xs={12}>
             <Typography variant="body2" className={classes.headlineDescription}>
-              Explore how land and how it is controlled shapes everything from
-              our food security and geopolitics to national identity.
+              Explore how the control of land shapes everything from food
+              security and geopolitics to national identity.
             </Typography>
           </Grid>
         </Grid>
