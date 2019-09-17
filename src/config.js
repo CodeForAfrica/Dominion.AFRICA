@@ -44,7 +44,7 @@ const config = {
       title: "Deforestation: 48 Years of Kenya's Unspoken Disaster",
       author: 'Africa Uncensored',
       brief: 'Deforestation in Kenya, how did it happen? Who is responsible?',
-      link: '',
+      link: 'https://www.youtube.com/watch?v=PDhuK4KrIoU',
       date: '05 Apr 2019',
       mediaSrc: 'https://www.youtube.com/embed/PDhuK4KrIoU',
       media: 'iframe',
