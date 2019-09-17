@@ -319,6 +319,7 @@
             "label": "",
             "x": "numberOfLandOwnersPerGender",
             "y": "total",
+            "aggregate": "percent",
             "id": "visual-eo9bB8LTg",
             "props": {
               "offset": 60
@@ -340,6 +341,7 @@
             "label": "",
             "x": "numberOfLandOwnersPerNationality",
             "y": "total",
+            "aggregate": "percent",
             "id": "visual-HRjurXQNL",
             "props": {
               "offset": 60
@@ -361,6 +363,7 @@
             "label": "",
             "x": "numberOfLandOwnersPerRace",
             "y": "total",
+            "aggregate": "percent",
             "id": "visual-PQi-CrVct",
             "props": {
               "offset": 65
@@ -382,6 +385,7 @@
             "label": "",
             "x": "numberOfPrivateLandOwnersByCategory",
             "y": "total",
+            "aggregate": "percent",
             "id": "visual-gkL8l6n0t",
             "props": {
               "offset": 65
@@ -403,6 +407,7 @@
             "label": "",
             "x": "privateLandOwnershipInHectaresPerCategory",
             "y": "total",
+            "aggregate": "percent",
             "id": "visual-bEesRO9pg",
             "props": {
               "offset": 70
@@ -424,6 +429,7 @@
             "label": "",
             "x": "landOwnershipInHectaresByRace",
             "y": "total",
+            "aggregate": "percent",
             "id": "visual-NnmsB7kr4"
           }
         ],
@@ -442,6 +448,7 @@
             "label": "",
             "x": "landOwnershipInHectaresByGender",
             "y": "total",
+            "aggregate": "percent",
             "id": "visual-IroOjrLl9",
             "props": {
               "offset": 60
@@ -463,6 +470,7 @@
             "label": "",
             "x": "landOwnershipInHectaresByNationality",
             "y": "total",
+            "aggregate": "percent",
             "id": "visual-WpgZqqBOG",
             "props": {
               "offset": 60
@@ -1122,6 +1130,7 @@
             "table": "allRedistributedlandusebreakdowns",
             "x": "redistributedLandUseBreakdown",
             "y": "total",
+            "aggregate": "percent",
             "id": "visual-oM-bUyzHJ",
             "props": {
               "offset": 80

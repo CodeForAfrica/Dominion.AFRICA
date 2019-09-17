@@ -76,7 +76,9 @@ export default function ChartFactory({
     return null;
   }
 
-  const numberFormatter = new Intl.NumberFormat('en-GB');
+  const numberFormatter = new Intl.NumberFormat('en-GB', {
+    maximumSignificantDigits: 2
+  });
   const { horizontal } = props;
 
   switch (visualType) {
@@ -197,7 +199,10 @@ export default function ChartFactory({
             key={key}
             height={computedHeight}
             horizontal={horizontal}
-            labels={datum => numberFormatter.format(datum.y)}
+            labels={datum =>
+              numberFormatter.format(datum.y) +
+              (aggregate === 'percent' ? '%' : '')
+            }
             offset={offset}
             parts={{
               axis: {
@@ -251,7 +256,10 @@ export default function ChartFactory({
               key={key}
               height={computedHeight}
               horizontal={horizontal}
-              labels={datum => numberFormatter.format(datum.y)}
+              labels={datum =>
+                numberFormatter.format(datum.y) +
+                (aggregate === 'percent' ? '%' : '')
+              }
               parts={{
                 axis: {
                   independent: {
@@ -289,7 +297,10 @@ export default function ChartFactory({
             key={key}
             height={computedHeight}
             horizontal={horizontal}
-            labels={datum => numberFormatter.format(datum.y)}
+            labels={datum =>
+              numberFormatter.format(datum.y) +
+              (aggregate === 'percent' ? '%' : '')
+            }
             parts={{
               axis: {
                 independent: {
