@@ -68,7 +68,10 @@ const styles = theme => ({
     }
   },
   tabSelected: {
-    fontWeight: 700
+    fontWeight: 700,
+    '& .MuiTab-wrapper': {
+      maxWidth: '11.8rem'
+    }
   },
   labelContainer: {
     paddingLeft: theme.spacing(2),
