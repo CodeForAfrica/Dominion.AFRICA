@@ -70,12 +70,15 @@ function Profile({
 
   useEffect(() => {
     if (!profiles.isLoading) {
+      const { geoCode } =
+        profiles.parent && profiles.parent.geoLevel === 'country'
+          ? profiles.parent
+          : profiles.profile;
       dispatch({
         type: 'selectedCountry',
-        selectedCountry:
-          profiles.parent && profiles.parent.geoLevel === 'country'
-            ? profiles.parent
-            : profiles.profile
+        selectedCountry: Object.values(config.countries).find(
+          country => country.code === geoCode
+        )
       });
     }
   }, [profiles, dispatch]);
@@ -221,6 +224,8 @@ function Profile({
           selectedCountry,
           head2head
         }}
+        geoId={geoId}
+        comparisonGeoId={comparisonGeoId}
       />
 
       <ProfileTabs

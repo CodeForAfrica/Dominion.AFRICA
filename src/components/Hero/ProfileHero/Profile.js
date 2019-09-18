@@ -8,13 +8,20 @@ import { withRouter } from 'react-router-dom';
 import classNames from 'classnames';
 import {
   MapIt,
-  ContentLoader,
+
+  /**
+   * Commented out until futher notice
+   */
+  // ContentLoader,
   TypographyLoader
 } from '@codeforafrica/hurumap-ui';
 import Hero, { HeroTitle, HeroTitleGrid, HeroDetail } from '../Hero';
 
-import Search from '../../Search';
-import searchIcon from '../../../assets/images/icons/location.svg';
+/**
+ * Commented out until futher notice
+ */
+// import Search from '../../Search';
+// import searchIcon from '../../../assets/images/icons/location.svg';
 import config from '../../../config';
 import { AppContext } from '../../../AppContext';
 
@@ -29,6 +36,7 @@ const styles = theme => ({
   },
   map: {
     zIndex: 0,
+    overflow: 'hidden',
     position: 'relative !important',
     backgroundColor: 'grey',
     height: '15.625rem !important',
@@ -213,13 +221,14 @@ function Profile({
           {populationDensity}
         </HeroDetail>
         {/* Start search skeleton loader */}
-        {!head2head && isLoading && (
+        {/* {!head2head && isLoading && (
           <ContentLoader style={{ width: '304px', height: '49px' }}>
             <rect x="0" y="0" width="100%" height="100%" />
           </ContentLoader>
-        )}
+        )} */}
         {/* End search skeleton loader */}
-        {!head2head && !isLoading && (
+        {/* David: hide comparison for now */}
+        {/* {!head2head && !isLoading && (
           <Search
             dominion={dominion}
             isComparisonSearch
@@ -227,7 +236,7 @@ function Profile({
             thisGeoId={geoId}
             icon={searchIcon}
           />
-        )}
+        )} */}
       </HeroTitleGrid>
       <div
         className={classNames(classes.map, {
