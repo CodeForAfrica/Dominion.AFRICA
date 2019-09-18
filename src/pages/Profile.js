@@ -80,7 +80,10 @@ function Profile({
     if (!profiles.isLoading) {
       dispatch({
         type: 'selectedCountry',
-        selectedCountry: profiles.parent ? profiles.parent : profiles.profile
+        selectedCountry:
+          profiles.parent && profiles.parent.geoLevel === 'country'
+            ? profiles.parent
+            : profiles.profile
       });
     }
   }, [profiles, dispatch]);
