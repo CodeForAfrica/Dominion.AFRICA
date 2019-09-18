@@ -94,7 +94,7 @@ const styles = theme => ({
     position: 'absolute',
     color: 'white',
     top: '1.75rem',
-    left: '3.625rem',
+    left: '2.9rem',
     margin: 0,
     fontFamily: theme.typography.fontFamily,
     fontWeight: 500,
