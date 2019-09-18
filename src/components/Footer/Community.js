@@ -1,24 +1,34 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import classNames from 'classnames';
 
-import { Typography } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, Typography } from '@material-ui/core';
 
 import A from '../A';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
-    width: '7.125rem', // 114px / 16
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '7rem'
+    },
     [theme.breakpoints.up('md')]: {
+      width: '11rem'
+    },
+    [theme.breakpoints.up('lg')]: {
       width: '12.5625rem' // 201px
     }
   },
   listText: {
     // match parent width
-    width: '7.125rem',
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '7rem'
+    },
     [theme.breakpoints.up('md')]: {
+      width: '11rem'
+    },
+    [theme.breakpoints.up('lg')]: {
       width: '12.5625rem' // 201px
     },
     color: theme.palette.primary.light,
@@ -35,10 +45,12 @@ const styles = theme => ({
   joinText: {
     paddingTop: '1.5rem'
   }
-});
+}));
 
-function Community({ classes }) {
+function Community(props) {
+  const classes = useStyles(props);
   const joinClassName = classNames(classes.listText, classes.joinText);
+
   return (
     <div classes={classes.root}>
       <Typography
@@ -79,8 +91,5 @@ function Community({ classes }) {
     </div>
   );
 }
-Community.propTypes = {
-  classes: PropTypes.shape().isRequired
-};
 
-export default withStyles(styles)(Community);
+export default Community;
