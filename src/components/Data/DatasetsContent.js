@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 
-import plugicon from '../../assets/images/icons/group-6.png';
+import { makeStyles } from '@material-ui/core';
+
+import plugIcon from '../../assets/images/icons/group-6.png';
 
 import Content from './Content';
 import { getOpenAfricaDominionGroupData } from '../../lib/api';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     marginTop: '3rem',
     [theme.breakpoints.up('md')]: {
       marginTop: 0
     }
   }
-});
+}));
 
-function DataSetsContent({ classes }) {
+function DataSetsContent(props) {
+  const classes = useStyles(props);
   const [datasetsCount, setDatasetsCount] = useState('-');
 
   useEffect(() => {
@@ -37,14 +38,10 @@ function DataSetsContent({ classes }) {
         target="_self"
         link="/resources#data"
       >
-        <img src={plugicon} alt="Plug Icon" />
+        <img src={plugIcon} alt="Plug Icon" />
       </Content>
     </div>
   );
 }
 
-DataSetsContent.propTypes = {
-  classes: PropTypes.shape().isRequired
-};
-
-export default withStyles(styles)(DataSetsContent);
+export default DataSetsContent;
