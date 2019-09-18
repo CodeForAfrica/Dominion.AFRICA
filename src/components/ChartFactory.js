@@ -17,6 +17,7 @@ export default function ChartFactory({
     label,
     reference: { label: referenceLabel } = {},
     aggregate,
+    unit = '',
     subtitle,
     description,
     props = {}
@@ -80,6 +81,11 @@ export default function ChartFactory({
     maximumSignificantDigits: 2
   });
   const { horizontal } = props;
+
+  const formatLabelValue = value => {
+    const [, format] = aggregate.split(':');
+    return numberFormatter.format(value) + (format === 'percent' ? '%' : unit);
+  };
 
   switch (visualType) {
     case 'square_nested_proportional_area':
@@ -199,10 +205,7 @@ export default function ChartFactory({
             key={key}
             height={computedHeight}
             horizontal={horizontal}
-            labels={datum =>
-              numberFormatter.format(datum.y) +
-              (aggregate === 'percent' ? '%' : '')
-            }
+            labels={datum => formatLabelValue(datum.y)}
             offset={offset}
             parts={{
               axis: {
@@ -256,10 +259,7 @@ export default function ChartFactory({
               key={key}
               height={computedHeight}
               horizontal={horizontal}
-              labels={datum =>
-                numberFormatter.format(datum.y) +
-                (aggregate === 'percent' ? '%' : '')
-              }
+              labels={datum => formatLabelValue(datum.y)}
               parts={{
                 axis: {
                   independent: {
@@ -297,10 +297,7 @@ export default function ChartFactory({
             key={key}
             height={computedHeight}
             horizontal={horizontal}
-            labels={datum =>
-              numberFormatter.format(datum.y) +
-              (aggregate === 'percent' ? '%' : '')
-            }
+            labels={datum => formatLabelValue(datum.y)}
             parts={{
               axis: {
                 independent: {
