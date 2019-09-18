@@ -147,6 +147,11 @@ const theme = createTheme({
     useNextVariants: true
   },
   overrides: {
+    MuiTab: {
+      wrapper: {
+        maxWidth: '11.2rem'
+      }
+    },
     MuiButton: {
       root: {
         border: '0.125rem solid #ffff',
