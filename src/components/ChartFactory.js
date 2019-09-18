@@ -83,8 +83,13 @@ export default function ChartFactory({
   const { horizontal } = props;
 
   const formatLabelValue = value => {
-    const [, format] = aggregate.split(':');
-    return numberFormatter.format(value) + (format === 'percent' ? '%' : unit);
+    if (aggregate) {
+      const [, format] = aggregate.split(':');
+      return (
+        numberFormatter.format(value) + (format === 'percent' ? '%' : unit)
+      );
+    }
+    return numberFormatter.format(value) + unit;
   };
 
   switch (visualType) {
