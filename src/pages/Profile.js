@@ -33,14 +33,6 @@ const useStyles = makeStyles(theme => ({
   chartsSection: {
     display: 'none'
   },
-  shareDropDownExploreButton: {
-    color: 'black'
-  },
-  embedDropDownModal: {
-    [theme.breakpoints.up('sm')]: {
-      width: '30rem'
-    }
-  },
   sourceLink: {
     fontSize: theme.typography.caption.fontSize
   }
@@ -173,14 +165,6 @@ function Profile({
                   classes={{
                     title: classes.title,
                     subtitle: classes.subtitle,
-                    shareDropDown: {
-                      explore: classes.shareDropDownExploreButton
-                    },
-                    embedDropDown: {
-                      modal: {
-                        root: classes.embedDropDownModal
-                      }
-                    },
                     sourceLink: classes.sourceLink
                   }}
                   embed={{
@@ -257,7 +241,7 @@ Profile.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       geoId: PropTypes.string.isRequired,
-      anotherGeoId: PropTypes.string.isRequired
+      comparisonGeoId: PropTypes.string
     }).isRequired
   }).isRequired
 };
