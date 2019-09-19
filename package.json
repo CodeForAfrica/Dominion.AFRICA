@@ -47,7 +47,7 @@
     "prettier": "^1.16.1"
   },
   "scripts": {
-    "commitChartDefinitions": "git add src/data/charts.json && git commit -m 'updated chart ids' && git push",
+    "commitChartDefinitions": "git add src/data/charts.json && (git diff-index --quiet HEAD || (git commit -m 'updated chart ids' && git push))",
     "applyIdsToChartDefinitions": "node scripts/chartsDefinitionsApplyUniqueId.js",
     "prestart": "yarn applyIdsToChartDefinitions",
     "start": "react-scripts start",
