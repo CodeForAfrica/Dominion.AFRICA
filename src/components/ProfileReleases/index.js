@@ -1,12 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import { Grid, Typography } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, Grid, Typography } from '@material-ui/core';
 
 import A from '../A';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     backgroundColor: 'white',
@@ -84,9 +82,11 @@ const styles = theme => ({
     width: '9.375rem',
     maxWidth: '9.375rem'
   }
-});
+}));
 
-function ProfileRelease({ classes }) {
+function ProfileRelease(props) {
+  const classes = useStyles(props);
+
   const citationLink = link => (
     <A className={classes.link} href={link}>
       {link}
@@ -140,8 +140,4 @@ function ProfileRelease({ classes }) {
   );
 }
 
-ProfileRelease.propTypes = {
-  classes: PropTypes.shape().isRequired
-};
-
-export default withStyles(styles)(ProfileRelease);
+export default ProfileRelease;
