@@ -61,15 +61,13 @@ const styles = theme => ({
   },
   caption: {
     display: 'inline-flex',
+    alignItems: 'center',
     color: '#8d8d8c',
     width: '100%',
     textTransform: 'capitalize',
     paddingTop: theme.spacing(),
-    paddingBottom: theme.spacing()
-  },
-  captionItem: {
-    display: 'inline-block',
-    paddingLeft: 4
+    paddingBottom: theme.spacing(),
+    marginTop: '0.625rem'
   },
   release: {
     display: 'none',
@@ -89,7 +87,8 @@ const styles = theme => ({
     display: 'inline-block'
   },
   alink: {
-    color: '#e7e452'
+    color: '#e7e452',
+    paddingLeft: 4
   }
 });
 function Profile({
@@ -166,23 +165,26 @@ function Profile({
         <HeroTitle small breakWord loading={isLoading} loaderWidth={150}>
           {shortName}
         </HeroTitle>
-        <TypographyLoader variant="subtitle1" className={classes.caption}>
-          {geoLevel}{' '}
-          <Typography variant="caption" className={classes.captionItem}>
-            in{' '}
-            <span>
-              <a
-                href={
-                  parentLevel !== 'continent'
-                    ? `/profile/${selectedCountry.geoLevel}-${selectedCountry.geoCode}`
-                    : '#'
-                }
-                className={classes.alink}
-              >
-                {parentLevel !== 'continent' ? selectedCountry.name : 'Africa'}
-              </a>
-              {', '}
-            </span>
+        <TypographyLoader
+          loading={isLoading}
+          variant="subtitle1"
+          className={classes.caption}
+          loader={{
+            width: '9.375rem'
+          }}
+        >
+          {geoLevel} in{' '}
+          <Typography
+            component="a"
+            variant="caption"
+            className={classes.alink}
+            href={
+              parentLevel !== 'continent'
+                ? `/profile/${selectedCountry.geoLevel}-${selectedCountry.geoCode}`
+                : '#'
+            }
+          >
+            {parentLevel !== 'continent' ? selectedCountry.name : 'Africa'}
           </Typography>
         </TypographyLoader>
         <HeroDetail
@@ -213,7 +215,7 @@ function Profile({
           loading={isLoading}
           loader={{
             detailWidth: 51,
-            detailLabelWidth: '123px'
+            detailLabelWidth: '7.6875rem'
           }}
           label="People per square kilometer"
           hidden={!populationDensity && !isLoading}
