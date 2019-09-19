@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 
 import { makeStyles } from '@material-ui/core';
 
-import plugIcon from '../../assets/images/icons/group-6.png';
-
-import Content from './Content';
 import { getOpenAfricaDominionGroupData } from '../../lib/api';
+import Content from './Content';
+
+import plugIcon from '../../assets/images/icons/group-6.png';
 
 const useStyles = makeStyles(theme => ({
   root: {

@@ -15,7 +15,8 @@ const useStyles = makeStyles(theme => ({
     backgroundImage: `url(${dataBackground})`,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'top left',
-    backgroundSize: '80% 70%',
+    backgroundSize: '65% 75%',
+    marginTop: '5rem',
     marginBottom: '4.57rem',
     [theme.breakpoints.up('md')]: {
       backgroundSize: '69% 100%',
@@ -116,7 +117,7 @@ function Data(props) {
               <div className={classes.img} />
             </Grid>
           </Hidden>
-          <Grid item md={4} lg={4} xl={4} className={classes.documentData}>
+          <Grid item md={4} lg={4} className={classes.documentData}>
             <DocumentsContent />
           </Grid>
         </Grid>

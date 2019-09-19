@@ -41,8 +41,10 @@ const useStyles = makeStyles(theme => ({
   },
   contentText: {
     paddingTop: '1rem',
+    width: '80%',
     [theme.breakpoints.up('md')]: {
-      height: '4.76rem'
+      height: '4.76rem',
+      width: 'auto'
     }
   },
   link: { textDecoration: 'none' },
