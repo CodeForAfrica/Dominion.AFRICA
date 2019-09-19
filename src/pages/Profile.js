@@ -33,14 +33,6 @@ const useStyles = makeStyles(theme => ({
   chartsSection: {
     display: 'none'
   },
-  shareDropDownExploreButton: {
-    color: 'black'
-  },
-  embedDropDownModal: {
-    [theme.breakpoints.up('sm')]: {
-      width: '30rem'
-    }
-  },
   sourceLink: {
     fontSize: theme.typography.caption.fontSize
   }
@@ -78,7 +70,16 @@ function Profile({
 
   useEffect(() => {
     if (!profiles.isLoading) {
-      dispatch({ type: 'selectedCountry', selectedCountry: profiles.profile });
+      const { geoCode } =
+        profiles.parent && profiles.parent.geoLevel === 'country'
+          ? profiles.parent
+          : profiles.profile;
+      dispatch({
+        type: 'selectedCountry',
+        selectedCountry: Object.values(config.countries).find(
+          country => country.code === geoCode
+        )
+      });
     }
   }, [profiles, dispatch]);
 
@@ -167,14 +168,6 @@ function Profile({
                   classes={{
                     title: classes.title,
                     subtitle: classes.subtitle,
-                    shareDropDown: {
-                      explore: classes.shareDropDownExploreButton
-                    },
-                    embedDropDown: {
-                      modal: {
-                        root: classes.embedDropDownModal
-                      }
-                    },
                     sourceLink: classes.sourceLink
                   }}
                   embed={{
@@ -231,6 +224,8 @@ function Profile({
           selectedCountry,
           head2head
         }}
+        geoId={geoId}
+        comparisonGeoId={comparisonGeoId}
       />
 
       <ProfileTabs
@@ -251,7 +246,7 @@ Profile.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       geoId: PropTypes.string.isRequired,
-      anotherGeoId: PropTypes.string.isRequired
+      comparisonGeoId: PropTypes.string
     }).isRequired
   }).isRequired
 };

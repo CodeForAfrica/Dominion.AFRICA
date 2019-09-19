@@ -159,14 +159,15 @@ HeroTitle.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
-  ]).isRequired,
+  ]),
   breakWord: PropTypes.bool,
   small: PropTypes.bool,
   loading: PropTypes.bool,
-  loaderWidth: PropTypes.oneOf([PropTypes.number, PropTypes.string])
+  loaderWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
 HeroTitle.defaultProps = {
+  children: undefined,
   breakWord: false,
   small: false,
   loading: false,
@@ -249,20 +250,20 @@ function HeroDetail({
 }
 
 HeroDetail.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.string,
   label: PropTypes.string.isRequired,
-  small: PropTypes.bool.isRequired,
+  small: PropTypes.bool,
   loading: PropTypes.bool,
   hidden: PropTypes.bool,
   loader: PropTypes.shape({
-    detailWidth: PropTypes.oneOf([PropTypes.number, PropTypes.string])
-      .isRequired,
-    detailLabelWidth: PropTypes.oneOf([PropTypes.number, PropTypes.string])
-      .isRequired
+    detailWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    detailLabelWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
   })
 };
 
 HeroDetail.defaultProps = {
+  small: false,
+  children: undefined,
   loading: false,
   hidden: false,
   loader: {
