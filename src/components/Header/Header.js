@@ -1,19 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Grid } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
-
 import { withRouter } from 'react-router-dom';
 
-import withWidth from '@material-ui/core/withWidth';
+import { makeStyles, Grid } from '@material-ui/core';
 
 import Navigation from './Navigation';
 
 import background from '../../assets/images/bg/background.png';
 import useCloseModalOnPopstate from '../../useCloseModalOnPopstate';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     backgroundImage: `url(${background})`,
@@ -37,10 +34,12 @@ const styles = theme => ({
     position: 'relative',
     width: '100%'
   }
-});
+}));
 
-function Header({ classes, history, children, dominion, ...props }) {
+function Header({ history, children, dominion, ...props }) {
+  const classes = useStyles(props);
   useCloseModalOnPopstate();
+
   return (
     <div className={classes.root}>
       <Grid container className={classes.wrapper}>
@@ -56,7 +55,6 @@ function Header({ classes, history, children, dominion, ...props }) {
 }
 
 Header.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
@@ -64,4 +62,4 @@ Header.propTypes = {
   dominion: PropTypes.shape({}).isRequired
 };
 
-export default withRouter(withWidth()(withStyles(styles)(Header)));
+export default withRouter(Header);

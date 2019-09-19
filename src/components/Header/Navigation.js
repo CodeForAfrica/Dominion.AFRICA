@@ -1,26 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Grid, Link, MenuList, MenuItem, IconButton } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  useMediaQuery,
+  useTheme,
+  Grid,
+  IconButton,
+  Link,
+  MenuItem,
+  MenuList
+} from '@material-ui/core';
 
-import withWidth, { isWidthDown } from '@material-ui/core/withWidth';
+import useToggleModal from '../../useToggleModal';
+import ContactUs from '../Modal/ContactUs';
+import Dropdown, { CountriesButton } from './PortalDropdown';
+import Modal from '../Modal';
+import PortalChooser from '../Modal/PortalChooser';
+import Search from '../Search';
+
+import backIcon from '../../assets/images/icons/back.svg';
 import logo from '../../assets/images/logos/dominion-logo.png';
 import logoWithCountrySpace from '../../assets/images/logos/dominion-logo-country.png';
-import Dropdown, { CountriesButton } from './PortalDropdown';
-
-import Search from '../Search';
-import PortalChooser from '../Modal/PortalChooser';
-import ContactUs from '../Modal/ContactUs';
-
 import menuIcon from '../../assets/images/icons/menu.svg';
-import backIcon from '../../assets/images/icons/back.svg';
 import searchIcon from '../../assets/images/icons/location.svg';
 
-import Modal from '../Modal';
-import useToggleModal from '../../useToggleModal';
-
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },
@@ -47,9 +52,9 @@ const styles = theme => ({
   },
   topMenuIcon: {
     color: 'white',
-    display: 'none',
-    [theme.breakpoints.down('sm')]: {
-      display: 'inline-block'
+    display: 'inline-block',
+    [theme.breakpoints.up('md')]: {
+      display: 'none'
     }
   },
   topMenuIconImg: {
@@ -101,9 +106,11 @@ const styles = theme => ({
     fontSize: 'x-small',
     textTransform: 'uppercase'
   }
-});
+}));
 
-function Navigation({ classes, width, dominion }) {
+function Navigation({ dominion, ...props }) {
+  const classes = useStyles(props);
+  const theme = useTheme();
   const { countries, selectedCountry } = dominion;
   const { open: openPortal, toggleModal: togglePortal } = useToggleModal(
     'portal'
@@ -231,9 +238,9 @@ function Navigation({ classes, width, dominion }) {
     </Grid>
   );
 
-  const nav = isWidthDown('sm', width)
-    ? renderMobileMenu()
-    : renderDesktopMenu();
+  const nav = useMediaQuery(theme.breakpoints.up('md'))
+    ? renderDesktopMenu()
+    : renderMobileMenu();
 
   return (
     <React.Fragment>
@@ -263,9 +270,7 @@ function Navigation({ classes, width, dominion }) {
 }
 
 Navigation.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
-  width: PropTypes.string.isRequired,
   dominion: PropTypes.shape({}).isRequired
 };
 
-export default withWidth()(withStyles(styles)(Navigation));
+export default Navigation;
