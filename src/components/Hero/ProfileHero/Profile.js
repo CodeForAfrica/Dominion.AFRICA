@@ -151,7 +151,7 @@ function Profile({
   return (
     <Hero classes={{ root: classes.root }} {...props}>
       <HeroTitleGrid
-        quater
+        quarter
         head2head={head2head}
         classes={{ titleTextGrid: classes.titleGrid }}
       >
