@@ -2,19 +2,21 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import {
+  makeStyles,
+  Button,
   Grid,
-  Typography,
   MenuList,
   MenuItem,
-  Button
+  Typography
 } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+
+import { AppContext } from '../../AppContext';
+import GetLocation from './GetLocation';
+
 import geolocate from '../../assets/images/icons/shape.svg';
 import cross from '../../assets/images/icons/close.svg';
-import GetLocation from './GetLocation';
-import { AppContext } from '../../AppContext';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   grid: {
     flexGrow: 1,
     width: '100%',
@@ -35,6 +37,9 @@ const styles = theme => ({
       color: '#e7e452'
     },
     [theme.breakpoints.up('md')]: {
+      paddingRight: '50px'
+    },
+    [theme.breakpoints.up('lg')]: {
       paddingRight: '150px'
     }
   },
@@ -42,10 +47,11 @@ const styles = theme => ({
     float: 'right'
   },
   listIndex: {
+    display: 'none',
     marginRight: '50px',
     width: '80px',
-    [theme.breakpoints.down('sm')]: {
-      display: 'none'
+    [theme.breakpoints.up('md')]: {
+      display: 'block'
     }
   },
   closeButton: {
@@ -60,14 +66,16 @@ const styles = theme => ({
     }
   },
   closeSpan: {
-    [theme.breakpoints.down('sm')]: {
-      display: 'none'
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'inline'
     }
   },
   closeImage: {
     marginLeft: theme.spacing(6),
-    [theme.breakpoints.down('sm')]: {
-      float: 'right'
+    float: 'right',
+    [theme.breakpoints.up('md')]: {
+      float: 'none'
     }
   },
   browseText: {
@@ -135,9 +143,10 @@ const styles = theme => ({
   locationHr: {
     marginTop: '1rem'
   }
-});
+}));
 
-function PortalChooser({ classes, children, countries, handleClose }) {
+function PortalChooser({ children, countries, handleClose, ...props }) {
+  const classes = useStyles(props);
   const {
     state: { selectedCountry }
   } = useContext(AppContext);
@@ -150,15 +159,7 @@ function PortalChooser({ classes, children, countries, handleClose }) {
       className={classes.grid}
     >
       {children}
-      <Grid
-        xs={12}
-        sm={12}
-        md={5}
-        lg={5}
-        xl={5}
-        item
-        className={classes.locationGrid}
-      >
+      <Grid xs={12} md={5} item className={classes.locationGrid}>
         <Typography
           component="div"
           variant="body2"
@@ -188,15 +189,7 @@ function PortalChooser({ classes, children, countries, handleClose }) {
           </Button>
         </Grid>
       </Grid>
-      <Grid
-        xs={12}
-        sm={12}
-        md={7}
-        lg={7}
-        xl={7}
-        item
-        className={classes.countryLocationGrid}
-      >
+      <Grid xs={12} md={7} item className={classes.countryLocationGrid}>
         <MenuList className={classes.countryList}>
           {Object.keys(countries).map((country, index) => (
             <MenuItem
@@ -223,7 +216,6 @@ function PortalChooser({ classes, children, countries, handleClose }) {
 }
 
 PortalChooser.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
@@ -236,4 +228,4 @@ PortalChooser.defaultProps = {
   children: null
 };
 
-export default withStyles(styles)(PortalChooser);
+export default PortalChooser;
