@@ -136,7 +136,7 @@ export default function ChartFactory({
                       x: comparisonData.reduce((a, b) => a + b.y, 0),
                       label:
                         comparisonData[0].label ||
-                        profiles.comparisonProfile[label] ||
+                        profiles.comparison[label] ||
                         label
                     }
                   ]

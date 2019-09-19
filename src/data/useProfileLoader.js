@@ -51,7 +51,7 @@ export default (geoId, comparisonGeoId, visuals) => {
 
       let comparison;
       if (comparisonGeoId) {
-        const data = await client.query({
+        const { data } = await client.query({
           query: GET_PROFILE,
           variables: {
             geoCode: comparisonGeoId.split('-')[1],
