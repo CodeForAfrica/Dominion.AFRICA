@@ -1,17 +1,18 @@
 import React from 'react';
-
 import { PropTypes } from 'prop-types';
+
 import {
-  Grid,
-  Typography,
+  makeStyles,
   Card,
   CardActionArea,
-  CardContent
+  CardContent,
+  Grid,
+  Typography
 } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+
 import A from '../A';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     margin: '1.25rem 0'
@@ -25,10 +26,11 @@ const styles = theme => ({
     }
   },
   description: {
+    opacity: 0.6,
     marginTop: '0.625rem'
   },
   xsTitle: {
-    display: 'block',
+    marginTop: '1rem',
     [theme.breakpoints.up('md')]: {
       display: 'none'
     }
@@ -36,16 +38,24 @@ const styles = theme => ({
   mdTitle: {
     display: 'none',
     [theme.breakpoints.up('md')]: {
+      marginTop: '1rem',
       display: 'block'
     }
+  },
+  orgLink: {
+    opacity: 0.6
   }
-});
+}));
 
-function Data({ classes, orgLink, dataLink, title, description, preview }) {
+function Data({ orgLink, dataLink, title, description, preview, ...props }) {
+  const classes = useStyles(props);
+
   return (
     <Card className={classes.root}>
       <CardContent>
-        <A href={orgLink}>{orgLink}</A>
+        <A className={classes.orgLink} href={orgLink} underline="hover">
+          {orgLink}
+        </A>
         <CardActionArea target="_blank" href={dataLink}>
           <Typography className={classes.xsTitle} variant="h4">
             {title}
@@ -72,7 +82,6 @@ function Data({ classes, orgLink, dataLink, title, description, preview }) {
 }
 
 Data.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   orgLink: PropTypes.string.isRequired,
@@ -84,4 +93,4 @@ Data.defaultProps = {
   preview: null
 };
 
-export default withStyles(styles)(Data);
+export default Data;

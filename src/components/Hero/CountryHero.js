@@ -1,27 +1,32 @@
 import React, { useCallback } from 'react';
-
 import { PropTypes } from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { MapIt } from '@codeforafrica/hurumap-ui';
-import { Typography } from '@material-ui/core';
-import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
+
 import { withRouter } from 'react-router-dom';
 
-import Hero, {
-  HeroTitle,
-  HeroDescription,
-  HeroTitleGrid,
-  HeroButton
-} from './Hero';
+import {
+  makeStyles,
+  useMediaQuery,
+  useTheme,
+  Typography
+} from '@material-ui/core';
+
+import { MapIt } from '@codeforafrica/hurumap-ui';
+
 import config from '../../config';
 import useToggleModal from '../../useToggleModal';
+import Hero, {
+  HeroButton,
+  HeroDescription,
+  HeroTitle,
+  HeroTitleGrid
+} from './Hero';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    marginTop: '32px',
+    marginTop: '2rem',
     [theme.breakpoints.up('md')]: {
-      marginBottom: '80px'
+      marginBottom: '5rem'
     }
   },
   titleGrid: {
@@ -31,19 +36,24 @@ const styles = theme => ({
     }
   },
   countryName: {
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       whiteSpace: 'nowrap'
     }
   },
   description: {
-    [theme.breakpoints.up('md')]: {
-      whiteSpace: 'nowrap',
-      width: '100%'
+    [theme.breakpoints.up('lg')]: {
+      whiteSpace: 'nowrap'
     }
   },
   alink: {
     color: '#e7e452',
     pointerEvents: 'all'
+  },
+  heroButtonArray: {
+    display: 'none',
+    [theme.breakpoints.up('lg')]: {
+      display: 'block'
+    }
   },
   map: {
     zIndex: 0,
@@ -60,9 +70,11 @@ const styles = theme => ({
       maxWidth: '51.8125rem !important'
     }
   }
-});
+}));
 
-function CountryHero({ classes, width, history, dominion }) {
+function CountryHero({ history, dominion, ...props }) {
+  const classes = useStyles(props);
+  const theme = useTheme();
   const { selectedCountry = { name: '' } } = dominion;
   const { toggleModal } = useToggleModal('search');
   const onClickGeoLayer = useCallback(
@@ -71,6 +83,7 @@ function CountryHero({ classes, width, history, dominion }) {
     },
     [history]
   );
+
   return (
     <Hero classes={{ root: classes.root }}>
       <HeroTitleGrid classes={{ titleTextGrid: classes.titleGrid }}>
@@ -79,11 +92,16 @@ function CountryHero({ classes, width, history, dominion }) {
         </HeroTitle>
         <HeroDescription classes={{ body2: classes.description }}>
           Dominion gives you the data to add context and authority to{' '}
-          {isWidthUp('md', width) && <br />}
+          {useMediaQuery(theme.breakpoints.up('md')) && <br />}
           public discourse and policy-making on vital issues of land ownership.
         </HeroDescription>
 
-        <HeroButton onClick={toggleModal}>Find a place</HeroButton>
+        <HeroButton
+          classes={{ arrow: classes.heroButtonArray }}
+          onClick={toggleModal}
+        >
+          Find a place
+        </HeroButton>
 
         <Typography variant="subtitle2" style={{ marginTop: '2.5rem' }}>
           or view{' '}
@@ -111,9 +129,7 @@ function CountryHero({ classes, width, history, dominion }) {
 }
 
 CountryHero.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
-  dominion: PropTypes.shape({}).isRequired,
-  width: PropTypes.string.isRequired
+  dominion: PropTypes.shape({}).isRequired
 };
 
-export default withRouter(withWidth()(withStyles(styles)(CountryHero)));
+export default withRouter(CountryHero);

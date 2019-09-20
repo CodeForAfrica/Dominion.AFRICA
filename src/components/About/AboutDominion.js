@@ -1,8 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import { Grid } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, Grid } from '@material-ui/core';
 
 import Header from './Header';
 import Info, { InfoSubtitle, InfoBody } from './Info';
@@ -12,7 +10,7 @@ import A from '../A';
 
 import land from '../../assets/images/hero-image-3_2.png';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     backgroundColor: '#fff'
@@ -46,13 +44,15 @@ const styles = theme => ({
       order: 3
     }
   }
-});
+}));
 
-function AboutDominion({ classes }) {
+function AboutDominion({ ...props }) {
+  const classes = useStyles(props);
+
   return (
     <div className={classes.root}>
       <Grid container direction="row" className={classes.layout}>
-        <Grid item className={classes.header} md={3}>
+        <Grid item className={classes.header} md={4} lg={3}>
           <Header>
             About <br />
             Dominion
@@ -93,7 +93,7 @@ function AboutDominion({ classes }) {
             </InfoBody>
           </Info>
         </Grid>
-        <Grid container item className={classes.land} md={5}>
+        <Grid container item className={classes.land} md={4} lg={5}>
           <Land imgSrc={land} />
         </Grid>
       </Grid>
@@ -101,8 +101,4 @@ function AboutDominion({ classes }) {
   );
 }
 
-AboutDominion.propTypes = {
-  classes: PropTypes.shape().isRequired
-};
-
-export default withStyles(styles)(AboutDominion);
+export default AboutDominion;

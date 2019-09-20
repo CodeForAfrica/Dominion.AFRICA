@@ -2,15 +2,15 @@ import React from 'react';
 
 import { PropTypes } from 'prop-types';
 import {
-  Grid,
-  Typography,
+  makeStyles,
   Card,
   CardActionArea,
-  CardContent
+  CardContent,
+  Grid,
+  Typography
 } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
 
-const styles = {
+const useStyles = makeStyles(() => ({
   root: {
     width: 'available'
   },
@@ -25,11 +25,14 @@ const styles = {
     padding: '0.625rem 0'
   },
   description: {
-    marginTop: '0.625rem'
+    marginTop: '0.625rem',
+    opacity: 0.6
   }
-};
+}));
 
-function Document({ classes, link, title, description, preview }) {
+function Document({ link, title, description, preview, ...props }) {
+  const classes = useStyles(props);
+
   return (
     <Card className={classes.root}>
       <CardActionArea target="_blank" href={link}>
@@ -41,7 +44,7 @@ function Document({ classes, link, title, description, preview }) {
 
             <Grid item xs={8} container direction="column" justify="center">
               <Typography variant="h5">{title}</Typography>
-              <Typography className={classes.description}>
+              <Typography variant="body2" className={classes.description}>
                 {description}
               </Typography>
             </Grid>
@@ -53,7 +56,6 @@ function Document({ classes, link, title, description, preview }) {
 }
 
 Document.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   link: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
@@ -64,4 +66,4 @@ Document.defaultProps = {
   preview: null
 };
 
-export default withStyles(styles)(Document);
+export default Document;

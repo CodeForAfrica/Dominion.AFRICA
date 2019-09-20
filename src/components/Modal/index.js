@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { withStyles } from '@material-ui/core/styles';
-
-import { Modal as MaterialModal } from '@material-ui/core';
+import { makeStyles, Modal as MaterialModal } from '@material-ui/core';
 
 import background from '../../assets/images/bg/background.png';
 
-const styles = {
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
     padding: 0,
@@ -20,9 +18,11 @@ const styles = {
     height: 'auto',
     width: '100vw'
   }
-};
+}));
 
-function Modal({ classes, children, isOpen, onEscapeKeyDown }) {
+function Modal({ children, isOpen, onEscapeKeyDown, ...props }) {
+  const classes = useStyles(props);
+
   return (
     <MaterialModal
       hideBackdrop
@@ -36,7 +36,6 @@ function Modal({ classes, children, isOpen, onEscapeKeyDown }) {
 }
 
 Modal.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
@@ -49,4 +48,4 @@ Modal.defaultProps = {
   onEscapeKeyDown: () => {}
 };
 
-export default withStyles(styles)(Modal);
+export default Modal;

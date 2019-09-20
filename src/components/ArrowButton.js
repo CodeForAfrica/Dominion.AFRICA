@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Grid, Button } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
-
 import classNames from 'classnames';
 
-import arrowBlack from '../assets/images/icons/black-combined-shape.svg';
-import arrow from '../assets/images/icons/combined-shape.svg';
+import { makeStyles, Button, Grid } from '@material-ui/core';
 
-const styles = theme => ({
+import arrow from '../assets/images/icons/combined-shape.svg';
+import arrowBlack from '../assets/images/icons/black-combined-shape.svg';
+
+const useStyles = makeStyles(theme => ({
   root: {
     paddingTop: '2rem'
   },
@@ -35,13 +34,15 @@ const styles = theme => ({
   arrow: {
     pointerEvents: 'all',
     marginLeft: -theme.spacing(4),
-    [theme.breakpoints.down('sm')]: {
-      display: 'none'
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'block'
     }
   }
-});
+}));
 
-function ArrowButton({ secondary, classes, children, onClick, ...props }) {
+function ArrowButton({ children, onClick, secondary, ...props }) {
+  const classes = useStyles(props);
   return (
     <Grid item sm={12} container alignItems="center" className={classes.root}>
       <Button
@@ -64,7 +65,6 @@ function ArrowButton({ secondary, classes, children, onClick, ...props }) {
 }
 
 ArrowButton.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
@@ -77,4 +77,4 @@ ArrowButton.defaultProps = {
   secondary: false
 };
 
-export default withStyles(styles)(ArrowButton);
+export default ArrowButton;

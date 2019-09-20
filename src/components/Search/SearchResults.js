@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Grid, List, ListItem, Typography } from '@material-ui/core';
+import {
+  makeStyles,
+  Grid,
+  List,
+  ListItem,
+  Typography
+} from '@material-ui/core';
 
-import { withStyles } from '@material-ui/core/styles';
-
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     fontSize: '14px',
@@ -81,7 +85,7 @@ const styles = theme => ({
     fontSize: '16px',
     fontWeight: '400'
   }
-});
+}));
 
 const maxResults = 6;
 
@@ -98,12 +102,14 @@ function renderHref(codeType, result, thisGeoId, isComparisonSearch) {
 }
 
 function SearchResults({
-  classes,
   codeType,
   results,
   isComparisonSearch,
-  thisGeoId
+  thisGeoId,
+  ...props
 }) {
+  const classes = useStyles(props);
+
   return (
     <Grid
       container
@@ -111,7 +117,7 @@ function SearchResults({
         [classes.rootDropdown]: isComparisonSearch
       })}
     >
-      <Grid container direction="row" justify="flex-end">
+      <Grid item xs={12} container justify="flex-end">
         <List className={classes.list}>
           {results.slice(0, maxResults).map(result => (
             <ListItem
@@ -124,7 +130,7 @@ function SearchResults({
               component="a"
               href={renderHref(codeType, result, thisGeoId, isComparisonSearch)}
             >
-              <Grid container direction="row" alignItems="baseline">
+              <Grid container alignItems="baseline">
                 <Typography
                   className={classNames(classes.level, {
                     [classes.levelDropdown]: isComparisonSearch
@@ -153,7 +159,6 @@ function SearchResults({
 }
 
 SearchResults.propTypes = {
-  classes: PropTypes.shape().isRequired,
   codeType: PropTypes.string.isRequired,
   results: PropTypes.arrayOf(PropTypes.object).isRequired,
   thisGeoId: PropTypes.string,
@@ -164,4 +169,4 @@ SearchResults.defaultProps = {
   thisGeoId: ''
 };
 
-export default withStyles(styles)(SearchResults);
+export default SearchResults;

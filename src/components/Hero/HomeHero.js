@@ -1,53 +1,53 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import { Grid } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, Grid } from '@material-ui/core';
 
-import Hero, {
-  HeroTitle,
-  HeroDescription,
-  HeroTitleGrid,
-  HeroButton
-} from './Hero';
-
-import herobg from '../../assets/images/bg/hero_bg.png';
-import smallscreenbackground from '../../assets/images/bg/smallscreen_background.png';
-
-import HomeHeroMap from './HomeHeroMap';
 import useToggleModal from '../../useToggleModal';
+import Hero, {
+  HeroButton,
+  HeroDescription,
+  HeroTitle,
+  HeroTitleGrid
+} from './Hero';
+import HomeHeroMap from './HomeHeroMap';
 
-const styles = theme => ({
+import heroBg from '../../assets/images/bg/hero_bg.png';
+import smallScreenBackground from '../../assets/images/bg/smallscreen_background.png';
+
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },
   heroContentGrid: {
     flexGrow: 1,
-    backgroundImage: `url(${herobg})`,
+    backgroundImage: `url(${smallScreenBackground})`,
+    backgroundPosition: 'right top',
     backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center',
     backgroundSize: 'auto',
     width: '100%',
     height: 'auto',
-    padding: '4rem 0',
+    padding: 0,
     marginTop: '2rem',
-    marginBottom: '6rem',
-    [theme.breakpoints.down('sm')]: {
-      backgroundImage: `url(${smallscreenbackground})`,
-      backgroundPosition: 'right top',
-      padding: 0,
-      marginBottom: '3rem'
+    marginBottom: '3rem',
+    [theme.breakpoints.up('md')]: {
+      backgroundImage: `url(${heroBg})`,
+      backgroundPosition: 'center',
+      marginBottom: '6rem',
+      padding: '4rem 0'
     }
   },
-  herotitle: {
-    [theme.breakpoints.down('sm')]: {
-      width: '80%'
+  heroTitle: {
+    width: '80%',
+    [theme.breakpoints.up('md')]: {
+      width: 'auto'
     }
   }
-});
+}));
 
-function HomeHero({ classes }) {
+function HomeHero(props) {
+  const classes = useStyles(props);
   const { toggleModal } = useToggleModal('portal');
+
   return (
     <Hero classes={{ root: classes.root }}>
       <Grid
@@ -58,7 +58,7 @@ function HomeHero({ classes }) {
         className={classes.heroContentGrid}
       >
         <HeroTitleGrid>
-          <HeroTitle classes={{ title: classes.herotitle }}>
+          <HeroTitle classes={{ title: classes.heroTitle }}>
             Discover the stories behind the data
           </HeroTitle>
 
@@ -76,8 +76,4 @@ function HomeHero({ classes }) {
   );
 }
 
-HomeHero.propTypes = {
-  classes: PropTypes.shape({}).isRequired
-};
-
-export default withStyles(styles)(HomeHero);
+export default HomeHero;

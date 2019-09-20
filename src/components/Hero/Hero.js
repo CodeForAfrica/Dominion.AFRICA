@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Grid, Typography } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 
+import { makeStyles, Grid, Typography } from '@material-ui/core';
+
 import { ContentLoader } from '@codeforafrica/hurumap-ui';
+
 import ArrowButton from '../ArrowButton';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     pointerEvents: 'all',
@@ -70,13 +71,13 @@ const styles = theme => ({
     pointerEvents: 'all',
     color: 'white',
     textAlign: 'left',
-    width: '80%',
+    width: '100%',
     paddingTop: '2rem',
     opacity: '0.8',
     fontSize: '0.786rem',
     lineHeight: 2.09,
-    [theme.breakpoints.down('sm')]: {
-      width: '100%'
+    [theme.breakpoints.up('md')]: {
+      width: '80%'
     }
   },
   detailComponent: {
@@ -85,17 +86,17 @@ const styles = theme => ({
     paddingTop: theme.spacing(),
     paddingBottom: theme.spacing()
   }
-});
+}));
 
-function HeroTitleGridComponent({ classes, children, quater, head2head }) {
+function HeroTitleGrid({ children, quarter, head2head, ...props }) {
+  const classes = useStyles(props);
+
   return (
     <Grid
       container
       item
       xs={12}
-      sm={12}
-      md={quater ? 4 : 8}
-      lg={quater ? 4 : 8}
+      md={quarter ? 4 : 8}
       wrap="nowrap"
       direction="column"
       alignContent="center"
@@ -108,31 +109,30 @@ function HeroTitleGridComponent({ classes, children, quater, head2head }) {
   );
 }
 
-HeroTitleGridComponent.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
+HeroTitleGrid.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]).isRequired,
-  quater: PropTypes.bool,
+  quarter: PropTypes.bool,
   head2head: PropTypes.bool
 };
 
-HeroTitleGridComponent.defaultProps = {
-  quater: false,
+HeroTitleGrid.defaultProps = {
+  quarter: false,
   head2head: false
 };
 
-const HeroTitleGrid = withStyles(styles)(HeroTitleGridComponent);
-
-function HeroTitleComponent({
-  classes,
+function HeroTitle({
   loaderWidth,
   loading,
   children,
   breakWord,
-  small
+  small,
+  ...props
 }) {
+  const classes = useStyles(props);
+
   if (loading) {
     return (
       <ContentLoader style={{ width: loaderWidth, height: 100 }}>
@@ -155,8 +155,7 @@ function HeroTitleComponent({
   );
 }
 
-HeroTitleComponent.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
+HeroTitle.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
@@ -167,7 +166,7 @@ HeroTitleComponent.propTypes = {
   loaderWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
-HeroTitleComponent.defaultProps = {
+HeroTitle.defaultProps = {
   children: undefined,
   breakWord: false,
   small: false,
@@ -175,9 +174,9 @@ HeroTitleComponent.defaultProps = {
   loaderWidth: '100%'
 };
 
-const HeroTitle = withStyles(styles)(HeroTitleComponent);
+function HeroDescription({ children, ...props }) {
+  const classes = useStyles(props);
 
-function HeroDescriptionComponent({ classes, children }) {
   return (
     <Typography variant="body1" className={classes.body2}>
       {children}
@@ -185,25 +184,23 @@ function HeroDescriptionComponent({ classes, children }) {
   );
 }
 
-HeroDescriptionComponent.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
+HeroDescription.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]).isRequired
 };
 
-const HeroDescription = withStyles(styles)(HeroDescriptionComponent);
-
-function HeroDetailComponent({
-  classes,
+function HeroDetail({
   hidden,
   loading,
   children,
   label,
   small,
-  loader
+  loader,
+  ...props
 }) {
+  const classes = useStyles(props);
   if (hidden) {
     return null;
   }
@@ -252,8 +249,7 @@ function HeroDetailComponent({
   );
 }
 
-HeroDetailComponent.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
+HeroDetail.propTypes = {
   children: PropTypes.string,
   label: PropTypes.string.isRequired,
   small: PropTypes.bool,
@@ -265,7 +261,7 @@ HeroDetailComponent.propTypes = {
   })
 };
 
-HeroDetailComponent.defaultProps = {
+HeroDetail.defaultProps = {
   small: false,
   children: undefined,
   loading: false,
@@ -276,18 +272,15 @@ HeroDetailComponent.defaultProps = {
   }
 };
 
-const HeroDetail = withStyles(styles)(HeroDetailComponent);
-
-function HeroButtonComponent({ children, onClick }) {
+function HeroButton({ children, onClick, ...props }) {
   return (
-    <ArrowButton secondary onClick={onClick}>
+    <ArrowButton secondary onClick={onClick} {...props}>
       {children}
     </ArrowButton>
   );
 }
 
-HeroButtonComponent.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
+HeroButton.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
@@ -295,9 +288,9 @@ HeroButtonComponent.propTypes = {
   onClick: PropTypes.func.isRequired
 };
 
-const HeroButton = withStyles(styles)(HeroButtonComponent);
+function Hero({ children, ...props }) {
+  const classes = useStyles(props);
 
-function HeroComponent({ classes, children, ...props }) {
   return (
     <Grid container className={classes.root} {...props}>
       {children}
@@ -305,16 +298,12 @@ function HeroComponent({ classes, children, ...props }) {
   );
 }
 
-HeroComponent.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
+Hero.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]).isRequired
 };
 
-const Hero = withStyles(styles)(HeroComponent);
-
-export default Hero;
-
 export { HeroTitle, HeroDescription, HeroButton, HeroTitleGrid, HeroDetail };
+export default Hero;

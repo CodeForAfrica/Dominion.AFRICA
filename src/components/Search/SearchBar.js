@@ -1,14 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import InputBase from '@material-ui/core/InputBase';
-import { Grid, IconButton } from '@material-ui/core';
-import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
+
+import {
+  makeStyles,
+  useMediaQuery,
+  useTheme,
+  Grid,
+  IconButton,
+  InputBase
+} from '@material-ui/core';
+
 import back from '../../assets/images/icons/back.svg';
 import search from '../../assets/images/icons/location.svg';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     [theme.breakpoints.down('sm')]: {
@@ -56,11 +62,10 @@ const styles = theme => ({
       padding: '47px'
     }
   }
-});
+}));
 
 function SearchBar({
   primary,
-  classes,
   placeholder,
   value,
   width,
@@ -68,12 +73,17 @@ function SearchBar({
   handleIconClick,
   handleValueChange,
   isComparisonSearch,
-  autoFocus
+  autoFocus,
+  ...props
 }) {
+  const classes = useStyles(props);
+  const theme = useTheme();
+  const isMdAndUp = useMediaQuery(theme.breakpoints.up('md'));
   let searchBarIcon = icon;
   if (!searchBarIcon) {
-    searchBarIcon = isWidthUp('md', width) ? back : search;
+    searchBarIcon = isMdAndUp ? back : search;
   }
+
   return (
     <Grid
       container
@@ -117,7 +127,6 @@ function SearchBar({
 }
 
 SearchBar.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   handleValueChange: PropTypes.func.isRequired,
   icon: PropTypes.string,
   handleIconClick: PropTypes.func,
@@ -138,4 +147,4 @@ SearchBar.defaultProps = {
   icon: null
 };
 
-export default withWidth()(withStyles(styles)(SearchBar));
+export default SearchBar;

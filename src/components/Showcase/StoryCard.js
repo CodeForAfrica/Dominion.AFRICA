@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  Typography,
+  makeStyles,
   Card,
   CardActionArea,
-  CardMedia,
   CardContent,
-  Grid
+  CardMedia,
+  Grid,
+  Typography
 } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     minHeight: '20rem',
     height: '100%',
@@ -65,9 +65,10 @@ const styles = theme => ({
     webkitFilter: 'brightness(40%)' /* Safari 6.0 - 9.0 */,
     filter: 'brightness(40%)'
   }
-});
+}));
 
-function StoryCard({ story, classes }) {
+function StoryCard({ story, ...props }) {
+  const classes = useStyles(props);
   const { mediaSrc, date, title, brief, link, media } = story;
 
   return (
@@ -120,8 +121,7 @@ function StoryCard({ story, classes }) {
 }
 
 StoryCard.propTypes = {
-  classes: PropTypes.shape().isRequired,
   story: PropTypes.shape().isRequired
 };
 
-export default withStyles(styles)(StoryCard);
+export default StoryCard;

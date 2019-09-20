@@ -1,12 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import { Typography } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, Typography } from '@material-ui/core';
 
 import A from '../A';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     [theme.breakpoints.up('md')]: {
@@ -43,9 +41,11 @@ const styles = theme => ({
     color: theme.palette.primary.light,
     opacity: '0.6'
   }
-});
+}));
 
-function About({ classes }) {
+function About(props) {
+  const classes = useStyles(props);
+
   return (
     <div>
       <Typography variant="subtitle1" className={classes.title}>
@@ -118,8 +118,5 @@ function About({ classes }) {
     </div>
   );
 }
-About.propTypes = {
-  classes: PropTypes.shape().isRequired
-};
 
-export default withStyles(styles)(About);
+export default About;

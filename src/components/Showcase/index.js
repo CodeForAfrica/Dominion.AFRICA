@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Grid, Typography } from '@material-ui/core';
-
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, Grid, Typography } from '@material-ui/core';
 
 import StoryList from './StoryList';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   showCaseContainer: {
     backgroundColor: 'white',
     display: 'inline-block',
@@ -18,8 +16,11 @@ const styles = theme => ({
     padding: '3.1875rem 1.875rem',
     [theme.breakpoints.up('md')]: {
       padding: '3.1875rem 0',
-      width: '80%',
+      width: '75%',
       float: 'right'
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: '80%'
     }
   },
   headline: {
@@ -39,15 +40,21 @@ const styles = theme => ({
   headlineDescription: {
     textAlign: 'left'
   }
-});
+}));
 
-function Showcase({ classes, showcaseStories, dominion: { selectedCountry } }) {
+function Showcase({
+  showcaseStories,
+  dominion: { selectedCountry },
+  ...props
+}) {
+  const classes = useStyles(props);
   let stories = showcaseStories;
   if (selectedCountry) {
     stories = showcaseStories.filter(
       story => story.country === selectedCountry.code
     );
   }
+
   return (
     <div className={classes.showCaseContainer} id="showcase">
       <Grid
@@ -87,11 +94,10 @@ function Showcase({ classes, showcaseStories, dominion: { selectedCountry } }) {
 }
 
 Showcase.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   dominion: PropTypes.shape({
     selectedCountry: PropTypes.shape({})
   }).isRequired,
   showcaseStories: PropTypes.arrayOf(PropTypes.shape({})).isRequired
 };
 
-export default withStyles(styles)(Showcase);
+export default Showcase;

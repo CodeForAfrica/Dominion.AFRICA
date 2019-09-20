@@ -2,16 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
+  makeStyles,
+  ButtonBase,
   Grid,
-  Typography,
-  MenuList,
   MenuItem,
-  ButtonBase
+  MenuList,
+  Typography
 } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+
 import cross from '../../assets/images/icons/close.svg';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     color: 'white',
@@ -78,9 +79,11 @@ const styles = theme => ({
     marginTop: '1rem',
     opacity: 0.5
   }
-});
+}));
 
-function ContactUs({ classes, handleClose }) {
+function ContactUs({ handleClose, ...props }) {
+  const classes = useStyles(props);
+
   return (
     <Grid
       className={classes.root}
@@ -126,8 +129,7 @@ function ContactUs({ classes, handleClose }) {
 }
 
 ContactUs.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   handleClose: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(ContactUs);
+export default ContactUs;

@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Typography } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, Typography } from '@material-ui/core';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     padding: '20px 30px',
     [theme.breakpoints.up('md')]: {
-      maxWidth: '21.875rem',
       paddingTop: 0,
       paddingLeft: '1rem',
       paddingRight: '2rem'
@@ -28,9 +26,11 @@ const styles = theme => ({
     marginTop: '1rem',
     lineHeight: 1.92
   }
-});
+}));
 
-function InfoSubtitleElement({ classes, children }) {
+function InfoSubtitle({ children, ...props }) {
+  const classes = useStyles(props);
+
   return (
     <Typography component="div" variant="body2" className={classes.subtitle}>
       {children}
@@ -38,17 +38,16 @@ function InfoSubtitleElement({ classes, children }) {
   );
 }
 
-InfoSubtitleElement.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
+InfoSubtitle.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]).isRequired
 };
 
-export const InfoSubtitle = withStyles(styles)(InfoSubtitleElement);
+function InfoBody({ children, ...props }) {
+  const classes = useStyles(props);
 
-function InfoBodyElement({ classes, children }) {
   return (
     <Typography component="span" variant="body2" className={classes.body}>
       {children}
@@ -56,17 +55,18 @@ function InfoBodyElement({ classes, children }) {
   );
 }
 
-InfoBodyElement.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
+InfoBody.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]).isRequired
 };
 
-export const InfoBody = withStyles(styles)(InfoBodyElement);
+export { InfoBody, InfoSubtitle };
 
-function Info({ classes, children }) {
+function Info({ children, ...props }) {
+  const classes = useStyles(props);
+
   return <div className={classes.root}>{children}</div>;
 }
 
@@ -78,4 +78,4 @@ Info.propTypes = {
   ]).isRequired
 };
 
-export default withStyles(styles)(Info);
+export default Info;

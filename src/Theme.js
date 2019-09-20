@@ -19,6 +19,15 @@ const COLOR_SCALE = [
 ];
 
 const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 576,
+      md: 768,
+      lg: 1280,
+      xl: 1980
+    }
+  },
   chart: {
     colorScale: COLOR_SCALE,
     pie: {
@@ -80,6 +89,7 @@ const theme = createTheme({
     }
   },
   palette: {
+    background: { default: '#fff' },
     primary: { main: '#2b3129', light: '#f1f1ed', dark: '#222822' },
     secondary: { main: '#000000', dark: '#2c2c2a', grey: '#2b3129' },
     highlight: { main: '#e7e452' }

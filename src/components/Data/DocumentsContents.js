@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import menuicon from '../../assets/images/icons/group-7.png';
-import Content from './Content';
+
 import { getSourceAfricaDominionData } from '../../lib/api';
+import Content from './Content';
+
+import menuIcon from '../../assets/images/icons/group-7.png';
 
 function DocumentsContent() {
   const [documentsCount, setDocumentsCount] = useState('-');
-
   useEffect(() => {
     getSourceAfricaDominionData().then(({ data: { documents } }) => {
       setDocumentsCount(documents.length);
     });
   }, []);
+
   return (
     <Content
       title="sourceAFRICA"
@@ -23,7 +25,7 @@ function DocumentsContent() {
       target="_self"
       link="/resources#documents"
     >
-      <img src={menuicon} alt="Menu Icon" />
+      <img src={menuIcon} alt="Menu Icon" />
     </Content>
   );
 }
