@@ -79,7 +79,7 @@ export default function ChartFactory({
   }
 
   const numberFormatter = new Intl.NumberFormat('en-GB', {
-    maximumSignificantDigits: 2
+    maximumFractionDigits: 2
   });
   const { horizontal } = props;
 
