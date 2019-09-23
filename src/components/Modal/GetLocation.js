@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 import createAPI from '../../lib/api';
+import config from '../../config';
 
 const styles = {
   locationText: {
@@ -29,24 +30,18 @@ class GetLocation extends React.Component {
   findLocation() {
     this.setState(() => ({ buttonText: 'Locating   .....' }));
 
-    const { countries } = this.props;
-
-    const locateMe = json => {
+    const locateMe = ({ error, address }) => {
       // If not really there
-      if (json.results.length === 0) {
+      if (error || !address) {
         this.setState(() => ({ buttonText: 'Could not locate you   .....' }));
       } else {
         // Find country
-        const addresses = json.results[0].address_components;
-        const addressContains = country =>
-          addresses.find(address => address.long_name === country.name) !==
-          undefined;
-        const foundEntry = Object.entries(countries).find(([, country]) =>
-          addressContains(country)
+        const foundEntry = Object.entries(config.countries).find(
+          ([, country]) => address.country === country.name
         );
         if (foundEntry) {
-          const [url] = foundEntry;
-          window.location = url;
+          const [slug] = foundEntry;
+          window.location = slug;
         } else {
           this.setState(() => ({
             buttonText: 'Oops.. Dominion has no instance for your country'
@@ -57,9 +52,9 @@ class GetLocation extends React.Component {
 
     const api = createAPI();
     navigator.geolocation.getCurrentPosition(
-      position => {
-        const location = api.getLocation(position);
-        locateMe(location);
+      async position => {
+        const { data } = await api.getLocation(position);
+        locateMe(data);
       },
       failure => {
         this.setState(() => ({ buttonText: failure.message }));
@@ -89,8 +84,7 @@ class GetLocation extends React.Component {
 }
 
 GetLocation.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
-  countries: PropTypes.shape({}).isRequired
+  classes: PropTypes.shape({}).isRequired
 };
 
 export default withStyles(styles)(GetLocation);

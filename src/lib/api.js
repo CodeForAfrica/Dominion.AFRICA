@@ -17,7 +17,7 @@ export default function createAPI() {
     },
     getLocation: async ({ coords: { latitude, longitude } }) =>
       axios.get(
-        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${config.GOOGLE_GEOCODE_API_KEY}`
+        `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
       )
   };
 }

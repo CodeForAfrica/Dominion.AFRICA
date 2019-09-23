@@ -1,5 +1,4 @@
 const config = {
-  GOOGLE_GEOCODE_API_KEY: 'AIzaSyCR7hVtD50nXOp2eyJjQeKiSUeBTnl3FVA',
   url: 'https://dev.dominion.africa',
   MAPIT: {
     url: 'https://mapit.hurumap.org',
