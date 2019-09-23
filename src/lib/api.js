@@ -5,11 +5,6 @@ export default function createAPI() {
   const { url: mapitUrl, codeType } = config.MAPIT;
 
   return {
-    mapit: { url: mapitUrl, codeType },
-    geocode: {
-      url: config.GOOGLE_GEOCODE_API_URL,
-      key: config.GOOGLE_GEOCODE_API_KEY
-    },
     getGeography: async (countryCode, searchTerm) => {
       const response = await axios.get(
         `${mapitUrl}/areas/${searchTerm}?country=${countryCode}`
@@ -22,7 +17,7 @@ export default function createAPI() {
     },
     getLocation: async ({ coords: { latitude, longitude } }) =>
       axios.get(
-        `${config.GOOGLE_GEOCODE_API_URL}&latlng=${latitude},${longitude}&key=${config.GOOGLE_GEOCODE_API_KEY}`
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${config.GOOGLE_GEOCODE_API_KEY}`
       )
   };
 }

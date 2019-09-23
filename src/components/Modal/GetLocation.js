@@ -7,6 +7,7 @@ import createAPI from '../../lib/api';
 
 const styles = {
   locationText: {
+    outline: 'none',
     color: 'white',
     fontSize: '0.93rem',
     fontWeight: 'bold',
