@@ -8,12 +8,12 @@ import {
   MenuItem,
   Button
 } from '@material-ui/core';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { withStyles } from '@material-ui/core/styles';
 import geolocate from '../../assets/images/icons/shape.svg';
 import cross from '../../assets/images/icons/close.svg';
 import GetLocation from './GetLocation';
 import { AppContext } from '../../AppContext';
+import arrowIconSrc from '../../assets/images/icons/combined-shape.svg';
 
 const styles = theme => ({
   grid: {
@@ -183,7 +183,8 @@ function PortalChooser({ classes, children, countries, handleClose }) {
           className={classes.locationActionsGrid}
         >
           <Typography variant="body2" className={classes.browseText}>
-            or browse the list <ArrowForwardIcon />
+            or browse the list{' '}
+            <img src={arrowIconSrc} alt="" style={{ marginLeft: 5 }} />
           </Typography>
           <Button onClick={handleClose} className={classes.closeButton}>
             <span className={classes.closeSpan}>Close</span>
