@@ -30,14 +30,20 @@ export default function createAPI() {
 
 export async function getSourceAfricaDominionData() {
   const projectId = '462-Dominion-AFRICA';
-  return axios.get(
-    `https://dc.sourceafrica.net/api/search.json?q=projectid:${projectId}`
-  );
+  return axios
+    .get(`https://dc.sourceafrica.net/api/search.json?q=projectid:${projectId}`)
+    .catch(() => {
+      window.location.replace('/error');
+    });
 }
 
 export async function getOpenAfricaDominionGroupData() {
   const group = 'dominion';
-  return axios.get(
-    `https://africaopendata.org/api/3/action/group_package_show?id=${group}`
-  );
+  return axios
+    .get(
+      `https://africaopendata.org/api/3/action/group_package_show?id=${group}`
+    )
+    .catch(() => {
+      window.location.replace('/error');
+    });
 }
