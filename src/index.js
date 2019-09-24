@@ -28,7 +28,11 @@ const client = new ApolloClient({
       // eslint-disable-next-line no-console
       if (networkError) console.error(`[Network error]: ${networkError}`);
     } else {
-      window.location.replace(`/error`);
+      window.history.replaceState(
+        graphQLErrors || networkError,
+        'Error',
+        '/error'
+      );
     }
   }
 });

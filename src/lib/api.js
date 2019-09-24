@@ -32,8 +32,8 @@ export async function getSourceAfricaDominionData() {
   const projectId = '462-Dominion-AFRICA';
   return axios
     .get(`https://dc.sourceafrica.net/api/search.json?q=projectid:${projectId}`)
-    .catch(() => {
-      window.location.replace('/error');
+    .catch(err => {
+      window.history.replaceState(err, 'Error', '/error');
     });
 }
 
@@ -43,7 +43,7 @@ export async function getOpenAfricaDominionGroupData() {
     .get(
       `https://africaopendata.org/api/3/action/group_package_show?id=${group}`
     )
-    .catch(() => {
-      window.location.replace('/error');
+    .catch(err => {
+      window.history.replaceState(err, 'Error', '/error');
     });
 }
