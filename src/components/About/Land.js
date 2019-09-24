@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { withWidth, Grid } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, useMediaQuery, useTheme, Grid } from '@material-ui/core';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     width: '100%',
@@ -27,15 +26,20 @@ const styles = theme => ({
     }
   },
   highlight: {
-    width: '6.875rem', // 110px / 16
-    height: '1.25rem', // 20px
+    width: '6.875rem',
+    height: '1.25rem',
     background: '#e7e452'
   }
-});
+}));
 
-function Land({ classes, width, imgSrc }) {
-  const direction =
-    width === 'xs' || width === 'sm' ? 'column-reverse' : 'column';
+function Land({ width, imgSrc, ...props }) {
+  const classes = useStyles(props);
+  const theme = useTheme();
+  let direction = 'column';
+  if (useMediaQuery(theme.breakpoints.down('sm'))) {
+    direction = 'column-reverse';
+  }
+
   return (
     <Grid
       container
@@ -54,9 +58,8 @@ function Land({ classes, width, imgSrc }) {
 }
 
 Land.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   width: PropTypes.string.isRequired,
   imgSrc: PropTypes.string.isRequired
 };
 
-export default withWidth()(withStyles(styles)(Land));
+export default Land;

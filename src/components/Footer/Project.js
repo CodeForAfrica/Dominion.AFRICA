@@ -1,18 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import { Grid, Typography } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, Grid, Typography } from '@material-ui/core';
 
 import A from '../A';
 import SocialMedia from '../SocialMedia';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     height: '100%',
-    width: '9.75rem', // 156px / 16
+    width: '100%', // 156px / 16
+    [theme.breakpoints.up('sm')]: {
+      width: '7rem'
+    },
     [theme.breakpoints.up('md')]: {
+      width: '7.5rem'
+    },
+    [theme.breakpoints.up('lg')]: {
       width: '12.5625rem' // 201px / 16
     }
   },
@@ -31,9 +35,11 @@ const styles = theme => ({
   joinText: {
     paddingTop: '1.5rem'
   }
-});
+}));
 
-function Community({ classes }) {
+function Community(props) {
+  const classes = useStyles(props);
+
   return (
     <Grid container className={classes.root} justify="flex-start">
       <Grid item xs={12}>
@@ -65,8 +71,5 @@ function Community({ classes }) {
     </Grid>
   );
 }
-Community.propTypes = {
-  classes: PropTypes.shape().isRequired
-};
 
-export default withStyles(styles)(Community);
+export default Community;

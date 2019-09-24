@@ -8,6 +8,7 @@ import {
   NestedProportionalAreaChart,
   NumberVisuals
 } from '@codeforafrica/hurumap-ui';
+
 import aggregateData from '../utils/aggregateData';
 
 export default function ChartFactory({
@@ -17,6 +18,7 @@ export default function ChartFactory({
     label,
     reference: { label: referenceLabel } = {},
     aggregate,
+    unit = '',
     subtitle,
     description,
     props = {}
@@ -26,10 +28,10 @@ export default function ChartFactory({
   /*
    * Profiles are needed in the chart builder
    * since we have no relationships in the database
-   * so we have to query profiles seperately and this is
+   * so we have to query profiles separately and this is
    * a work around solution to have those profile data available to us
    * when we want to use the labels for the parent or profile.
-   * This can further be used to refrence squareKms of a profile
+   * This can further be used to reference squareKms of a profile
    * but population is not available in the profile.
    */
   profiles
@@ -76,8 +78,20 @@ export default function ChartFactory({
     return null;
   }
 
-  const numberFormatter = new Intl.NumberFormat('en-GB');
+  const numberFormatter = new Intl.NumberFormat('en-GB', {
+    maximumFractionDigits: 2
+  });
   const { horizontal } = props;
+
+  const formatLabelValue = value => {
+    if (aggregate) {
+      const [, format] = aggregate.split(':');
+      return (
+        numberFormatter.format(value) + (format === 'percent' ? '%' : unit)
+      );
+    }
+    return numberFormatter.format(value) + unit;
+  };
 
   switch (visualType) {
     case 'square_nested_proportional_area':
@@ -123,7 +137,7 @@ export default function ChartFactory({
                       x: comparisonData.reduce((a, b) => a + b.y, 0),
                       label:
                         comparisonData[0].label ||
-                        profiles.comparisonProfile[label] ||
+                        profiles.comparison[label] ||
                         label
                     }
                   ]
@@ -162,19 +176,18 @@ export default function ChartFactory({
       );
     }
     case 'number': {
-      const dataStat = data[0].y;
+      const dataStat = formatLabelValue(data[0].y);
+
       return (
-        <div>
-          <NumberVisuals
-            key={key}
-            subtitle={subtitle}
-            statistic={dataStat}
-            description={description}
-            comparisonData={[]} // TODO: pending NumberVisuals components (HURUmap-UI) fix on this proptypes
-            classes={{}} // TODO: pending NumberVisuals style configurations - update root margin
-            {...props}
-          />
-        </div>
+        <NumberVisuals
+          key={key}
+          subtitle={subtitle}
+          statistic={dataStat}
+          description={description}
+          comparisonData={[]} // TODO: pending NumberVisuals components (HURUmap-UI) fix on this propTypes
+          classes={{}} // TODO: pending NumberVisuals style configurations - update root margin
+          {...props}
+        />
       );
     }
     case 'grouped_column': {
@@ -197,7 +210,7 @@ export default function ChartFactory({
             key={key}
             height={computedHeight}
             horizontal={horizontal}
-            labels={datum => numberFormatter.format(datum.y)}
+            labels={datum => formatLabelValue(datum.y)}
             offset={offset}
             parts={{
               axis: {
@@ -251,7 +264,7 @@ export default function ChartFactory({
               key={key}
               height={computedHeight}
               horizontal={horizontal}
-              labels={datum => numberFormatter.format(datum.y)}
+              labels={datum => formatLabelValue(datum.y)}
               parts={{
                 axis: {
                   independent: {
@@ -289,7 +302,7 @@ export default function ChartFactory({
             key={key}
             height={computedHeight}
             horizontal={horizontal}
-            labels={datum => numberFormatter.format(datum.y)}
+            labels={datum => formatLabelValue(datum.y)}
             parts={{
               axis: {
                 independent: {

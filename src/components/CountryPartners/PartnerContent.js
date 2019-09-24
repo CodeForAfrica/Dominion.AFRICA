@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Typography } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, Typography } from '@material-ui/core';
 
-const styles = () => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1
   },
@@ -12,9 +11,11 @@ const styles = () => ({
     paddingBottom: '1rem',
     color: '#293229'
   }
-});
+}));
 
-function PartnerText({ classes, title, description }) {
+function PartnerText({ title, description, ...props }) {
+  const classes = useStyles(props);
+
   return (
     <div className={classes.root}>
       <Typography variant="h4" className={classes.title}>
@@ -26,9 +27,8 @@ function PartnerText({ classes, title, description }) {
 }
 
 PartnerText.propTypes = {
-  classes: PropTypes.shape().isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired
 };
 
-export default withStyles(styles)(PartnerText);
+export default PartnerText;

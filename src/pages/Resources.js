@@ -1,39 +1,68 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, Typography } from '@material-ui/core';
-import { TitlePageHeader } from '../components/Header';
-import Page from '../components/Page';
-import config from '../config';
-import Section from '../components/Section';
-import DocumentCard from '../components/Card/Document';
-import DataCard from '../components/Card/Data';
-import ArrowButton from '../components/ArrowButton';
-import { AboutDominion } from '../components/About';
-import CountryPartners from '../components/CountryPartners';
 
 import {
-  getSourceAfricaDominionData,
-  getOpenAfricaDominionGroupData
+  makeStyles,
+  useMediaQuery,
+  useTheme,
+  Grid,
+  Typography
+} from '@material-ui/core';
+
+import config from '../config';
+import {
+  getOpenAfricaDominionGroupData,
+  getSourceAfricaDominionData
 } from '../lib/api';
 
-function Resources() {
+import { AboutDominion } from '../components/About';
+import ArrowButton from '../components/ArrowButton';
+import CountryPartners from '../components/CountryPartners';
+import DataCard from '../components/Card/Data';
+import DocumentCard from '../components/Card/Document';
+import Page from '../components/Page';
+import Section from '../components/Section';
+import { TitlePageHeader } from '../components/Header';
+
+const useStyles = makeStyles(theme => ({
+  content: {
+    marginTop: '3rem'
+  },
+  sectionSubtitle: {
+    fontWeight: 'bold',
+    marginTop: '1rem',
+    [theme.breakpoints.up('md')]: {
+      marginTop: '2rem'
+    }
+  },
+  sectionContent: {
+    [theme.breakpoints.up('md')]: {
+      marginTop: '5.75rem'
+    }
+  }
+}));
+
+function Resources(props) {
+  const classes = useStyles(props);
+  const theme = useTheme();
   const [packages, setPackages] = useState([]);
   const [documents, setDocuments] = useState([]);
   useEffect(() => {
-    function srcollSectionIntoView() {
+    function scrollSectionIntoView() {
       if (window.location.hash.slice(1)) {
         document.getElementById(window.location.hash.slice(1)).scrollIntoView();
       }
     }
     getOpenAfricaDominionGroupData().then(({ data: { result } }) => {
       setPackages(result);
-      srcollSectionIntoView();
+      scrollSectionIntoView();
     });
 
     getSourceAfricaDominionData().then(({ data }) => {
       setDocuments(data.documents);
-      srcollSectionIntoView();
+      scrollSectionIntoView();
     });
   }, []);
+  const titleVariant = useMediaQuery(theme.breakpoints.up('md')) ? 'h2' : 'h3';
 
   return (
     <Page>
@@ -42,16 +71,21 @@ function Resources() {
         <br /> and Documents
       </TitlePageHeader>
       <Section
+        classes={{
+          content: classes.sectionContent,
+          subtitle: classes.sectionSubtitle
+        }}
         id="documents"
         title="Documents"
+        titleVariant={titleVariant}
         subtitle="Powered by sourceAFRICA.net"
       >
-        <Typography>
+        <Typography variant="body2">
           Data for Dominion is aggregated from various authoritative sources.
           Below is a list of documents and datasets used for the project, which
           is hosted on sourceAFRICA.net and openAFRICA.net
         </Typography>
-        <Grid container justify="space-between">
+        <Grid container justify="space-between" className={classes.content}>
           {documents.map(document => (
             <Grid item xs={12} md={6} key={document.title}>
               <DocumentCard
@@ -74,19 +108,24 @@ function Resources() {
         </ArrowButton>
       </Section>
       <Section
+        classes={{
+          content: classes.sectionContent,
+          subtitle: classes.sectionSubtitle
+        }}
         id="data"
         light
         title="Data"
+        titleVariant={titleVariant}
         subtitle="Powered by openAfrica.net"
       >
-        <Grid container justify="space-between">
+        <Grid container justify="space-between" className={classes.content}>
           {packages.map(p => (
             <DataCard
               key={p.title}
-              orgLink={`https://openafrica.net/organization/${p.organization.name}`}
               dataLink={`https://openafrica.net/dataset/${p.name}`}
-              title={p.title}
               description={p.notes}
+              title={p.title}
+              orgLink={`https://openafrica.net/organization/${p.organization.name}`}
             />
           ))}
         </Grid>

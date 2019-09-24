@@ -8,13 +8,20 @@ import { withRouter } from 'react-router-dom';
 import classNames from 'classnames';
 import {
   MapIt,
-  ContentLoader,
+
+  /**
+   * Commented out until futher notice
+   */
+  // ContentLoader,
   TypographyLoader
 } from '@codeforafrica/hurumap-ui';
 import Hero, { HeroTitle, HeroTitleGrid, HeroDetail } from '../Hero';
 
-import Search from '../../Search';
-import searchIcon from '../../../assets/images/icons/location.svg';
+/**
+ * Commented out until futher notice
+ */
+// import Search from '../../Search';
+// import searchIcon from '../../../assets/images/icons/location.svg';
 import config from '../../../config';
 import { AppContext } from '../../../AppContext';
 
@@ -29,6 +36,7 @@ const styles = theme => ({
   },
   map: {
     zIndex: 0,
+    overflow: 'hidden',
     position: 'relative !important',
     backgroundColor: 'grey',
     height: '15.625rem !important',
@@ -53,15 +61,13 @@ const styles = theme => ({
   },
   caption: {
     display: 'inline-flex',
+    alignItems: 'center',
     color: '#8d8d8c',
     width: '100%',
     textTransform: 'capitalize',
     paddingTop: theme.spacing(),
-    paddingBottom: theme.spacing()
-  },
-  captionItem: {
-    display: 'inline-block',
-    paddingLeft: 4
+    paddingBottom: theme.spacing(),
+    marginTop: '0.625rem'
   },
   release: {
     display: 'none',
@@ -81,7 +87,8 @@ const styles = theme => ({
     display: 'inline-block'
   },
   alink: {
-    color: '#e7e452'
+    color: '#e7e452',
+    paddingLeft: 4
   }
 });
 function Profile({
@@ -151,30 +158,33 @@ function Profile({
   return (
     <Hero classes={{ root: classes.root }} {...props}>
       <HeroTitleGrid
-        quater
+        quarter
         head2head={head2head}
         classes={{ titleTextGrid: classes.titleGrid }}
       >
         <HeroTitle small breakWord loading={isLoading} loaderWidth={150}>
           {shortName}
         </HeroTitle>
-        <TypographyLoader variant="subtitle1" className={classes.caption}>
-          {geoLevel}{' '}
-          <Typography variant="caption" className={classes.captionItem}>
-            in{' '}
-            <span>
-              <a
-                href={
-                  parentLevel !== 'continent'
-                    ? `/profile/${selectedCountry.geoLevel}-${selectedCountry.geoCode}`
-                    : '#'
-                }
-                className={classes.alink}
-              >
-                {parentLevel !== 'continent' ? selectedCountry.name : 'Africa'}
-              </a>
-              {', '}
-            </span>
+        <TypographyLoader
+          loading={isLoading}
+          variant="subtitle1"
+          className={classes.caption}
+          loader={{
+            width: '9.375rem'
+          }}
+        >
+          {geoLevel} in{' '}
+          <Typography
+            component="a"
+            variant="caption"
+            className={classes.alink}
+            href={
+              parentLevel !== 'continent'
+                ? `/profile/${selectedCountry.geoLevel}-${selectedCountry.geoCode}`
+                : '#'
+            }
+          >
+            {parentLevel !== 'continent' ? selectedCountry.name : 'Africa'}
           </Typography>
         </TypographyLoader>
         <HeroDetail
@@ -205,7 +215,7 @@ function Profile({
           loading={isLoading}
           loader={{
             detailWidth: 51,
-            detailLabelWidth: '123px'
+            detailLabelWidth: '7.6875rem'
           }}
           label="People per square kilometer"
           hidden={!populationDensity && !isLoading}
@@ -213,13 +223,14 @@ function Profile({
           {populationDensity}
         </HeroDetail>
         {/* Start search skeleton loader */}
-        {!head2head && isLoading && (
+        {/* {!head2head && isLoading && (
           <ContentLoader style={{ width: '304px', height: '49px' }}>
             <rect x="0" y="0" width="100%" height="100%" />
           </ContentLoader>
-        )}
+        )} */}
         {/* End search skeleton loader */}
-        {!head2head && !isLoading && (
+        {/* David: hide comparison for now */}
+        {/* {!head2head && !isLoading && (
           <Search
             dominion={dominion}
             isComparisonSearch
@@ -227,7 +238,7 @@ function Profile({
             thisGeoId={geoId}
             icon={searchIcon}
           />
-        )}
+        )} */}
       </HeroTitleGrid>
       <div
         className={classNames(classes.map, {

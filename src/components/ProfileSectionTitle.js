@@ -7,17 +7,17 @@ import { ContentLoader } from '@codeforafrica/hurumap-ui';
 
 const styles = () => ({
   root: {
-    marginTop: '3rem',
-    marginBottom: '0.5rem',
+    marginTop: '48px',
+    marginBottom: '8px',
     width: '100%'
   },
   title: {
     textTransform: 'capitalize',
     fontFamily: 'Lora, serif',
-    marginTop: '1rem'
+    marginTop: '16px'
   },
   description: {
-    marginTop: '0.5rem'
+    marginTop: '8px'
   }
 });
 
@@ -29,13 +29,9 @@ function ProfileSectionTitle({
   return (
     <Grid item className={classes.root}>
       {loading ? (
-        <ContentLoader
-          primaryOpacity={1}
-          secondaryOpacity={0.5}
-          height="4.5rem"
-        >
-          <rect x="0" y="0" height="3rem" width="20rem" />
-          <rect x="0" y="3.5rem" height="1rem" width="25rem" />
+        <ContentLoader primaryOpacity={1} secondaryOpacity={0.5} height={72}>
+          <rect x="0" y="0" height="48px" width="320px" />
+          <rect x="0" y="56px" height="16px" width="400px" />
         </ContentLoader>
       ) : (
         <>

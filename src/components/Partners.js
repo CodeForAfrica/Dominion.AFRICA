@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Grid } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+
+import { makeStyles, Grid } from '@material-ui/core';
 
 import A from './A';
 
@@ -11,13 +10,19 @@ import ancir from '../assets/images/logos/ancir.png';
 import africadrone from '../assets/images/logos/africa-drone.png';
 import oxpeckers from '../assets/images/logos/oxpeckers.png';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.secondary.light
+    backgroundColor: theme.palette.secondary.light,
+    padding: '1.5rem 0',
+    [theme.breakpoints.up('sm')]: {
+      padding: 0
+    }
   },
   layout: {
-    height: '14rem',
+    [theme.breakpoints.up('sm')]: {
+      height: '14rem'
+    },
     [theme.breakpoints.up('md')]: {
       maxWidth: '81.3571429rem',
       margin: '0 auto',
@@ -29,20 +34,31 @@ const styles = theme => ({
   img: {
     maxHeight: '4.288rem',
     maxWidth: '30vw',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       width: 'auto',
+      maxWidth: '15vw'
+    },
+    [theme.breakpoints.up('lg')]: {
       maxWidth: '11.423rem'
     }
   },
   imageGrid: {
-    padding: '1.143remrem',
-    [theme.breakpoints.up('md')]: {
-      padding: '2.286rem 1.143rem'
+    textAlign: 'center',
+    width: '100%',
+    padding: '0.75rem',
+    [theme.breakpoints.up('sm')]: {
+      textAlign: 'left',
+      width: 'auto'
+    },
+    [theme.breakpoints.up('lg')]: {
+      padding: '2.286rem 2.643rem'
     }
   }
-});
+}));
 
-function Partners({ classes }) {
+function Partners(props) {
+  const classes = useStyles(props);
+
   return (
     <Grid className={classes.root}>
       <Grid
@@ -85,8 +101,4 @@ function Partners({ classes }) {
   );
 }
 
-Partners.propTypes = {
-  classes: PropTypes.shape().isRequired
-};
-
-export default withStyles(styles)(Partners);
+export default Partners;

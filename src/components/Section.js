@@ -1,12 +1,11 @@
 import React from 'react';
-
 import { PropTypes } from 'prop-types';
-import { Typography, Grid } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+
+import { makeStyles, Grid, Typography } from '@material-ui/core';
 
 import classNames from 'classnames';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     padding: '2rem',
@@ -26,10 +25,22 @@ const styles = theme => ({
   },
   gridMargin: {
     marginBottom: '1.4286rem'
-  }
-});
+  },
+  subtitle: {},
+  content: {}
+}));
 
-function Section({ id, classes, light, title, subtitle, children }) {
+function Section({
+  children,
+  id,
+  light,
+  title,
+  subtitle,
+  titleVariant,
+  ...props
+}) {
+  const classes = useStyles(props);
+
   return (
     <div
       id={id}
@@ -37,10 +48,12 @@ function Section({ id, classes, light, title, subtitle, children }) {
     >
       <Grid container className={classes.wrapper}>
         <Grid item xs={12} md={4} className={classes.gridMargin}>
-          <Typography variant="h3">{title}</Typography>
-          <Typography variant="subtitle1">{subtitle}</Typography>
+          <Typography variant={titleVariant}>{title}</Typography>
+          <Typography variant="subtitle1" className={classes.subtitle}>
+            {subtitle}
+          </Typography>
         </Grid>
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={8} className={classes.content}>
           <div>{children}</div>
         </Grid>
       </Grid>
@@ -51,8 +64,8 @@ function Section({ id, classes, light, title, subtitle, children }) {
 Section.propTypes = {
   id: PropTypes.string,
   light: PropTypes.bool,
-  classes: PropTypes.shape({}).isRequired,
   title: PropTypes.string.isRequired,
+  titleVariant: PropTypes.string,
   subtitle: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
@@ -61,9 +74,10 @@ Section.propTypes = {
 };
 
 Section.defaultProps = {
+  children: null,
   id: undefined,
   light: false,
-  children: null
+  titleVariant: 'h3'
 };
 
-export default withStyles(styles)(Section);
+export default Section;

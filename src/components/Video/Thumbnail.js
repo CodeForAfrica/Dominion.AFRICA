@@ -2,12 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { Button, Grid, Typography } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, Button, Grid, Typography } from '@material-ui/core';
 
 import { PlayArrowOutlined, PlayArrow } from '@material-ui/icons';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     width: '100%',
@@ -57,9 +56,10 @@ const styles = theme => ({
     lineHeight: 1.14,
     letterSpacing: '0.4px'
   }
-});
+}));
 
-function Thumbnail({ classes, isSelected, onClick, videoId, videoTitle }) {
+function Thumbnail({ isSelected, onClick, videoId, videoTitle, ...props }) {
+  const classes = useStyles(props);
   const { overlay, overlaySelected } = classes;
   const rootOverlay = classNames(overlay, { [overlaySelected]: isSelected });
 
@@ -96,7 +96,6 @@ function Thumbnail({ classes, isSelected, onClick, videoId, videoTitle }) {
 }
 
 Thumbnail.propTypes = {
-  classes: PropTypes.shape().isRequired,
   isSelected: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
   videoId: PropTypes.string.isRequired,
@@ -107,4 +106,4 @@ Thumbnail.defaultProps = {
   isSelected: false
 };
 
-export default withStyles(styles)(Thumbnail);
+export default Thumbnail;

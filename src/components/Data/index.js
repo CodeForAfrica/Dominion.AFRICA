@@ -1,24 +1,29 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import { Grid, Hidden } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
-import DocumentsContent from './DocumentsContents';
+import { makeStyles, Grid, Hidden } from '@material-ui/core';
+
 import DatasetsContent from './DatasetsContent';
+import DocumentsContent from './DocumentsContents';
 
-import databg from '../../assets/images/bg/databg.png';
 import background from '../../assets/images/kaitlyn-baker-422999-unsplash.png';
+import dataBackground from '../../assets/images/bg/databg.png';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     backgroundColor: '#fff',
-    backgroundImage: `url(${databg})`,
+    backgroundImage: `url(${dataBackground})`,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'top left',
-    backgroundSize: '80% 70%',
+    backgroundSize: '65% 75%',
+    marginTop: '5rem',
     marginBottom: '4.57rem',
     [theme.breakpoints.up('md')]: {
+      backgroundSize: '69% 100%',
+      paddingLeft: 0, // 30px / 16
+      marginBottom: '9.143rem'
+    },
+    [theme.breakpoints.up('lg')]: {
       paddingLeft: 0, // 30px / 16
       backgroundSize: '65% 100%',
       marginBottom: '9.143rem'
@@ -50,6 +55,9 @@ const styles = theme => ({
     height: '2.858rem',
     background: '#e7e452',
     [theme.breakpoints.up('md')]: {
+      width: '16.6285rem' // 60% of img
+    },
+    [theme.breakpoints.up('lg')]: {
       width: '24.286rem' // 340px / 16
     }
   },
@@ -59,8 +67,11 @@ const styles = theme => ({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     [theme.breakpoints.up('md')]: {
-      width: '37.7143rem', // .75 of lg
-      height: '28.5714rem' // 400px / 16
+      width: '27.7143rem',
+      height: '28.5714rem'
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: '37.7143rem'
     }
   },
   imageHighlight: {
@@ -85,28 +96,20 @@ const styles = theme => ({
       marginTop: 0
     }
   }
-});
+}));
 
-function Data({ classes }) {
+function Data(props) {
+  const classes = useStyles(props);
+
   return (
     <div className={classes.root}>
-      <Grid container direction="row" className={classes.wrapper}>
-        <Grid
-          container
-          direction="row"
-          item
-          md={9}
-          lg={9}
-          xl={9}
-          className={classes.dataWrapper}
-        >
+      <Grid container className={classes.wrapper}>
+        <Grid item md={9} container className={classes.dataWrapper}>
           <Hidden smDown>
             <Grid
               item
-              container
               md={8}
-              lg={8}
-              xl={8}
+              container
               direction="column"
               className={classes.imageHighlight}
             >
@@ -114,18 +117,11 @@ function Data({ classes }) {
               <div className={classes.img} />
             </Grid>
           </Hidden>
-          <Grid item md={4} lg={4} xl={4} className={classes.documentData}>
+          <Grid item md={4} lg={4} className={classes.documentData}>
             <DocumentsContent />
           </Grid>
         </Grid>
-        <Grid
-          container
-          item
-          md={3}
-          lg={3}
-          xl={3}
-          className={classes.datasetData}
-        >
+        <Grid item md={4} lg={3} container className={classes.datasetData}>
           <DatasetsContent />
         </Grid>
       </Grid>
@@ -133,8 +129,4 @@ function Data({ classes }) {
   );
 }
 
-Data.propTypes = {
-  classes: PropTypes.shape().isRequired
-};
-
-export default withStyles(styles)(Data);
+export default Data;

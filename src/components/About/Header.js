@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Typography } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
-import withWidth from '@material-ui/core/withWidth';
+import { makeStyles, Typography } from '@material-ui/core';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: 'auto',
     padding: '1.43rem 2.143rem 0',
@@ -13,9 +11,11 @@ const styles = theme => ({
       padding: 0
     }
   }
-});
+}));
 
-function Header({ classes, children }) {
+function Header({ children, ...props }) {
+  const classes = useStyles(props);
+
   return (
     <div className={classes.root}>
       <Typography variant="h2">{children}</Typography>
@@ -24,11 +24,10 @@ function Header({ classes, children }) {
 }
 
 Header.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]).isRequired
 };
 
-export default withWidth()(withStyles(styles)(Header));
+export default Header;

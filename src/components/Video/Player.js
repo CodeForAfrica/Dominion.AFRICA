@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 
-import { Grid, IconButton } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles, Grid, IconButton } from '@material-ui/core';
 
 import IFrame from '../IFrame';
 import Sources from './Sources';
@@ -11,7 +9,7 @@ import Thumbnail from './Thumbnail';
 import back from '../../assets/images/icons/back.svg';
 import useToggleModal from '../../useToggleModal';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     backgroundColor: 'black',
@@ -57,9 +55,10 @@ const styles = theme => ({
       marginLeft: '2.5rem'
     }
   }
-});
+}));
 
-function Player({ classes }) {
+function Player(props) {
+  const classes = useStyles(props);
   const [videoId, setVideoId] = useState((Sources[0] && Sources[0].id) || null);
   const { toggleModal } = useToggleModal('video');
 
@@ -124,8 +123,4 @@ function Player({ classes }) {
   );
 }
 
-Player.propTypes = {
-  classes: PropTypes.shape().isRequired
-};
-
-export default withStyles(styles)(Player);
+export default Player;
