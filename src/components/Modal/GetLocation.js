@@ -44,7 +44,8 @@ class GetLocation extends React.Component {
           window.location = slug;
         } else {
           this.setState(() => ({
-            buttonText: 'Oops.. Dominion has no instance for your country'
+            buttonText: `Oops.. 
+            ${address.country} is not in Dominion`
           }));
         }
       }
