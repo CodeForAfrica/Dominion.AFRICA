@@ -2,16 +2,35 @@ import React, { useMemo } from 'react';
 import { ChartContainer } from '@codeforafrica/hurumap-ui';
 import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import ChartFactory from '../components/ChartFactory';
 
 import useChartDefinitions from '../data/useChartDefinitions';
 import useProfileLoader from '../data/useProfileLoader';
+
+const useStyles = makeStyles(theme => ({
+  title: {
+    fontFamily: theme.typography.fontFamily,
+    fontWeight: 'bold',
+    fontSize: '24px',
+    letterSpacing: '0.86px'
+  },
+  subtitle: {
+    fontFamily: theme.typography.fontFamily,
+    opacity: 0.4,
+    fontSize: '12px'
+  },
+  sourceLink: {
+    fontSize: theme.typography.caption.fontSize
+  }
+}));
 
 function Embed({
   match: {
     params: { geoId, sectionId, chartId }
   }
 }) {
+  const classes = useStyles();
   const sectionedCharts = useChartDefinitions();
 
   const chart = useMemo(() => {
@@ -53,6 +72,12 @@ function Embed({
         key={chart.id}
         loading={chartData.isLoading}
         title={chart.title}
+        subtitle={chart.subtitle}
+        classes={{
+          title: classes.title,
+          subtitle: classes.subtitle,
+          sourceLink: classes.sourceLink
+        }}
         source={{
           title: 'Community Survey 2016',
           href: 'http://dev.dominion.africa'
