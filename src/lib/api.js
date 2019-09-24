@@ -1,16 +1,10 @@
 import axios from 'axios';
 import config from '../config';
 
-const GOOGLE_GEOCODE_URL =
-  'https://maps.googleapis.com/maps/api/geocode/json?sensor=false&language=en';
-
 export default function createAPI() {
   const { url: mapitUrl, codeType } = config.MAPIT;
-  const key = window.GOOGLE_GEOCODE_URL_API_KEY;
 
   return {
-    mapit: { url: mapitUrl, codeType },
-    geocode: { url: GOOGLE_GEOCODE_URL, key },
     getGeography: async (countryCode, searchTerm) => {
       const response = await axios.get(
         `${mapitUrl}/areas/${searchTerm}?country=${countryCode}`
@@ -23,7 +17,7 @@ export default function createAPI() {
     },
     getLocation: async ({ coords: { latitude, longitude } }) =>
       axios.get(
-        `${GOOGLE_GEOCODE_URL}&latlng=${latitude},${longitude}&key=${key}`
+        `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
       )
   };
 }

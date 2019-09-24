@@ -15,6 +15,7 @@ import GetLocation from './GetLocation';
 
 import geolocate from '../../assets/images/icons/shape.svg';
 import cross from '../../assets/images/icons/close.svg';
+import arrowIconSrc from '../../assets/images/icons/combined-shape.svg';
 
 const useStyles = makeStyles(theme => ({
   grid: {
@@ -81,6 +82,8 @@ const useStyles = makeStyles(theme => ({
   browseText: {
     color: 'white',
     opacity: 0.5,
+    display: 'inline-flex',
+    alignItems: 'center',
     [theme.breakpoints.up('md')]: {
       width: '100%'
     }
@@ -181,7 +184,8 @@ function PortalChooser({ children, countries, handleClose, ...props }) {
           className={classes.locationActionsGrid}
         >
           <Typography variant="body2" className={classes.browseText}>
-            or browse the list
+            or browse the list{' '}
+            <img src={arrowIconSrc} alt="" style={{ marginLeft: 5 }} />
           </Typography>
           <Button onClick={handleClose} className={classes.closeButton}>
             <span className={classes.closeSpan}>Close</span>
