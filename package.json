@@ -57,7 +57,8 @@
     "lint": "node_modules/eslint/bin/eslint.js --fix src scripts",
     "eject": "react-scripts eject",
     "predeploy": "yarn build && yarn commitChartDefinitions",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "postversion": "git push --follow-tags && yarn deploy && echo \"Successfully released version $npm_package_version!\""
   },
   "eslintConfig": {
     "extends": "react-app"
