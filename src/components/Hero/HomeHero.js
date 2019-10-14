@@ -63,9 +63,8 @@ function HomeHero(props) {
           </HeroTitle>
 
           <HeroDescription>
-            Dominion makes data available to help add context and authority to
-            public discourse and policy-making on vital issues of land
-            ownership.
+            Dominion gives you the data to add context and authority to public
+            discourse and policy-making on vital issues of land ownership.
           </HeroDescription>
 
           <HeroButton onClick={toggleModal}>Select a Country</HeroButton>
