@@ -83,7 +83,7 @@ function About(props) {
         <A href="https://zimbabwe.hurumap.org/" className={classes.links}>
           Zimbabwe
         </A>
-        , {' and '}
+        , and{' '}
         <A href="https://zambia.hurumap.org/" className={classes.links}>
           Zambia
         </A>
