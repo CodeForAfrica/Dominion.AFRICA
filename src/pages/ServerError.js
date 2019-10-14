@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Page from '../components/Page';
 import config from '../config';
 import { TitlePageHeader } from '../components/Header';

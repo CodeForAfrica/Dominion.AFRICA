@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { ChartContainer } from '@codeforafrica/hurumap-ui';
 import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import ChartFactory from '../components/ChartFactory';
 
 import useChartDefinitions from '../data/useChartDefinitions';
