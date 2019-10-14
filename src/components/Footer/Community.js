@@ -20,17 +20,6 @@ const useStyles = makeStyles(theme => ({
     }
   },
   listText: {
-    // match parent width
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: '7rem'
-    },
-    [theme.breakpoints.up('md')]: {
-      width: '11rem'
-    },
-    [theme.breakpoints.up('lg')]: {
-      width: '12.5625rem' // 201px
-    },
     color: theme.palette.primary.light,
     opacity: '0.6'
   },
@@ -43,7 +32,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: '0'
   },
   joinText: {
-    paddingTop: '1.5rem'
+    marginTop: '1.5rem'
   }
 }));
 
@@ -58,7 +47,7 @@ function Community(props) {
         className={classes.listText}
         component="div"
       >
-        Other openAFRICA Projects
+        Other openAFRICA Projects:
         <ul className={classes.list}>
           <li>
             <A
@@ -76,7 +65,7 @@ function Community(props) {
         </ul>
       </Typography>
       <Typography variant="subtitle1" className={joinClassName} component="div">
-        Join Our Community
+        Join Our Community:
         <ul className={classes.list}>
           <li>
             <A
