@@ -50,8 +50,8 @@ function About(props) {
     <div>
       <Typography variant="subtitle1" className={classes.title}>
         HURUmap gives infomediaries like journalists and civic activists an easy
-        &apos;plug & play&apos; toolkit for finding and embedding interactive
-        data visualizations into their storytelling.
+        plug & play toolkit for finding and embedding interactive data
+        visualizations into their storytelling.
       </Typography>
       <Typography variant="subtitle1" className={classes.body}>
         This project is built on software originally created by the Knight Lab
