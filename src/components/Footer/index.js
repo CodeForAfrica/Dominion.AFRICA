@@ -8,7 +8,7 @@ import Project from './Project';
 
 import background from '../../assets/images/bg/background.png';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
     backgroundImage: `url(${background})`,
     backgroundRepeat: 'no-repeat',
@@ -16,19 +16,10 @@ const useStyles = makeStyles(theme => ({
     paddingTop: '3.64rem',
     paddingBottom: '3.286rem'
   },
-  organisation: {
-    width: '100%',
-    marginTop: '1.857rem',
-    [theme.breakpoints.up('sm')]: {
-      justifyContent: 'flex-start',
-      width: 'auto',
-      marginTop: 0
-    },
-    [theme.breakpoints.up('md')]: {
-      justifyContent: 'flex-end'
-    }
+  grid: {
+    margin: 0
   }
-}));
+});
 
 function Footer(props) {
   const classes = useStyles(props);
@@ -36,7 +27,13 @@ function Footer(props) {
   return (
     <div className={classes.root}>
       <Container>
-        <Grid item xs={12} container spacing={3} alignItems="flex-start">
+        <Grid
+          container
+          xs={12}
+          spacing={3}
+          className={classes.grid}
+          alignItems="flex-start"
+        >
           <Grid item xs={12} sm={7}>
             <About />
           </Grid>
