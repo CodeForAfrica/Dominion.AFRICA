@@ -15,9 +15,6 @@ const useStyles = makeStyles({
     backgroundSize: 'cover',
     paddingTop: '3.64rem',
     paddingBottom: '3.286rem'
-  },
-  grid: {
-    margin: 0
   }
 });
 
@@ -27,13 +24,7 @@ function Footer(props) {
   return (
     <div className={classes.root}>
       <Container>
-        <Grid
-          container
-          xs={12}
-          spacing={3}
-          className={classes.grid}
-          alignItems="flex-start"
-        >
+        <Grid container spacing={3} alignItems="flex-start">
           <Grid item xs={12} sm={7}>
             <About />
           </Grid>
