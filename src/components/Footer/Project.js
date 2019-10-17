@@ -3,23 +3,9 @@ import React from 'react';
 import { makeStyles, Grid, Typography } from '@material-ui/core';
 
 import A from '../A';
-import SocialMedia from '../SocialMedia';
+import SocialMedia from './SocialMedia';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-    height: '100%',
-    width: '100%', // 156px / 16
-    [theme.breakpoints.up('sm')]: {
-      width: '7rem'
-    },
-    [theme.breakpoints.up('md')]: {
-      width: '7.5rem'
-    },
-    [theme.breakpoints.up('lg')]: {
-      width: '12.5625rem' // 201px / 16
-    }
-  },
   listText: {
     color: theme.palette.primary.light,
     opacity: '0.6'
@@ -32,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     padding: 0,
     marginTop: '0'
   },
-  joinText: {
+  socialMedia: {
     paddingTop: '1.5rem'
   }
 }));
@@ -64,7 +50,7 @@ function Community(props) {
         </Typography>
       </Grid>
       <Grid item xs={12}>
-        <div className={classes.joinText}>
+        <div className={classes.socialMedia}>
           <SocialMedia />
         </div>
       </Grid>

@@ -13,6 +13,9 @@ import { Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = () => ({
+  root: {
+    marginTop: '1.5rem'
+  },
   fa: {
     transition: 'all .5s ease-in-out',
     marginRight: '1rem',
@@ -29,7 +32,13 @@ library.add(faFacebookF, faTwitter, faInstagram);
 
 function SocialMedia({ classes }) {
   return (
-    <Grid container direction="row" justify="flex-start" alignItems="center">
+    <Grid
+      container
+      direction="row"
+      justify="flex-start"
+      alignItems="center"
+      className={classes.root}
+    >
       <Grid item>
         <a
           href="https://www.facebook.com/AfricanCIR/"
