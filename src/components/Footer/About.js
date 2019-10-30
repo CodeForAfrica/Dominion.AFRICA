@@ -106,11 +106,17 @@ function About(props) {
           Creative Commons 4 Attribution Licence
         </A>
         . Reuse it to help empower your own community. The code is available on{' '}
-        <A href="https://github.com/CodeForAfrica" className={classes.links}>
-          Github
+        <A
+          href="https://github.com/CodeForAfrica/Dominion.AFRICA"
+          className={classes.links}
+        >
+          GitHub
         </A>{' '}
         and data is available on{' '}
-        <A href="https://openafrica.net/" className={classes.links}>
+        <A
+          href="https://africaopendata.org/group/dominion"
+          className={classes.links}
+        >
           openAFRICA
         </A>
         .
