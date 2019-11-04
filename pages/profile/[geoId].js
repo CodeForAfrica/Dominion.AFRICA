@@ -1,22 +1,34 @@
 import React, { useEffect, useState, useContext, useMemo } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import { ChartContainer } from '@codeforafrica/hurumap-ui';
-import { Grid } from '@material-ui/core';
-import { ProfilePageHeader } from '../components/Header';
-import ProfileTabs from '../components/ProfileTabs';
-import Page from '../components/Page';
-import CountryPartners from '../components/CountryPartners';
-import config from '../config';
-import ChartFactory from '../components/ChartFactory';
-import ChartsContainer from '../components/ChartsContainer';
-import slugify from '../utils/slugify';
 
-import { AppContext } from '../AppContext';
-import ProfileRelease from '../components/ProfileReleases';
-import ProfileSectionTitle from '../components/ProfileSectionTitle';
-import useProfileLoader from '../data/useProfileLoader';
-import useChartDefinitions from '../data/useChartDefinitions';
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
+
+import { makeStyles, Grid } from '@material-ui/core';
+
+const ChartContainer = dynamic(
+  () => import('@codeforafrica/hurumap-ui/core/ChartContainer'),
+  {
+    ssr: false
+  }
+);
+
+import config from '../../dominion.config';
+import slugify from '../../lib/utils/slugify';
+import useChartDefinitions from '../../data/useChartDefinitions';
+// import useProfileLoader from '../../data/useProfileLoader';
+import useProfileLoader from '@codeforafrica/hurumap-ui/factory/useProfileLoader';
+import withApollo from '../../lib/withApollo';
+import AppContext from '../../AppContext';
+import ChartsContainer from '../../components/ChartsContainer';
+import ChartFactory from '@codeforafrica/hurumap-ui/factory/ChartFactory';
+// import ChartFactory from '../../components/ChartFactory';
+import CountryPartners from '../../components/CountryPartners';
+import Page from '../../components/Page';
+import { ProfilePageHeader } from '../../components/Header';
+import ProfileRelease from '../../components/ProfileReleases';
+import ProfileSectionTitle from '../../components/ProfileSectionTitle';
+import ProfileTabs from '../../components/ProfileTabs';
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -38,20 +50,22 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Profile({
-  match: {
-    params: { geoId, comparisonGeoId }
-  }
-}) {
+function Profile(props) {
+  const router = useRouter();
+  const { geoId, comparisonGeoId } = router.query;
   const {
     state: { selectedCountry },
     dispatch
   } = useContext(AppContext);
   const head2head = Boolean(geoId && comparisonGeoId);
-  const [activeTab, setActiveTab] = useState(
-    window.location.hash.slice(1) ? window.location.hash.slice(1) : 'all'
-  );
-  const classes = useStyles();
+  const [activeTab, setActiveTab] = useState();
+  useEffect(() => {
+    const tab = window.location.hash.slice(1)
+      ? window.location.hash.slice(1)
+      : 'all';
+    setActiveTab(tab);
+  }, []);
+  const classes = useStyles(props);
 
   const sectionedCharts = useChartDefinitions();
   // Flatten all charts
@@ -62,11 +76,11 @@ function Profile({
     charts.map(x => x.visuals).reduce((a, b) => a.concat(b))
   );
 
-  const { profiles, chartData } = useProfileLoader(
+  const { profiles, chartData } = useProfileLoader({
     geoId,
     comparisonGeoId,
     visuals
-  );
+  });
 
   useEffect(() => {
     if (!profiles.isLoading) {
@@ -242,13 +256,4 @@ function Profile({
   );
 }
 
-Profile.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      geoId: PropTypes.string.isRequired,
-      comparisonGeoId: PropTypes.string
-    }).isRequired
-  }).isRequired
-};
-
-export default Profile;
+export default withApollo(Profile);

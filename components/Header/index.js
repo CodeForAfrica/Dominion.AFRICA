@@ -24,9 +24,10 @@ export function TitlePageHeader({ children, ...props }) {
 }
 
 export function CountryPageHeader(props) {
+  const { dominion } = props;
   return (
     <Header {...props}>
-      <CountryHero />
+      <CountryHero dominion={dominion} />
     </Header>
   );
 }

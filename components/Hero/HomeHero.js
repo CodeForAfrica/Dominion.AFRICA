@@ -2,7 +2,7 @@ import React from 'react';
 
 import { makeStyles, Grid } from '@material-ui/core';
 
-import useToggleModal from '../../useToggleModal';
+import useToggleModal from '../Modal/useToggleModal';
 import Hero, {
   HeroButton,
   HeroDescription,

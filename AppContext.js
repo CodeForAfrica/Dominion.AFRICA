@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import PropTypes from 'prop-types';
 
-export const AppContext = React.createContext({});
+const AppContext = React.createContext({});
 
 const initialState = {
   selectedCountry: {},
@@ -18,7 +18,8 @@ const reducer = (state, action) => {
       return state;
   }
 };
-export default function AppContextProvider({ children }) {
+
+function Provider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <AppContext.Provider value={{ state, dispatch }}>
@@ -27,9 +28,13 @@ export default function AppContextProvider({ children }) {
   );
 }
 
-AppContextProvider.propTypes = {
+Provider.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]).isRequired
 };
+
+export { Provider };
+
+export default AppContext;

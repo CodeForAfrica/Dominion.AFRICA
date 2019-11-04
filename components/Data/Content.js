@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { makeStyles, Grid, Typography } from '@material-ui/core';
 
-import A from '../A';
+import Link from '../Link';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -97,11 +97,11 @@ function Content({
           </Typography>
         </div>
 
-        <A target={target} href={link} className={classes.link}>
+        <Link href={link} className={classes.link}>
           <Typography variant="subtitle2" className={classes.linkText}>
             View {contentType}
           </Typography>
-        </A>
+        </Link>
       </Grid>
     </Grid>
   );
@@ -116,12 +116,7 @@ Content.propTypes = {
   contentCount: PropTypes.string.isRequired,
   contentType: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  link: PropTypes.string.isRequired,
-  target: PropTypes.string
-};
-
-Content.defaultProps = {
-  target: '_blank'
+  link: PropTypes.string.isRequired
 };
 
 export default Content;

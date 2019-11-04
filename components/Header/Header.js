@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { withRouter } from 'react-router-dom';
-
 import { makeStyles, Grid } from '@material-ui/core';
 
 import Navigation from './Navigation';
 
 import background from '../../assets/images/bg/background.png';
-import useCloseModalOnPopstate from '../../useCloseModalOnPopstate';
+import useCloseModalOnPopstate from '../Modal/useCloseModalOnPopstate';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -36,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Header({ history, children, dominion, ...props }) {
+function Header({ children, dominion, ...props }) {
   const classes = useStyles(props);
   useCloseModalOnPopstate();
 
@@ -62,4 +60,4 @@ Header.propTypes = {
   dominion: PropTypes.shape({}).isRequired
 };
 
-export default withRouter(Header);
+export default Header;

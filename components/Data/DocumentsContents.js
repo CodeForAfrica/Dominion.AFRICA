@@ -22,7 +22,6 @@ function DocumentsContent() {
             sourceAFRICA is Africa's premier repository for actionable
             documents.
       "
-      target="_self"
       link="/resources#documents"
     >
       <img src={menuIcon} alt="Menu Icon" />

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
-import { TitlePageHeader } from '../components/Header';
-import Page from '../components/Page';
-import config from '../config';
-import Section from '../components/Section';
-import Data from '../components/Data';
+
+import config from '../dominion.config';
 import CountryPartners from '../components/CountryPartners';
+import Data from '../components/Data';
+import Page from '../components/Page';
+import Section from '../components/Section';
+import { TitlePageHeader } from '../components/Header';
 
 function About() {
   return (

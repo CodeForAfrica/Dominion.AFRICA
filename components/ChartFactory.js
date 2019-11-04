@@ -2,14 +2,33 @@ import React, { useMemo } from 'react';
 
 import { useTheme } from '@material-ui/core';
 
-import {
-  BarChart,
-  PieChart,
-  NestedProportionalAreaChart,
-  NumberVisuals
-} from '@codeforafrica/hurumap-ui';
+import dynamic from 'next/dynamic';
 
-import aggregateData from '../utils/aggregateData';
+const BarChart = dynamic(
+  () => import('@codeforafrica/hurumap-ui/core/BarChart'),
+  {
+    ssr: false
+  }
+);
+const PieChart = dynamic(
+  () => import('@codeforafrica/hurumap-ui/core/PieChart'),
+  {
+    ssr: false
+  }
+);
+const NestedProportionalAreaChart = dynamic(
+  () => import('@codeforafrica/hurumap-ui/core/NestedProportionalAreaChart'),
+  {
+    ssr: false
+  }
+);
+const NumberVisuals = dynamic(
+  () => import('@codeforafrica/hurumap-ui/core/NumberVisuals'),
+  {
+    ssr: false
+  }
+);
+import aggregateData from '../lib/utils/aggregateData';
 
 export default function ChartFactory({
   visual: {

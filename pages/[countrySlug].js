@@ -1,31 +1,31 @@
 import React, { useContext, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { CountryPageHeader } from '../components/Header';
-import HowItWorks from '../components/HowItWorks';
+
+import { useRouter } from 'next/router';
+
+import config from '../dominion.config';
+import AppContext from '../AppContext';
 import { AboutCountry } from '../components/About';
+import { CountryPageHeader } from '../components/Header';
+import CountryPartners from '../components/CountryPartners';
+import HowItWorks from '../components/HowItWorks';
+import Page from '../components/Page';
 import Showcase from '../components/Showcase';
 import Video from '../components/Video';
-import CountryPartners from '../components/CountryPartners';
-import Page from '../components/Page';
-import config from '../config';
-import { AppContext } from '../AppContext';
 
-function Country({
-  match: {
-    params: { country }
-  }
-}) {
+function Country() {
   const {
     state: { selectedCountry },
     dispatch
   } = useContext(AppContext);
-
+  const router = useRouter();
+  const { countrySlug } = router.query;
   useEffect(() => {
     dispatch({
       type: 'selectedCountry',
-      selectedCountry: config.countries[country]
+      selectedCountry: config.countries[countrySlug]
     });
-  }, [dispatch, country]);
+  }, [dispatch, countrySlug]);
+
   return (
     <Page>
       <CountryPageHeader
@@ -43,11 +43,5 @@ function Country({
     </Page>
   );
 }
-
-Country.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({}).isRequired
-  }).isRequired
-};
 
 export default Country;

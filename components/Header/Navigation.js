@@ -7,14 +7,15 @@ import {
   useTheme,
   Grid,
   IconButton,
-  Link,
+  Link as MuiLink,
   MenuItem,
   MenuList
 } from '@material-ui/core';
 
-import useToggleModal from '../../useToggleModal';
+import useToggleModal from '../Modal/useToggleModal';
 import ContactUs from '../Modal/ContactUs';
 import Dropdown, { CountriesButton } from './PortalDropdown';
+import Link from '../Link';
 import Modal from '../Modal';
 import PortalChooser from '../Modal/PortalChooser';
 import Search from '../Search';
@@ -132,14 +133,19 @@ function Navigation({ dominion, ...props }) {
         { title: 'Contact', onClick: toggleContact }
       ].map(menu => (
         <MenuItem key={menu.title} className={classes.menuListItem}>
-          <Link
-            variant="body1"
-            className={classes.link}
-            href={menu.link}
-            onClick={menu.onClick}
-          >
-            {menu.title}
-          </Link>
+          {menu.link ? (
+            <Link variant="body1" className={classes.link} href={menu.link}>
+              {menu.title}
+            </Link>
+          ) : (
+            <MuiLink
+              variant="body1"
+              className={classes.link}
+              onClick={menu.onClick}
+            >
+              {menu.title}
+            </MuiLink>
+          )}
         </MenuItem>
       ))}
     </MenuList>

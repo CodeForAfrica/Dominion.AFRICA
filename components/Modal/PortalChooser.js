@@ -10,7 +10,7 @@ import {
   Typography
 } from '@material-ui/core';
 
-import { AppContext } from '../../AppContext';
+import AppContext from '../../AppContext';
 import GetLocation from './GetLocation';
 
 import geolocate from '../../assets/images/icons/shape.svg';

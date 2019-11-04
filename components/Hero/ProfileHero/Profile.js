@@ -1,29 +1,25 @@
 import React, { useCallback, useContext } from 'react';
-
 import { PropTypes } from 'prop-types';
-import { Typography } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
-import { withRouter } from 'react-router-dom';
+
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 
 import classNames from 'classnames';
-import {
-  MapIt,
 
-  /**
-   * Commented out until futher notice
-   */
-  // ContentLoader,
-  TypographyLoader
-} from '@codeforafrica/hurumap-ui';
-import Hero, { HeroTitle, HeroTitleGrid, HeroDetail } from '../Hero';
+import { withStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
 
-/**
- * Commented out until futher notice
- */
+const MapIt = dynamic(() => import('@codeforafrica/hurumap-ui/core/MapIt'), {
+  ssr: false
+});
+import TypographyLoader from '@codeforafrica/hurumap-ui/core/TypographyLoader';
+
+import config from '../../../dominion.config';
+import AppContext from '../../../AppContext';
+import Hero, { HeroDetail, HeroTitle, HeroTitleGrid } from '../Hero';
+
 // import Search from '../../Search';
 // import searchIcon from '../../../assets/images/icons/location.svg';
-import config from '../../../config';
-import { AppContext } from '../../../AppContext';
 
 const styles = theme => ({
   root: {
@@ -91,24 +87,18 @@ const styles = theme => ({
     paddingLeft: 4
   }
 });
-function Profile({
-  classes,
-  dominion,
-  geoId,
-  history,
-  isLoading,
-  profile,
-  ...props
-}) {
+
+function Profile({ classes, dominion, geoId, isLoading, profile, ...props }) {
+  const router = useRouter();
   const {
     state: { selectedCountry }
   } = useContext(AppContext);
   const { head2head } = dominion;
   const onClickGeoLayer = useCallback(
     area => {
-      history.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
+      router.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
     },
-    [history]
+    [router]
   );
 
   const {
@@ -155,6 +145,7 @@ function Profile({
     : Object.values(config.countries).find(c =>
         parentLevel === 'continent' ? c.code === geoCode : c.code === parentCode
       );
+
   return (
     <Hero classes={{ root: classes.root }} {...props}>
       <HeroTitleGrid
@@ -286,4 +277,4 @@ Profile.propTypes = {
   geoId: PropTypes.string.isRequired
 };
 
-export default withRouter(withStyles(styles)(Profile));
+export default withStyles(styles)(Profile);

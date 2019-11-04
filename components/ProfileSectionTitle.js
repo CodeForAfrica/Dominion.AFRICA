@@ -1,9 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import dynamic from 'next/dynamic';
+
 import { Grid, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import { ContentLoader } from '@codeforafrica/hurumap-ui';
+
+import ContentLoader from '@codeforafrica/hurumap-ui/core/ContentLoader';
+// const ContentLoader = dynamic(
+//   () => import('@codeforafrica/hurumap-ui/core/ContentLoader'),
+//   {
+//     ssr: false
+//   }
+// );
 
 const styles = () => ({
   root: {

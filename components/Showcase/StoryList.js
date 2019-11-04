@@ -21,9 +21,6 @@ const useStyles = makeStyles(() => ({
      * Stick to px for this component to function correctly.
      */
     height: '370px', // 23.125rem
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
     overflow: 'hidden'
   },
   gridList: {
@@ -37,7 +34,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-function StoryList({ storyData, width, ...props }) {
+function StoryList({ storyData, ...props }) {
   const classes = useStyles(props);
   const theme = useTheme();
   let cards = 4;
@@ -51,7 +48,7 @@ function StoryList({ storyData, width, ...props }) {
   return (
     <Grid
       container
-      justify="center"
+      justify="space-around"
       alignItems="center"
       className={classes.root}
     >
@@ -67,8 +64,7 @@ function StoryList({ storyData, width, ...props }) {
 }
 
 StoryList.propTypes = {
-  storyData: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  width: PropTypes.string.isRequired
+  storyData: PropTypes.arrayOf(PropTypes.shape({})).isRequired
 };
 
 export default StoryList;

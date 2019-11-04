@@ -7,7 +7,7 @@ import PlayArrow from '@material-ui/icons/PlayArrow';
 import PlayerModal from './PlayerModal';
 
 import background from '../../assets/images/hero-image-1.png';
-import useToggleModal from '../../useToggleModal';
+import useToggleModal from '../Modal/useToggleModal';
 
 const useStyles = makeStyles(theme => ({
   root: {

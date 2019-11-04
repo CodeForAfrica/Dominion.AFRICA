@@ -8,7 +8,7 @@ import {
   Typography
 } from '@material-ui/core';
 
-import config from '../config';
+import config from '../dominion.config';
 import {
   getOpenAfricaDominionGroupData,
   getSourceAfricaDominionData
@@ -100,9 +100,10 @@ function Resources(props) {
           ))}
         </Grid>
         <ArrowButton
-          target="_blank"
-          role="link"
           href="https://dc.sourceafrica.net/public/search/projectid:462-Dominion-AFRICA"
+          rel="noopener noreferrer"
+          role="link"
+          target="_blank"
         >
           View all
         </ArrowButton>

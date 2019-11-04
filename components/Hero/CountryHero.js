@@ -1,7 +1,8 @@
 import React, { useCallback } from 'react';
 import { PropTypes } from 'prop-types';
 
-import { withRouter } from 'react-router-dom';
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 
 import {
   makeStyles,
@@ -10,16 +11,19 @@ import {
   Typography
 } from '@material-ui/core';
 
-import { MapIt } from '@codeforafrica/hurumap-ui';
+const MapIt = dynamic(() => import('@codeforafrica/hurumap-ui/core/MapIt'), {
+  ssr: false
+});
 
-import config from '../../config';
-import useToggleModal from '../../useToggleModal';
+import config from '../../dominion.config';
+import useToggleModal from '../Modal/useToggleModal';
 import Hero, {
   HeroButton,
   HeroDescription,
   HeroTitle,
   HeroTitleGrid
 } from './Hero';
+import Link from '../Link';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -45,11 +49,11 @@ const useStyles = makeStyles(theme => ({
       whiteSpace: 'nowrap'
     }
   },
-  alink: {
+  link: {
     color: '#e7e452',
     pointerEvents: 'all'
   },
-  heroButtonArray: {
+  heroButtonArrow: {
     display: 'none',
     [theme.breakpoints.up('lg')]: {
       display: 'block'
@@ -72,16 +76,17 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function CountryHero({ history, dominion, ...props }) {
+function CountryHero({ dominion, ...props }) {
   const classes = useStyles(props);
   const theme = useTheme();
   const { selectedCountry = { name: '' } } = dominion;
   const { toggleModal } = useToggleModal('search');
+  const router = useRouter();
   const onClickGeoLayer = useCallback(
     area => {
-      history.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
+      router.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
     },
-    [history]
+    [router]
   );
 
   return (
@@ -97,7 +102,7 @@ function CountryHero({ history, dominion, ...props }) {
         </HeroDescription>
 
         <HeroButton
-          classes={{ arrow: classes.heroButtonArray }}
+          classes={{ arrow: classes.heroButtonArrow }}
           onClick={toggleModal}
         >
           Find a place
@@ -105,12 +110,12 @@ function CountryHero({ history, dominion, ...props }) {
 
         <Typography variant="subtitle2" style={{ marginTop: '2.5rem' }}>
           or view{' '}
-          <a
-            className={classes.alink}
+          <Link
+            className={classes.link}
             href={`/profile/country-${selectedCountry.code}`}
           >
             {selectedCountry.name}
-          </a>
+          </Link>
         </Typography>
       </HeroTitleGrid>
       <div className={classes.map}>
@@ -132,4 +137,4 @@ CountryHero.propTypes = {
   dominion: PropTypes.shape({}).isRequired
 };
 
-export default withRouter(CountryHero);
+export default CountryHero;

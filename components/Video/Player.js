@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 
 import { makeStyles, Grid, IconButton } from '@material-ui/core';
 
+import useToggleModal from '../Modal/useToggleModal';
 import IFrame from '../IFrame';
 import Sources from './Sources';
 import Thumbnail from './Thumbnail';
 
 import back from '../../assets/images/icons/back.svg';
-import useToggleModal from '../../useToggleModal';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -86,30 +86,27 @@ function Player(props) {
             />
           </div>
         </Grid>
-
-        <Grid item>
-          <Grid
-            item
-            container
-            direction="row"
-            justify="center"
-            alignItems="flex-start"
-            className={classes.videoPlaylist}
-          >
-            {Sources.map(source => (
-              <Grid key={source.id} item>
-                <Thumbnail
-                  videoId={source.id}
-                  videoTitle={source.title}
-                  className={classes.thumbnail}
-                  onClick={handleThumbnailClick}
-                  isSelected={source.id === videoId}
-                />
-              </Grid>
-            ))}
-          </Grid>
+        <Grid
+          item
+          container
+          direction="row"
+          justify="center"
+          alignItems="flex-start"
+          className={classes.videoPlaylist}
+        >
+          {Sources.map(source => (
+            <Grid key={source.id} item>
+              <Thumbnail
+                videoId={source.id}
+                videoTitle={source.title}
+                className={classes.thumbnail}
+                onClick={handleThumbnailClick}
+                isSelected={source.id === videoId}
+              />
+            </Grid>
+          ))}
         </Grid>
-        <Grid constainer item justify="flex-end" alignItems="flex-start">
+        <Grid item container justify="flex-end" alignItems="flex-start">
           <IconButton
             className={classes.closeButton}
             aria-label="Close"

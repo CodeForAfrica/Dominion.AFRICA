@@ -5,11 +5,11 @@ import Partners from './Partners';
 
 function Page({ children }) {
   return (
-    <div>
+    <>
       {children}
       <Partners />
       <Footer />
-    </div>
+    </>
   );
 }
 Page.propTypes = {

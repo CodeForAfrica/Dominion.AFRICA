@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Land({ width, imgSrc, ...props }) {
+function Land({ imgSrc, ...props }) {
   const classes = useStyles(props);
   const theme = useTheme();
   let direction = 'column';
@@ -58,7 +58,6 @@ function Land({ width, imgSrc, ...props }) {
 }
 
 Land.propTypes = {
-  width: PropTypes.string.isRequired,
   imgSrc: PropTypes.string.isRequired
 };
 
