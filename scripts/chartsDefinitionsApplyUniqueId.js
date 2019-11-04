@@ -1,6 +1,6 @@
 const fs = require('fs');
 const shortid = require('shortid');
-const sectionedCharts = require('../src/data/charts.json');
+const sectionedCharts = require('../data/charts.json');
 
 sectionedCharts.forEach(section => {
   if (!section.id) {
@@ -22,7 +22,7 @@ sectionedCharts.forEach(section => {
 });
 
 fs.writeFileSync(
-  `${__dirname}/../src/data/charts.json`,
+  `${__dirname}/../data/charts.json`,
   JSON.stringify(sectionedCharts, null, 2)
 );
 
