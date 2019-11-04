@@ -16,13 +16,11 @@ const ChartContainer = dynamic(
 import config from '../../dominion.config';
 import slugify from '../../lib/utils/slugify';
 import useChartDefinitions from '../../data/useChartDefinitions';
-// import useProfileLoader from '../../data/useProfileLoader';
 import useProfileLoader from '@codeforafrica/hurumap-ui/factory/useProfileLoader';
 import withApollo from '../../lib/withApollo';
 import AppContext from '../../AppContext';
 import ChartsContainer from '../../components/ChartsContainer';
 import ChartFactory from '@codeforafrica/hurumap-ui/factory/ChartFactory';
-// import ChartFactory from '../../components/ChartFactory';
 import CountryPartners from '../../components/CountryPartners';
 import Page from '../../components/Page';
 import { ProfilePageHeader } from '../../components/Header';
@@ -58,7 +56,7 @@ function Profile(props) {
     dispatch
   } = useContext(AppContext);
   const head2head = Boolean(geoId && comparisonGeoId);
-  const [activeTab, setActiveTab] = useState();
+  const [activeTab, setActiveTab] = useState('all');
   useEffect(() => {
     const tab = window.location.hash.slice(1)
       ? window.location.hash.slice(1)
@@ -79,7 +77,8 @@ function Profile(props) {
   const { profiles, chartData } = useProfileLoader({
     geoId,
     comparisonGeoId,
-    visuals
+    visuals,
+    populationTables: config.populationTables
   });
 
   useEffect(() => {
@@ -97,7 +96,7 @@ function Profile(props) {
     }
   }, [profiles, dispatch]);
 
-  // get all available profiletabs
+  // get all available profile tabs
   const profileTabs = useMemo(
     () => [
       {
@@ -197,9 +196,9 @@ function Profile(props) {
                         !profiles.isLoading && (
                           <ChartFactory
                             key={visual.id}
-                            visual={visual}
+                            definition={visual}
                             profiles={profiles}
-                            data={chartData.profileVisualsData}
+                            data={chartData.profileVisualsData[visual.queryAlias].nodes}
                             comparisonData={chartData.comparisonVisualsData}
                           />
                         )

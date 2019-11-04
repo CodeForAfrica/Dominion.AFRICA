@@ -160,9 +160,6 @@ function Profile({ classes, dominion, geoId, isLoading, profile, ...props }) {
           loading={isLoading}
           variant="subtitle1"
           className={classes.caption}
-          loader={{
-            width: '9.375rem'
-          }}
         >
           {geoLevel} in{' '}
           <Typography

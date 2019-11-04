@@ -179,7 +179,8 @@ const config = {
       media: 'iframe',
       country: 'KE'
     }
-  ]
+  ],
+  populationTables: ['allPopulationGroup2016S', 'allPopulationResidence2009S']
 };
 
 export default config;
