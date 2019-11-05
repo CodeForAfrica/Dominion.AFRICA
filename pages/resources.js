@@ -8,20 +8,20 @@ import {
   Typography
 } from '@material-ui/core';
 
-import config from '../dominion.config';
+import config from 'dominion.config';
 import {
   getOpenAfricaDominionGroupData,
   getSourceAfricaDominionData
-} from '../lib/api';
+} from 'lib/api';
 
-import { AboutDominion } from '../components/About';
-import ArrowButton from '../components/ArrowButton';
-import CountryPartners from '../components/CountryPartners';
-import DataCard from '../components/Card/Data';
-import DocumentCard from '../components/Card/Document';
-import Page from '../components/Page';
-import Section from '../components/Section';
-import { TitlePageHeader } from '../components/Header';
+import { AboutDominion } from 'components/About';
+import ArrowButton from 'components/ArrowButton';
+import CountryPartners from 'components/CountryPartners';
+import DataCard from 'components/Card/Data';
+import DocumentCard from 'components/Card/Document';
+import Page from 'components/Page';
+import Section from 'components/Section';
+import { TitlePageHeader } from 'components/Header';
 
 const useStyles = makeStyles(theme => ({
   content: {

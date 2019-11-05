@@ -6,8 +6,8 @@ import Head from 'next/head';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 
-import { Provider as AppContextProvider } from '../AppContext';
-import theme from '../theme';
+import theme from 'theme';
+import { Provider as AppContextProvider } from 'AppContext';
 
 export default class DominionApp extends App {
   componentDidMount() {

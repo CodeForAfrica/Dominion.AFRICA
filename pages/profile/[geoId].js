@@ -1,10 +1,24 @@
 import React, { useEffect, useState, useContext, useMemo } from 'react';
-import PropTypes from 'prop-types';
 
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 
 import { makeStyles, Grid } from '@material-ui/core';
+
+import config from 'dominion.config';
+import slugify from 'lib/utils/slugify';
+import useChartDefinitions from 'data/useChartDefinitions';
+import useProfileLoader from '@codeforafrica/hurumap-ui/factory/useProfileLoader';
+import withApollo from 'lib/withApollo';
+import AppContext from 'AppContext';
+import ChartsContainer from 'components/ChartsContainer';
+import ChartFactory from '@codeforafrica/hurumap-ui/factory/ChartFactory';
+import CountryPartners from 'components/CountryPartners';
+import Page from 'components/Page';
+import { ProfilePageHeader } from 'components/Header';
+import ProfileRelease from 'components/ProfileReleases';
+import ProfileSectionTitle from 'components/ProfileSectionTitle';
+import ProfileTabs from 'components/ProfileTabs';
 
 const ChartContainer = dynamic(
   () => import('@codeforafrica/hurumap-ui/core/ChartContainer'),
@@ -12,21 +26,6 @@ const ChartContainer = dynamic(
     ssr: false
   }
 );
-
-import config from '../../dominion.config';
-import slugify from '../../lib/utils/slugify';
-import useChartDefinitions from '../../data/useChartDefinitions';
-import useProfileLoader from '@codeforafrica/hurumap-ui/factory/useProfileLoader';
-import withApollo from '../../lib/withApollo';
-import AppContext from '../../AppContext';
-import ChartsContainer from '../../components/ChartsContainer';
-import ChartFactory from '@codeforafrica/hurumap-ui/factory/ChartFactory';
-import CountryPartners from '../../components/CountryPartners';
-import Page from '../../components/Page';
-import { ProfilePageHeader } from '../../components/Header';
-import ProfileRelease from '../../components/ProfileReleases';
-import ProfileSectionTitle from '../../components/ProfileSectionTitle';
-import ProfileTabs from '../../components/ProfileTabs';
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -198,7 +197,10 @@ function Profile(props) {
                             key={visual.id}
                             definition={visual}
                             profiles={profiles}
-                            data={chartData.profileVisualsData[visual.queryAlias].nodes}
+                            data={
+                              chartData.profileVisualsData[visual.queryAlias]
+                                .nodes
+                            }
                             comparisonData={chartData.comparisonVisualsData}
                           />
                         )

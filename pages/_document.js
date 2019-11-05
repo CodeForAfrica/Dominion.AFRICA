@@ -4,7 +4,7 @@ import Document, { Head, Main, NextScript } from 'next/document';
 
 import { ServerStyleSheets } from '@material-ui/core/styles';
 
-import theme from '../theme';
+import theme from 'theme';
 
 class DominionDocument extends Document {
   render() {

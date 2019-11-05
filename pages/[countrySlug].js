@@ -2,15 +2,15 @@ import React, { useContext, useEffect } from 'react';
 
 import { useRouter } from 'next/router';
 
-import config from '../dominion.config';
-import AppContext from '../AppContext';
-import { AboutCountry } from '../components/About';
-import { CountryPageHeader } from '../components/Header';
-import CountryPartners from '../components/CountryPartners';
-import HowItWorks from '../components/HowItWorks';
-import Page from '../components/Page';
-import Showcase from '../components/Showcase';
-import Video from '../components/Video';
+import config from 'dominion.config';
+import AppContext from 'AppContext';
+import { AboutCountry } from 'components/About';
+import { CountryPageHeader } from 'components/Header';
+import CountryPartners from 'components/CountryPartners';
+import HowItWorks from 'components/HowItWorks';
+import Page from 'components/Page';
+import Showcase from 'components/Showcase';
+import Video from 'components/Video';
 
 function Country() {
   const {
