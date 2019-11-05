@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext, useMemo } from 'react';
 
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
+import Error from 'next/error';
 
 import { makeStyles, Grid } from '@material-ui/core';
 
@@ -26,6 +27,8 @@ const ChartContainer = dynamic(
     ssr: false
   }
 );
+
+const supportedGeoCodes = Object.values(config.countries).map(c => c.code);
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -230,6 +233,7 @@ function Profile(props) {
     }
   }, [profileTabs, activeTab]);
 
+  // TODO(kilemensi) Handle unknown geo or geo with missing data
   return (
     <Page>
       <ProfilePageHeader

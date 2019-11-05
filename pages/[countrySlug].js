@@ -12,6 +12,10 @@ import Page from 'components/Page';
 import Showcase from 'components/Showcase';
 import Video from 'components/Video';
 
+import Error from './_error';
+
+const supportedCountriesSlug = Object.keys(config.countries);
+
 function Country() {
   const {
     state: { selectedCountry },
@@ -26,6 +30,12 @@ function Country() {
     });
   }, [dispatch, countrySlug]);
 
+  if (!countrySlug) {
+    return null;
+  }
+  if (!supportedCountriesSlug.includes(countrySlug)) {
+    return <Error statusCode={404} />;
+  }
   return (
     <Page>
       <CountryPageHeader
