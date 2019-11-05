@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Button, Typography, makeStyles } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
 
-import blackArrow from '../../assets/images/icons/black-combined-shape.svg';
+import blackArrow from 'assets/images/icons/black-combined-shape.svg';
 
 const useStyles = makeStyles(theme => ({
   root: {

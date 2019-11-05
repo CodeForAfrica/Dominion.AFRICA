@@ -2,11 +2,11 @@ import React from 'react';
 
 import { makeStyles, Grid, Hidden } from '@material-ui/core';
 
+import background from 'assets/images/kaitlyn-baker-422999-unsplash.png';
+import dataBackground from 'assets/images/bg/databg.png';
+
 import DatasetsContent from './DatasetsContent';
 import DocumentsContent from './DocumentsContents';
-
-import background from '../../assets/images/kaitlyn-baker-422999-unsplash.png';
-import dataBackground from '../../assets/images/bg/databg.png';
 
 const useStyles = makeStyles(theme => ({
   root: {

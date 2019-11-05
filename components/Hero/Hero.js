@@ -7,7 +7,7 @@ import { makeStyles, Grid, Typography } from '@material-ui/core';
 
 import ContentLoader from '@codeforafrica/hurumap-ui/core/ContentLoader';
 
-import ArrowButton from '../ArrowButton';
+import ArrowButton from 'components/ArrowButton';
 
 const useStyles = makeStyles(theme => ({
   root: {

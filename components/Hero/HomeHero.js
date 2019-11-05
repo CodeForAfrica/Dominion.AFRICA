@@ -2,7 +2,10 @@ import React from 'react';
 
 import { makeStyles, Grid } from '@material-ui/core';
 
-import useToggleModal from '../Modal/useToggleModal';
+import heroBg from 'assets/images/bg/hero_bg.png';
+import smallScreenBackground from 'assets/images/bg/smallscreen_background.png';
+import useToggleModal from 'components/Modal/useToggleModal';
+
 import Hero, {
   HeroButton,
   HeroDescription,
@@ -10,9 +13,6 @@ import Hero, {
   HeroTitleGrid
 } from './Hero';
 import HomeHeroMap from './HomeHeroMap';
-
-import heroBg from '../../assets/images/bg/hero_bg.png';
-import smallScreenBackground from '../../assets/images/bg/smallscreen_background.png';
 
 const useStyles = makeStyles(theme => ({
   root: {

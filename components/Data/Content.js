@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { makeStyles, Grid, Typography } from '@material-ui/core';
 
-import Link from '../Link';
+import Link from 'components/Link';
 
 const useStyles = makeStyles(theme => ({
   root: {

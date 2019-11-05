@@ -1,16 +1,17 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { makeStyles, Grid } from '@material-ui/core';
 
-import PartnerContent from './PartnerContent';
+import aul from 'assets/images/logos/aul.png';
+import rapport from 'assets/images/logos/rapport.png';
+import ourland from 'assets/images/logos/onground.png';
+import landbou from 'assets/images/logos/landbou.png';
+import citypress from 'assets/images/logos/citypress.png';
 
-import aul from '../../assets/images/logos/aul.png';
-import A from '../A';
-import rapport from '../../assets/images/logos/rapport.png';
-import ourland from '../../assets/images/logos/onground.png';
-import landbou from '../../assets/images/logos/landbou.png';
-import citypress from '../../assets/images/logos/citypress.png';
+import A from 'components/A';
+
+import PartnerContent from './PartnerContent';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -98,7 +99,7 @@ function CountryPartners({ dominion: { selectedCountry }, ...props }) {
           )}
           {((selectedCountry && selectedCountry.slug === 'south-africa') ||
             selectedCountry === null) && (
-            <Fragment>
+            <>
               <Grid className={classes.imageGrid} item>
                 <A href="http://africauncensored.net/about/">
                   <img
@@ -135,7 +136,7 @@ function CountryPartners({ dominion: { selectedCountry }, ...props }) {
                   />
                 </A>
               </Grid>
-            </Fragment>
+            </>
           )}
         </Grid>
       </Grid>

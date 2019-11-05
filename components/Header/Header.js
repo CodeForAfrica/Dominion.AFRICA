@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import { makeStyles, Grid } from '@material-ui/core';
 
-import Navigation from './Navigation';
+import background from 'assets/images/bg/background.png';
+import useCloseModalOnPopstate from 'components/Modal/useCloseModalOnPopstate';
 
-import background from '../../assets/images/bg/background.png';
-import useCloseModalOnPopstate from '../Modal/useCloseModalOnPopstate';
+import Navigation from './Navigation';
 
 const useStyles = makeStyles(theme => ({
   root: {

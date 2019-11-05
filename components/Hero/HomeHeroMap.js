@@ -2,7 +2,7 @@ import React from 'react';
 
 import { makeStyles, Grid, Typography } from '@material-ui/core';
 
-import map from '../../assets/images/bg/hero_map.png';
+import map from 'assets/images/bg/hero_map.png';
 
 const useStyles = makeStyles(theme => ({
   verticalAlignText: {

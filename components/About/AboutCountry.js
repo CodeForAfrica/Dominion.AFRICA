@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 import { makeStyles, Grid } from '@material-ui/core';
 
+import land from 'assets/images/hero-image-3.png';
+import config from 'dominion.config';
+
 import Header from './Header';
 import Info, { InfoSubtitle, InfoBody } from './Info';
 import Land from './Land';
-
-import land from '../../assets/images/hero-image-3.png';
-import config from '../../dominion.config';
 
 const useStyles = makeStyles(theme => ({
   root: {

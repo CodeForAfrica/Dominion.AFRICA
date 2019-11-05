@@ -6,8 +6,8 @@ import { Button, Grid, MenuItem, MenuList } from '@material-ui/core';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
 
-import AppContext from '../../AppContext';
-import Link from '../Link';
+import AppContext from 'AppContext';
+import Link from 'components/Link';
 
 const styles = theme => ({
   root: {

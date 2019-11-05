@@ -10,7 +10,7 @@ import {
   Typography
 } from '@material-ui/core';
 
-import cross from '../../assets/images/icons/close.svg';
+import cross from 'assets/images/icons/close.svg';
 
 const useStyles = makeStyles(theme => ({
   root: {

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 
-import createAPI from '../../lib/api';
-import config from '../../dominion.config';
+import createAPI from 'lib/api';
+import config from 'dominion.config';
 
 const styles = {
   locationText: {

@@ -5,8 +5,8 @@ import classNames from 'classnames';
 
 import { makeStyles, Button, Grid } from '@material-ui/core';
 
-import arrow from '../assets/images/icons/combined-shape.svg';
-import arrowBlack from '../assets/images/icons/black-combined-shape.svg';
+import arrow from 'assets/images/icons/combined-shape.svg';
+import arrowBlack from 'assets/images/icons/black-combined-shape.svg';
 
 const useStyles = makeStyles(theme => ({
   root: {

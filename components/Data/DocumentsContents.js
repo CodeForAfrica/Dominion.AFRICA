@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-import { getSourceAfricaDominionData } from '../../lib/api';
-import Content from './Content';
+import { getSourceAfricaDominionData } from 'lib/api';
+import menuIcon from 'assets/images/icons/group-7.png';
 
-import menuIcon from '../../assets/images/icons/group-7.png';
+import Content from './Content';
 
 function DocumentsContent() {
   const [documentsCount, setDocumentsCount] = useState('-');

@@ -11,8 +11,8 @@ import {
   InputBase
 } from '@material-ui/core';
 
-import back from '../../assets/images/icons/back.svg';
-import search from '../../assets/images/icons/location.svg';
+import back from 'assets/images/icons/back.svg';
+import search from 'assets/images/icons/location.svg';
 
 const useStyles = makeStyles(theme => ({
   root: {

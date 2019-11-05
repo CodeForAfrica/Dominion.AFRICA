@@ -4,6 +4,8 @@ import { useTheme } from '@material-ui/core';
 
 import dynamic from 'next/dynamic';
 
+import aggregateData from 'lib/utils/aggregateData';
+
 const BarChart = dynamic(
   () => import('@codeforafrica/hurumap-ui/core/BarChart'),
   {
@@ -28,7 +30,6 @@ const NumberVisuals = dynamic(
     ssr: false
   }
 );
-import aggregateData from '../lib/utils/aggregateData';
 
 export default function ChartFactory({
   visual: {

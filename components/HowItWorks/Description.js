@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import { Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import useToggleModal from '../Modal/useToggleModal';
-import PlayerModal from '../Video/PlayerModal';
+import useToggleModal from 'components/Modal/useToggleModal';
+import PlayerModal from 'components/Video/PlayerModal';
+
 import Steps from './Steps';
 import ViewVideos from './ViewVideos';
 

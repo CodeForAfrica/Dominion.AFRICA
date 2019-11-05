@@ -12,19 +12,19 @@ import {
   MenuList
 } from '@material-ui/core';
 
-import useToggleModal from '../Modal/useToggleModal';
-import ContactUs from '../Modal/ContactUs';
-import Dropdown, { CountriesButton } from './PortalDropdown';
-import Link from '../Link';
-import Modal from '../Modal';
-import PortalChooser from '../Modal/PortalChooser';
-import Search from '../Search';
+import backIcon from 'assets/images/icons/back.svg';
+import logo from 'assets/images/logos/dominion-logo.png';
+import logoWithCountrySpace from 'assets/images/logos/dominion-logo-country.png';
+import menuIcon from 'assets/images/icons/menu.svg';
+import searchIcon from 'assets/images/icons/location.svg';
+import useToggleModal from 'components/Modal/useToggleModal';
+import ContactUs from 'components/Modal/ContactUs';
+import Link from 'components/Link';
+import Modal from 'components/Modal';
+import PortalChooser from 'components/Modal/PortalChooser';
+import Search from 'components/Search';
 
-import backIcon from '../../assets/images/icons/back.svg';
-import logo from '../../assets/images/logos/dominion-logo.png';
-import logoWithCountrySpace from '../../assets/images/logos/dominion-logo-country.png';
-import menuIcon from '../../assets/images/icons/menu.svg';
-import searchIcon from '../../assets/images/icons/location.svg';
+import Dropdown, { CountriesButton } from './PortalDropdown';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -190,7 +190,7 @@ function Navigation({ dominion, ...props }) {
     );
 
     return (
-      <React.Fragment>
+      <>
         <Topbar />
 
         <Modal isOpen={openMenu} onEscapeKeyDown={toggleMenu}>
@@ -202,7 +202,7 @@ function Navigation({ dominion, ...props }) {
             </Search>
           </Grid>
         </Modal>
-      </React.Fragment>
+      </>
     );
   };
 
@@ -249,7 +249,7 @@ function Navigation({ dominion, ...props }) {
     : renderMobileMenu();
 
   return (
-    <React.Fragment>
+    <>
       <Grid container className={classes.wrapper}>
         {nav}
       </Grid>
@@ -271,7 +271,7 @@ function Navigation({ dominion, ...props }) {
           <ContactUs handleClose={toggleContact} />
         </Grid>
       </Modal>
-    </React.Fragment>
+    </>
   );
 }
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Grid, Hidden } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import databg from '../../assets/images/bg/databg.png';
+import databg from 'assets/images/bg/databg.png';
 
 import Map from './Map';
 import Description from './Description';

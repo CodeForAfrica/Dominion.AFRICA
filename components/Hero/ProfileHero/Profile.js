@@ -8,15 +8,15 @@ import classNames from 'classnames';
 
 import { withStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
+import TypographyLoader from '@codeforafrica/hurumap-ui/core/TypographyLoader';
+
+import config from 'dominion.config';
+import AppContext from 'AppContext';
+import Hero, { HeroDetail, HeroTitle, HeroTitleGrid } from 'components/Hero';
 
 const MapIt = dynamic(() => import('@codeforafrica/hurumap-ui/core/MapIt'), {
   ssr: false
 });
-import TypographyLoader from '@codeforafrica/hurumap-ui/core/TypographyLoader';
-
-import config from '../../../dominion.config';
-import AppContext from '../../../AppContext';
-import Hero, { HeroDetail, HeroTitle, HeroTitleGrid } from '../Hero';
 
 // import Search from '../../Search';
 // import searchIcon from '../../../assets/images/icons/location.svg';

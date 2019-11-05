@@ -11,19 +11,20 @@ import {
   Typography
 } from '@material-ui/core';
 
-const MapIt = dynamic(() => import('@codeforafrica/hurumap-ui/core/MapIt'), {
-  ssr: false
-});
+import config from 'dominion.config';
+import useToggleModal from 'components/Modal/useToggleModal';
+import Link from 'components/Link';
 
-import config from '../../dominion.config';
-import useToggleModal from '../Modal/useToggleModal';
 import Hero, {
   HeroButton,
   HeroDescription,
   HeroTitle,
   HeroTitleGrid
 } from './Hero';
-import Link from '../Link';
+
+const MapIt = dynamic(() => import('@codeforafrica/hurumap-ui/core/MapIt'), {
+  ssr: false
+});
 
 const useStyles = makeStyles(theme => ({
   root: {

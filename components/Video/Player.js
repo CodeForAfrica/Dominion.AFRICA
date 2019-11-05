@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 
 import { makeStyles, Grid, IconButton } from '@material-ui/core';
 
-import useToggleModal from '../Modal/useToggleModal';
-import IFrame from '../IFrame';
+import back from 'assets/images/icons/back.svg';
+import useToggleModal from 'components/Modal/useToggleModal';
+import IFrame from 'components/IFrame';
+
 import Sources from './Sources';
 import Thumbnail from './Thumbnail';
-
-import back from '../../assets/images/icons/back.svg';
 
 const useStyles = makeStyles(theme => ({
   root: {

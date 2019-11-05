@@ -2,7 +2,8 @@ import React from 'react';
 
 import { makeStyles, Grid, Typography } from '@material-ui/core';
 
-import A from '../A';
+import A from 'components/A';
+
 import SocialMedia from './SocialMedia';
 
 const useStyles = makeStyles(theme => ({

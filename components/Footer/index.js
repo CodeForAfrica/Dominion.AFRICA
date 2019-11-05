@@ -2,11 +2,11 @@ import React from 'react';
 
 import { makeStyles, Grid, Container } from '@material-ui/core';
 
+import background from 'assets/images/bg/background.png';
+
 import About from './About';
 import Community from './Community';
 import Project from './Project';
-
-import background from '../../assets/images/bg/background.png';
 
 const useStyles = makeStyles({
   root: {
