@@ -23,7 +23,14 @@ export default class DominionApp extends App {
 
     return (
       <>
-        <Head />
+        <Head>
+          <title>Dominion: Who Owns the Land</title>
+          <style type="text/css">
+            {`html {
+              fontSize: 14px;
+            }`}
+          </style>
+        </Head>
         <ThemeProvider theme={theme}>
           <AppContextProvider>
             <CssBaseline />
