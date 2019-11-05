@@ -23,9 +23,7 @@ export default class DominionApp extends App {
 
     return (
       <>
-        <Head>
-          <title>Dominion: Who Owns the Land</title>
-        </Head>
+        <Head />
         <ThemeProvider theme={theme}>
           <AppContextProvider>
             <CssBaseline />

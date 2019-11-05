@@ -10,7 +10,7 @@ import {
   Typography
 } from '@material-ui/core';
 
-import A from 'components/A';
+import A from '@codeforafrica/hurumap-ui/core/A';
 
 const useStyles = makeStyles(theme => ({
   root: {

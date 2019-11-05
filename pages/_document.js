@@ -23,6 +23,18 @@ class DominionDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Lora:400,700"
           />
+
+          {/*
+            manifest.json provides metadata used when your web app is installed on a
+            user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+          */}
+          <link rel="manifest" href="/manifest.json" />
+          <title>Dominion: Who Owns the Land</title>
+          <style type="text/css">
+            {`html {
+              fontSize: '14px';
+            }`}
+          </style>
         </Head>
         <body>
           <Main />

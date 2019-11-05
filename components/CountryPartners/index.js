@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 import { makeStyles, Grid } from '@material-ui/core';
 
+import A from '@codeforafrica/hurumap-ui/core/A';
+
 import aul from 'assets/images/logos/aul.png';
 import rapport from 'assets/images/logos/rapport.png';
 import ourland from 'assets/images/logos/onground.png';
 import landbou from 'assets/images/logos/landbou.png';
 import citypress from 'assets/images/logos/citypress.png';
-
-import A from 'components/A';
 
 import PartnerContent from './PartnerContent';
 
