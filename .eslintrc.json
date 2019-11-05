@@ -21,6 +21,7 @@
         "extensions": [".js", ".jsx"]
       }
     ],
+    "react/jsx-props-no-spreading": 0,
     "no-nested-ternary": "off"
   }
 }
