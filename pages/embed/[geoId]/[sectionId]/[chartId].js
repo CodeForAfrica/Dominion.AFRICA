@@ -1,12 +1,24 @@
 import React, { useMemo } from 'react';
-import { ChartContainer } from '@codeforafrica/hurumap-ui';
-import PropTypes from 'prop-types';
+
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
+
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import ChartFactory from '../components/ChartFactory';
 
-import useChartDefinitions from '../data/useChartDefinitions';
-import useProfileLoader from '../data/useProfileLoader';
+import useProfileLoader from '@codeforafrica/hurumap-ui/factory/useProfileLoader';
+import ChartFactory from '@codeforafrica/hurumap-ui/factory/ChartFactory';
+
+import config from 'dominion.config';
+import useChartDefinitions from 'data/useChartDefinitions';
+import withApollo from 'lib/withApollo';
+
+const ChartContainer = dynamic(
+  () => import('@codeforafrica/hurumap-ui/core/ChartContainer'),
+  {
+    ssr: false
+  }
+);
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -25,24 +37,21 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Embed({
-  match: {
-    params: { geoId, sectionId, chartId }
-  }
-}) {
-  const classes = useStyles();
+function Embed(props) {
+  const classes = useStyles(props);
   const sectionedCharts = useChartDefinitions();
-
+  const router = useRouter();
+  const { geoId, sectionId, chartId } = router.query;
   const chart = useMemo(() => {
     const section = sectionedCharts.find(s => s.id === sectionId);
     return section ? section.charts.find(c => c.id === chartId) : null;
   }, [sectionedCharts, sectionId, chartId]);
 
-  const { profiles, chartData } = useProfileLoader(
+  const { profiles, chartData } = useProfileLoader({
     geoId,
-    null,
-    chart ? chart.visuals : []
-  );
+    visuals: chart ? chart.visuals : [],
+    populationTables: config.populationTables
+  });
 
   if (!chart) {
     return (
@@ -86,15 +95,16 @@ function Embed({
           title: 'Embed code for this chart',
           subtitle:
             'Copy the code below, then paste into your own CMS or HTML. Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge.',
-          code: `<iframe src="https://dev.takwimu.africa/embed/${geoId}/${sectionId}/${chartId}" />`
+          code: `<iframe src="https://dev.dominion.africa/embed/${geoId}/${sectionId}/${chartId}" />`
         }}
       >
         {!chartData.isLoading &&
           chart.visuals.map(visual => (
             <ChartFactory
-              visual={visual}
+              key={visual.id}
+              definition={visual}
               profiles={profiles}
-              data={chartData.profileVisualsData}
+              data={chartData.profileVisualsData[visual.queryAlias].nodes}
             />
           ))}
       </ChartContainer>
@@ -102,14 +112,4 @@ function Embed({
   );
 }
 
-Embed.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      geoId: PropTypes.string.isRequired,
-      sectionId: PropTypes.string.isRequired,
-      chartId: PropTypes.string.isRequired
-    }).isRequired
-  }).isRequired
-};
-
-export default Embed;
+export default withApollo(Embed);

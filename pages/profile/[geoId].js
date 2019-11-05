@@ -2,18 +2,18 @@ import React, { useEffect, useState, useContext, useMemo } from 'react';
 
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import Error from 'next/error';
 
 import { makeStyles, Grid } from '@material-ui/core';
+
+import useProfileLoader from '@codeforafrica/hurumap-ui/factory/useProfileLoader';
+import ChartFactory from '@codeforafrica/hurumap-ui/factory/ChartFactory';
 
 import config from 'dominion.config';
 import slugify from 'lib/utils/slugify';
 import useChartDefinitions from 'data/useChartDefinitions';
-import useProfileLoader from '@codeforafrica/hurumap-ui/factory/useProfileLoader';
 import withApollo from 'lib/withApollo';
 import AppContext from 'AppContext';
 import ChartsContainer from 'components/ChartsContainer';
-import ChartFactory from '@codeforafrica/hurumap-ui/factory/ChartFactory';
 import CountryPartners from 'components/CountryPartners';
 import Page from 'components/Page';
 import { ProfilePageHeader } from 'components/Header';
@@ -27,8 +27,6 @@ const ChartContainer = dynamic(
     ssr: false
   }
 );
-
-const supportedGeoCodes = Object.values(config.countries).map(c => c.code);
 
 const useStyles = makeStyles(theme => ({
   title: {
