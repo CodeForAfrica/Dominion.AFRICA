@@ -94,11 +94,11 @@ const maxResults = 6;
 function renderHref(codeType, result, thisGeoId, isComparisonSearch) {
   let href;
   if (isComparisonSearch) {
-    href = `/compare/${thisGeoId}/vs/${result.codes[codeType]}/`;
+    href = `/profiles/${thisGeoId}?comparisonGeoId=${result.codes[codeType]}/`;
   } else if (result.type.toLowerCase() === 'country') {
     href = `/${result.slug}`;
   } else {
-    href = `/profile/${result.codes[codeType]}`;
+    href = `/profiles/${result.codes[codeType]}`;
   }
   return href;
 }

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
+import config from 'dominion.config';
 import createAPI from 'lib/api';
 
 import SearchBar from './SearchBar';
@@ -59,10 +60,8 @@ class Search extends React.Component {
   }
 
   async loadSuggestions(searchTerm) {
+    const { codeType } = config.MAPIT;
     const api = createAPI();
-    const {
-      mapit: { codeType }
-    } = api;
     const {
       dominion: { selectedCountry }
     } = this.props;

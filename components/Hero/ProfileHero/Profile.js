@@ -8,6 +8,7 @@ import classNames from 'classnames';
 
 import { withStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
+
 import TypographyLoader from '@codeforafrica/hurumap-ui/core/TypographyLoader';
 
 import config from 'dominion.config';
@@ -17,9 +18,6 @@ import Hero, { HeroDetail, HeroTitle, HeroTitleGrid } from 'components/Hero';
 const MapIt = dynamic(() => import('@codeforafrica/hurumap-ui/core/MapIt'), {
   ssr: false
 });
-
-// import Search from '../../Search';
-// import searchIcon from '../../../assets/images/icons/location.svg';
 
 const styles = theme => ({
   root: {
@@ -96,7 +94,7 @@ function Profile({ classes, dominion, geoId, isLoading, profile, ...props }) {
   const { head2head } = dominion;
   const onClickGeoLayer = useCallback(
     area => {
-      router.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
+      router.push(`/profiles/${area.codes[config.MAPIT.codeType]}`);
     },
     [router]
   );
@@ -168,7 +166,7 @@ function Profile({ classes, dominion, geoId, isLoading, profile, ...props }) {
             className={classes.alink}
             href={
               parentLevel !== 'continent'
-                ? `/profile/${selectedCountry.geoLevel}-${selectedCountry.geoCode}`
+                ? `/profiles/${selectedCountry.geoLevel}-${selectedCountry.geoCode}`
                 : '#'
             }
           >

@@ -85,7 +85,7 @@ function CountryHero({ dominion, ...props }) {
   const router = useRouter();
   const onClickGeoLayer = useCallback(
     area => {
-      router.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
+      router.push(`/profiles/${area.codes[config.MAPIT.codeType]}`);
     },
     [router]
   );
@@ -113,7 +113,7 @@ function CountryHero({ dominion, ...props }) {
           or view{' '}
           <Link
             className={classes.link}
-            href={`/profile/country-${selectedCountry.code}`}
+            href={`/profiles/country-${selectedCountry.code}`}
           >
             {selectedCountry.name}
           </Link>
