@@ -918,10 +918,12 @@
         "layout": "1",
         "visuals": [
           {
-            "type": "column",
+            "type": "grouped_column",
             "table": "allLandTradedColourTransactions2018S",
             "x": "monthCc",
             "y": "total",
+            "groupBy": "monthCc",
+            "aggregate": "sum",
             "id": "visual-gSE-RM0dq"
           }
         ],
@@ -935,10 +937,12 @@
         "layout": "1",
         "visuals": [
           {
-            "type": "column",
+            "type": "grouped_column",
             "table": "allLandTradedColourCostBreakdown2018S",
             "x": "monthCc",
             "y": "total",
+            "groupBy": "monthCc",
+            "aggregate": "sum",
             "id": "visual-XxFawAzmB"
           }
         ],
@@ -952,10 +956,12 @@
         "layout": "1",
         "visuals": [
           {
-            "type": "column",
+            "type": "grouped_column",
             "table": "allLandTradedAllVsColour2018S",
             "x": "transactionGroup",
             "y": "total",
+            "groupBy": "transactionGroup",
+            "aggregate": "sum",
             "id": "visual-OcsjPU42P",
             "props": {
               "offset": 60
@@ -994,10 +1000,12 @@
         "layout": "1",
         "visuals": [
           {
-            "type": "column",
+            "type": "grouped_column",
             "table": "allLandTradedColourTransactions2018S",
             "x": "breakdownCc",
             "y": "total",
+            "groupBy": "breakdownCc",
+            "aggregate": "sum",
             "id": "visual-Srvm9tMxn",
             "props": {
               "offset": 80
@@ -1014,10 +1022,12 @@
         "layout": "1",
         "visuals": [
           {
-            "type": "column",
+            "type": "grouped_column",
             "table": "allLandTradedColourHectaresBreakdown2018S",
             "x": "breakdownCc",
             "y": "total",
+            "groupBy": "breakdownCc",
+            "aggregate": "sum",
             "id": "visual-Cl8cQtdYe",
             "props": {
               "offset": 80

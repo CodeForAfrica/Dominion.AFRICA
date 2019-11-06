@@ -58,7 +58,6 @@ const styles = theme => ({
     alignItems: 'center',
     color: '#8d8d8c',
     width: '100%',
-    textTransform: 'capitalize',
     paddingTop: theme.spacing(),
     paddingBottom: theme.spacing(),
     marginTop: '0.625rem'
@@ -166,7 +165,7 @@ function Profile({ classes, dominion, geoId, isLoading, profile, ...props }) {
           in{' '}
           <Typography
             component="a"
-            variant="caption"
+            variant="subtitle1"
             className={classes.alink}
             href={
               parentLevel !== 'continent'
