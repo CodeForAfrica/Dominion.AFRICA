@@ -10,14 +10,30 @@ const config = {
       name: 'Kenya',
       centre: [0.3051933453207569, 37.908818734483155],
       zoom: 6,
-      slug: 'kenya'
+      slug: 'kenya',
+      geoLevels: {
+        country: {
+          name: 'Country'
+        },
+        level1: {
+          name: 'County'
+        }
+      }
     },
     'south-africa': {
       code: 'ZA',
       name: 'South Africa',
       centre: [-30, 24],
       zoom: 5,
-      slug: 'south-africa'
+      slug: 'south-africa',
+      geoLevels: {
+        country: {
+          name: 'Country'
+        },
+        level1: {
+          name: 'Province'
+        }
+      }
     }
   },
   about: {

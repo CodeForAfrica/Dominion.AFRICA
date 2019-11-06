@@ -159,14 +159,18 @@ function Profile({ classes, dominion, geoId, isLoading, profile, ...props }) {
           variant="subtitle1"
           className={classes.caption}
         >
-          {geoLevel} in{' '}
+          {selectedCountry &&
+            geoLevel &&
+            selectedCountry.geoLevels &&
+            selectedCountry.geoLevels[geoLevel].name}{' '}
+          in{' '}
           <Typography
             component="a"
             variant="caption"
             className={classes.alink}
             href={
               parentLevel !== 'continent'
-                ? `/profiles/${selectedCountry.geoLevel}-${selectedCountry.geoCode}`
+                ? `/profiles/${parentLevel}-${parentCode}`
                 : '#'
             }
           >
