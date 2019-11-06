@@ -202,6 +202,13 @@ function Profile(props) {
                               chartData.profileVisualsData[visual.queryAlias]
                                 .nodes
                             }
+                            referenceData={(() => {
+                              const temp =
+                                chartData.profileVisualsData[
+                                  `${visual.queryAlias}Reference`
+                                ];
+                              return temp ? temp.nodes : [];
+                            })()}
                             comparisonData={chartData.comparisonVisualsData}
                           />
                         )
