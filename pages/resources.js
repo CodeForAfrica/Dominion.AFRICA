@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import Head from 'next/head';
+
 import {
   makeStyles,
   useMediaQuery,
@@ -65,82 +67,91 @@ function Resources(props) {
   const titleVariant = useMediaQuery(theme.breakpoints.up('md')) ? 'h2' : 'h3';
 
   return (
-    <Page>
-      <TitlePageHeader dominion={config} profile={{}}>
-        Datasets
-        <br /> and Documents
-      </TitlePageHeader>
-      <Section
-        classes={{
-          content: classes.sectionContent,
-          subtitle: classes.sectionSubtitle
-        }}
-        id="documents"
-        title="Documents"
-        titleVariant={titleVariant}
-        subtitle="Powered by sourceAFRICA.net"
-      >
-        <Typography variant="body2">
-          Data for Dominion is aggregated from various authoritative sources.
-          Below is a list of documents and datasets used for the project, which
-          is hosted on sourceAFRICA.net and openAFRICA.net
-        </Typography>
-        <Grid container justify="space-between" className={classes.content}>
-          {documents.map(document => (
-            <Grid item xs={12} md={6} key={document.title}>
-              <DocumentCard
-                link={document.canonical_url}
-                title={document.title}
-                description={document.description}
-                preview={
-                  <img alt="" src={document.resources.thumbnail} width="100%" />
-                }
+    <>
+      <Head>
+        <title>Resources - Dominion</title>
+      </Head>
+      <Page>
+        <TitlePageHeader dominion={config} profile={{}}>
+          Datasets
+          <br /> and Documents
+        </TitlePageHeader>
+        <Section
+          classes={{
+            content: classes.sectionContent,
+            subtitle: classes.sectionSubtitle
+          }}
+          id="documents"
+          title="Documents"
+          titleVariant={titleVariant}
+          subtitle="Powered by sourceAFRICA.net"
+        >
+          <Typography variant="body2">
+            Data for Dominion is aggregated from various authoritative sources.
+            Below is a list of documents and datasets used for the project,
+            which is hosted on sourceAFRICA.net and openAFRICA.net
+          </Typography>
+          <Grid container justify="space-between" className={classes.content}>
+            {documents.map(document => (
+              <Grid item xs={12} md={6} key={document.title}>
+                <DocumentCard
+                  link={document.canonical_url}
+                  title={document.title}
+                  description={document.description}
+                  preview={
+                    <img
+                      alt=""
+                      src={document.resources.thumbnail}
+                      width="100%"
+                    />
+                  }
+                />
+              </Grid>
+            ))}
+          </Grid>
+          <ArrowButton
+            href="https://dc.sourceafrica.net/public/search/projectid:462-Dominion-AFRICA"
+            rel="noopener noreferrer"
+            role="link"
+            target="_blank"
+          >
+            View all
+          </ArrowButton>
+        </Section>
+        <Section
+          classes={{
+            content: classes.sectionContent,
+            subtitle: classes.sectionSubtitle
+          }}
+          id="data"
+          light
+          title="Data"
+          titleVariant={titleVariant}
+          subtitle="Powered by openAfrica.net"
+        >
+          <Grid container justify="space-between" className={classes.content}>
+            {packages.map(p => (
+              <DataCard
+                key={p.title}
+                dataLink={`https://openafrica.net/dataset/${p.name}`}
+                description={p.notes}
+                title={p.title}
+                orgLink={`https://openafrica.net/organization/${p.organization.name}`}
               />
-            </Grid>
-          ))}
-        </Grid>
-        <ArrowButton
-          href="https://dc.sourceafrica.net/public/search/projectid:462-Dominion-AFRICA"
-          rel="noopener noreferrer"
-          role="link"
-          target="_blank"
-        >
-          View all
-        </ArrowButton>
-      </Section>
-      <Section
-        classes={{
-          content: classes.sectionContent,
-          subtitle: classes.sectionSubtitle
-        }}
-        id="data"
-        light
-        title="Data"
-        titleVariant={titleVariant}
-        subtitle="Powered by openAfrica.net"
-      >
-        <Grid container justify="space-between" className={classes.content}>
-          {packages.map(p => (
-            <DataCard
-              key={p.title}
-              dataLink={`https://openafrica.net/dataset/${p.name}`}
-              description={p.notes}
-              title={p.title}
-              orgLink={`https://openafrica.net/organization/${p.organization.name}`}
-            />
-          ))}
-        </Grid>
-        <ArrowButton
-          target="_blank"
-          role="link"
-          href="https://africaopendata.org/group/dominion"
-        >
-          View all
-        </ArrowButton>
-      </Section>
-      <AboutDominion dominion={config} />
-      <CountryPartners />
-    </Page>
+            ))}
+          </Grid>
+          <ArrowButton
+            target="_blank"
+            role="link"
+            href="https://africaopendata.org/group/dominion"
+          >
+            View all
+          </ArrowButton>
+        </Section>
+        <AboutDominion dominion={config} />
+        <CountryPartners />
+      </Page>
+    </>
   );
 }
 

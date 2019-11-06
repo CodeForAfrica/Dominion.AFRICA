@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 import config from 'dominion.config';
 import AppContext from 'AppContext';
@@ -37,20 +38,30 @@ function Country() {
     return <Error statusCode={404} />;
   }
   return (
-    <Page>
-      <CountryPageHeader
-        dominion={{ ...config, selectedCountry }}
-        profile={{}}
-      />
-      <AboutCountry dominion={{ ...config, selectedCountry }} />
-      <HowItWorks dominion={config} />
-      <Video dominion={config} />
-      <Showcase
-        dominion={{ ...config, selectedCountry }}
-        showcaseStories={config.showCaseStories}
-      />
-      <CountryPartners dominion={{ ...config, selectedCountry }} />
-    </Page>
+    <>
+      <Head>
+        <title>{selectedCountry && `${selectedCountry.name} - `}Dominion</title>
+        <link
+          rel="preconnect"
+          href="https://mapit.hurumap.org/graphql"
+          crossOrigin="anonymous"
+        />
+      </Head>
+      <Page>
+        <CountryPageHeader
+          dominion={{ ...config, selectedCountry }}
+          profile={{}}
+        />
+        <AboutCountry dominion={{ ...config, selectedCountry }} />
+        <HowItWorks dominion={config} />
+        <Video dominion={config} />
+        <Showcase
+          dominion={{ ...config, selectedCountry }}
+          showcaseStories={config.showCaseStories}
+        />
+        <CountryPartners dominion={{ ...config, selectedCountry }} />
+      </Page>
+    </>
   );
 }
 

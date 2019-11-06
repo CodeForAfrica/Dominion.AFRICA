@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -75,40 +76,62 @@ function Embed(props) {
     );
   }
 
+  const pageTitle = () => {
+    const chartTitle = chart && chart.title ? `${chart.title} - ` : '';
+    const profileName = profiles && profiles.profile && profiles.profile.name;
+    const profileTitle = profileName ? `${profileName} - ` : '';
+    return `${chartTitle}${profileTitle}Dominion`;
+  };
+
   return (
-    <div style={{ maxWidth: '100%' }}>
-      <ChartContainer
-        key={chart.id}
-        loading={chartData.isLoading}
-        title={chart.title}
-        subtitle={chart.subtitle}
-        classes={{
-          title: classes.title,
-          subtitle: classes.subtitle,
-          sourceLink: classes.sourceLink
-        }}
-        source={{
-          title: 'Community Survey 2016',
-          href: 'http://dev.dominion.africa'
-        }}
-        embed={{
-          title: 'Embed code for this chart',
-          subtitle:
-            'Copy the code below, then paste into your own CMS or HTML. Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge.',
-          code: `<iframe src="https://dev.dominion.africa/embed/${geoId}/${sectionId}/${chartId}" />`
-        }}
-      >
-        {!chartData.isLoading &&
-          chart.visuals.map(visual => (
-            <ChartFactory
-              key={visual.id}
-              definition={visual}
-              profiles={profiles}
-              data={chartData.profileVisualsData[visual.queryAlias].nodes}
-            />
-          ))}
-      </ChartContainer>
-    </div>
+    <>
+      <Head>
+        <title>{pageTitle()}</title>
+        <link
+          rel="preconnect"
+          href="https://mapit.hurumap.org/graphql"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href="https://graphql.hurumap.org/graphql"
+          crossOrigin="anonymous"
+        />
+      </Head>
+      <div style={{ maxWidth: '100%' }}>
+        <ChartContainer
+          key={chart.id}
+          loading={chartData.isLoading}
+          title={chart.title}
+          subtitle={chart.subtitle}
+          classes={{
+            title: classes.title,
+            subtitle: classes.subtitle,
+            sourceLink: classes.sourceLink
+          }}
+          source={{
+            title: 'Community Survey 2016',
+            href: 'http://dev.dominion.africa'
+          }}
+          embed={{
+            title: 'Embed code for this chart',
+            subtitle:
+              'Copy the code below, then paste into your own CMS or HTML. Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge.',
+            code: `<iframe src="https://dev.dominion.africa/embed/${geoId}/${sectionId}/${chartId}" />`
+          }}
+        >
+          {!chartData.isLoading &&
+            chart.visuals.map(visual => (
+              <ChartFactory
+                key={visual.id}
+                definition={visual}
+                profiles={profiles}
+                data={chartData.profileVisualsData[visual.queryAlias].nodes}
+              />
+            ))}
+        </ChartContainer>
+      </div>
+    </>
   );
 }
 

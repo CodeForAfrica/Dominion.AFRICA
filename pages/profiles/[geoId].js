@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext, useMemo } from 'react';
 
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 import { makeStyles, Grid } from '@material-ui/core';
 
@@ -233,31 +234,52 @@ function Profile(props) {
     }
   }, [profileTabs, activeTab]);
 
+  const pageTitle = () => {
+    const profileName = profiles && profiles.profile && profiles.profile.name;
+    const profileTitle = profileName ? ` - ${profileName} - ` : ' - ';
+    return `Data${profileTitle}Dominion`;
+  };
+
   // TODO(kilemensi) Handle unknown geo or geo with missing data
   return (
-    <Page>
-      <ProfilePageHeader
-        profiles={profiles}
-        dominion={{
-          ...config,
-          selectedCountry,
-          head2head
-        }}
-        geoId={geoId}
-        comparisonGeoId={comparisonGeoId}
-      />
+    <>
+      <Head>
+        <title>{pageTitle()}</title>
+        <link
+          rel="preconnect"
+          href="https://mapit.hurumap.org/graphql"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href="https://graphql.hurumap.org/graphql"
+          crossOrigin="anonymous"
+        />
+      </Head>
+      <Page>
+        <ProfilePageHeader
+          profiles={profiles}
+          dominion={{
+            ...config,
+            selectedCountry,
+            head2head
+          }}
+          geoId={geoId}
+          comparisonGeoId={comparisonGeoId}
+        />
 
-      <ProfileTabs
-        loading={chartData.isLoading}
-        activeTab={activeTab}
-        switchToTab={setActiveTab}
-        tabs={profileTabs}
-      />
+        <ProfileTabs
+          loading={chartData.isLoading}
+          activeTab={activeTab}
+          switchToTab={setActiveTab}
+          tabs={profileTabs}
+        />
 
-      <ChartsContainer>{chartComponents}</ChartsContainer>
-      <ProfileRelease />
-      <CountryPartners dominion={{ ...config, selectedCountry }} />
-    </Page>
+        <ChartsContainer>{chartComponents}</ChartsContainer>
+        <ProfileRelease />
+        <CountryPartners dominion={{ ...config, selectedCountry }} />
+      </Page>
+    </>
   );
 }
 

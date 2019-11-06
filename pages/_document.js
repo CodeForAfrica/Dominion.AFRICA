@@ -11,17 +11,28 @@ class DominionDocument extends Document {
     return (
       <html lang="en">
         <Head>
-          <meta charSet="utf-8" />
-          <meta
-            name="viewport"
-            content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
-          />
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
 
           <link
+            rel="preload"
+            href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Lora:400,700"
+            as="style"
+          />
+          <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Lora:400,700"
+          />
+
+          <link
+            rel="preconnect"
+            href="https://dc.sourceafrica.net"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="preconnect"
+            href="https://africaopendata.org"
+            crossOrigin="anonymous"
           />
 
           {/*
