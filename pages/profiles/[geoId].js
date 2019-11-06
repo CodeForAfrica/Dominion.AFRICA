@@ -10,6 +10,7 @@ import ChartFactory from '@codeforafrica/hurumap-ui/factory/ChartFactory';
 
 import config from 'dominion.config';
 import slugify from 'lib/utils/slugify';
+import logo from 'assets/images/logos/dominion-logo-small.png';
 import useChartDefinitions from 'data/useChartDefinitions';
 import withApollo from 'lib/withApollo';
 import AppContext from 'AppContext';
@@ -189,6 +190,7 @@ function Profile(props) {
                       'Copy the code below, then paste into your own CMS or HTML. Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge.',
                     code: `<iframe src="${config.url}/embed/${geoId}/${tab.sectionId}/${chart.id}" />`
                   }}
+                  logo={logo}
                 >
                   {!chartData.isLoading &&
                     chart.visuals.map(
