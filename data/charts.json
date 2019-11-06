@@ -319,7 +319,6 @@
             "label": "",
             "x": "numberOfLandOwnersPerGender",
             "y": "total",
-            "aggregate": "sum:percent",
             "id": "visual-eo9bB8LTg",
             "props": {
               "offset": 60
@@ -341,7 +340,6 @@
             "label": "",
             "x": "numberOfLandOwnersPerNationality",
             "y": "total",
-            "aggregate": "sum:percent",
             "id": "visual-HRjurXQNL",
             "props": {
               "offset": 60
@@ -363,7 +361,6 @@
             "label": "",
             "x": "numberOfLandOwnersPerRace",
             "y": "total",
-            "aggregate": "sum:percent",
             "id": "visual-PQi-CrVct",
             "props": {
               "offset": 65
@@ -385,7 +382,6 @@
             "label": "",
             "x": "numberOfPrivateLandOwnersByCategory",
             "y": "total",
-            "aggregate": "sum:percent",
             "id": "visual-gkL8l6n0t",
             "props": {
               "offset": 65
@@ -407,7 +403,6 @@
             "label": "",
             "x": "privateLandOwnershipInHectaresPerCategory",
             "y": "total",
-            "aggregate": "sum:percent",
             "id": "visual-bEesRO9pg",
             "props": {
               "offset": 70
@@ -429,7 +424,6 @@
             "label": "",
             "x": "landOwnershipInHectaresByRace",
             "y": "total",
-            "aggregate": "sum:percent",
             "id": "visual-NnmsB7kr4"
           }
         ],
@@ -448,7 +442,6 @@
             "label": "",
             "x": "landOwnershipInHectaresByGender",
             "y": "total",
-            "aggregate": "sum:percent",
             "id": "visual-IroOjrLl9",
             "props": {
               "offset": 60
@@ -470,7 +463,6 @@
             "label": "",
             "x": "landOwnershipInHectaresByNationality",
             "y": "total",
-            "aggregate": "sum:percent",
             "id": "visual-WpgZqqBOG",
             "props": {
               "offset": 60
@@ -499,7 +491,6 @@
             "label": "",
             "x": "ervenLandOwnershipInHectaresByGender",
             "y": "total",
-            "aggregate": "sum:percent",
             "id": "visual-kzuux6sbe",
             "props": {
               "offset": 60
@@ -521,7 +512,6 @@
             "label": "",
             "x": "numberOfErvenLandOwnersPerGender",
             "y": "total",
-            "aggregate": "sum:percent",
             "id": "visual-fd6k2hJUI",
             "props": {
               "offset": 60
@@ -543,7 +533,6 @@
             "label": "",
             "x": "numberOfErvenLandOwnersPerNationality",
             "y": "total",
-            "aggregate": "sum:percent",
             "id": "visual-vABBH8fCi",
             "props": {
               "offset": 60
@@ -565,7 +554,6 @@
             "label": "",
             "x": "ervenLandOwnershipInHectaresByNationality",
             "y": "total",
-            "aggregate": "sum:percent",
             "id": "visual-ZiiM7Qgrh",
             "props": {
               "offset": 70
@@ -587,7 +575,6 @@
             "label": "",
             "x": "ervenLandOwnershipInHectaresByRace",
             "y": "total",
-            "aggregate": "sum:percent",
             "id": "visual-_NGXFE8nW",
             "props": {
               "offset": 70
@@ -609,7 +596,6 @@
             "label": "",
             "x": "numberOfErvenLandOwnersPerRace",
             "y": "total",
-            "aggregate": "sum:percent",
             "id": "visual-L7OpEfGpf",
             "props": {
               "offset": 60
@@ -638,7 +624,6 @@
             "label": "",
             "x": "numberOfSectionalTitleOwnersByCategory",
             "y": "total",
-            "aggregate": "sum:percent",
             "id": "visual-FuEBwzmM_",
             "props": {
               "offset": 70
@@ -660,7 +645,6 @@
             "label": "",
             "x": "sectionalTitleOwnershipInHectaresPerCategory",
             "y": "total",
-            "aggregate": "sum:percent",
             "id": "visual-EhcAsMSNZ",
             "props": {
               "offset": 70
@@ -682,7 +666,6 @@
             "label": "",
             "x": "sectionalTitleOwnershipInHectaresPerRace",
             "y": "total",
-            "aggregate": "sum:percent",
             "id": "visual-nI-c90a-4",
             "props": {
               "offset": 70
@@ -704,7 +687,6 @@
             "label": "",
             "x": "numberOfSectionalTitleOwnersByRace",
             "y": "total",
-            "aggregate": "sum:percent",
             "id": "visual-4mAE8mFmB",
             "props": {
               "offset": 70
@@ -726,7 +708,6 @@
             "label": "",
             "x": "sectionalTitleOwnershipInHectaresPerGender",
             "y": "total",
-            "aggregate": "sum:percent",
             "id": "visual-JyuYmIljM"
           }
         ],
@@ -745,7 +726,6 @@
             "label": "",
             "x": "numberOfSectionalTitleOwnersByGender",
             "y": "total",
-            "aggregate": "sum:percent",
             "id": "visual-MD_K2D2zR",
             "props": {
               "offset": 60
@@ -767,7 +747,6 @@
             "label": "",
             "x": "sectionalTitleOwnershipInHectaresNationality",
             "y": "total",
-            "aggregate": "sum:percent",
             "id": "visual-F3Vq9JNF9",
             "props": {
               "offset": 70
@@ -789,7 +768,6 @@
             "label": "",
             "x": "numberOfSectionalTitleOwnersByNationality",
             "y": "total",
-            "aggregate": "sum:percent",
             "id": "visual-U2278TfzY",
             "props": {
               "offset": 60
@@ -944,7 +922,6 @@
             "table": "allLandTradedColourTransactions2018S",
             "x": "monthCc",
             "y": "total",
-            "aggregate": "sum",
             "id": "visual-gSE-RM0dq"
           }
         ],
@@ -962,7 +939,6 @@
             "table": "allLandTradedColourCostBreakdown2018S",
             "x": "monthCc",
             "y": "total",
-            "aggregate": "sum",
             "id": "visual-XxFawAzmB"
           }
         ],
@@ -980,7 +956,6 @@
             "table": "allLandTradedAllVsColour2018S",
             "x": "transactionGroup",
             "y": "total",
-            "aggregate": "sum",
             "id": "visual-OcsjPU42P",
             "props": {
               "offset": 60
@@ -1002,7 +977,6 @@
             "groupBy": "month",
             "x": "transactionGroup",
             "y": "total",
-            "aggregate": "sum",
             "barWidth": 15,
             "id": "visual-3_lWw-8NB",
             "props": {
@@ -1024,7 +998,6 @@
             "table": "allLandTradedColourTransactions2018S",
             "x": "breakdownCc",
             "y": "total",
-            "aggregate": "sum",
             "id": "visual-Srvm9tMxn",
             "props": {
               "offset": 80
@@ -1045,7 +1018,6 @@
             "table": "allLandTradedColourHectaresBreakdown2018S",
             "x": "breakdownCc",
             "y": "total",
-            "aggregate": "sum",
             "id": "visual-Cl8cQtdYe",
             "props": {
               "offset": 80
@@ -1144,7 +1116,6 @@
             "table": "allRedistributedlandusebreakdowns",
             "x": "redistributedLandUseBreakdown",
             "y": "total",
-            "aggregate": "sum:percent",
             "id": "visual-oM-bUyzHJ",
             "props": {
               "offset": 80
@@ -1174,7 +1145,7 @@
         "id": "chart-w-XdN54jR"
       },
       {
-        "title": "Benefeficiaries of redistribution programme in the year 2009/2010 to 2017/2018",
+        "title": "Beneficiaries of redistribution programme in the year 2009/2010 to 2017/2018",
         "subtitle": "Land Redistribution Programme",
         "sourceLink": "http://www.ruraldevelopment.gov.za/publications/evaluation-reports/file/6466",
         "sourceTitle": "Annual statistical report for selected service delivery programmes of the Department of Rural Development and Land Reform",
