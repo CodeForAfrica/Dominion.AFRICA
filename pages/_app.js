@@ -25,11 +25,6 @@ export default class DominionApp extends App {
       <>
         <Head>
           <title>Dominion: Who Owns the Land</title>
-          <style type="text/css">
-            {`html {
-              fontSize: 14px;
-            }`}
-          </style>
         </Head>
         <ThemeProvider theme={theme}>
           <AppContextProvider>

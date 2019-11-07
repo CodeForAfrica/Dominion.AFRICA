@@ -40,6 +40,11 @@ class DominionDocument extends Document {
             user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
           */}
           <link rel="manifest" href="/manifest.json" />
+          <style type="text/css">
+            {`html {
+              font-size: 14px;
+            }`}
+          </style>
         </Head>
         <body>
           <Main />
