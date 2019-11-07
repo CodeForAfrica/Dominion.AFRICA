@@ -213,6 +213,7 @@ function Profile(props) {
                               return temp ? temp.nodes : [];
                             })()}
                             comparisonData={chartData.comparisonVisualsData}
+                            {...visual.props}
                           />
                         )
                     )}
