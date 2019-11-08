@@ -127,7 +127,6 @@ function Embed(props) {
                 definition={visual}
                 profiles={profiles}
                 data={chartData.profileVisualsData[visual.queryAlias].nodes}
-                {...visual.props}
               />
             ))}
         </ChartContainer>
