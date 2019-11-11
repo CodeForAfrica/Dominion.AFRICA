@@ -64,7 +64,7 @@
     "prettier": "^1.16.1"
   },
   "scripts": {
-    "commitChartDefinitions": "git add data/charts.json && (git diff-index --quiet HEAD || (git commit -m 'updated chart ids' && git push))",
+    "commitChartDefinitions": "git add src/data/charts.json && (git diff-index --quiet HEAD || (git commit -m 'updated chart ids' && git push))",
     "applyIdsToChartDefinitions": "node scripts/chartsDefinitionsApplyUniqueId.js",
     "dev": "next",
     "prestart": "yarn applyIdsToChartDefinitions",
@@ -72,7 +72,8 @@
     "prebuild": "yarn applyIdsToChartDefinitions",
     "build": "next build",
     "test": "next test",
-    "lint": "node_modules/eslint/bin/eslint.js --fix ./",
+    "lint": "yarn eslint --fix ./",
+    "lint-staged": "yarn eslint --fix",
     "predeploy": "yarn build && yarn commitChartDefinitions",
     "postversion": "git push --follow-tags && yarn deploy && echo \"Successfully released version $npm_package_version!\""
   },
@@ -93,12 +94,12 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn applyIdsToChartDefinitions && git add data/charts.json && lint-staged"
+      "pre-commit": "yarn applyIdsToChartDefinitions && git add src/data/charts.json && lint-staged"
     }
   },
   "lint-staged": {
     "src/**/*.{js,json,scss,md}": [
-      "yarn lint",
+      "yarn lint-staged",
       "git add"
     ]
   }

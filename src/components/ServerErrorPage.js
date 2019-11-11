@@ -2,7 +2,7 @@ import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import config from 'dominion.config';
+import config from 'config';
 import useToggleModal from 'components/Modal/useToggleModal';
 import Page from 'components/Page';
 import ErrorContent from 'components/ErrorContent';

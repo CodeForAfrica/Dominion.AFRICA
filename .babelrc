@@ -5,12 +5,12 @@
     [
       "module-resolver",
       {
-        "root": ["./"],
+        "root": ["./src"],
         "alias": {
-          "assets": "./assets",
-          "components": "./components",
-          "data": "./data",
-          "lib": "./lib"
+          "assets": "./src/assets",
+          "components": "./src/components",
+          "data": "./src/data",
+          "lib": "./src/lib"
         }
       }
     ]

@@ -9,7 +9,7 @@ import { makeStyles, Grid } from '@material-ui/core';
 import useProfileLoader from '@codeforafrica/hurumap-ui/factory/useProfileLoader';
 import ChartFactory from '@codeforafrica/hurumap-ui/factory/ChartFactory';
 
-import config from 'dominion.config';
+import config from 'config';
 import slugify from 'lib/utils/slugify';
 import logo from 'assets/images/logos/dominion-logo-small.png';
 import useChartDefinitions from 'data/useChartDefinitions';

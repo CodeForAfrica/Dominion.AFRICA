@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import useProfileLoader from '@codeforafrica/hurumap-ui/factory/useProfileLoader';
 import ChartFactory from '@codeforafrica/hurumap-ui/factory/ChartFactory';
 
-import config from 'dominion.config';
+import config from 'config';
 import useChartDefinitions from 'data/useChartDefinitions';
 import withApollo from 'lib/withApollo';
 

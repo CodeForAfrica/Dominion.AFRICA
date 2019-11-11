@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { makeStyles, Grid } from '@material-ui/core';
 
 import land from 'assets/images/hero-image-3.png';
-import config from 'dominion.config';
+import config from 'config';
 
 import Header from './Header';
 import Info, { InfoSubtitle, InfoBody } from './Info';

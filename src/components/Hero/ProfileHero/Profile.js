@@ -11,7 +11,7 @@ import { Typography } from '@material-ui/core';
 
 import TypographyLoader from '@codeforafrica/hurumap-ui/core/TypographyLoader';
 
-import config from 'dominion.config';
+import config from 'config';
 import AppContext from 'AppContext';
 import Hero, { HeroDetail, HeroTitle, HeroTitleGrid } from 'components/Hero';
 

@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
-import config from 'dominion.config';
+import config from 'config';
 import AppContext from 'AppContext';
 import { AboutCountry } from 'components/About';
 import { CountryPageHeader } from 'components/Header';

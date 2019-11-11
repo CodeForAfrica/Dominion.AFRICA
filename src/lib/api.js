@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import config from 'dominion.config';
+import config from 'config';
 
 export default function createAPI() {
   const { url: mapitUrl, codeType } = config.MAPIT;

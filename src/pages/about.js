@@ -3,7 +3,7 @@ import { Typography } from '@material-ui/core';
 
 import Head from 'next/head';
 
-import config from 'dominion.config';
+import config from 'config';
 import CountryPartners from 'components/CountryPartners';
 import Data from 'components/Data';
 import Page from 'components/Page';

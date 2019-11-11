@@ -1,6 +1,6 @@
 import React from 'react';
 
-import config from 'dominion.config';
+import config from 'config';
 import { AboutDominion } from 'components/About';
 import Data from 'components/Data';
 import { HomePageHeader } from 'components/Header';

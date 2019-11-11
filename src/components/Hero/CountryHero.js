@@ -11,7 +11,7 @@ import {
   Typography
 } from '@material-ui/core';
 
-import config from 'dominion.config';
+import config from 'config';
 import useToggleModal from 'components/Modal/useToggleModal';
 import Link from 'components/Link';
 

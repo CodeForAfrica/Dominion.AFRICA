@@ -10,7 +10,7 @@ import {
   Typography
 } from '@material-ui/core';
 
-import config from 'dominion.config';
+import config from 'config';
 import {
   getOpenAfricaDominionGroupData,
   getSourceAfricaDominionData
