@@ -25,7 +25,7 @@ function ServerError() {
         title="500 - Internal Server Error"
         description={[
           'We are having some trouble processing your request.',
-          'We have logged the error and will investigate. You can try again later or if the issues persisit, please ',
+          'We have logged the error and will investigate. You can try again later or if the issues persist, please ',
           <span
             role="link"
             tabIndex={0}

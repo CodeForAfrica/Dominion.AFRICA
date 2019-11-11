@@ -103,7 +103,7 @@ function CountryHero({ dominion, ...props }) {
         </HeroDescription>
 
         <HeroButton
-          classes={{ arrow: classes.heroButtonArrow }}
+          classes={{ heroButtonArrow: classes.heroButtonArrow }}
           onClick={toggleModal}
         >
           Find a place
