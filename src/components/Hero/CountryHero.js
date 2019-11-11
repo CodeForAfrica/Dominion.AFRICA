@@ -113,7 +113,8 @@ function CountryHero({ dominion, ...props }) {
           or view{' '}
           <Link
             className={classes.link}
-            href={`/profiles/country-${selectedCountry.code}`}
+            href="/profiles/[geoId]"
+            as={`/profiles/country-${selectedCountry.code}`}
           >
             {selectedCountry.name}
           </Link>

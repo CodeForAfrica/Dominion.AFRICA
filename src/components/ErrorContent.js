@@ -36,7 +36,7 @@ function ErrorContent({ title, description }) {
       alignItems="center"
       className={classes.root}
     >
-      <Grid xs={12} md={8} className={classes.mainGrid}>
+      <Grid item xs={12} md={8} className={classes.mainGrid}>
         <div className={classes.title}>
           <Typography variant="h2">{title}</Typography>
         </div>

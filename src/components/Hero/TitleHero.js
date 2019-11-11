@@ -28,7 +28,11 @@ TitleHero.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
-  ]).isRequired
+  ])
+};
+
+TitleHero.defaultProps = {
+  children: undefined
 };
 
 export default TitleHero;
