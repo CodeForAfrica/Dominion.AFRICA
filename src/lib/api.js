@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import Tabletop from 'tabletop';
+
 import config from 'config';
 
 export default function createAPI() {
@@ -41,4 +43,21 @@ export async function getOpenAfricaDominionGroupData() {
   // .catch(err => {
   //   window.history.replaceState(err, 'Error', '/error');
   // });
+}
+
+export async function getShowcaseStories(countrySlug) {
+  const {
+    showcase: { url, storyFormat }
+  } = config;
+  return Tabletop.init({
+    key: url,
+    simpleSheet: true
+  }).then(showcaseStories => {
+    if (countrySlug) {
+      return showcaseStories.filter(
+        story => story[storyFormat.country.slug] === countrySlug
+      );
+    }
+    return showcaseStories;
+  });
 }
