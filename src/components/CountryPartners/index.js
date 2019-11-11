@@ -88,7 +88,7 @@ function CountryPartners({ dominion: { selectedCountry }, ...props }) {
           {((selectedCountry && selectedCountry.slug === 'kenya') ||
             selectedCountry === null) && (
             <Grid item className={classes.imageGrid}>
-              <A href="http://africauncensored.net/about/">
+              <A href="//africauncensored.net/about/">
                 <img
                   src={aul}
                   alt="Africa Uncensored"
@@ -101,7 +101,7 @@ function CountryPartners({ dominion: { selectedCountry }, ...props }) {
             selectedCountry === null) && (
             <>
               <Grid className={classes.imageGrid} item>
-                <A href="http://africauncensored.net/about/">
+                <A href="//city-press.news24.com">
                   <img
                     src={citypress}
                     alt="City Press"
@@ -110,30 +110,18 @@ function CountryPartners({ dominion: { selectedCountry }, ...props }) {
                 </A>
               </Grid>
               <Grid item className={classes.imageGrid}>
-                <A href="http://africauncensored.net/about/">
-                  <img
-                    src={ourland}
-                    alt="Africa Uncensored"
-                    className={classes.img}
-                  />
+                <A href="//city-press.news24.com/News/land-cleveage-and-conflict-20180621">
+                  <img src={ourland} alt="Our Land" className={classes.img} />
                 </A>
               </Grid>
               <Grid item className={classes.imageGrid}>
-                <A href="http://africauncensored.net/about/">
-                  <img
-                    src={rapport}
-                    alt="Africa Uncensored"
-                    className={classes.img}
-                  />
+                <A href="//www.netwerk24.com/za/rapport">
+                  <img src={rapport} alt="Rapport" className={classes.img} />
                 </A>
               </Grid>
               <Grid item className={classes.imageGrid}>
-                <A href="http://africauncensored.net/about/">
-                  <img
-                    src={landbou}
-                    alt="Africa Uncensored"
-                    className={classes.img}
-                  />
+                <A href="//www.netwerk24.com/landbou/">
+                  <img src={landbou} alt="Landbou" className={classes.img} />
                 </A>
               </Grid>
             </>
