@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import config from 'config';
+
 import {
   makeStyles,
   Card,
@@ -10,6 +12,8 @@ import {
   Grid,
   Typography
 } from '@material-ui/core';
+
+import A from '@codeforafrica/hurumap-ui/core/A';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -69,16 +73,15 @@ const useStyles = makeStyles(theme => ({
 
 function StoryCard({ story, ...props }) {
   const classes = useStyles(props);
-  const { mediaSrc, date, title, brief, link, media } = story;
+  const {
+    showcase: { storyFormat }
+  } = config;
+  const mediaLink = story[storyFormat.media.href];
+  const storyLink = story[storyFormat.href] || mediaLink;
 
   return (
     <Card className={classes.root}>
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={classes.cardLink}
-      >
+      <A href={storyLink} className={classes.cardLink}>
         <CardActionArea
           style={{
             display: 'flex',
@@ -88,9 +91,9 @@ function StoryCard({ story, ...props }) {
           }}
         >
           <CardMedia
-            component={media}
+            component={story[storyFormat.media.type]}
             className={classes.media}
-            image={mediaSrc}
+            image={mediaLink}
             classes={{ media: classes.componentStyle }}
             title="Story"
           />
@@ -104,18 +107,18 @@ function StoryCard({ story, ...props }) {
               style={{ height: '100%' }}
             >
               <Typography variant="subtitle2" className={classes.overline}>
-                {date}
+                {story[storyFormat.date]}
               </Typography>
               <Typography variant="h5" className={classes.bodyTitle}>
-                {title}
+                {story[storyFormat.title]}
               </Typography>
               <Typography variant="body2" className={classes.bodyText}>
-                {brief}{' '}
+                {story[storyFormat.brief]}
               </Typography>
             </Grid>
           </CardContent>
         </CardActionArea>
-      </a>
+      </A>
     </Card>
   );
 }

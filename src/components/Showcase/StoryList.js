@@ -34,7 +34,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-function StoryList({ storyData, ...props }) {
+function StoryList({ stories, ...props }) {
   const classes = useStyles(props);
   const theme = useTheme();
   let cards = 4;
@@ -53,7 +53,7 @@ function StoryList({ storyData, ...props }) {
       className={classes.root}
     >
       <GridList cellHeight={320} className={classes.gridList} cols={cards}>
-        {storyData.map(story => (
+        {stories.map(story => (
           <GridListTile key={story.index}>
             <StoryCard story={story} />
           </GridListTile>
@@ -64,7 +64,7 @@ function StoryList({ storyData, ...props }) {
 }
 
 StoryList.propTypes = {
-  storyData: PropTypes.arrayOf(PropTypes.shape({})).isRequired
+  stories: PropTypes.arrayOf(PropTypes.shape({})).isRequired
 };
 
 export default StoryList;

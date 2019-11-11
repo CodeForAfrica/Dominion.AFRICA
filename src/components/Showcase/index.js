@@ -42,18 +42,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Showcase({
-  showcaseStories,
-  dominion: { selectedCountry },
-  ...props
-}) {
+function Showcase({ stories, ...props }) {
   const classes = useStyles(props);
-  let stories = showcaseStories;
-  if (selectedCountry) {
-    stories = showcaseStories.filter(
-      story => story.country === selectedCountry.code
-    );
-  }
 
   return (
     <div className={classes.showCaseContainer} id="showcase">
@@ -86,7 +76,7 @@ function Showcase({
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <StoryList storyData={stories} />
+          <StoryList stories={stories} />
         </Grid>
       </Grid>
     </div>
@@ -94,10 +84,7 @@ function Showcase({
 }
 
 Showcase.propTypes = {
-  dominion: PropTypes.shape({
-    selectedCountry: PropTypes.shape({})
-  }).isRequired,
-  showcaseStories: PropTypes.arrayOf(PropTypes.shape({})).isRequired
+  stories: PropTypes.arrayOf(PropTypes.shape({})).isRequired
 };
 
 export default Showcase;
