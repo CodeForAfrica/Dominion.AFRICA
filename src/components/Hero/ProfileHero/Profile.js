@@ -1,29 +1,23 @@
 import React, { useCallback, useContext } from 'react';
-
 import { PropTypes } from 'prop-types';
-import { Typography } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
-import { withRouter } from 'react-router-dom';
+
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 
 import classNames from 'classnames';
-import {
-  MapIt,
 
-  /**
-   * Commented out until futher notice
-   */
-  // ContentLoader,
-  TypographyLoader
-} from '@codeforafrica/hurumap-ui';
-import Hero, { HeroTitle, HeroTitleGrid, HeroDetail } from '../Hero';
+import { withStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
 
-/**
- * Commented out until futher notice
- */
-// import Search from '../../Search';
-// import searchIcon from '../../../assets/images/icons/location.svg';
-import config from '../../../config';
-import { AppContext } from '../../../AppContext';
+import TypographyLoader from '@codeforafrica/hurumap-ui/core/TypographyLoader';
+
+import config from 'config';
+import AppContext from 'AppContext';
+import Hero, { HeroDetail, HeroTitle, HeroTitleGrid } from 'components/Hero';
+
+const MapIt = dynamic(() => import('@codeforafrica/hurumap-ui/core/MapIt'), {
+  ssr: false
+});
 
 const styles = theme => ({
   root: {
@@ -64,7 +58,6 @@ const styles = theme => ({
     alignItems: 'center',
     color: '#8d8d8c',
     width: '100%',
-    textTransform: 'capitalize',
     paddingTop: theme.spacing(),
     paddingBottom: theme.spacing(),
     marginTop: '0.625rem'
@@ -91,24 +84,18 @@ const styles = theme => ({
     paddingLeft: 4
   }
 });
-function Profile({
-  classes,
-  dominion,
-  geoId,
-  history,
-  isLoading,
-  profile,
-  ...props
-}) {
+
+function Profile({ classes, dominion, geoId, isLoading, profile, ...props }) {
+  const router = useRouter();
   const {
     state: { selectedCountry }
   } = useContext(AppContext);
   const { head2head } = dominion;
   const onClickGeoLayer = useCallback(
     area => {
-      history.push(`/profile/${area.codes[config.MAPIT.codeType]}`);
+      router.push(`/profiles/${area.codes[config.MAPIT.codeType]}`);
     },
-    [history]
+    [router]
   );
 
   const {
@@ -155,6 +142,7 @@ function Profile({
     : Object.values(config.countries).find(c =>
         parentLevel === 'continent' ? c.code === geoCode : c.code === parentCode
       );
+
   return (
     <Hero classes={{ root: classes.root }} {...props}>
       <HeroTitleGrid
@@ -169,18 +157,19 @@ function Profile({
           loading={isLoading}
           variant="subtitle1"
           className={classes.caption}
-          loader={{
-            width: '9.375rem'
-          }}
         >
-          {geoLevel} in{' '}
+          {selectedCountry &&
+            geoLevel &&
+            selectedCountry.geoLevels &&
+            selectedCountry.geoLevels[geoLevel].name}{' '}
+          in{' '}
           <Typography
             component="a"
-            variant="caption"
+            variant="subtitle1"
             className={classes.alink}
             href={
               parentLevel !== 'continent'
-                ? `/profile/${selectedCountry.geoLevel}-${selectedCountry.geoCode}`
+                ? `/profiles/${parentLevel}-${parentCode}`
                 : '#'
             }
           >
@@ -286,4 +275,4 @@ Profile.propTypes = {
   geoId: PropTypes.string.isRequired
 };
 
-export default withRouter(withStyles(styles)(Profile));
+export default withStyles(styles)(Profile);

@@ -2,13 +2,13 @@ import React from 'react';
 
 import { makeStyles, Grid } from '@material-ui/core';
 
+import A from '@codeforafrica/hurumap-ui/core/A';
+
+import land from 'assets/images/hero-image-3_2.png';
+
 import Header from './Header';
 import Info, { InfoSubtitle, InfoBody } from './Info';
 import Land from './Land';
-
-import A from '../A';
-
-import land from '../../assets/images/hero-image-3_2.png';
 
 const useStyles = makeStyles(theme => ({
   root: {

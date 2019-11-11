@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import { Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
+import config from 'config';
+import createAPI from 'lib/api';
+
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
-
-import createAPI from '../../lib/api';
 
 const styles = theme => ({
   root: {
@@ -43,9 +44,11 @@ class Search extends React.Component {
     const {
       dominion: { countries }
     } = this.props;
-    const geography = Object.keys(countries).map(slug =>
-      Object.assign({}, countries[slug], { slug, type: 'country' })
-    );
+    const geography = Object.keys(countries).map(slug => ({
+      ...countries[slug],
+      slug,
+      type: 'country'
+    }));
     this.setState({ geography });
   }
 
@@ -57,10 +60,8 @@ class Search extends React.Component {
   }
 
   async loadSuggestions(searchTerm) {
+    const { codeType } = config.MAPIT;
     const api = createAPI();
-    const {
-      mapit: { codeType }
-    } = api;
     const {
       dominion: { selectedCountry }
     } = this.props;

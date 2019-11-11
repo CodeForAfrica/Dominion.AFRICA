@@ -1,22 +1,34 @@
 import React, { useEffect, useState, useContext, useMemo } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
-import { ChartContainer } from '@codeforafrica/hurumap-ui';
-import { Grid } from '@material-ui/core';
-import { ProfilePageHeader } from '../components/Header';
-import ProfileTabs from '../components/ProfileTabs';
-import Page from '../components/Page';
-import CountryPartners from '../components/CountryPartners';
-import config from '../config';
-import ChartFactory from '../components/ChartFactory';
-import ChartsContainer from '../components/ChartsContainer';
-import slugify from '../utils/slugify';
 
-import { AppContext } from '../AppContext';
-import ProfileRelease from '../components/ProfileReleases';
-import ProfileSectionTitle from '../components/ProfileSectionTitle';
-import useProfileLoader from '../data/useProfileLoader';
-import useChartDefinitions from '../data/useChartDefinitions';
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
+import Head from 'next/head';
+
+import { makeStyles, Grid } from '@material-ui/core';
+
+import useProfileLoader from '@codeforafrica/hurumap-ui/factory/useProfileLoader';
+import ChartFactory from '@codeforafrica/hurumap-ui/factory/ChartFactory';
+
+import config from 'config';
+import slugify from 'lib/utils/slugify';
+import logo from 'assets/images/logos/dominion-logo-small.png';
+import useChartDefinitions from 'data/useChartDefinitions';
+import withApollo from 'lib/withApollo';
+import AppContext from 'AppContext';
+import ChartsContainer from 'components/ChartsContainer';
+import CountryPartners from 'components/CountryPartners';
+import Page from 'components/Page';
+import { ProfilePageHeader } from 'components/Header';
+import ProfileRelease from 'components/ProfileReleases';
+import ProfileSectionTitle from 'components/ProfileSectionTitle';
+import ProfileTabs from 'components/ProfileTabs';
+
+const ChartContainer = dynamic(
+  () => import('@codeforafrica/hurumap-ui/core/ChartContainer'),
+  {
+    ssr: false
+  }
+);
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -38,20 +50,22 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Profile({
-  match: {
-    params: { geoId, comparisonGeoId }
-  }
-}) {
+function Profile(props) {
+  const router = useRouter();
+  const { geoId, comparisonGeoId } = router.query;
   const {
     state: { selectedCountry },
     dispatch
   } = useContext(AppContext);
   const head2head = Boolean(geoId && comparisonGeoId);
-  const [activeTab, setActiveTab] = useState(
-    window.location.hash.slice(1) ? window.location.hash.slice(1) : 'all'
-  );
-  const classes = useStyles();
+  const [activeTab, setActiveTab] = useState('all');
+  useEffect(() => {
+    const tab = window.location.hash.slice(1)
+      ? window.location.hash.slice(1)
+      : 'all';
+    setActiveTab(tab);
+  }, []);
+  const classes = useStyles(props);
 
   const sectionedCharts = useChartDefinitions();
   // Flatten all charts
@@ -62,11 +76,12 @@ function Profile({
     charts.map(x => x.visuals).reduce((a, b) => a.concat(b))
   );
 
-  const { profiles, chartData } = useProfileLoader(
+  const { profiles, chartData } = useProfileLoader({
     geoId,
     comparisonGeoId,
-    visuals
-  );
+    visuals,
+    populationTables: config.populationTables
+  });
 
   useEffect(() => {
     if (!profiles.isLoading) {
@@ -83,7 +98,7 @@ function Profile({
     }
   }, [profiles, dispatch]);
 
-  // get all available profiletabs
+  // get all available profile tabs
   const profileTabs = useMemo(
     () => [
       {
@@ -176,6 +191,7 @@ function Profile({
                       'Copy the code below, then paste into your own CMS or HTML. Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge.',
                     code: `<iframe src="${config.url}/embed/${geoId}/${tab.sectionId}/${chart.id}" />`
                   }}
+                  logo={logo}
                 >
                   {!chartData.isLoading &&
                     chart.visuals.map(
@@ -183,9 +199,19 @@ function Profile({
                         !profiles.isLoading && (
                           <ChartFactory
                             key={visual.id}
-                            visual={visual}
+                            definition={visual}
                             profiles={profiles}
-                            data={chartData.profileVisualsData}
+                            data={
+                              chartData.profileVisualsData[visual.queryAlias]
+                                .nodes
+                            }
+                            referenceData={(() => {
+                              const temp =
+                                chartData.profileVisualsData[
+                                  `${visual.queryAlias}Reference`
+                                ];
+                              return temp ? temp.nodes : [];
+                            })()}
                             comparisonData={chartData.comparisonVisualsData}
                           />
                         )
@@ -215,40 +241,53 @@ function Profile({
     }
   }, [profileTabs, activeTab]);
 
+  const pageTitle = () => {
+    const profileName = profiles && profiles.profile && profiles.profile.name;
+    const profileTitle = profileName ? ` - ${profileName} - ` : ' - ';
+    return `Data${profileTitle}Dominion`;
+  };
+
+  // TODO(kilemensi) Handle unknown geo or geo with missing data
   return (
-    <Page>
-      <ProfilePageHeader
-        profiles={profiles}
-        dominion={{
-          ...config,
-          selectedCountry,
-          head2head
-        }}
-        geoId={geoId}
-        comparisonGeoId={comparisonGeoId}
-      />
+    <>
+      <Head>
+        <title>{pageTitle()}</title>
+        <link
+          rel="preconnect"
+          href="https://mapit.hurumap.org/graphql"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href="https://graphql.hurumap.org/graphql"
+          crossOrigin="anonymous"
+        />
+      </Head>
+      <Page>
+        <ProfilePageHeader
+          profiles={profiles}
+          dominion={{
+            ...config,
+            selectedCountry,
+            head2head
+          }}
+          geoId={geoId}
+          comparisonGeoId={comparisonGeoId}
+        />
 
-      <ProfileTabs
-        loading={chartData.isLoading}
-        activeTab={activeTab}
-        switchToTab={setActiveTab}
-        tabs={profileTabs}
-      />
+        <ProfileTabs
+          loading={chartData.isLoading}
+          activeTab={activeTab}
+          switchToTab={setActiveTab}
+          tabs={profileTabs}
+        />
 
-      <ChartsContainer>{chartComponents}</ChartsContainer>
-      <ProfileRelease />
-      <CountryPartners dominion={{ ...config, selectedCountry }} />
-    </Page>
+        <ChartsContainer>{chartComponents}</ChartsContainer>
+        <ProfileRelease />
+        <CountryPartners dominion={{ ...config, selectedCountry }} />
+      </Page>
+    </>
   );
 }
 
-Profile.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      geoId: PropTypes.string.isRequired,
-      comparisonGeoId: PropTypes.string
-    }).isRequired
-  }).isRequired
-};
-
-export default Profile;
+export default withApollo(Profile);

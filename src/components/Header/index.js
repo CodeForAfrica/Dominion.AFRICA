@@ -1,11 +1,11 @@
 import React from 'react';
 
-import Header from './Header';
+import HomeHero from 'components/Hero/HomeHero';
+import TitleHero from 'components/Hero/TitleHero';
+import CountryHero from 'components/Hero/CountryHero';
+import ProfileHero from 'components/Hero/ProfileHero';
 
-import HomeHero from '../Hero/HomeHero';
-import TitleHero from '../Hero/TitleHero';
-import CountryHero from '../Hero/CountryHero';
-import ProfileHero from '../Hero/ProfileHero';
+import Header from './Header';
 
 export function HomePageHeader(props) {
   return (
@@ -24,9 +24,10 @@ export function TitlePageHeader({ children, ...props }) {
 }
 
 export function CountryPageHeader(props) {
+  const { dominion } = props;
   return (
     <Header {...props}>
-      <CountryHero />
+      <CountryHero dominion={dominion} />
     </Header>
   );
 }

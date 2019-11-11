@@ -1,11 +1,12 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Page from '../components/Page';
-import config from '../config';
-import { TitlePageHeader } from '../components/Header';
-import ErrorContent from '../components/ErrorContent';
 
-import useToggleModal from '../useToggleModal';
+import { makeStyles } from '@material-ui/core/styles';
+
+import config from 'config';
+import useToggleModal from 'components/Modal/useToggleModal';
+import Page from 'components/Page';
+import ErrorContent from 'components/ErrorContent';
+import { TitlePageHeader } from 'components/Header';
 
 const useStyles = makeStyles({
   link: {

@@ -1,11 +1,12 @@
 import React from 'react';
-import { HomePageHeader } from '../components/Header';
-import Showcase from '../components/Showcase';
-import Video from '../components/Video';
-import Data from '../components/Data';
-import { AboutDominion } from '../components/About';
-import Page from '../components/Page';
-import config from '../config';
+
+import config from 'config';
+import { AboutDominion } from 'components/About';
+import Data from 'components/Data';
+import { HomePageHeader } from 'components/Header';
+import Page from 'components/Page';
+import Showcase from 'components/Showcase';
+import Video from 'components/Video';
 
 function Home() {
   return (

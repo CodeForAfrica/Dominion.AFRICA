@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { makeStyles, Button, Grid, Typography } from '@material-ui/core';
 import PlayArrow from '@material-ui/icons/PlayArrow';
 
-import PlayerModal from './PlayerModal';
+import background from 'assets/images/hero-image-1.png';
+import useToggleModal from 'components/Modal/useToggleModal';
 
-import background from '../../assets/images/hero-image-1.png';
-import useToggleModal from '../../useToggleModal';
+import PlayerModal from './PlayerModal';
 
 const useStyles = makeStyles(theme => ({
   root: {

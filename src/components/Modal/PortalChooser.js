@@ -10,12 +10,12 @@ import {
   Typography
 } from '@material-ui/core';
 
-import { AppContext } from '../../AppContext';
-import GetLocation from './GetLocation';
+import geolocate from 'assets/images/icons/shape.svg';
+import cross from 'assets/images/icons/close.svg';
+import arrowIconSrc from 'assets/images/icons/combined-shape.svg';
+import AppContext from 'AppContext';
 
-import geolocate from '../../assets/images/icons/shape.svg';
-import cross from '../../assets/images/icons/close.svg';
-import arrowIconSrc from '../../assets/images/icons/combined-shape.svg';
+import GetLocation from './GetLocation';
 
 const useStyles = makeStyles(theme => ({
   grid: {

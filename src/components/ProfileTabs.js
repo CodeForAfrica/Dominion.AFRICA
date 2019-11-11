@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { AppBar, Tabs, Tab } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
-import { ContentLoader } from '@codeforafrica/hurumap-ui';
-
 import classNames from 'classnames';
+
+import { AppBar, Tab, Tabs, withStyles } from '@material-ui/core';
+
+import ContentLoader from '@codeforafrica/hurumap-ui/core/ContentLoader';
 
 const styles = theme => ({
   root: {

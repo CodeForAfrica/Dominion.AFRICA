@@ -2,13 +2,13 @@ import React from 'react';
 
 import { makeStyles, Grid } from '@material-ui/core';
 
-import A from './A';
+import A from '@codeforafrica/hurumap-ui/core/A';
 
-import cfa from '../assets/images/logos/codeforafrica.png';
-import pulitzercenter from '../assets/images/logos/pulitzer.png';
-import ancir from '../assets/images/logos/ancir.png';
-import africadrone from '../assets/images/logos/africa-drone.png';
-import oxpeckers from '../assets/images/logos/oxpeckers.png';
+import cfa from 'assets/images/logos/codeforafrica.png';
+import pulitzercenter from 'assets/images/logos/pulitzer.png';
+import ancir from 'assets/images/logos/ancir.png';
+import africadrone from 'assets/images/logos/africa-drone.png';
+import oxpeckers from 'assets/images/logos/oxpeckers.png';
 
 const useStyles = makeStyles(theme => ({
   root: {

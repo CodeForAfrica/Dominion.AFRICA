@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import { makeStyles, Typography } from '@material-ui/core';
 
-import A from '../A';
+import A from '@codeforafrica/hurumap-ui/core/A';
 
 const useStyles = makeStyles(theme => ({
   root: {

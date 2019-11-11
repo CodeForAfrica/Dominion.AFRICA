@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { makeStyles, Modal as MaterialModal } from '@material-ui/core';
 
-import background from '../../assets/images/bg/background.png';
+import background from 'assets/images/bg/background.png';
 
 const useStyles = makeStyles(() => ({
   root: {

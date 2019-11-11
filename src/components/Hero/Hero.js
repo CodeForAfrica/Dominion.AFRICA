@@ -5,9 +5,9 @@ import classNames from 'classnames';
 
 import { makeStyles, Grid, Typography } from '@material-ui/core';
 
-import { ContentLoader } from '@codeforafrica/hurumap-ui';
+import ContentLoader from '@codeforafrica/hurumap-ui/core/ContentLoader';
 
-import ArrowButton from '../ArrowButton';
+import ArrowButton from 'components/ArrowButton';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -85,7 +85,9 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     paddingTop: theme.spacing(),
     paddingBottom: theme.spacing()
-  }
+  },
+  heroButton: {},
+  heroButtonArrow: {}
 }));
 
 function HeroTitleGrid({ children, quarter, head2head, ...props }) {
@@ -273,8 +275,15 @@ HeroDetail.defaultProps = {
 };
 
 function HeroButton({ children, onClick, ...props }) {
+  const classes = useStyles(props);
+
   return (
-    <ArrowButton secondary onClick={onClick} {...props}>
+    <ArrowButton
+      secondary
+      onClick={onClick}
+      {...props}
+      classes={{ root: classes.heroButton, arrow: classes.heroButtonArrow }}
+    >
       {children}
     </ArrowButton>
   );

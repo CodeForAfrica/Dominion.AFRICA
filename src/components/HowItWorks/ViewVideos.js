@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button, Typography } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import { Button, Typography, makeStyles } from '@material-ui/core';
 
-import blackArrow from '../../assets/images/icons/black-combined-shape.svg';
+import blackArrow from 'assets/images/icons/black-combined-shape.svg';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     [theme.breakpoints.up('md')]: {
       width: '32.1719rem', // .75 of lg
@@ -22,14 +21,17 @@ const styles = theme => ({
   },
   button: {
     padding: 0,
-    fontWeight: 700
+    fontWeight: 700,
+    border: 'none'
   },
   arrow: {
     paddingLeft: '1rem'
   }
-});
+}));
 
-function ViewVideos({ classes, onClick }) {
+function ViewVideos({ onClick, ...props }) {
+  const classes = useStyles(props);
+
   return (
     <div className={classes.root}>
       <Button className={classes.button} onClick={onClick}>
@@ -43,8 +45,7 @@ function ViewVideos({ classes, onClick }) {
 }
 
 ViewVideos.propTypes = {
-  classes: PropTypes.shape().isRequired,
   onClick: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(ViewVideos);
+export default ViewVideos;

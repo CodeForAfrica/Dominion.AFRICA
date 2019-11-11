@@ -1,9 +1,9 @@
 import React from 'react';
-import Page from '../components/Page';
 
-import config from '../config';
-import { TitlePageHeader } from '../components/Header';
-import ErrorContent from '../components/ErrorContent';
+import config from 'config';
+import Page from 'components/Page';
+import ErrorContent from 'components/ErrorContent';
+import { TitlePageHeader } from 'components/Header';
 
 function NotFound() {
   return (

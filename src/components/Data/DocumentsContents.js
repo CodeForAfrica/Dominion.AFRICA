@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-import { getSourceAfricaDominionData } from '../../lib/api';
-import Content from './Content';
+import { getSourceAfricaDominionData } from 'lib/api';
+import menuIcon from 'assets/images/icons/group-7.png';
 
-import menuIcon from '../../assets/images/icons/group-7.png';
+import Content from './Content';
 
 function DocumentsContent() {
   const [documentsCount, setDocumentsCount] = useState('-');
@@ -22,7 +22,6 @@ function DocumentsContent() {
             sourceAFRICA is Africa's premier repository for actionable
             documents.
       "
-      target="_self"
       link="/resources#documents"
     >
       <img src={menuIcon} alt="Menu Icon" />

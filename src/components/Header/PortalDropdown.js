@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { withStyles } from '@material-ui/core/styles';
+import { Button, Grid, MenuItem, MenuList } from '@material-ui/core';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
 
-import { Grid, MenuList, MenuItem, Button } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
-import { AppContext } from '../../AppContext';
+import AppContext from 'AppContext';
+import Link from 'components/Link';
 
 const styles = theme => ({
   root: {
@@ -129,17 +130,21 @@ class Dropdown extends React.Component {
         />
         {isDropdownOpen ? (
           <MenuList className={classes.menuList}>
-            {Object.keys(countries).map(country => (
+            {Object.keys(countries).map(countrySlug => (
               <MenuItem
-                key={country}
+                key={countrySlug}
                 item
                 className={classes.menuListItem}
                 classes={{ selected: classes.selected }}
-                selected={selectedCountry.slug === country}
+                selected={selectedCountry.slug === countrySlug}
               >
-                <a href={`/${country}`} className={classes.link}>
-                  {countries[country].name}
-                </a>
+                <Link
+                  href="/[countrySlug]"
+                  as={`/${countrySlug}`}
+                  className={classes.link}
+                >
+                  {countries[countrySlug].name}
+                </Link>
               </MenuItem>
             ))}
           </MenuList>

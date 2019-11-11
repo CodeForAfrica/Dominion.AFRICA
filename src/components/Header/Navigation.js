@@ -7,23 +7,24 @@ import {
   useTheme,
   Grid,
   IconButton,
-  Link,
+  Link as MuiLink,
   MenuItem,
   MenuList
 } from '@material-ui/core';
 
-import useToggleModal from '../../useToggleModal';
-import ContactUs from '../Modal/ContactUs';
-import Dropdown, { CountriesButton } from './PortalDropdown';
-import Modal from '../Modal';
-import PortalChooser from '../Modal/PortalChooser';
-import Search from '../Search';
+import backIcon from 'assets/images/icons/back.svg';
+import logo from 'assets/images/logos/dominion-logo.png';
+import logoWithCountrySpace from 'assets/images/logos/dominion-logo-country.png';
+import menuIcon from 'assets/images/icons/menu.svg';
+import searchIcon from 'assets/images/icons/location.svg';
+import useToggleModal from 'components/Modal/useToggleModal';
+import ContactUs from 'components/Modal/ContactUs';
+import Link from 'components/Link';
+import Modal from 'components/Modal';
+import PortalChooser from 'components/Modal/PortalChooser';
+import Search from 'components/Search';
 
-import backIcon from '../../assets/images/icons/back.svg';
-import logo from '../../assets/images/logos/dominion-logo.png';
-import logoWithCountrySpace from '../../assets/images/logos/dominion-logo-country.png';
-import menuIcon from '../../assets/images/icons/menu.svg';
-import searchIcon from '../../assets/images/icons/location.svg';
+import Dropdown, { CountriesButton } from './PortalDropdown';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -132,14 +133,19 @@ function Navigation({ dominion, ...props }) {
         { title: 'Contact', onClick: toggleContact }
       ].map(menu => (
         <MenuItem key={menu.title} className={classes.menuListItem}>
-          <Link
-            variant="body1"
-            className={classes.link}
-            href={menu.link}
-            onClick={menu.onClick}
-          >
-            {menu.title}
-          </Link>
+          {menu.link ? (
+            <Link variant="body1" className={classes.link} href={menu.link}>
+              {menu.title}
+            </Link>
+          ) : (
+            <MuiLink
+              variant="body1"
+              className={classes.link}
+              onClick={menu.onClick}
+            >
+              {menu.title}
+            </MuiLink>
+          )}
         </MenuItem>
       ))}
     </MenuList>
@@ -184,7 +190,7 @@ function Navigation({ dominion, ...props }) {
     );
 
     return (
-      <React.Fragment>
+      <>
         <Topbar />
 
         <Modal isOpen={openMenu} onEscapeKeyDown={toggleMenu}>
@@ -196,7 +202,7 @@ function Navigation({ dominion, ...props }) {
             </Search>
           </Grid>
         </Modal>
-      </React.Fragment>
+      </>
     );
   };
 
@@ -243,7 +249,7 @@ function Navigation({ dominion, ...props }) {
     : renderMobileMenu();
 
   return (
-    <React.Fragment>
+    <>
       <Grid container className={classes.wrapper}>
         {nav}
       </Grid>
@@ -265,7 +271,7 @@ function Navigation({ dominion, ...props }) {
           <ContactUs handleClose={toggleContact} />
         </Grid>
       </Modal>
-    </React.Fragment>
+    </>
   );
 }
 

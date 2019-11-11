@@ -1,5 +1,6 @@
 import axios from 'axios';
-import config from '../config';
+
+import config from 'config';
 
 export default function createAPI() {
   const { url: mapitUrl, codeType } = config.MAPIT;
@@ -24,20 +25,20 @@ export default function createAPI() {
 
 export async function getSourceAfricaDominionData() {
   const projectId = '462-Dominion-AFRICA';
-  return axios
-    .get(`https://dc.sourceafrica.net/api/search.json?q=projectid:${projectId}`)
-    .catch(err => {
-      window.history.replaceState(err, 'Error', '/error');
-    });
+  return axios.get(
+    `https://dc.sourceafrica.net/api/search.json?q=projectid:${projectId}`
+  );
+  // .catch(err => {
+  //   window.history.replaceState(err, 'Error', '/error');
+  // });
 }
 
 export async function getOpenAfricaDominionGroupData() {
   const group = 'dominion';
-  return axios
-    .get(
-      `https://africaopendata.org/api/3/action/group_package_show?id=${group}`
-    )
-    .catch(err => {
-      window.history.replaceState(err, 'Error', '/error');
-    });
+  return axios.get(
+    `https://africaopendata.org/api/3/action/group_package_show?id=${group}`
+  );
+  // .catch(err => {
+  //   window.history.replaceState(err, 'Error', '/error');
+  // });
 }

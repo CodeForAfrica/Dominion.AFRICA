@@ -71,7 +71,6 @@ function Info({ children, ...props }) {
 }
 
 Info.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node

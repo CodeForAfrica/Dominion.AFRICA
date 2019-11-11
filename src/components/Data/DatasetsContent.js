@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 
 import { makeStyles } from '@material-ui/core';
 
-import { getOpenAfricaDominionGroupData } from '../../lib/api';
-import Content from './Content';
+import { getOpenAfricaDominionGroupData } from 'lib/api';
+import plugIcon from 'assets/images/icons/group-6.png';
 
-import plugIcon from '../../assets/images/icons/group-6.png';
+import Content from './Content';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -35,7 +35,6 @@ function DataSetsContent(props) {
             openAFRICA aims to be the largest independent repository of open
             data on the African continent.
       "
-        target="_self"
         link="/resources#data"
       >
         <img src={plugIcon} alt="Plug Icon" />

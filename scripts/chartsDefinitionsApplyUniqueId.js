@@ -1,3 +1,7 @@
+/** This file runs under node and hence shouldn't contain
+ * any `processable` syntax
+ */
+/* eslint-disable module-resolver/use-alias */
 const fs = require('fs');
 const shortid = require('shortid');
 const sectionedCharts = require('../src/data/charts.json');

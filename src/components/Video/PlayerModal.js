@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Player from './Player';
+import Modal from 'components/Modal';
+import Navigation from 'components/Header/Navigation';
 
-import Modal from '../Modal';
-import Navigation from '../Header/Navigation';
+import Player from './Player';
 
 function PlayerModal({ dominion, open, ...props }) {
   return (
