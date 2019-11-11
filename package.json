@@ -61,6 +61,7 @@
     "eslint-plugin-react-hooks": "^1.7.0",
     "husky": "^3.0.9",
     "lint-staged": "^9.4.2",
+    "now": "^16.4.4",
     "prettier": "^1.19.1"
   },
   "scripts": {
@@ -75,6 +76,7 @@
     "lint": "yarn eslint --fix ./",
     "lint-staged": "yarn eslint --fix",
     "predeploy": "yarn build && yarn commitChartDefinitions",
+    "deploy": "yarn now --prod",
     "postversion": "git push --follow-tags && yarn deploy && echo \"Successfully released version $npm_package_version!\""
   },
   "eslintConfig": {
