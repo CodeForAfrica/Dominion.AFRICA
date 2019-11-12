@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 import config from 'config';
+import { getShowcaseStories } from 'lib/api';
 import AppContext from 'AppContext';
 import { AboutCountry } from 'components/About';
 import { CountryPageHeader } from 'components/Header';
@@ -17,7 +18,7 @@ import Error from './_error';
 
 const supportedCountriesSlug = Object.keys(config.countries);
 
-function Country() {
+function Country({ showcaseStories }) {
   const {
     state: { selectedCountry },
     dispatch
@@ -55,14 +56,16 @@ function Country() {
         <AboutCountry dominion={{ ...config, selectedCountry }} />
         <HowItWorks dominion={config} />
         <Video dominion={config} />
-        <Showcase
-          dominion={{ ...config, selectedCountry }}
-          showcaseStories={config.showCaseStories}
-        />
+        <Showcase stories={showcaseStories} />
         <CountryPartners dominion={{ ...config, selectedCountry }} />
       </Page>
     </>
   );
 }
+
+Country.getInitialProps = async ({ query: { countrySlug } }) => {
+  const showcaseStories = await getShowcaseStories(countrySlug);
+  return { showcaseStories };
+};
 
 export default Country;

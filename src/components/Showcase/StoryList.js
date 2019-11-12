@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 import {
   makeStyles,
   useMediaQuery,
+  useTheme,
   Grid,
   GridList,
   GridListTile
 } from '@material-ui/core';
-import { useTheme } from '@material-ui/core/styles';
 
+import config from 'config';
 import StoryCard from './StoryCard';
 
 const useStyles = makeStyles(() => ({
@@ -34,7 +35,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-function StoryList({ storyData, ...props }) {
+function StoryList({ stories, ...props }) {
   const classes = useStyles(props);
   const theme = useTheme();
   let cards = 4;
@@ -44,6 +45,9 @@ function StoryList({ storyData, ...props }) {
   if (useMediaQuery(theme.breakpoints.down('sm'))) {
     cards = 1;
   }
+  const {
+    showcase: { storyFormat }
+  } = config;
 
   return (
     <Grid
@@ -53,8 +57,10 @@ function StoryList({ storyData, ...props }) {
       className={classes.root}
     >
       <GridList cellHeight={320} className={classes.gridList} cols={cards}>
-        {storyData.map(story => (
-          <GridListTile key={story.index}>
+        {stories.map(story => (
+          <GridListTile
+            key={story[storyFormat.href] || story[storyFormat.media.href]}
+          >
             <StoryCard story={story} />
           </GridListTile>
         ))}
@@ -64,7 +70,7 @@ function StoryList({ storyData, ...props }) {
 }
 
 StoryList.propTypes = {
-  storyData: PropTypes.arrayOf(PropTypes.shape({})).isRequired
+  stories: PropTypes.arrayOf(PropTypes.shape({})).isRequired
 };
 
 export default StoryList;
