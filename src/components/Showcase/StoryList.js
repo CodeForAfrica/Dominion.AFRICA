@@ -1,28 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  makeStyles,
-  useMediaQuery,
-  useTheme,
-  Grid,
-  GridList,
-  GridListTile
-} from '@material-ui/core';
+import { makeStyles, GridList, GridListTile } from '@material-ui/core';
 
 import config from 'config';
+import useColsMediaQuery from './useColsMediaQuery';
 import StoryCard from './StoryCard';
 
 const useStyles = makeStyles(() => ({
   root: {
-    flexGrow: 1,
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden'
     /**
      * The mixture of rem and px set by GridList is
      * causing height issues resulting in overflow.
      * Stick to px for this component to function correctly.
      */
-    height: '370px', // 23.125rem
-    overflow: 'hidden'
+    // height: '370px' // 23.125rem
   },
   gridList: {
     flexWrap: 'nowrap',
@@ -37,26 +33,14 @@ const useStyles = makeStyles(() => ({
 
 function StoryList({ stories, ...props }) {
   const classes = useStyles(props);
-  const theme = useTheme();
-  let cards = 4;
-  if (useMediaQuery(theme.breakpoints.down('md'))) {
-    cards = 2;
-  }
-  if (useMediaQuery(theme.breakpoints.down('sm'))) {
-    cards = 1;
-  }
+  const cols = useColsMediaQuery();
   const {
     showcase: { storyFormat }
   } = config;
 
   return (
-    <Grid
-      container
-      justify="space-around"
-      alignItems="center"
-      className={classes.root}
-    >
-      <GridList cellHeight={320} className={classes.gridList} cols={cards}>
+    <div className={classes.root}>
+      <GridList cellHeight={320} className={classes.gridList} cols={cols}>
         {stories.map(story => (
           <GridListTile
             key={story[storyFormat.href] || story[storyFormat.media.href]}
@@ -65,7 +49,7 @@ function StoryList({ stories, ...props }) {
           </GridListTile>
         ))}
       </GridList>
-    </Grid>
+    </div>
   );
 }
 
