@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { makeStyles } from '@material-ui/core';
 
-import { getOpenAfricaDominionGroupData } from 'lib/api';
+import { getOpenAfricaDominionCount } from 'lib/api';
 import plugIcon from 'assets/images/icons/group-6.png';
 
 import Content from './Content';
@@ -21,9 +21,15 @@ function DataSetsContent(props) {
   const [datasetsCount, setDatasetsCount] = useState('-');
 
   useEffect(() => {
-    getOpenAfricaDominionGroupData().then(({ data: { result } }) => {
-      setDatasetsCount(result.length);
-    });
+    getOpenAfricaDominionCount().then(
+      ({
+        data: {
+          result: { package_count: total }
+        }
+      }) => {
+        setDatasetsCount(total);
+      }
+    );
   }, []);
   return (
     <div className={classes.root}>

@@ -45,6 +45,13 @@ export async function getOpenAfricaDominionGroupData() {
   // });
 }
 
+export async function getOpenAfricaDominionCount() {
+  const group = 'dominion';
+  return axios.get(
+    `https://africaopendata.org/api/3/action/group_show?id=${group}`
+  );
+}
+
 export async function getShowcaseStories(countrySlug) {
   const {
     showcase: { url, storyFormat }
