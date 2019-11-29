@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
   titleGrid: {
     pointerEvents: 'none',
     [theme.breakpoints.up('md')]: {
-      maxWidth: '28%'
+      maxWidth: '35%'
     }
   },
   countryName: {
@@ -69,7 +69,7 @@ const useStyles = makeStyles(theme => ({
     top: 'unset !important',
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: '72% !important',
+      width: '65% !important',
       height: '28.75rem !important',
       maxHeight: '28.75rem !important',
       maxWidth: '51.8125rem !important'
@@ -91,7 +91,11 @@ function CountryHero({ dominion, ...props }) {
   );
 
   return (
-    <Hero classes={{ root: classes.root }}>
+    <Hero
+      classes={{ root: classes.root }}
+      justify="space-between"
+      alignItems="center"
+    >
       <HeroTitleGrid classes={{ titleTextGrid: classes.titleGrid }}>
         <HeroTitle classes={{ title: classes.countryName }}>
           {selectedCountry.name}
