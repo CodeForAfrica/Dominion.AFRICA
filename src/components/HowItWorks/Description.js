@@ -7,12 +7,14 @@ import { withStyles } from '@material-ui/core/styles';
 import useToggleModal from 'components/Modal/useToggleModal';
 import PlayerModal from 'components/Video/PlayerModal';
 
+import videos from 'data/videos';
 import Steps from './Steps';
 import ViewVideos from './ViewVideos';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    marginBottom: '4.4286rem' // 62px / 14
   },
   title: {
     padding: '1.143rem 0',
@@ -23,7 +25,6 @@ const styles = theme => ({
   },
   viewVideos: {
     marginTop: '2.143rem',
-    marginBottom: '4.4286rem', // 62px / 14
     [theme.breakpoints.up('md')]: {
       marginTop: '6.7143rem'
     }
@@ -33,22 +34,24 @@ const styles = theme => ({
 function Description({ classes, dominion }) {
   const { open, toggleModal } = useToggleModal('video');
   return (
-    <div>
+    <div className={classes.root}>
       <Typography variant="h2" className={classes.title}>
         How <br />
         it works
       </Typography>
 
       <Steps />
-      <div className={classes.viewVideos}>
-        <ViewVideos onClick={toggleModal} />
+      {videos && videos.length > 0 && (
+        <div className={classes.viewVideos}>
+          <ViewVideos onClick={toggleModal} />
 
-        <PlayerModal
-          dominion={dominion}
-          open={open}
-          toggleModal={toggleModal}
-        />
-      </div>
+          <PlayerModal
+            dominion={dominion}
+            open={open}
+            toggleModal={toggleModal}
+          />
+        </div>
+      )}
     </div>
   );
 }
