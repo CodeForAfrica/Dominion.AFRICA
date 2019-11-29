@@ -16,7 +16,12 @@ import PartnerContent from './PartnerContent';
 const useStyles = makeStyles(theme => ({
   root: {
     flexRow: 1,
-    backgroundColor: theme.palette.primary.light
+    backgroundColor: theme.palette.primary.light,
+    paddingTop: '2.5625rem',
+    paddingBottom: '3.625rem',
+    [theme.breakpoints.up('lg')]: {
+      paddingTop: '1.0265rem'
+    }
   },
   layout: {
     padding: '1rem',
@@ -36,10 +41,16 @@ const useStyles = makeStyles(theme => ({
       maxWidth: '11.423rem'
     }
   },
+  partnerContent: {
+    paddingTop: '0.75rem',
+    [theme.breakpoints.up('lg')]: {
+      paddingTop: '2.286rem'
+    }
+  },
   logoGrid: {
     padding: '2.286rem',
     [theme.breakpoints.up('md')]: {
-      padding: '2.286rem 1.143rem'
+      padding: '0 1.143rem'
     }
   },
   imageGrid: {
@@ -51,7 +62,7 @@ const useStyles = makeStyles(theme => ({
       width: 'auto'
     },
     [theme.breakpoints.up('lg')]: {
-      padding: '2.286rem 1.143rem'
+      padding: '2.286rem'
     }
   }
 }));
@@ -65,11 +76,12 @@ function CountryPartners({ dominion: { selectedCountry }, ...props }) {
         container
         direction="row"
         justify="center"
-        alignItems="center"
+        alignItems="flex-start"
         className={classes.layout}
       >
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={4} className={classes.logoGrid}>
           <PartnerContent
+            classes={{ root: classes.partnerContent }}
             title="Our Partners"
             description="Dominion is made possible through support from the following partners:"
           />
@@ -82,7 +94,7 @@ function CountryPartners({ dominion: { selectedCountry }, ...props }) {
           container
           direction="row"
           justify="flex-start"
-          alignItems="center"
+          alignItems="flex-start"
           className={classes.logoGrid}
         >
           {((selectedCountry && selectedCountry.slug === 'kenya') ||
