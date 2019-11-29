@@ -12,13 +12,13 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-    overflow: 'hidden'
+    overflow: 'hidden',
     /**
      * The mixture of rem and px set by GridList is
      * causing height issues resulting in overflow.
      * Stick to px for this component to function correctly.
      */
-    // height: '370px' // 23.125rem
+    height: '370px' // 23.125rem
   },
   gridList: {
     flexWrap: 'nowrap',
