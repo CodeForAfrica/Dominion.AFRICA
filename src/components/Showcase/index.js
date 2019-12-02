@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 import { makeStyles, Grid, Typography } from '@material-ui/core';
 
-import arrowBlack from 'assets/images/icons/black-combined-shape.svg';
-import useColsMediaQuery from './useColsMediaQuery';
 import StoryList from './StoryList';
 
 const useStyles = makeStyles(theme => ({
@@ -58,8 +56,6 @@ const useStyles = makeStyles(theme => ({
 
 function Showcase({ stories, ...props }) {
   const classes = useStyles(props);
-  const cols = useColsMediaQuery();
-  const showScroll = stories.length > cols;
 
   return (
     <div className={classes.showCaseContainer} id="showcase">
@@ -94,18 +90,6 @@ function Showcase({ stories, ...props }) {
         <Grid item xs={12}>
           <StoryList stories={stories} />
         </Grid>
-        {showScroll && (
-          <Grid
-            item
-            xs={12}
-            container
-            justify="flex-end"
-            className={classes.showScroll}
-          >
-            <img src={arrowBlack} alt="Scroll" className={classes.arrow} />{' '}
-            <Typography variant="body2">Scroll</Typography>
-          </Grid>
-        )}
       </Grid>
     </div>
   );

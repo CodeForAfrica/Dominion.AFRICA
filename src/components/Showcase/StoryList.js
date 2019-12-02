@@ -3,9 +3,13 @@ import PropTypes from 'prop-types';
 
 import { makeStyles, GridList, GridListTile } from '@material-ui/core';
 
+import SimpleBarReact from 'simplebar-react';
+
 import config from 'config';
 import useColsMediaQuery from './useColsMediaQuery';
 import StoryCard from './StoryCard';
+
+import 'simplebar/dist/simplebar.min.css';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -20,6 +24,10 @@ const useStyles = makeStyles(() => ({
      */
     height: '370px' // 23.125rem
   },
+  simpleBar: {
+    width: '100%',
+    height: '370px' // 23.125rem
+  },
   gridList: {
     flexWrap: 'nowrap',
     // TODO(nyokabi): Material-ui documentation for Grid list component
@@ -27,7 +35,9 @@ const useStyles = makeStyles(() => ({
     //                memory but helps keeping high FPS.
     transform: 'translateZ(0)',
     height: '100%',
-    margin: '0 !important'
+    margin: '0 !important',
+    overflow: 'initial',
+    width: '100%'
   }
 }));
 
@@ -40,15 +50,17 @@ function StoryList({ stories, ...props }) {
 
   return (
     <div className={classes.root}>
-      <GridList cellHeight={320} className={classes.gridList} cols={cols}>
-        {stories.map(story => (
-          <GridListTile
-            key={story[storyFormat.href] || story[storyFormat.media.href]}
-          >
-            <StoryCard story={story} />
-          </GridListTile>
-        ))}
-      </GridList>
+      <SimpleBarReact autoHide={false} className={classes.simpleBar}>
+        <GridList cellHeight={320} className={classes.gridList} cols={cols}>
+          {stories.map(story => (
+            <GridListTile
+              key={story[storyFormat.href] || story[storyFormat.media.href]}
+            >
+              <StoryCard story={story} />
+            </GridListTile>
+          ))}
+        </GridList>
+      </SimpleBarReact>
     </div>
   );
 }
