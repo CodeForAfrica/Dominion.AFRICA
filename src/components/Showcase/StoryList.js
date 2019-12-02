@@ -31,7 +31,7 @@ const useStyles = makeStyles(() => ({
       backgroundColor: '#f1f1ed', // off-white
       height: '4px'
     },
-    '& .simplebar-scrollbar': {
+    '&  .simplebar-track.simplebar-horizontal .simplebar-scrollbar': {
       backgroundColor: '#2c2c2a', // charcoal
       height: '4px',
       top: 0
