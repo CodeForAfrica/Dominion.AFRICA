@@ -141,7 +141,7 @@ function Resources(props) {
                 dataLink={`https://openafrica.net/dataset/${p.name}`}
                 description={p.notes}
                 title={p.title}
-                orgLink={`https://openafrica.net/organization/${p.organization.name}`}
+                organization={p.organization}
               />
             ))}
           </Grid>

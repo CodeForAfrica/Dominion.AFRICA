@@ -25,28 +25,21 @@ export default function createAPI() {
   };
 }
 
-export async function getSourceAfricaDominionData() {
-  const projectId = '462-Dominion-AFRICA';
+export async function getSourceAfricaDominionData(
+  projectId = '462-Dominion-AFRICA'
+) {
   return axios.get(
     `https://dc.sourceafrica.net/api/search.json?q=projectid:${projectId}`
   );
-  // .catch(err => {
-  //   window.history.replaceState(err, 'Error', '/error');
-  // });
 }
 
-export async function getOpenAfricaDominionGroupData() {
-  const group = 'dominion';
+export async function getOpenAfricaDominionGroupData(group = 'dominion') {
   return axios.get(
     `https://africaopendata.org/api/3/action/group_package_show?id=${group}`
   );
-  // .catch(err => {
-  //   window.history.replaceState(err, 'Error', '/error');
-  // });
 }
 
-export async function getOpenAfricaDominionCount() {
-  const group = 'dominion';
+export async function getOpenAfricaDominionCount(group = 'dominion') {
   return axios.get(
     `https://africaopendata.org/api/3/action/group_show?id=${group}`
   );
