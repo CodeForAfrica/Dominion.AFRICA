@@ -35,9 +35,6 @@ const useStyles = makeStyles(theme => ({
   title: {
     color: 'white',
     pointerEvents: 'all',
-    [theme.breakpoints.down('md')]: {
-      fontSize: '3.5rem'
-    },
     [theme.breakpoints.down('sm')]: {
       fontSize: '3rem',
       width: '60%'
