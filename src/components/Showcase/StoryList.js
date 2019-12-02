@@ -26,7 +26,16 @@ const useStyles = makeStyles(() => ({
   },
   simpleBar: {
     width: '100%',
-    height: '370px' // 23.125rem
+    height: '370px', // 23.125rem
+    '& .simplebar-track': {
+      backgroundColor: '#f1f1ed', // off-white
+      height: '4px'
+    },
+    '& .simplebar-scrollbar': {
+      backgroundColor: '#2c2c2a', // charcoal
+      height: '4px',
+      top: 0
+    }
   },
   gridList: {
     flexWrap: 'nowrap',
