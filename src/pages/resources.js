@@ -84,7 +84,7 @@ function Resources(props) {
           id="documents"
           title="Documents"
           titleVariant={titleVariant}
-          subtitle="Powered by sourceAFRICA"
+          subtitle="Powered by sourceAFRICA.net"
         >
           <Typography variant="body2">
             Data for Dominion is aggregated from various authoritative sources.
@@ -127,7 +127,7 @@ function Resources(props) {
           light
           title="Data"
           titleVariant={titleVariant}
-          subtitle="Powered by openAFRICA"
+          subtitle="Powered by openAFRICA.net"
         >
           <Typography variant="body2">
             Data for Dominion is aggregated from various authoritative sources.
