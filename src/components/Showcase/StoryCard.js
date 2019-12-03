@@ -35,6 +35,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'flex-end'
   },
   CardActionArea: {
+    height: '100%',
     [theme.breakpoints.down('md')]: {
       display: 'flex',
       alignItems: 'flex-end',
