@@ -6,7 +6,6 @@ import config from 'config';
 import {
   makeStyles,
   Card,
-  CardActionArea,
   CardContent,
   CardMedia,
   Grid,
@@ -32,7 +31,14 @@ const useStyles = makeStyles(theme => ({
   },
   contentRoot: {
     flexGrow: 1,
+    height: '100%',
     justifyContent: 'flex-end'
+  },
+  CardActionArea: {
+    display: 'flex',
+    alignItems: 'flex-end',
+    flexFlow: 'column',
+    height: '100%'
   },
   cardContent: {
     alignItems: 'flex-end',
@@ -82,42 +88,32 @@ function StoryCard({ story, ...props }) {
   return (
     <Card className={classes.root}>
       <A href={storyLink} className={classes.cardLink}>
-        <CardActionArea
-          style={{
-            display: 'flex',
-            alignItems: 'flex-end',
-            flexFlow: 'column',
-            height: '100%'
-          }}
-        >
-          <CardMedia
-            component={story[storyFormat.media.type]}
-            className={classes.media}
-            image={mediaLink}
-            classes={{ media: classes.componentStyle }}
-            title="Story"
-          />
-          <CardContent className={classes.cardContent}>
-            <Grid
-              container
-              item
-              direction="column"
-              className={classes.contentRoot}
-              alignItems="flex-start"
-              style={{ height: '100%' }}
-            >
-              <Typography variant="subtitle2" className={classes.overline}>
-                {story[storyFormat.date]}
-              </Typography>
-              <Typography variant="h5" className={classes.bodyTitle}>
-                {story[storyFormat.title]}
-              </Typography>
-              <Typography variant="body2" className={classes.bodyText}>
-                {story[storyFormat.brief]}
-              </Typography>
-            </Grid>
-          </CardContent>
-        </CardActionArea>
+        <CardMedia
+          component={story[storyFormat.media.type]}
+          className={classes.media}
+          image={mediaLink}
+          classes={{ media: classes.componentStyle }}
+          title="Story"
+        />
+        <CardContent className={classes.cardContent}>
+          <Grid
+            container
+            item
+            direction="column"
+            className={classes.contentRoot}
+            alignItems="flex-start"
+          >
+            <Typography variant="subtitle2" className={classes.overline}>
+              {story[storyFormat.date]}
+            </Typography>
+            <Typography variant="h5" className={classes.bodyTitle}>
+              {story[storyFormat.title]}
+            </Typography>
+            <Typography variant="body2" className={classes.bodyText}>
+              {story[storyFormat.brief]}
+            </Typography>
+          </Grid>
+        </CardContent>
       </A>
     </Card>
   );
