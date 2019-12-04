@@ -92,7 +92,10 @@ function Data({
 Data.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  organization: PropTypes.string.isRequired,
+  organization: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired
+  }).isRequired,
   dataLink: PropTypes.string.isRequired,
   preview: PropTypes.element
 };
