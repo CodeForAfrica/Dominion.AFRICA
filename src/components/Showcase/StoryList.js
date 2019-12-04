@@ -11,7 +11,7 @@ import StoryCard from './StoryCard';
 
 import 'simplebar/dist/simplebar.min.css';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(({ breakpoints }) => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -30,6 +30,11 @@ const useStyles = makeStyles(() => ({
     '& .simplebar-track': {
       backgroundColor: '#f1f1ed', // off-white
       height: '4px'
+    },
+    '&  .simplebar-track.simplebar-horizontal': {
+      [breakpoints.up('lg')]: {
+        marginLeft: '25%'
+      }
     },
     '&  .simplebar-track.simplebar-horizontal .simplebar-scrollbar': {
       backgroundColor: '#2c2c2a', // charcoal
