@@ -101,6 +101,8 @@
             "table": "allWorkersHostelGenders",
             "x": "workersHostelGender",
             "y": "total",
+            "aggregate": ":percent",
+            "customUnit": "%",
             "id": "visual-qNhYgZBE"
           }
         ],
@@ -118,6 +120,8 @@
             "table": "allWorkersHostelGeographies",
             "x": "workersHostelGeography",
             "y": "total",
+            "aggregate": ":percent",
+            "customUnit": "%",
             "id": "visual-2QqN3f6-"
           }
         ],
@@ -196,6 +200,8 @@
             "label": "",
             "x": "workersHostelPopulationGroup",
             "y": "total",
+            "aggregate": ":percent",
+            "customUnit": "%",
             "id": "visual-oSOUhVXyP"
           }
         ],
@@ -236,6 +242,8 @@
             "label": "",
             "x": "workersHostelResidentialOwnership",
             "y": "total",
+            "aggregate": ":percent",
+            "customUnit": "%",
             "id": "visual-h9WcfDPY9"
           }
         ],
@@ -307,7 +315,7 @@
     "sectionDescription": "",
     "charts": [
       {
-        "title": "Number of individuals owning farms and agricultural holdings by gender (%)",
+        "title": "Number of individuals owning farms and agricultural holdings by gender",
         "subtitle": "",
         "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
         "sourceTitle": "Land Audit Report, 2017",
@@ -328,7 +336,7 @@
         "id": "chart-oORMHQttb"
       },
       {
-        "title": "Number of individuals owning farms and agricultural holdings by Nationality (%)",
+        "title": "Number of individuals owning farms and agricultural holdings by Nationality",
         "subtitle": "",
         "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
         "sourceTitle": "Land Audit Report, 2017",
@@ -349,7 +357,7 @@
         "id": "chart-C2HyLN-U2"
       },
       {
-        "title": "Number of individuals owning farms and agricultural holdings by race (%)",
+        "title": "Number of individuals owning farms and agricultural holdings by race",
         "subtitle": "",
         "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
         "sourceTitle": "Land Audit Report, 2017",
@@ -370,7 +378,7 @@
         "id": "chart-RO6UgKW38"
       },
       {
-        "title": "Number of Private Land Owners by Category (%)",
+        "title": "Number of Private Land Owners by Category",
         "subtitle": "",
         "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
         "sourceTitle": "Land Audit Report, 2017",
@@ -391,7 +399,7 @@
         "id": "chart-WxEHQLeAh"
       },
       {
-        "title": "Private land ownership in hectares by category (%)",
+        "title": "Private land ownership in hectares by category",
         "subtitle": "",
         "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
         "sourceTitle": "Land Audit Report, 2017",
@@ -424,13 +432,15 @@
             "label": "",
             "x": "landOwnershipInHectaresByRace",
             "y": "total",
+            "aggregate": ":percent",
+            "customUnit": "%",
             "id": "visual-NnmsB7kr4"
           }
         ],
         "id": "chart-NdLW2pJ7V"
       },
       {
-        "title": "Individual land ownership of farms and agricultural holdings in hectares by gender (%)",
+        "title": "Individual land ownership of farms and agricultural holdings in hectares by gender",
         "subtitle": "",
         "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
         "sourceTitle": "Land Audit Report, 2017",
@@ -466,6 +476,8 @@
             "label": "",
             "x": "landOwnershipInHectaresByNationality",
             "y": "total",
+            "aggregate": ":percent",
+            "customUnit": "%",
             "id": "visual-WpgZqqBOG"
           }
         ],
@@ -479,7 +491,7 @@
     "sectionDescription": "",
     "charts": [
       {
-        "title": "Individual ownership of erven land in hectares by gender (%)",
+        "title": "Individual ownership of erven land in hectares by gender",
         "subtitle": "",
         "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
         "sourceTitle": "Land Audit Report, 2017",
@@ -500,7 +512,7 @@
         "id": "chart-N6mMWTL_j"
       },
       {
-        "title": "Number of individuals owning erven land by gender (%)",
+        "title": "Number of individuals owning erven land by gender",
         "subtitle": "",
         "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
         "sourceTitle": "Land Audit Report, 2017",
@@ -521,7 +533,7 @@
         "id": "chart-SJZWtZKyE"
       },
       {
-        "title": "Number of individuals owning erven land by nationality (%)",
+        "title": "Number of individuals owning erven land by nationality",
         "subtitle": "",
         "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
         "sourceTitle": "Land Audit Report, 2017",
@@ -542,7 +554,7 @@
         "id": "chart-tXC-7umSr"
       },
       {
-        "title": "Individual ownership of erven land in hectares by nationality (%)",
+        "title": "Individual ownership of erven land in hectares by nationality",
         "subtitle": "",
         "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
         "sourceTitle": "Land Audit Report, 2017",
@@ -563,7 +575,7 @@
         "id": "chart-YwZQL94BC"
       },
       {
-        "title": "Individual ownership of erven land in hectares by race (%)",
+        "title": "Individual ownership of erven land in hectares by race",
         "subtitle": "",
         "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
         "sourceTitle": "Land Audit Report, 2017",
@@ -584,7 +596,7 @@
         "id": "chart-hmMyFnDk1"
       },
       {
-        "title": "Number of individuals owning erven land by race (%)",
+        "title": "Number of individuals owning erven land by race",
         "subtitle": "",
         "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
         "sourceTitle": "Land Audit Report, 2017",
@@ -613,7 +625,7 @@
     "charts": [
       {
         "title": "Sectional Title Land Ownership",
-        "subtitle": "Number of individuals owning sectional title land by category (%)",
+        "subtitle": "Number of individuals owning sectional title land by category",
         "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
         "sourceTitle": "Land Audit Report, 2017",
         "layout": "1",
@@ -634,7 +646,7 @@
       },
       {
         "title": "Sectional Title Land Ownership",
-        "subtitle": "Individual ownership of sectional title land in hectares by nationality (%)",
+        "subtitle": "Individual ownership of sectional title land in hectares by nationality",
         "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
         "sourceTitle": "Land Audit Report, 2017",
         "layout": "1",
@@ -655,7 +667,7 @@
       },
       {
         "title": "Sectional Title Land Ownership",
-        "subtitle": "Individual ownership of sectional title land in hectares by race (%)",
+        "subtitle": "Individual ownership of sectional title land in hectares by race",
         "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
         "sourceTitle": "Land Audit Report, 2017",
         "layout": "1",
@@ -676,7 +688,7 @@
       },
       {
         "title": "Sectional Title Land Ownership",
-        "subtitle": "Number of individuals owning sectional title land by race (%)",
+        "subtitle": "Number of individuals owning sectional title land by race",
         "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
         "sourceTitle": "Land Audit Report, 2017",
         "layout": "1",
@@ -697,7 +709,7 @@
       },
       {
         "title": "Sectional Title Land Ownership",
-        "subtitle": "Individual ownership of sectional title land in hectares by gender (%)",
+        "subtitle": "Individual ownership of sectional title land in hectares by gender",
         "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
         "sourceTitle": "Land Audit Report, 2017",
         "layout": "1",
@@ -715,7 +727,7 @@
       },
       {
         "title": "Sectional Title Land Ownership",
-        "subtitle": "Number of individuals owning sectional title land by gender (%)",
+        "subtitle": "Number of individuals owning sectional title land by gender",
         "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
         "sourceTitle": "Land Audit Report, 2017",
         "layout": "1",
@@ -736,7 +748,7 @@
       },
       {
         "title": "Sectional Title Land Ownership",
-        "subtitle": "Individual ownership of sectional title land in hectares by nationality (%)",
+        "subtitle": "Individual ownership of sectional title land in hectares by nationality",
         "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
         "sourceTitle": "Land Audit Report, 2017",
         "layout": "1",
@@ -757,7 +769,7 @@
       },
       {
         "title": "Sectional Title Land Ownership",
-        "subtitle": "Number of individuals owning sectional title land by nationality (%)",
+        "subtitle": "Number of individuals owning sectional title land by nationality",
         "sourceLink": "http://www.ruraldevelopment.gov.za/publications/land-audit-report/file/6126",
         "sourceTitle": "Land Audit Report, 2017",
         "layout": "1",
@@ -1408,6 +1420,7 @@
             "label": "",
             "x": "landToPrioritiseForRedistribution",
             "y": "total",
+            "customUnit": "%",
             "id": "visual-fOiytRUrb"
           }
         ],
@@ -1426,6 +1439,7 @@
             "label": "",
             "x": "accessToInformation",
             "y": "total",
+            "customUnit": "%",
             "id": "visual-GYXK59_9P"
           }
         ],
@@ -1444,6 +1458,7 @@
             "label": "",
             "x": "maintainWillingBuyerWillingSellerPolicy",
             "y": "total",
+            "customUnit": "%",
             "id": "visual-upiOMaQ0Z"
           }
         ],
@@ -1462,6 +1477,7 @@
             "label": "",
             "x": "allowFarmersRetainLandOwnership",
             "y": "total",
+            "customUnit": "%",
             "id": "visual-fzkvzR04B"
           }
         ],
@@ -1483,6 +1499,7 @@
             "label": "",
             "x": "landAcquisationChallenges",
             "y": "total",
+            "customUnit": "%",
             "id": "visual-l5i_8KQTR"
           }
         ],
