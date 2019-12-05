@@ -78,7 +78,14 @@
             "type": "column",
             "typeProps": {
               "horizontal": true,
-              "labelWidth": 100
+              "labelWidth": 100,
+              "parts": {
+                "axis": {
+                  "dependent": {
+                    "fixLabelOverlap": true
+                  }
+                }
+              }
             },
             "table": "allWorkersHostelAgeGroups",
             "x": "workersHostelAgeGroup",
@@ -137,7 +144,14 @@
           {
             "type": "column",
             "typeProps": {
-              "offset": 70
+              "offset": 70,
+              "parts": {
+                "axis": {
+                  "dependent": {
+                    "tickCount": 4
+                  }
+                }
+              }
             },
             "table": "allWorkersHostelHandwashingFacilities",
             "x": "workersHostelHandwashingFacility",
@@ -178,6 +192,15 @@
         "visuals": [
           {
             "type": "column",
+            "typeProps": {
+              "parts": {
+                "axis": {
+                  "dependent": {
+                    "fixLabelOverlap": true
+                  }
+                }
+              }
+            },
             "table": "allWorkersHostelPopulations",
             "label": "",
             "x": "workersHostelPopulationYear",
@@ -218,7 +241,14 @@
             "type": "column",
             "typeProps": {
               "horizontal": true,
-              "labelWidth": 100
+              "labelWidth": 100,
+              "parts": {
+                "axis": {
+                  "dependent": {
+                    "tickCount": 2
+                  }
+                }
+              }
             },
             "table": "allWorkersHostelRents",
             "label": "",
@@ -408,7 +438,14 @@
           {
             "type": "column",
             "typeProps": {
-              "offset": 70
+              "offset": 70,
+              "parts": {
+                "axis": {
+                  "dependent": {
+                    "tickCount": 2
+                  }
+                }
+              }
             },
             "table": "allPrivatelandownershipinhectarespercategories",
             "label": "",
@@ -696,7 +733,14 @@
           {
             "type": "column",
             "typeProps": {
-              "offset": 70
+              "offset": 70,
+              "parts": {
+                "axis": {
+                  "dependent": {
+                    "tickCount": 4
+                  }
+                }
+              }
             },
             "table": "allNumberofsectionaltitleownersbyraces",
             "label": "",
@@ -716,6 +760,9 @@
         "visuals": [
           {
             "type": "column",
+            "typeProps": {
+              "offset": 70
+            },
             "table": "allSectionaltitleownershipinhectarespergenders",
             "label": "",
             "x": "sectionalTitleOwnershipInHectaresPerGender",
@@ -845,7 +892,14 @@
           {
             "type": "column",
             "typeProps": {
-              "horizontal": true
+              "horizontal": true,
+              "parts": {
+                "axis": {
+                  "dependent": {
+                    "tickCount": 4
+                  }
+                }
+              }
             },
             "table": "allAvgPricePerHectaresPerClass2018S",
             "x": "classDistribution",
@@ -865,7 +919,14 @@
           {
             "type": "column",
             "typeProps": {
-              "horizontal": true
+              "horizontal": true,
+              "parts": {
+                "axis": {
+                  "dependent": {
+                    "tickCount": 3
+                  }
+                }
+              }
             },
             "table": "allHighestPriceTradedPerClass2018S",
             "x": "classDistribution",
@@ -885,7 +946,14 @@
           {
             "type": "column",
             "typeProps": {
-              "horizontal": true
+              "horizontal": true,
+              "parts": {
+                "axis": {
+                  "dependent": {
+                    "tickCount": 3
+                  }
+                }
+              }
             },
             "table": "allLowestPriceTradedPerClass2018S",
             "x": "classDistribution",
@@ -905,7 +973,14 @@
           {
             "type": "column",
             "typeProps": {
-              "horizontal": true
+              "horizontal": true,
+              "parts": {
+                "axis": {
+                  "dependent": {
+                    "tickCount": 3
+                  }
+                }
+              }
             },
             "table": "allPriceTrendsTradedPerClass2018S",
             "x": "classDistribution",
@@ -1065,7 +1140,14 @@
           {
             "type": "column",
             "typeProps": {
-              "offset": 60
+              "offset": 60,
+              "parts": {
+                "axis": {
+                  "dependent": {
+                    "tickCount": 3
+                  }
+                }
+              }
             },
             "table": "allHectaresTransferredPerProvinceByYears",
             "x": "hectaresTransferredPerProvinceByYear",
@@ -1414,12 +1496,18 @@
           {
             "type": "pie",
             "typeProps": {
-              "height": 300
+              "height": 300,
+              "parts": {
+                "legend": {
+                  "size": 150
+                }
+              }
             },
             "table": "allLandToPrioritiseForRedistributions",
             "label": "",
             "x": "landToPrioritiseForRedistribution",
             "y": "total",
+            "aggregate": ":percent",
             "customUnit": "%",
             "id": "visual-fOiytRUrb"
           }
@@ -1439,6 +1527,7 @@
             "label": "",
             "x": "accessToInformation",
             "y": "total",
+            "aggregate": ":percent",
             "customUnit": "%",
             "id": "visual-GYXK59_9P"
           }
@@ -1458,6 +1547,7 @@
             "label": "",
             "x": "maintainWillingBuyerWillingSellerPolicy",
             "y": "total",
+            "aggregate": ":percent",
             "customUnit": "%",
             "id": "visual-upiOMaQ0Z"
           }
@@ -1477,6 +1567,7 @@
             "label": "",
             "x": "allowFarmersRetainLandOwnership",
             "y": "total",
+            "aggregate": ":percent",
             "customUnit": "%",
             "id": "visual-fzkvzR04B"
           }
@@ -1493,12 +1584,19 @@
           {
             "type": "pie",
             "typeProps": {
-              "height": 300
+              "height": 300,
+              "parts": {
+                "legend": {
+                  "size": 180
+                }
+              },
+              "width": 500
             },
             "table": "allLandAcquisationChallenges",
             "label": "",
             "x": "landAcquisationChallenges",
             "y": "total",
+            "aggregate": ":percent",
             "customUnit": "%",
             "id": "visual-l5i_8KQTR"
           }
