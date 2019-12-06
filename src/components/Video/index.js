@@ -6,6 +6,7 @@ import PlayArrow from '@material-ui/icons/PlayArrow';
 
 import background from 'assets/images/hero-image-1.png';
 import useToggleModal from 'components/Modal/useToggleModal';
+import videos from 'data/videos';
 
 import PlayerModal from './PlayerModal';
 
@@ -57,6 +58,9 @@ function Video({ dominion, ...props }) {
   const classes = useStyles(props);
   const { open, toggleModal } = useToggleModal('video');
 
+  if (!(videos && videos.length)) {
+    return null;
+  }
   return (
     <Grid
       container

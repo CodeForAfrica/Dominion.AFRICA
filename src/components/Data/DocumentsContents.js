@@ -8,8 +8,8 @@ import Content from './Content';
 function DocumentsContent() {
   const [documentsCount, setDocumentsCount] = useState('-');
   useEffect(() => {
-    getSourceAfricaDominionData().then(({ data: { documents } }) => {
-      setDocumentsCount(documents.length);
+    getSourceAfricaDominionData().then(({ data: { total } }) => {
+      setDocumentsCount(total);
     });
   }, []);
 

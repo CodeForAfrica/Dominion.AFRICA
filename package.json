@@ -40,6 +40,8 @@
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "shortid": "^2.2.15",
+    "simplebar": "^5.0.7",
+    "simplebar-react": "^2.0.10",
     "tabletop": "^1.6.2",
     "typescript": "*",
     "webpack": "^4.41.2"

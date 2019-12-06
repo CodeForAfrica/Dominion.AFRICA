@@ -6,7 +6,7 @@ import back from 'assets/images/icons/back.svg';
 import useToggleModal from 'components/Modal/useToggleModal';
 import IFrame from 'components/IFrame';
 
-import Sources from './Sources';
+import Sources from 'data/videos';
 import Thumbnail from './Thumbnail';
 
 const useStyles = makeStyles(theme => ({

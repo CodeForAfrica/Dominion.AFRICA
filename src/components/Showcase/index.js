@@ -39,6 +39,18 @@ const useStyles = makeStyles(theme => ({
   },
   headlineDescription: {
     textAlign: 'left'
+  },
+  showScroll: {
+    color: '#222822',
+    marginTop: '2rem',
+    opacity: 0.6,
+    textTransform: 'uppercase',
+    [theme.breakpoints.up('md')]: {
+      paddingRight: '2rem'
+    }
+  },
+  arrow: {
+    paddingRight: '0.75rem'
   }
 }));
 

@@ -88,8 +88,8 @@ function Resources(props) {
         >
           <Typography variant="body2">
             Data for Dominion is aggregated from various authoritative sources.
-            Below is a list of documents and datasets used for the project,
-            which is hosted on sourceAFRICA.net and openAFRICA.net
+            Below is a list of documents used for the project, which is hosted
+            on sourceAFRICA.net
           </Typography>
           <Grid container justify="space-between" className={classes.content}>
             {documents.map(document => (
@@ -127,8 +127,13 @@ function Resources(props) {
           light
           title="Data"
           titleVariant={titleVariant}
-          subtitle="Powered by openAfrica.net"
+          subtitle="Powered by openAFRICA.net"
         >
+          <Typography variant="body2">
+            Data for Dominion is aggregated from various authoritative sources.
+            Below is a list of datasets used for the project, which is hosted on
+            openAFRICA.net
+          </Typography>
           <Grid container justify="space-between" className={classes.content}>
             {packages.map(p => (
               <DataCard
@@ -136,7 +141,7 @@ function Resources(props) {
                 dataLink={`https://openafrica.net/dataset/${p.name}`}
                 description={p.notes}
                 title={p.title}
-                orgLink={`https://openafrica.net/organization/${p.organization.name}`}
+                organization={p.organization}
               />
             ))}
           </Grid>
