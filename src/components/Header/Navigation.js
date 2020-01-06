@@ -229,7 +229,8 @@ function Navigation({ dominion, ...props }) {
           aria-label="Search"
           onClick={toggleSearch}
           style={{
-            marginLeft: 60
+            marginLeft: 60,
+            paddingRight: 0
           }}
         >
           <img alt="Search" src={searchIcon} />
