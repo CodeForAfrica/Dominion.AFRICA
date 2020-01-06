@@ -54,7 +54,7 @@ function Country({ showcaseStories }) {
           dominion={{ ...config, selectedCountry }}
           profile={{}}
         />
-        <FeaturedData />
+        <FeaturedData selectedCountry={selectedCountry} />
         <AboutCountry dominion={{ ...config, selectedCountry }} />
         <HowItWorks dominion={config} />
         <Video dominion={config} />
