@@ -89,7 +89,8 @@ function FeaturedData({ selectedCountry }) {
 
   const visuals = useMemo(
     () =>
-      featuredCharts[selectedCountry.slug]
+      featuredCharts[selectedCountry.slug] &&
+      featuredCharts[selectedCountry.slug].length !== 0
         ? featuredCharts[selectedCountry.slug]
             .map(x => x.visuals)
             .reduce((a, b) => a.concat(b))
@@ -98,14 +99,10 @@ function FeaturedData({ selectedCountry }) {
   );
 
   const geoId = `country-${selectedCountry.code}`;
-  const comparisonGeoId = null;
-  const profile = null;
 
   const chartData = visualLoader({
     geoId,
-    comparisonGeoId,
-    visuals,
-    profile
+    visuals
   });
 
   const chartComponents = useMemo(
@@ -141,14 +138,13 @@ function FeaturedData({ selectedCountry }) {
             }}
             embedCode={`Embed code for this chart. \n Copy the code below, then paste into your own CMS or HTML.
              Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge. \n
-              <iframe src='${config.url}/embed/${chart.geoId}/${chart.sectionId}/${chart.id}'`}
+              <iframe src='${config.url}/embed/${geoId}/${chart.sectionId}/${chart.id}'`}
             loading={chartData.isLoading}
           >
             <div />
             {!chartData.isLoading &&
               chart.visuals.map(visual => (
                 <ChartFactory
-                  theme={greyChartTheme}
                   key={visual.id}
                   definition={visual}
                   data={chartData.profileVisualsData[visual.queryAlias].nodes}
@@ -159,6 +155,10 @@ function FeaturedData({ selectedCountry }) {
       )),
     [chartData, classes, geoId, selectedCountry.slug]
   );
+
+  if (visuals && visuals.length === 0) {
+    return null;
+  }
 
   return (
     <div className={classes.root}>
