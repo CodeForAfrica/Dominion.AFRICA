@@ -1,9 +1,11 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import dynamic from 'next/dynamic';
+import classNames from 'classnames';
 
 import Grid from '@material-ui/core/Grid';
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import useTheme from '@material-ui/core/styles/useTheme';
 import Typography from '@material-ui/core/Typography';
 import withApollo from 'lib/withApollo';
 
@@ -12,13 +14,11 @@ import visualLoader from '@codeforafrica/hurumap-ui/factory/utils/visualLoader';
 
 import config from 'config';
 import logo from 'assets/images/logos/dominion-logo-small.png';
-
-import theme from '../../theme';
+import featuredCharts from 'data/featuredCharts';
 
 const COLOR_SCALE = ['#696969', '#8D8D8C', '#A9A9A9', '#C0C0C0', '#D3D3D3'];
-
-const ChartContainer = dynamic(
-  () => import('@codeforafrica/hurumap-ui/core/ChartContainer'),
+const InsightContainer = dynamic(
+  () => import('@codeforafrica/hurumap-ui/core/InsightContainer'),
   {
     ssr: false
   }
@@ -45,100 +45,55 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
       width: '51.125rem'
     }
   },
-  chartTtitle: {
+  chartTitle: {
     fontFamily: typography.fontFamily,
+    color: '#525e31',
     fontWeight: 'bold',
-    fontSize: '24px',
-    letterSpacing: '0.86px'
+    fontSize: '0.929rem !important'
   },
-  chartSubtitle: {
-    fontFamily: typography.fontFamily,
-    opacity: 0.4,
-    fontSize: '12px'
-  },
-  chartsSection: {
-    display: 'none'
+  dullOrange: {
+    color: '#de9f3a'
   },
   sourceLink: {
     fontSize: typography.caption.fontSize
   },
   descriptionWrapper: {
-    width: '70%',
-    marginTop: '3.42rem'
+    backgroundColor: '#f1f1ed',
+    padding: '3.42rem 0 0 !important',
+    marginTop: '0 !important',
+    '& div:first-child': {
+      display: 'none'
+    }
   },
   description: {
     fontWeight: '500',
     fontSize: '0.857rem',
-    lineHeight: '1.92'
+    lineHeight: '1.92',
+    marginLeft: '0 !important',
+    width: '70%'
+  },
+  ChartContainer: {
+    backgroundColor: 'white'
+  },
+  hideHighlightGrid: {
+    display: 'none'
   }
 }));
 
 function FeaturedData({ selectedCountry }) {
   const classes = useStyles();
-  theme.chart.colorScale = COLOR_SCALE;
-  theme.chart.pie.colorScale = COLOR_SCALE;
-  const featuredCharts = {
-    kenya: [],
-    'south-africa': [
-      {
-        title:
-          "Number of people living in workers' hostels per population group",
-        subtitle: '',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-        sourceLink:
-          'http://www.statssa.gov.za/publications/P0318/P03182018.pdf',
-        sourceTitle: 'General Household Survey, 2018',
-        layout: '1',
-        visuals: [
-          {
-            type: 'pie',
-            table: 'allWorkersHostelPopulationGroups',
-            label: '',
-            x: 'workersHostelPopulationGroup',
-            y: 'total',
-            aggregate: ':percent',
-            customUnit: '%',
-            id: 'visual-oSOUhVXyP',
-            queryAlias: 'viz0'
-          }
-        ],
-        id: 'chart-jLe6B2KjU',
-        queryAlias: 'chart0',
-        sectionId: 'section-K-fkSD-f'
-      },
-      {
-        title: "Number of people living in workers' hostel per gender",
-        subtitle: '',
-        description:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-        sourceLink:
-          'http://www.statssa.gov.za/publications/P0318/P03182018.pdf',
-        sourceTitle: 'General Household Survey, 2018',
-        visuals: [
-          {
-            type: 'pie',
-            table: 'allWorkersHostelGenders',
-            x: 'workersHostelGender',
-            y: 'total',
-            aggregate: ':percent',
-            customUnit: '%',
-            id: 'visual-qNhYgZBE',
-            queryAlias: 'viz1'
-          }
-        ],
-        id: 'chart-HtZtHlMi',
-        queryAlias: 'chart1',
-        sectionId: 'section-K-fkSD-f'
-      }
-    ]
-  };
+  const theme = useTheme();
+  const greyChartTheme = theme;
+  greyChartTheme.chart.colorScale = COLOR_SCALE;
+  greyChartTheme.chart.pie.colorScale = COLOR_SCALE;
 
   const visuals = useMemo(
     () =>
       featuredCharts[selectedCountry.slug]
-        .map(x => x.visuals)
-        .reduce((a, b) => a.concat(b)),
+        ? featuredCharts[selectedCountry.slug]
+            .map(x => x.visuals)
+            .reduce((a, b) => a.concat(b))
+        : [],
     [selectedCountry.slug]
   );
 
@@ -155,41 +110,51 @@ function FeaturedData({ selectedCountry }) {
 
   const chartComponents = useMemo(
     () =>
-      featuredCharts[selectedCountry.slug].map(chart => (
-        <Grid key={chart.id} item xs={12} md={6}>
-          <ChartContainer
+      featuredCharts[selectedCountry.slug] &&
+      featuredCharts[selectedCountry.slug].map((chart, index) => (
+        <Grid key={chart.id} item sm={12} md={6}>
+          <InsightContainer
+            hideInsight
+            logo={logo}
             key={chart.id}
-            loading={chartData.isLoading}
             title={chart.title}
             subtitle={chart.subtitle}
             description={chart.description}
-            sourceLink={chart.sourceLink}
-            sourceTitle={chart.sourceTitle}
+            source={{
+              title: chart.sourceTitle,
+              href: chart.sourceLink
+            }}
+            actions={{
+              handleShare: () => {},
+              handleShowData: () => {},
+              handleCompare: () => {}
+            }}
             classes={{
-              title: classes.chartTitle,
-              subtitle: classes.chartSubtitle,
-              sourceLink: classes.sourceLink,
+              highlightGrid: classes.hideHighlightGrid,
+              containerRoot: classes.ChartContainer,
+              description: classes.description,
+              title: classNames(classes.chartTitle, {
+                [classes.dullOrange]: index !== 0
+              }),
               descriptionWrapper: classes.descriptionWrapper,
-              description: classes.description
+              sourceLink: classes.sourceLink
             }}
-            embed={{
-              title: 'Embed code for this chart',
-              subtitle:
-                'Copy the code below, then paste into your own CMS or HTML. Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge.',
-              code: `<iframe src="${config.url}/embed/${chart.geoId}/${chart.sectionId}/${chart.id}" />`
-            }}
-            logo={logo}
+            embedCode={`Embed code for this chart. \n Copy the code below, then paste into your own CMS or HTML.
+             Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge. \n
+              <iframe src='${config.url}/embed/${chart.geoId}/${chart.sectionId}/${chart.id}'`}
+            loading={chartData.isLoading}
           >
+            <div />
             {!chartData.isLoading &&
               chart.visuals.map(visual => (
                 <ChartFactory
-                  theme={theme}
+                  theme={greyChartTheme}
                   key={visual.id}
                   definition={visual}
                   data={chartData.profileVisualsData[visual.queryAlias].nodes}
                 />
               ))}
-          </ChartContainer>
+          </InsightContainer>
         </Grid>
       )),
     [chartData, classes, geoId, selectedCountry.slug]
@@ -216,7 +181,8 @@ function FeaturedData({ selectedCountry }) {
 }
 
 FeaturedData.propTypes = {
-  selectedCountry: PropTypes.shape({}).isRequired
+  selectedCountry: PropTypes.shape({}).isRequired,
+  theme: PropTypes.shape({}).isRequired
 };
 
 export default withApollo(FeaturedData);
