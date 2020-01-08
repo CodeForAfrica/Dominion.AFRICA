@@ -84,7 +84,7 @@ function FeaturedData({ selectedCountry }) {
   const classes = useStyles();
   const theme = useTheme();
   const greyChartTheme = theme;
-
+  // update theme using mutation
   greyChartTheme.chart.colorScale = COLOR_SCALE;
   greyChartTheme.chart.pie.colorScale = COLOR_SCALE;
   greyChartTheme.chart.area.colorScale = COLOR_SCALE;
