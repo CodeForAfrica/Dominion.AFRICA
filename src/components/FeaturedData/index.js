@@ -84,8 +84,12 @@ function FeaturedData({ selectedCountry }) {
   const classes = useStyles();
   const theme = useTheme();
   const greyChartTheme = theme;
+
   greyChartTheme.chart.colorScale = COLOR_SCALE;
   greyChartTheme.chart.pie.colorScale = COLOR_SCALE;
+  greyChartTheme.chart.area.colorScale = COLOR_SCALE;
+  greyChartTheme.chart.group.colorScale = COLOR_SCALE;
+  greyChartTheme.chart.bar.style.data.fill = [COLOR_SCALE];
 
   const visuals = useMemo(
     () =>
