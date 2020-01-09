@@ -129,7 +129,20 @@ function FeaturedData({ selectedCountry }) {
               return charts;
             })
             .reduce((a, b) => a.concat(b))
-            .filter(c => featuredCharts[selectedCountry.slug].includes(c.id))
+            .filter(c => {
+              const featuredChartIds = featuredCharts[selectedCountry.slug].map(
+                f => f.id
+              );
+              return featuredChartIds.includes(c.id);
+            })
+            .map(chart => {
+              return {
+                ...chart,
+                description: featuredCharts[selectedCountry.slug].find(
+                  f => f.id === chart.id
+                ).description
+              };
+            })
         : [],
     [selectedCountry.slug, sectionedCharts]
   );
