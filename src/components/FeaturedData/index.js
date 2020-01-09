@@ -16,6 +16,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 
 import config from 'config';
 import logo from 'assets/images/logos/dominion-logo-small.png';
+import useChartDefinitions from 'data/useChartDefinitions';
 import featuredCharts from 'data/featuredCharts';
 
 const COLOR_SCALE = ['#696969', '#8D8D8C', '#A9A9A9', '#C0C0C0', '#D3D3D3'];
@@ -114,15 +115,33 @@ function FeaturedData({ selectedCountry }) {
       }
     }
   };
-  const visuals = useMemo(
+
+  const sectionedCharts = useChartDefinitions();
+  const countryFeaturedCharts = useMemo(
     () =>
       featuredCharts[selectedCountry.slug] &&
       featuredCharts[selectedCountry.slug].length !== 0
-        ? featuredCharts[selectedCountry.slug]
+        ? sectionedCharts
+            .map(x => {
+              const charts = x.charts.map(c => {
+                return { ...c, sectionId: x.id };
+              });
+              return charts;
+            })
+            .reduce((a, b) => a.concat(b))
+            .filter(c => featuredCharts[selectedCountry.slug].includes(c.id))
+        : [],
+    [selectedCountry.slug, sectionedCharts]
+  );
+
+  const visuals = useMemo(
+    () =>
+      countryFeaturedCharts && countryFeaturedCharts.length !== 0
+        ? countryFeaturedCharts
             .map(x => x.visuals)
             .reduce((a, b) => a.concat(b))
         : [],
-    [selectedCountry.slug]
+    [countryFeaturedCharts]
   );
 
   const geoId = `country-${selectedCountry.code}`;
@@ -134,8 +153,8 @@ function FeaturedData({ selectedCountry }) {
 
   const chartComponents = useMemo(
     () =>
-      featuredCharts[selectedCountry.slug] &&
-      featuredCharts[selectedCountry.slug].map((chart, index) => (
+      countryFeaturedCharts &&
+      countryFeaturedCharts.map((chart, index) => (
         <Grid key={chart.id} item sm={12} md={6}>
           <InsightContainer
             hideInsight
