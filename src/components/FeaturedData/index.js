@@ -12,6 +12,8 @@ import withApollo from 'lib/withApollo';
 import ChartFactory from '@codeforafrica/hurumap-ui/factory/ChartFactory';
 import visualLoader from '@codeforafrica/hurumap-ui/factory/utils/visualLoader';
 
+import { ThemeProvider } from '@material-ui/core/styles';
+
 import config from 'config';
 import logo from 'assets/images/logos/dominion-logo-small.png';
 import featuredCharts from 'data/featuredCharts';
@@ -83,14 +85,35 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
 function FeaturedData({ selectedCountry }) {
   const classes = useStyles();
   const theme = useTheme();
-  const greyChartTheme = theme;
- 
-  greyChartTheme.chart.colorScale = COLOR_SCALE;
-  greyChartTheme.chart.pie.colorScale = COLOR_SCALE;
-  greyChartTheme.chart.area.colorScale = COLOR_SCALE;
-  greyChartTheme.chart.group.colorScale = COLOR_SCALE;
-  greyChartTheme.chart.bar.style.data.fill = [COLOR_SCALE];
-
+  const greyChartTheme = {
+    ...theme,
+    chart: {
+      ...theme.chart,
+      colorScale: COLOR_SCALE,
+      pie: {
+        ...theme.chart.pie,
+        colorScale: COLOR_SCALE
+      },
+      area: {
+        ...theme.chart.area,
+        colorScale: COLOR_SCALE
+      },
+      group: {
+        ...theme.chart.group,
+        colorScale: COLOR_SCALE
+      },
+      bar: {
+        ...theme.chart.bar,
+        style: {
+          ...theme.chart.bar.style,
+          data: {
+            ...theme.chart.bar.style.data,
+            fill: COLOR_SCALE[0]
+          }
+        }
+      }
+    }
+  };
   const visuals = useMemo(
     () =>
       featuredCharts[selectedCountry.slug] &&
@@ -176,17 +199,18 @@ function FeaturedData({ selectedCountry }) {
         <Typography variant="h2" className={classes.title}>
           Featured Data
         </Typography>
-        <Grid item container spacing={4}>
-          {chartComponents}
-        </Grid>
+        <ThemeProvider theme={greyChartTheme}>
+          <Grid item container spacing={4}>
+            {chartComponents}
+          </Grid>
+        </ThemeProvider>
       </Grid>
     </div>
   );
 }
 
 FeaturedData.propTypes = {
-  selectedCountry: PropTypes.shape({}).isRequired,
-  theme: PropTypes.shape({}).isRequired
+  selectedCountry: PropTypes.shape({}).isRequired
 };
 
 export default withApollo(FeaturedData);
