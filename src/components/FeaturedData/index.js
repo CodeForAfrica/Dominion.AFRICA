@@ -74,7 +74,7 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
     marginLeft: '0 !important',
     width: '70%'
   },
-  ChartContainer: {
+  chartContainer: {
     backgroundColor: 'white'
   },
   hideHighlightGrid: {
@@ -155,7 +155,7 @@ function FeaturedData({ selectedCountry }) {
             }}
             classes={{
               highlightGrid: classes.hideHighlightGrid,
-              containerRoot: classes.ChartContainer,
+              containerRoot: classes.chartContainer,
               description: classes.description,
               title: classNames(classes.chartTitle, {
                 [classes.dullOrange]: index !== 0
