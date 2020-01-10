@@ -9,6 +9,7 @@ import AppContext from 'AppContext';
 import { AboutCountry } from 'components/About';
 import { CountryPageHeader } from 'components/Header';
 import CountryPartners from 'components/CountryPartners';
+import FeaturedData from 'components/FeaturedData';
 import HowItWorks from 'components/HowItWorks';
 import Page from 'components/Page';
 import Showcase from 'components/Showcase';
@@ -53,6 +54,7 @@ function Country({ showcaseStories }) {
           dominion={{ ...config, selectedCountry }}
           profile={{}}
         />
+        <FeaturedData selectedCountry={selectedCountry} />
         <AboutCountry dominion={{ ...config, selectedCountry }} />
         <HowItWorks dominion={config} />
         <Video dominion={config} />
