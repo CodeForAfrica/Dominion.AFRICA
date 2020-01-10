@@ -18,6 +18,7 @@ import config from 'config';
 import logo from 'assets/images/logos/dominion-logo-small.png';
 import useChartDefinitions from 'data/useChartDefinitions';
 import featuredCharts from 'data/featuredCharts';
+import customChartColorScale from 'lib/utils/customChartColorScale';
 
 const COLOR_SCALE = ['#696969', '#8D8D8C', '#A9A9A9', '#C0C0C0', '#D3D3D3'];
 const InsightContainer = dynamic(
@@ -86,35 +87,7 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
 function FeaturedData({ selectedCountry }) {
   const classes = useStyles();
   const theme = useTheme();
-  const greyChartTheme = {
-    ...theme,
-    chart: {
-      ...theme.chart,
-      colorScale: COLOR_SCALE,
-      pie: {
-        ...theme.chart.pie,
-        colorScale: COLOR_SCALE
-      },
-      area: {
-        ...theme.chart.area,
-        colorScale: COLOR_SCALE
-      },
-      group: {
-        ...theme.chart.group,
-        colorScale: COLOR_SCALE
-      },
-      bar: {
-        ...theme.chart.bar,
-        style: {
-          ...theme.chart.bar.style,
-          data: {
-            ...theme.chart.bar.style.data,
-            fill: COLOR_SCALE[0]
-          }
-        }
-      }
-    }
-  };
+  const greyChartTheme = customChartColorScale(theme, COLOR_SCALE);
 
   const sectionedCharts = useChartDefinitions();
   const countryFeaturedCharts = useMemo(() => {
