@@ -77,10 +77,13 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
     width: '70%'
   },
   chartContainer: {
-    backgroundColor: 'white'
+    backgroundColor: 'white !important'
   },
   hideHighlightGrid: {
     display: 'none'
+  },
+  sourceGrid: {
+    justifyContent: 'center'
   }
 }));
 
@@ -157,7 +160,8 @@ function FeaturedData({ selectedCountry }) {
                 [classes.dullOrange]: index !== 0
               }),
               descriptionWrapper: classes.descriptionWrapper,
-              sourceLink: classes.sourceLink
+              sourceLink: classes.sourceLink,
+              sourceGrid: classes.sourceGrid
             }}
             embedCode={`Embed code for this chart. \n Copy the code below, then paste into your own CMS or HTML.
              Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge. \n
