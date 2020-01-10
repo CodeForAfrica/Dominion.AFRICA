@@ -117,35 +117,26 @@ function FeaturedData({ selectedCountry }) {
   };
 
   const sectionedCharts = useChartDefinitions();
-  const countryFeaturedCharts = useMemo(
-    () =>
-      featuredCharts[selectedCountry.slug] &&
-      featuredCharts[selectedCountry.slug].length !== 0
-        ? sectionedCharts
-            .map(x => {
-              const charts = x.charts.map(c => {
-                return { ...c, sectionId: x.id };
-              });
-              return charts;
-            })
-            .reduce((a, b) => a.concat(b))
-            .filter(c => {
-              const featuredChartIds = featuredCharts[selectedCountry.slug].map(
-                f => f.id
-              );
-              return featuredChartIds.includes(c.id);
-            })
-            .map(chart => {
-              return {
-                ...chart,
-                description: featuredCharts[selectedCountry.slug].find(
-                  f => f.id === chart.id
-                ).description
-              };
-            })
-        : [],
-    [selectedCountry.slug, sectionedCharts]
-  );
+  const countryFeaturedCharts = useMemo(() => {
+    const countryFeaturedChartsByIds =
+      featuredCharts[selectedCountry.slug] || [];
+
+    const charts = countryFeaturedChartsByIds
+      ? sectionedCharts
+          .map(x => {
+            const chart = x.charts.map(z => {
+              return { ...z, sectionId: x.id };
+            });
+            return chart;
+          })
+          .reduce((a, b) => a.concat(b))
+      : [];
+
+    return countryFeaturedChartsByIds.map(f => {
+      const chart = charts.find(c => c.id === f.id);
+      return { ...chart, ...f };
+    });
+  }, [selectedCountry.slug, sectionedCharts]);
 
   const visuals = useMemo(
     () =>
