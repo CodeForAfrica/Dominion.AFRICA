@@ -4,6 +4,17 @@ const config = {
     url: 'https://mapit.hurumap.org',
     codeType: 'AFR'
   },
+  robots: {
+    devHosts: ['dev.dominion.africa', 'now.sh'],
+    dev: `
+User-agent: *
+Disallow: /
+    `,
+    prod: `
+User-agent: *
+Disallow:
+    `
+  },
   countries: {
     kenya: {
       code: 'KE',
