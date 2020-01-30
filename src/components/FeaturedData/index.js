@@ -164,8 +164,12 @@ function FeaturedData({ selectedCountry }) {
               source: classes.source,
               sourceLink: classes.sourceLink
             }}
-            embedCode={`<iframe
-  src='${config.url}/embed/${geoId}/${chart.sectionId}/${chart.id}'`}
+            embed={{
+              title: 'Embed code for this chart',
+              subtitle:
+                'Copy the code below, then paste into your own CMS or HTML. Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge.',
+              code: `<iframe src='${config.url}/embed/${geoId}/${chart.sectionId}/${chart.id}'`
+            }}
             loading={chartData.isLoading}
             variant="analysis"
           >
