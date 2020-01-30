@@ -21,8 +21,8 @@ import featuredCharts from 'data/featuredCharts';
 import customChartColorScale from 'lib/utils/customChartColorScale';
 
 const COLOR_SCALE = ['#696969', '#8D8D8C', '#A9A9A9', '#C0C0C0', '#D3D3D3'];
-const InsightContainer = dynamic(
-  () => import('@codeforafrica/hurumap-ui/core/InsightContainer'),
+const ChartContainer = dynamic(
+  () => import('@codeforafrica/hurumap-ui/core/ChartContainer'),
   {
     ssr: false
   }
@@ -58,8 +58,13 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   dullOrange: {
     color: '#de9f3a'
   },
+  source: {
+    paddingTop: '2rem',
+    textAlign: 'center'
+  },
   sourceLink: {
-    fontSize: typography.caption.fontSize
+    fontSize: typography.caption.fontSize,
+    margin: 0
   },
   descriptionWrapper: {
     backgroundColor: '#f1f1ed',
@@ -81,9 +86,6 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   },
   hideHighlightGrid: {
     display: 'none'
-  },
-  sourceGrid: {
-    justifyContent: 'center'
   }
 }));
 
@@ -136,16 +138,16 @@ function FeaturedData({ selectedCountry }) {
       countryFeaturedCharts &&
       countryFeaturedCharts.map((chart, index) => (
         <Grid key={chart.id} item sm={12} md={6}>
-          <InsightContainer
-            hideInsight
+          <ChartContainer
             logo={logo}
             key={chart.id}
             title={chart.title}
             subtitle={chart.subtitle}
             description={chart.description}
-            source={{
-              title: chart.sourceTitle,
-              href: chart.sourceLink
+            sourceLink={chart.sourceTitle}
+            sourceTitle={chart.sourceTitle}
+            content={{
+              height: 330
             }}
             actions={{
               handleShare: () => {},
@@ -153,22 +155,20 @@ function FeaturedData({ selectedCountry }) {
               handleCompare: () => {}
             }}
             classes={{
-              highlightGrid: classes.hideHighlightGrid,
               containerRoot: classes.chartContainer,
               description: classes.description,
               title: classNames(classes.chartTitle, {
                 [classes.dullOrange]: index !== 0
               }),
               descriptionWrapper: classes.descriptionWrapper,
-              sourceLink: classes.sourceLink,
-              sourceGrid: classes.sourceGrid
+              source: classes.source,
+              sourceLink: classes.sourceLink
             }}
-            embedCode={`Embed code for this chart. \n Copy the code below, then paste into your own CMS or HTML.
-             Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge. \n
-              <iframe src='${config.url}/embed/${geoId}/${chart.sectionId}/${chart.id}'`}
+            embedCode={`<iframe
+  src='${config.url}/embed/${geoId}/${chart.sectionId}/${chart.id}'`}
             loading={chartData.isLoading}
+            variant="analysis"
           >
-            <div />
             {!chartData.isLoading &&
               chart.visuals.map(visual => (
                 <ChartFactory
@@ -177,7 +177,7 @@ function FeaturedData({ selectedCountry }) {
                   data={chartData.profileVisualsData[visual.queryAlias].nodes}
                 />
               ))}
-          </InsightContainer>
+          </ChartContainer>
         </Grid>
       )),
     [chartData, classes, geoId, selectedCountry.slug]
