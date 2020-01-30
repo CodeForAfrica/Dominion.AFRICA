@@ -49,9 +49,8 @@ function About(props) {
   return (
     <div>
       <Typography variant="subtitle1" className={classes.title}>
-        HURUmap gives infomediaries like journalists and civic activists an easy
-        plug & play toolkit for finding and embedding interactive data
-        visualizations into their storytelling.
+        Dominion gives you the data to add context and authority to public
+        discourse and policy-making on vital issues of land ownership.
       </Typography>
       <Typography variant="subtitle1" className={classes.body}>
         This project is built on software originally created by the Knight Lab
