@@ -4,6 +4,23 @@ const config = {
     url: 'https://mapit.hurumap.org',
     codeType: 'AFR'
   },
+  robots: {
+    devHosts: ['dev.dominion.africa', 'now.sh'],
+    dev: `
+User-agent: *
+Disallow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+    `,
+    prod: `
+User-agent: *
+Disallow:
+    `
+  },
   countries: {
     'south-africa': {
       code: 'ZA',
