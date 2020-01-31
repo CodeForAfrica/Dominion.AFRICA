@@ -41,7 +41,7 @@ export async function getOpenAfricaDominionGroupData(group = 'dominion') {
 
 export async function getOpenAfricaDominionCount(group = 'dominion') {
   return axios.get(
-    `https://africaopendata.org/api/3/action/group_show?id=${group}`
+    `https://corsanywhere.devops.codeforafrica.org/https://open.africa/api/3/action/group_show?id=${group}`
   );
 }
 

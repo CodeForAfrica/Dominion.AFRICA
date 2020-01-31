@@ -56,7 +56,7 @@ function Data({
   ...props
 }) {
   const classes = useStyles(props);
-  const orgLink = `https://openafrica.net/organization/${organization.name}`;
+  const orgLink = `https://open.africa/organization/${organization.name}`;
 
   return (
     <Card className={classes.root}>
