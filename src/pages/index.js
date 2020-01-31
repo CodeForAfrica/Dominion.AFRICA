@@ -14,7 +14,7 @@ import Video from 'components/Video';
 function Home({ showcaseStories }) {
   return (
     <Page>
-      <Header {...config}>
+      <Header dominion={{ ...config }}>
         <HomeHero />
       </Header>
       <Showcase stories={showcaseStories} />
