@@ -29,13 +29,13 @@ export async function getSourceAfricaDominionData(
   projectId = '462-Dominion-AFRICA'
 ) {
   return axios.get(
-    `https://dc.sourceafrica.net/api/search.json?q=projectid:${projectId}`
+    `https://corsanywhere.devops.codeforafrica.org/https://dc.sourceafrica.net/api/search.json?q=projectid:${projectId}`
   );
 }
 
 export async function getOpenAfricaDominionGroupData(group = 'dominion') {
   return axios.get(
-    `https://africaopendata.org/api/3/action/group_package_show?id=${group}`
+    `https://corsanywhere.devops.codeforafrica.org/https://open.africa/api/3/action/group_package_show?id=${group}`
   );
 }
 
