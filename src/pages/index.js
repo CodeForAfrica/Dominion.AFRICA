@@ -4,7 +4,9 @@ import config from 'config';
 import { getShowcaseStories } from 'lib/api';
 import { AboutDominion } from 'components/About';
 import Data from 'components/Data';
-import { HomePageHeader } from 'components/Header';
+
+import Header from 'components/Header';
+import HomeHero from 'components/Hero/HomeHero';
 import Page from 'components/Page';
 import Showcase from 'components/Showcase';
 import Video from 'components/Video';
@@ -12,7 +14,9 @@ import Video from 'components/Video';
 function Home({ showcaseStories }) {
   return (
     <Page>
-      <HomePageHeader dominion={config} profile={{}} />
+      <Header {...config}>
+        <HomeHero />
+      </Header>
       <Showcase stories={showcaseStories} />
       <Video dominion={config} />
       <Data dominion={config} />

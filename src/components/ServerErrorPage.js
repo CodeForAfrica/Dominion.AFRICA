@@ -6,7 +6,7 @@ import config from 'config';
 import useToggleModal from 'components/Modal/useToggleModal';
 import Page from 'components/Page';
 import ErrorContent from 'components/ErrorContent';
-import { TitlePageHeader } from 'components/Header';
+import TitlePageHeader from 'components/Header/TitlePageHeader';
 
 const useStyles = makeStyles({
   link: {

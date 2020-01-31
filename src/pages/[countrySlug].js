@@ -6,8 +6,9 @@ import Head from 'next/head';
 import config from 'config';
 import { getShowcaseStories } from 'lib/api';
 import AppContext from 'AppContext';
-import { AboutCountry } from 'components/About';
-import { CountryPageHeader } from 'components/Header';
+import AboutCountry from 'components/About/AboutCountry';
+import CountryHero from 'components/Hero/CountryHero';
+import Header from 'components/Header';
 import CountryPartners from 'components/CountryPartners';
 import FeaturedData from 'components/FeaturedData';
 import HowItWorks from 'components/HowItWorks';
@@ -50,10 +51,9 @@ function Country({ showcaseStories }) {
         />
       </Head>
       <Page>
-        <CountryPageHeader
-          dominion={{ ...config, selectedCountry }}
-          profile={{}}
-        />
+        <Header {...config} selectedCountry={selectedCountry}>
+          <CountryHero dominion={{ ...config, selectedCountry }} />
+        </Header>
         <FeaturedData selectedCountry={selectedCountry} />
         <AboutCountry dominion={{ ...config, selectedCountry }} />
         <HowItWorks dominion={config} />

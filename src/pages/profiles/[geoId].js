@@ -18,7 +18,8 @@ import AppContext from 'AppContext';
 import ChartsContainer from 'components/ChartsContainer';
 import CountryPartners from 'components/CountryPartners';
 import Page from 'components/Page';
-import { ProfilePageHeader } from 'components/Header';
+import ProfileHero from 'components/Hero/ProfileHero';
+import Header from 'components/Header';
 import ProfileRelease from 'components/ProfileReleases';
 import ProfileSectionTitle from 'components/ProfileSectionTitle';
 import ProfileTabs from 'components/ProfileTabs';
@@ -264,7 +265,7 @@ function Profile(props) {
         />
       </Head>
       <Page>
-        <ProfilePageHeader
+        <Header
           profiles={profiles}
           dominion={{
             ...config,
@@ -273,8 +274,9 @@ function Profile(props) {
           }}
           geoId={geoId}
           comparisonGeoId={comparisonGeoId}
-        />
-
+        >
+          <ProfileHero />
+        </Header>
         <ProfileTabs
           loading={chartData.isLoading}
           activeTab={activeTab}

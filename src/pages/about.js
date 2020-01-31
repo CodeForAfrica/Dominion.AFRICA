@@ -8,7 +8,7 @@ import CountryPartners from 'components/CountryPartners';
 import Data from 'components/Data';
 import Page from 'components/Page';
 import Section from 'components/Section';
-import { TitlePageHeader } from 'components/Header';
+import TitlePageHeader from 'components/Header/TitlePageHeader';
 
 function About() {
   return (

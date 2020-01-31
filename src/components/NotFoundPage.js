@@ -3,7 +3,7 @@ import React from 'react';
 import config from 'config';
 import Page from 'components/Page';
 import ErrorContent from 'components/ErrorContent';
-import { TitlePageHeader } from 'components/Header';
+import TitlePageHeader from 'components/Header/TitlePageHeader';
 
 function NotFound() {
   return (

@@ -23,7 +23,7 @@ import DataCard from 'components/Card/Data';
 import DocumentCard from 'components/Card/Document';
 import Page from 'components/Page';
 import Section from 'components/Section';
-import { TitlePageHeader } from 'components/Header';
+import TitlePageHeader from 'components/Header/TitlePageHeader';
 
 const useStyles = makeStyles(theme => ({
   content: {
