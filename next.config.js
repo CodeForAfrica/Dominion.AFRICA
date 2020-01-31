@@ -6,6 +6,7 @@ const withImages = require('next-images');
 
 module.exports = withCSS(
   withImages({
+    inlineImageLimit: 200000,
     webpack(config, { isServer }) {
       // Important: return the modified config
 
