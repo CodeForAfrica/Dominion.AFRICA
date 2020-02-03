@@ -2,7 +2,7 @@ import React from 'react';
 
 import config from 'config';
 import { getShowcaseStories } from 'lib/api';
-import { AboutDominion } from 'components/About';
+import AboutDominion from 'components/About/AboutDominion';
 import Data from 'components/Data';
 
 import Header from 'components/Header';
