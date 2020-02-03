@@ -16,7 +16,7 @@ import {
   getSourceAfricaDominionData
 } from 'lib/api';
 
-import { AboutDominion } from 'components/About';
+import AboutDominion from 'components/About/AboutDominion';
 import ArrowButton from 'components/ArrowButton';
 import CountryPartners from 'components/CountryPartners';
 import DataCard from 'components/Card/Data';
