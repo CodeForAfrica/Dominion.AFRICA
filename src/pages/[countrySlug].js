@@ -51,7 +51,7 @@ function Country({ showcaseStories }) {
         />
       </Head>
       <Page>
-        <Header dominion={{ ...config, ...selectedCountry }}>
+        <Header dominion={{ ...config, selectedCountry }}>
           <CountryHero dominion={{ ...config, selectedCountry }} />
         </Header>
         <FeaturedData selectedCountry={selectedCountry} />

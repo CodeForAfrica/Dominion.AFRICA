@@ -130,15 +130,17 @@ function CountryHero({ dominion, ...props }) {
         </Typography>
       </HeroTitleGrid>
       <div className={classes.map}>
-        <MapIt
-          url={config.MAPIT.url}
-          zoom={selectedCountry.zoom}
-          center={selectedCountry.centre}
-          codeType={config.MAPIT.codeType}
-          geoLevel="country"
-          geoCode={selectedCountry.code}
-          onClickGeoLayer={onClickGeoLayer}
-        />
+        {selectedCountry.code && (
+          <MapIt
+            url={config.MAPIT.url}
+            zoom={selectedCountry.zoom}
+            center={selectedCountry.centre}
+            codeType={config.MAPIT.codeType}
+            geoLevel="country"
+            geoCode={selectedCountry.code}
+            onClickGeoLayer={onClickGeoLayer}
+          />
+        )}
       </div>
     </Hero>
   );
