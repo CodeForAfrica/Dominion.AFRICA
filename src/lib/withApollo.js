@@ -18,7 +18,7 @@ function create(initialState) {
     connectToDevTools: isBrowser,
     ssrMode: !isBrowser, // Disables forceFetch on the server (so queries are only run once)
     link: new HttpLink({
-      uri: 'https://graphql.hurumap.org/graphql', // Server URL (must be absolute)
+      uri: 'https://graphql.dominion.africa/graphql', // Server URL (must be absolute)
       // Use fetch() polyfill on the server
       fetch: !isBrowser && fetch
     }),
