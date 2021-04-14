@@ -1,5 +1,9 @@
+const GRAPHQL_ORIGIN = 'https://graphql.dominion.africa';
+
 const config = {
   url: 'https://dominion.africa',
+  graphqlOrigin: GRAPHQL_ORIGIN,
+  graphqlURI: `${GRAPHQL_ORIGIN}/graphql`,
   MAPIT: {
     url: 'https://mapit.hurumap.org',
     codeType: 'AFR'

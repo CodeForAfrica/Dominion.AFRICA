@@ -254,12 +254,12 @@ function Profile(props) {
         <title>{pageTitle()}</title>
         <link
           rel="preconnect"
-          href="https://mapit.hurumap.org/graphql"
+          href={config.MAPIT.url}
           crossOrigin="anonymous"
         />
         <link
           rel="preconnect"
-          href="https://graphql.dominion.africa/graphql"
+          href={config.graphqlOrigin}
           crossOrigin="anonymous"
         />
       </Head>
