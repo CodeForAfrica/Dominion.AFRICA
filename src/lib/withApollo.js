@@ -9,6 +9,8 @@ import { getDataFromTree } from '@apollo/react-ssr';
 import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 
+import config from 'config';
+
 let reusableApolloClient = null;
 
 function create(initialState) {
@@ -18,7 +20,7 @@ function create(initialState) {
     connectToDevTools: isBrowser,
     ssrMode: !isBrowser, // Disables forceFetch on the server (so queries are only run once)
     link: new HttpLink({
-      uri: 'https://graphql.hurumap.org/graphql', // Server URL (must be absolute)
+      uri: config.graphqlURI, // Server URL (must be absolute)
       // Use fetch() polyfill on the server
       fetch: !isBrowser && fetch
     }),

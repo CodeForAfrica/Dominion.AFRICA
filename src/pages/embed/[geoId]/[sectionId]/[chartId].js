@@ -89,12 +89,12 @@ function Embed(props) {
         <title>{pageTitle()}</title>
         <link
           rel="preconnect"
-          href="https://mapit.hurumap.org/graphql"
+          href={config.MAPIT.url}
           crossOrigin="anonymous"
         />
         <link
           rel="preconnect"
-          href="https://graphql.hurumap.org/graphql"
+          href={config.graphqlOrigin}
           crossOrigin="anonymous"
         />
       </Head>
