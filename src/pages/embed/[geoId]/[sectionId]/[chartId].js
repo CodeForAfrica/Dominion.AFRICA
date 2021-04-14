@@ -94,7 +94,7 @@ function Embed(props) {
         />
         <link
           rel="preconnect"
-          href="https://graphql.hurumap.org/graphql"
+          href="https://graphql.dominion.africa/graphql"
           crossOrigin="anonymous"
         />
       </Head>
