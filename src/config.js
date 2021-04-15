@@ -1,4 +1,4 @@
-const GRAPHQL_ORIGIN = 'https://graphql.dominion.africa';
+const GRAPHQL_ORIGIN = 'https://graphql.hurumap.org';
 
 const config = {
   url: 'https://dominion.africa',
