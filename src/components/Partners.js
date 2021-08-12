@@ -2,7 +2,7 @@ import React from 'react';
 
 import { makeStyles, Grid } from '@material-ui/core';
 
-import A from '@codeforafrica/hurumap-ui/core/A';
+import A from '@hurumap-ui/core/A';
 
 import cfa from 'assets/images/logos/codeforafrica.png';
 import pulitzercenter from 'assets/images/logos/pulitzer.png';

@@ -9,8 +9,8 @@ import useTheme from '@material-ui/core/styles/useTheme';
 import Typography from '@material-ui/core/Typography';
 import withApollo from 'lib/withApollo';
 
-import ChartFactory from '@codeforafrica/hurumap-ui/factory/ChartFactory';
-import visualLoader from '@codeforafrica/hurumap-ui/factory/utils/visualLoader';
+import ChartFactory from '@hurumap-ui/charts/ChartFactory';
+import useProfileLoader from '@hurumap-ui/core/useProfileLoader';
 
 import { ThemeProvider } from '@material-ui/core/styles';
 
@@ -22,7 +22,7 @@ import customChartColorScale from 'lib/utils/customChartColorScale';
 
 const COLOR_SCALE = ['#696969', '#8D8D8C', '#A9A9A9', '#C0C0C0', '#D3D3D3'];
 const ChartContainer = dynamic(
-  () => import('@codeforafrica/hurumap-ui/core/ChartContainer'),
+  () => import('@hurumap-ui/core/ChartContainer'),
   {
     ssr: false
   }
@@ -127,11 +127,7 @@ function FeaturedData({ selectedCountry }) {
   );
 
   const geoId = `country-${selectedCountry.code}`;
-
-  const chartData = visualLoader({
-    geoId,
-    visuals
-  });
+  const { profiles, chartData } = useProfileLoader({ geoId, visuals });
 
   const chartComponents = useMemo(
     () =>
@@ -173,12 +169,13 @@ function FeaturedData({ selectedCountry }) {
             loading={chartData.isLoading}
             variant="analysis"
           >
-            {!chartData.isLoading &&
+            {!(chartData.isLoading || profiles.isLoading) &&
               chart.visuals.map(visual => (
                 <ChartFactory
                   key={visual.id}
                   definition={visual}
                   data={chartData.profileVisualsData[visual.queryAlias].nodes}
+                  profiles={profiles}
                 />
               ))}
           </ChartContainer>

@@ -21,9 +21,9 @@ function Home({ showcaseStories }) {
   );
 }
 
-Home.getInitialProps = async () => {
+export async function getStaticProps() {
   const showcaseStories = await getShowcaseStories();
-  return { showcaseStories };
-};
+  return { props: { showcaseStories } };
+}
 
 export default Home;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { makeStyles, Grid } from '@material-ui/core';
 
-import A from '@codeforafrica/hurumap-ui/core/A';
+import A from '@hurumap-ui/core/A';
 
 import aul from 'assets/images/logos/aul.png';
 import rapport from 'assets/images/logos/rapport.png';
@@ -152,7 +152,7 @@ CountryPartners.defaultProps = {
 
 CountryPartners.propTypes = {
   dominion: PropTypes.shape({
-    selectedCountry: PropTypes.object
+    selectedCountry: PropTypes.shape({})
   })
 };
 

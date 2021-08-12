@@ -2,7 +2,7 @@ import React from 'react';
 
 import { makeStyles, Grid } from '@material-ui/core';
 
-import A from '@codeforafrica/hurumap-ui/core/A';
+import A from '@hurumap-ui/core/A';
 
 import land from 'assets/images/hero-image-3_2.png';
 

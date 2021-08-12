@@ -2,7 +2,7 @@ import React from 'react';
 
 import { makeStyles, Grid, Typography } from '@material-ui/core';
 
-import A from '@codeforafrica/hurumap-ui/core/A';
+import A from '@hurumap-ui/core/A';
 
 import SocialMedia from './SocialMedia';
 
