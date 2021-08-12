@@ -9,6 +9,8 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import theme from 'theme';
 import { Provider as AppContextProvider } from 'AppContext';
 
+import 'regenerator-runtime/runtime';
+
 export default class DominionApp extends App {
   componentDidMount() {
     // Remove the server-side injected CSS.
