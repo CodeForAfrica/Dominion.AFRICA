@@ -74,13 +74,12 @@ export async function getShowcaseStories(countrySlug) {
     const showcaseStories = [];
     parseStream.on('data', chunk => {
       showcaseStories.push(chunk);
-      console.log('BOOM', showcaseStories);
     });
 
     parseStream.on('finish', () => {
       resolve(
-        showcaseStories.filter(
-          story => story[storyFormat.country.slug] === countrySlug
+        showcaseStories.filter(story =>
+          countrySlug ? story[storyFormat.country.slug] === countrySlug : story
         )
       );
     });
