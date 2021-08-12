@@ -22,7 +22,7 @@ import Hero, {
   HeroTitleGrid
 } from './Hero';
 
-const MapIt = dynamic(() => import('@codeforafrica/hurumap-ui/core/MapIt'), {
+const MapIt = dynamic(() => import('@hurumap-ui/core/MapIt'), {
   ssr: false
 });
 

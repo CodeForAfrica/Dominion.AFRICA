@@ -2,7 +2,7 @@ import { useEffect, useContext } from 'react';
 
 import AppContext from 'AppContext';
 
-export default () => {
+export default function useCloseModalOnPopstate() {
   const {
     state: { openModal },
     dispatch
@@ -18,4 +18,4 @@ export default () => {
       window.removeEventListener('popstate', dismissModal);
     };
   }, [openModal, dispatch]);
-};
+}

@@ -9,13 +9,13 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 
-import TypographyLoader from '@codeforafrica/hurumap-ui/core/TypographyLoader';
+import TypographyLoader from '@hurumap-ui/core/TypographyLoader';
 
 import config from 'config';
 import AppContext from 'AppContext';
 import Hero, { HeroDetail, HeroTitle, HeroTitleGrid } from 'components/Hero';
 
-const MapIt = dynamic(() => import('@codeforafrica/hurumap-ui/core/MapIt'), {
+const MapIt = dynamic(() => import('@hurumap-ui/core/MapIt'), {
   ssr: false
 });
 

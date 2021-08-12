@@ -33,7 +33,7 @@ function Country({ showcaseStories }) {
     });
   }, [dispatch, countrySlug]);
 
-  if (!countrySlug) {
+  if (!(countrySlug && selectedCountry?.name)) {
     return null;
   }
   if (!supportedCountriesSlug.includes(countrySlug)) {
@@ -42,14 +42,16 @@ function Country({ showcaseStories }) {
   return (
     <>
       <Head>
-        <title>{selectedCountry && `${selectedCountry.name} - `}Dominion</title>
+        <title>
+          {selectedCountry?.name ? `${selectedCountry.name} - ` : ''}Dominion
+        </title>
         <link
           rel="preconnect"
           href="https://mapit.hurumap.org/graphql"
           crossOrigin="anonymous"
         />
       </Head>
-      <Page>
+      <Page key={countrySlug}>
         <CountryPageHeader
           dominion={{ ...config, selectedCountry }}
           profile={{}}
@@ -65,9 +67,19 @@ function Country({ showcaseStories }) {
   );
 }
 
-Country.getInitialProps = async ({ query: { countrySlug } }) => {
-  const showcaseStories = await getShowcaseStories(countrySlug);
-  return { showcaseStories };
-};
+export async function getStaticPaths() {
+  const { countries } = config;
+  return {
+    paths: Object.keys(countries).map(slug => ({
+      params: { countrySlug: slug }
+    })),
+    fallback: false
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const showcaseStories = await getShowcaseStories(params.countrySlug);
+  return { props: { showcaseStories } };
+}
 
 export default Country;

@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import { makeStyles, Grid, Typography } from '@material-ui/core';
 
-import ContentLoader from '@codeforafrica/hurumap-ui/core/ContentLoader';
+import ContentLoader from '@hurumap-ui/core/ContentLoader';
 
 import ArrowButton from 'components/ArrowButton';
 

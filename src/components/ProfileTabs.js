@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import { AppBar, Tab, Tabs, withStyles } from '@material-ui/core';
 
-import ContentLoader from '@codeforafrica/hurumap-ui/core/ContentLoader';
+import ContentLoader from '@hurumap-ui/core/ContentLoader';
 
 const styles = theme => ({
   root: {

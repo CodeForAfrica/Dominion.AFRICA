@@ -6,8 +6,8 @@ import Head from 'next/head';
 
 import { makeStyles, Grid } from '@material-ui/core';
 
-import useProfileLoader from '@codeforafrica/hurumap-ui/factory/useProfileLoader';
-import ChartFactory from '@codeforafrica/hurumap-ui/factory/ChartFactory';
+import useProfileLoader from '@hurumap-ui/core/useProfileLoader';
+import ChartFactory from '@hurumap-ui/charts/ChartFactory';
 
 import config from 'config';
 import slugify from 'lib/utils/slugify';
@@ -24,7 +24,7 @@ import ProfileSectionTitle from 'components/ProfileSectionTitle';
 import ProfileTabs from 'components/ProfileTabs';
 
 const ChartContainer = dynamic(
-  () => import('@codeforafrica/hurumap-ui/core/ChartContainer'),
+  () => import('@hurumap-ui/core/ChartContainer'),
   {
     ssr: false
   }

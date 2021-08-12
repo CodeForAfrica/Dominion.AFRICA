@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 
 import { ServerStyleSheets } from '@material-ui/core/styles';
 
@@ -9,7 +9,7 @@ import theme from 'theme';
 class DominionDocument extends Document {
   render() {
     return (
-      <html lang="en">
+      <Html lang="en">
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
@@ -50,7 +50,7 @@ class DominionDocument extends Document {
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }

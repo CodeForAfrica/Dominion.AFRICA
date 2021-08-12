@@ -50,7 +50,7 @@ Disallow:
   },
   showcase: {
     url:
-      'https://docs.google.com/spreadsheets/d/1rM0ckJYyN-zhbEf8hTgcwCXsZVCdy4ISNrfJD0apf4Y/edit?usp=sharing',
+      'https://docs.google.com/spreadsheets/d/1rM0ckJYyN-zhbEf8hTgcwCXsZVCdy4ISNrfJD0apf4Y/export?format=csv&gid=0',
     storyFormat: {
       title: 'TITLE',
       brief: 'BRIEF',
