@@ -7,6 +7,7 @@ module.exports = withImages({
   cssLoaderOptions: {
     url: false
   },
+  webpack5: false,
   webpack(config, { isServer }) {
     // Important: return the modified config
 
