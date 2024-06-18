@@ -56,7 +56,7 @@
     "babel-eslint": "^10.0.3",
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
-    "eslint": "^6.6.0",
+    "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.5.0",
     "eslint-import-resolver-babel-module": "^5.1.0",
@@ -66,7 +66,7 @@
     "eslint-plugin-module-resolver": "^0.15.0",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
-    "eslint-plugin-react-hooks": "^1.7.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^3.0.9",
     "lint-staged": "^9.4.2",
     "prettier": "^1.19.1"
@@ -74,11 +74,11 @@
   "scripts": {
     "commitChartDefinitions": "git add src/data/charts.json && (git diff-index --quiet HEAD || (git commit -m 'updated chart ids' && git push))",
     "applyIdsToChartDefinitions": "node scripts/chartsDefinitionsApplyUniqueId.js",
-    "dev": "next",
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider next",
     "prestart": "yarn applyIdsToChartDefinitions",
     "start": "next start",
     "prebuild": "yarn applyIdsToChartDefinitions",
-    "build": "next build",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider next build",
     "test": "next test",
     "lint": "yarn eslint --fix ./",
     "lint-staged": "yarn eslint --fix"
@@ -108,5 +108,6 @@
       "yarn lint-staged",
       "git add"
     ]
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
