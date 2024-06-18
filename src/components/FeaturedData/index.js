@@ -14,7 +14,7 @@ import useProfileLoader from '@hurumap-ui/core/useProfileLoader';
 
 import { ThemeProvider } from '@material-ui/core/styles';
 
-import config from 'config';
+import config from '@/dominion/config';
 import logo from 'assets/images/logos/dominion-logo-small.png';
 import useChartDefinitions from 'data/useChartDefinitions';
 import featuredCharts from 'data/featuredCharts';

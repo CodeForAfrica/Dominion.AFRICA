@@ -9,12 +9,12 @@ import { makeStyles, Grid } from '@material-ui/core';
 import useProfileLoader from '@hurumap-ui/core/useProfileLoader';
 import ChartFactory from '@hurumap-ui/charts/ChartFactory';
 
-import config from 'config';
+import config from '@/dominion/config';
 import slugify from 'lib/utils/slugify';
 import logo from 'assets/images/logos/dominion-logo-small.png';
 import useChartDefinitions from 'data/useChartDefinitions';
 import withApollo from 'lib/withApollo';
-import AppContext from 'AppContext';
+import AppContext from '@/dominion/AppContext';
 import ChartsContainer from 'components/ChartsContainer';
 import CountryPartners from 'components/CountryPartners';
 import Page from 'components/Page';

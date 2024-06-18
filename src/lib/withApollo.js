@@ -9,7 +9,7 @@ import { getDataFromTree } from '@apollo/react-ssr';
 import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 
-import config from 'config';
+import config from '@/dominion/config';
 
 let reusableApolloClient = null;
 
@@ -49,6 +49,7 @@ function getDisplayName(WrappedComponent) {
 
 const withApollo = PageComponent => {
   return class extends React.Component {
+    // eslint-disable-next-line react/static-property-placement
     static get displayName() {
       return `withApollo(${getDisplayName(PageComponent)})`;
     }

@@ -41,7 +41,7 @@ function Community(props) {
   const joinClassName = classNames(classes.listText, classes.joinText);
 
   return (
-    <div classes={classes.root}>
+    <div className={classes.root}>
       <Typography
         variant="subtitle1"
         className={classes.listText}

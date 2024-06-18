@@ -41,6 +41,7 @@ function SocialMedia({ classes }) {
     >
       <Grid item>
         <a
+          aria-label="Facebook"
           href="https://www.facebook.com/AfricanCIR/"
           target="_blank"
           rel="noopener noreferrer"
@@ -54,6 +55,7 @@ function SocialMedia({ classes }) {
       </Grid>
       <Grid item>
         <a
+          aria-label="Instagram"
           href="https://www.instagram.com/explore/tags/onsgrond/"
           target="_blank"
           rel="noopener noreferrer"
@@ -67,6 +69,7 @@ function SocialMedia({ classes }) {
       </Grid>
       <Grid item>
         <a
+          aria-label="Twitter"
           href="https://twitter.com/africancir"
           target="_blank"
           rel="noopener noreferrer"
