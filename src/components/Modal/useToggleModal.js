@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import AppContext from 'AppContext';
+import AppContext from '@/dominion/AppContext';
 
 export default function useToggleModal(modalName) {
   const {

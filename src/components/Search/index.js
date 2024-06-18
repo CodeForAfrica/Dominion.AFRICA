@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import config from 'config';
+import config from '@/dominion/config';
 import createAPI from 'lib/api';
 
 import SearchBar from './SearchBar';
@@ -59,6 +59,10 @@ class Search extends React.Component {
     }
   }
 
+  handleSearch(searchTerm) {
+    this.setState({ results: [], searchTerm });
+  }
+
   async loadSuggestions(searchTerm) {
     const { codeType } = config.MAPIT;
     const api = createAPI();
@@ -79,10 +83,6 @@ class Search extends React.Component {
       }
     }
     this.setState({ codeType, results, geography });
-  }
-
-  handleSearch(searchTerm) {
-    this.setState({ results: [], searchTerm });
   }
 
   render() {
@@ -135,7 +135,7 @@ Search.propTypes = {
     PropTypes.node
   ]),
   dominion: PropTypes.shape({
-    countries: PropTypes.object
+    countries: PropTypes.shape({})
   }),
   handleIconClick: PropTypes.func,
   placeholder: PropTypes.string,

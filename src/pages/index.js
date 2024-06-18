@@ -1,6 +1,6 @@
 import React from 'react';
 
-import config from 'config';
+import config from '@/dominion/config';
 import { getShowcaseStories } from 'lib/api';
 import { AboutDominion } from 'components/About';
 import Data from 'components/Data';

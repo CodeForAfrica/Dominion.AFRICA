@@ -11,8 +11,8 @@ import { Typography } from '@material-ui/core';
 
 import TypographyLoader from '@hurumap-ui/core/TypographyLoader';
 
-import config from 'config';
-import AppContext from 'AppContext';
+import config from '@/dominion/config';
+import AppContext from '@/dominion/AppContext';
 import Hero, { HeroDetail, HeroTitle, HeroTitleGrid } from 'components/Hero';
 
 const MapIt = dynamic(() => import('@hurumap-ui/core/MapIt'), {

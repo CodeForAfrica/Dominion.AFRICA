@@ -5,7 +5,7 @@ import { makeStyles, GridList, GridListTile } from '@material-ui/core';
 
 import SimpleBarReact from 'simplebar-react';
 
-import config from 'config';
+import config from '@/dominion/config';
 import useColsMediaQuery from './useColsMediaQuery';
 import StoryCard from './StoryCard';
 

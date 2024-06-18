@@ -2,7 +2,7 @@ import axios from 'axios';
 import Papa from 'papaparse';
 import request from 'request';
 
-import config from 'config';
+import config from '@/dominion/config';
 
 export default function createAPI() {
   const { url: mapitUrl, codeType } = config.MAPIT;

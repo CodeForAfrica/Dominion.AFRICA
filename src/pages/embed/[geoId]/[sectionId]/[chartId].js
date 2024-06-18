@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import useProfileLoader from '@hurumap-ui/core/useProfileLoader';
 import ChartFactory from '@hurumap-ui/charts/ChartFactory';
 
-import config from 'config';
+import config from '@/dominion/config';
 import useChartDefinitions from 'data/useChartDefinitions';
 import withApollo from 'lib/withApollo';
 

@@ -13,7 +13,7 @@ import {
 import geolocate from 'assets/images/icons/shape.svg';
 import cross from 'assets/images/icons/close.svg';
 import arrowIconSrc from 'assets/images/icons/combined-shape.svg';
-import AppContext from 'AppContext';
+import AppContext from '@/dominion/AppContext';
 
 import GetLocation from './GetLocation';
 

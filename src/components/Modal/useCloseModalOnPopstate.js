@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
 
-import AppContext from 'AppContext';
+import AppContext from '@/dominion/AppContext';
 
 export default function useCloseModalOnPopstate() {
   const {
