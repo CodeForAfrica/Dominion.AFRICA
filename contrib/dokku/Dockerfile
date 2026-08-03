@@ -1,1 +1,1 @@
-FROM codeforafrica/dominion-africa-ui:0.2.4
+FROM codeforafrica/dominion-africa-ui:0.2.5
