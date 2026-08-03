@@ -1,12 +1,12 @@
 # Install dependencies only when needed
-FROM node:20.14-alpine as node-alpine
+FROM node:20.14-alpine AS node-alpine
 
 # Always install security updated e.g. https://pythonspeed.com/articles/security-updates-in-docker/
 # Update local cache so that other stages don't need to update cache
 RUN apk update \
-    && apk upgrade \
-    # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-    && apk add --no-cache libc6-compat
+  && apk upgrade \
+  # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
+  && apk add --no-cache libc6-compat
 
 RUN corepack enable && corepack prepare yarn@1.22.22 --activate
 
@@ -26,7 +26,7 @@ RUN yarn build
 # Production image, copy all the files and run next
 FROM node-alpine AS runner
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
 
 WORKDIR /app
 
